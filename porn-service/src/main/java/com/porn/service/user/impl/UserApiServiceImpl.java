@@ -1,0 +1,697 @@
+
+package com.porn.service.user.impl;
+
+
+import cn.hutool.core.collection.ListUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
+import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
+import com.porn.client.common.enums.DelFlagEnum;
+import com.porn.client.common.enums.EnableStatusEnum;
+import com.porn.client.common.exceptions.BusinessException;
+import com.porn.client.common.vo.PageVo;
+import com.porn.client.log.api.LoginLogApiService;
+import com.porn.client.log.dto.LoginLogSaveDTO;
+import com.porn.client.menu.api.MenuApiService;
+import com.porn.client.menu.dto.MenuQueryDTO;
+import com.porn.client.menu.vo.MenuVo;
+import com.porn.client.minio.api.MinioApiService;
+import com.porn.client.minio.dto.PrevFileDTO;
+import com.porn.client.minio.vo.PrevFileVo;
+import com.porn.client.role.api.RoleMenuApiService;
+import com.porn.client.role.dto.RoleMenuQueryDTO;
+import com.porn.client.role.vo.RoleMenuVo;
+import com.porn.client.server.dto.GenCaptchaDTO;
+import com.porn.client.user.api.UserApiService;
+import com.porn.client.user.api.UserRoleApiService;
+import com.porn.client.user.dto.*;
+import com.porn.client.user.vo.*;
+import com.porn.service.common.entity.BaseDO;
+import com.porn.service.user.converter.UserConverter;
+import com.porn.service.user.dao.entity.UserDO;
+import com.porn.service.user.dao.mapper.UserMapper;
+import com.wf.captcha.SpecCaptcha;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Service
+
+@Transactional(rollbackFor = {Exception.class})
+ public class UserApiServiceImpl implements UserApiService {
+    /*  57 */   private static final Logger log = LoggerFactory.getLogger(UserApiServiceImpl.class);
+
+
+
+    @Autowired
+     private UserMapper userMapper;
+
+
+
+    @Autowired
+     private UserConverter userConverter;
+
+
+
+    @Autowired
+     private RedisTemplate redisTemplate;
+
+
+
+    @Autowired
+     private MinioApiService minioApiService;
+
+
+
+    @Autowired
+     private LoginLogApiService loginLogApiService;
+
+
+
+    @Autowired
+     private UserRoleApiService userRoleApiService;
+
+
+    @Autowired
+     private RoleMenuApiService roleMenuApiService;
+
+
+    @Autowired
+     private MenuApiService menuApiService;
+
+
+
+
+    public CaptchaVo genCaptcha(GenCaptchaDTO genCaptchaDTO) {
+        /*  91 */
+        SpecCaptcha specCaptcha = new SpecCaptcha(((Integer) ObjectUtil.defaultIfNull(genCaptchaDTO.getWidth(), GenCaptchaDTO.DEFAULT_WIDTH)).intValue(), ((Integer) ObjectUtil.defaultIfNull(genCaptchaDTO.getHeight(), GenCaptchaDTO.DEFAULT_WIDTH)).intValue(), ((Integer) ObjectUtil.defaultIfNull(genCaptchaDTO.getLen(), GenCaptchaDTO.DEFAULT_LEN)).intValue());
+        /*  92 */
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        /*  93 */
+        specCaptcha.out(out);
+        /*  94 */
+        String captchaToken = IdUtil.simpleUUID();
+        /*  95 */
+        this.redisTemplate.opsForValue().set(String.format("captcha:%s", new Object[]{captchaToken}), specCaptcha.text(), 5L, TimeUnit.MINUTES);
+        /*  96 */
+        return CaptchaVo.builder()
+/*  97 */.captchaBase64(specCaptcha.toBase64())
+/*  98 */.captchaToken(captchaToken)
+/*  99 */.build();
+
+    }
+
+
+
+    public PageVo<UserVo> queryPage(UserQueryPageDTO userQueryPageDTO) {
+        /* 103 */
+        Page page = new Page(userQueryPageDTO.getPageStart().intValue(), userQueryPageDTO.getPageSize().intValue(), true);
+        /* 104 */
+        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(userMapper)
+                .like(ObjectUtil.isNotEmpty(userQueryPageDTO.getLkName()), UserDO::getName, userQueryPageDTO.getLkName())
+        /* 107 */.like(ObjectUtil.isNotEmpty(userQueryPageDTO.getLkNickName()), UserDO::getNickName, userQueryPageDTO.getLkNickName())
+        /* 108 */.eq(ObjectUtil.isNotEmpty(userQueryPageDTO.getName()), UserDO::getName, userQueryPageDTO.getName())
+        /* 109 */.eq(ObjectUtil.isNotEmpty(userQueryPageDTO.getStatus()), UserDO::getStatus, userQueryPageDTO.getStatus())
+        /* 110 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+
+        /* 105 */
+
+        /* 112 */
+        IPage<UserDO> userPage = this.userMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+        /* 113 */
+        List<UserVo> userVoList = this.userConverter.toUserVoList(userPage.getRecords());
+        /* 114 */
+        if (ObjectUtil.isNotEmpty(userVoList)) {
+            /* 115 */
+            userVoList.forEach(userVo -> {
+
+                if (ObjectUtil.isNotEmpty(userVo.getAvatar())) {
+
+                    PrevFileVo prevFileVo = this.minioApiService.prevFile(PrevFileDTO.builder().filePath(userVo.getAvatar()).build());
+
+                    if (ObjectUtil.isNotEmpty(prevFileVo)) {
+
+                        userVo.setAvatarUrl(prevFileVo.getFileUrl());
+
+                    }
+
+                }
+
+            });
+
+        }
+        /* 124 */
+        return PageVo.<UserVo>builder()
+/* 125 */.pageStart(userQueryPageDTO.getPageStart())
+/* 126 */.pageSize(userQueryPageDTO.getPageSize())
+/* 127 */.total(Long.valueOf(userPage.getTotal()))
+/* 128 */.data(userVoList)
+/* 129 */.build();
+
+    }
+
+
+
+    public PageVo<UserLoginVo> queryOnlinePage(UserOnlineQueryPageDTO userOnlineQueryPageDTO) {
+        /* 133 */
+        Set<String> keys = this.redisTemplate.keys("login:*");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* 154 */
+        List<UserLoginVo> allUsers = ObjectUtil.isEmpty(keys) ? Collections.<UserLoginVo>emptyList() : (List<UserLoginVo>) keys.stream().map(key -> {
+            String userJson = (String) this.redisTemplate.opsForValue().get(key);
+            return (UserLoginVo) JSON.parseObject(userJson, UserLoginVo.class);
+        }).filter(userLoginVo -> (ObjectUtil.isNotEmpty(userOnlineQueryPageDTO.getName()) && !userOnlineQueryPageDTO.getName().trim().toLowerCase().equalsIgnoreCase(userLoginVo.getName())) ? false : ((ObjectUtil.isNotEmpty(userOnlineQueryPageDTO.getLkName()) && !userLoginVo.getName().toLowerCase().contains(userOnlineQueryPageDTO.getLkName().toLowerCase())) ? false : (!(ObjectUtil.isNotEmpty(userOnlineQueryPageDTO.getLkNickName()) && !userLoginVo.getNickName().toLowerCase().contains(userOnlineQueryPageDTO.getLkNickName().toLowerCase()))))).collect(Collectors.toList());
+        /* 155 */
+        List<UserLoginVo> pageUsers = ListUtil.page(userOnlineQueryPageDTO.getPageStart().intValue() - 1, userOnlineQueryPageDTO.getPageSize().intValue(), allUsers);
+        /* 156 */
+        return PageVo.<UserLoginVo>builder()
+/* 157 */.pageStart(userOnlineQueryPageDTO.getPageStart())
+/* 158 */.pageSize(userOnlineQueryPageDTO.getPageSize())
+/* 159 */.data(pageUsers)
+/* 160 */.total(Long.valueOf(allUsers.size()))
+/* 161 */.build();
+
+    }
+
+
+
+
+
+
+
+    public UserVo queryUser(UserQueryDTO userQueryDTO) {
+        /* 169 */
+        UserDO userDO =   ChainWrappers.lambdaQueryChain(userMapper)
+                .eq(ObjectUtil.isNotEmpty(userQueryDTO.getId()), BaseDO::getId, userQueryDTO.getId())
+                .eq(ObjectUtil.isNotEmpty(userQueryDTO.getName()), UserDO::getName, userQueryDTO.getName())
+                .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+                .one();
+        /* 170 */
+        if (ObjectUtil.isEmpty(userDO)) {
+            /* 171 */
+            return null;
+
+        }
+        /* 173 */
+        UserVo userVo = this.userConverter.toUserVo(userDO);
+        /* 174 */
+        if (StrUtil.isNotEmpty(userVo.getAvatar())) {
+
+            /* 176 */
+            PrevFileVo prevFileVo = this.minioApiService.prevFile(PrevFileDTO.builder().filePath(userVo.getAvatar()).build());
+            /* 177 */
+            if (ObjectUtil.isNotEmpty(prevFileVo)) {
+                /* 178 */
+                userVo.setAvatarUrl(prevFileVo.getFileUrl());
+
+            }
+
+        }
+        /* 181 */
+        return userVo;
+
+    }
+
+
+
+    public boolean enableOrDisable(UserEnableOrDisableDTO userEnableOrDisableDTO) {
+        /* 185 */
+        return  ChainWrappers.lambdaUpdateChain(userMapper)
+/* 186 */.set(UserDO::getStatus, EnableStatusEnum.ENABLE.getStatus().equals(userEnableOrDisableDTO.getStatus()) ? EnableStatusEnum.DISABLED.getStatus() : EnableStatusEnum.ENABLE.getStatus())
+/* 187 */.eq(BaseDO::getId, userEnableOrDisableDTO.getId())
+/* 188 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+/* 189 */.update();
+
+    }
+
+
+
+    public UserVo saveOrUpdate(UserSaveOrUpdateDTO userSaveOrUpdateDTO) {
+        /* 193 */
+        if (ObjectUtil.isEmpty(userSaveOrUpdateDTO.getId())) {
+
+
+
+
+            /* 198 */
+            UserDO userDO1 =  ChainWrappers.lambdaQueryChain(userMapper)
+                    .eq(UserDO::getName, userSaveOrUpdateDTO.getName())
+                    .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+                    .one();
+            /* 199 */
+            if (ObjectUtil.isNotEmpty(userDO1)) {
+                /* 200 */
+                throw new BusinessException("用户[" + userSaveOrUpdateDTO.getName() + "]已存在.");
+
+            }
+
+
+
+
+
+
+
+            /* 209 */
+            userDO1 = UserDO.builder().name(userSaveOrUpdateDTO.getName()).nickName(userSaveOrUpdateDTO.getNickName()).avatar("").pwd(SecureUtil.md5("123456")).sign(StrUtil.emptyToDefault(userSaveOrUpdateDTO.getSign(), "")).status((Integer) ObjectUtil.defaultIfNull(userSaveOrUpdateDTO.getStatus(), EnableStatusEnum.ENABLE.getStatus())).build();
+            /* 210 */
+            if (this.userMapper.insert(userDO1) <= 0) {
+                /* 211 */
+                throw new BusinessException("保存用户信息失败.");
+
+            }
+            /* 213 */
+            return queryUser(((UserQueryDTO.UserQueryDTOBuilder) UserQueryDTO.builder().id(userDO1.getId())).name(userDO1.getName()).build());
+
+        }
+
+
+
+
+        /* 219 */
+        UserDO userDO = ChainWrappers.lambdaQueryChain(userMapper)
+                .eq(BaseDO::getId, userSaveOrUpdateDTO.getId())
+                .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+                .one();
+        /* 220 */
+        if (ObjectUtil.isEmpty(userDO)) {
+            /* 221 */
+            throw new BusinessException("用户不存在.");
+
+        }
+
+        /* 224 */
+        if (!userDO.getName().equals(userSaveOrUpdateDTO.getName())) {
+
+
+
+
+            /* 229 */
+            UserDO dbUserDO =  ChainWrappers.lambdaQueryChain(userMapper)
+                    .eq(UserDO::getName, userSaveOrUpdateDTO.getName())
+                    .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+                    .one();
+            /* 230 */
+            if (ObjectUtil.isNotEmpty(dbUserDO))
+                 {
+                /* 232 */
+                throw new BusinessException("用户[" + userSaveOrUpdateDTO.getName() + "]已存在.");
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+        /* 243 */
+        boolean rs = ChainWrappers.lambdaUpdateChain(userMapper)
+                .set(ObjectUtil.isNotEmpty(userSaveOrUpdateDTO.getName()), UserDO::getName, userSaveOrUpdateDTO.getName())
+                .set(ObjectUtil.isNotEmpty(userSaveOrUpdateDTO.getNickName()), UserDO::getNickName, userSaveOrUpdateDTO.getNickName())
+                .set(ObjectUtil.isNotEmpty(userSaveOrUpdateDTO.getSign()), UserDO::getSign, StrUtil.emptyToDefault(userSaveOrUpdateDTO.getSign(), ""))
+                .set(ObjectUtil.isNotEmpty(userSaveOrUpdateDTO.getAvatar()), UserDO::getAvatar, userSaveOrUpdateDTO.getAvatar()).set(UserDO::getStatus, ObjectUtil.defaultIfNull(userSaveOrUpdateDTO.getStatus(), EnableStatusEnum.ENABLE.getStatus()))
+                .eq(BaseDO::getId, userSaveOrUpdateDTO.getId())
+                .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+                .update();
+        /* 244 */
+        if (!rs) {
+            /* 245 */
+            throw new BusinessException("更新用户信息失败.");
+
+        }
+        /* 247 */
+        return queryUser(((UserQueryDTO.UserQueryDTOBuilder) UserQueryDTO.builder().id(userDO.getId())).name(userDO.getName()).build());
+
+    }
+
+
+
+
+    public boolean delete(UserDeleteDTO userDeleteDTO) {
+        /* 252 */
+        return ChainWrappers.lambdaUpdateChain(userMapper)
+/* 253 */.set(BaseDO::getDelFlag, DelFlagEnum.DELETED.getFlag())
+/* 254 */.eq(BaseDO::getId, userDeleteDTO.getId())
+/* 255 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+/* 256 */.update();
+
+    }
+
+
+
+    public boolean resetPwd(UserResetPwdDTO userResetPwdDTO) {
+        /* 260 */
+        return  ChainWrappers.lambdaUpdateChain(userMapper)
+/* 261 */.set(UserDO::getPwd, SecureUtil.md5("123456"))
+/* 262 */.eq(BaseDO::getId, userResetPwdDTO.getId())
+/* 263 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+/* 264 */.update();
+
+    }
+
+
+
+
+
+
+
+    public boolean newPwd(UserNewPwdDTO userNewPwdDTO) {
+        /* 272 */
+        UserDO userDO = ChainWrappers.lambdaQueryChain(userMapper)
+                .eq(BaseDO::getId, userNewPwdDTO.getCurrentUserId())
+                .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+                .one();
+
+        /* 274 */
+        if (!userDO.getPwd().equalsIgnoreCase(SecureUtil.md5(userNewPwdDTO.getPwd()))) {
+            /* 275 */
+            throw new BusinessException("密码不正确.");
+
+        }
+
+        /* 278 */
+        return ChainWrappers.lambdaUpdateChain(userMapper)
+/* 279 */.set(UserDO::getPwd, SecureUtil.md5(userNewPwdDTO.getNewPwd()))
+/* 280 */.eq(BaseDO::getId, userNewPwdDTO.getCurrentUserId())
+/* 281 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+/* 282 */.update();
+
+    }
+
+
+
+
+    public boolean validatePwd(UserValidatePwdDTO userValidatePwdDTO) {
+        /* 287 */
+        if (ObjectUtil.isEmpty(userValidatePwdDTO.getCurrentUserId()) &&
+                /* 288 */       ObjectUtil.isEmpty(userValidatePwdDTO.getPassword())) {
+            /* 289 */
+            return false;
+
+        }
+
+
+
+
+        /* 295 */
+        UserDO userDO = ChainWrappers.lambdaQueryChain(userMapper)
+                .eq(BaseDO::getId, userValidatePwdDTO.getCurrentUserId())
+                .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+                .one();
+
+        /* 297 */
+        return (ObjectUtil.isNotEmpty(userDO) && userDO.getPwd().equalsIgnoreCase(SecureUtil.md5(userValidatePwdDTO.getPassword())));
+
+    }
+
+
+
+
+
+    public UserLoginVo login(UserLoginDTO userLoginDTO) {
+        /* 303 */
+        if (ObjectUtil.isEmpty(userLoginDTO.getName()) ||
+                /* 304 */       ObjectUtil.isEmpty(userLoginDTO.getPwd()) ||
+                /* 305 */       ObjectUtil.isEmpty(userLoginDTO.getCaptchaCode()) ||
+                /* 306 */       ObjectUtil.isEmpty(userLoginDTO.getCaptchaToken())) {
+            /* 307 */
+            throw new BusinessException("用户信息校验不通过.");
+
+        }
+
+        /* 310 */
+        String captchaCode = (String) this.redisTemplate.opsForValue().get(String.format("captcha:%s", new Object[]{userLoginDTO.getCaptchaToken()}));
+        /* 311 */
+        if (ObjectUtil.isEmpty(captchaCode)) {
+            /* 312 */
+            throw new BusinessException("验证码信息不存在.");
+
+        }
+
+        /* 315 */
+        if (!captchaCode.equalsIgnoreCase(userLoginDTO.getCaptchaCode())) {
+            /* 316 */
+            throw new BusinessException("验证码错误.");
+
+        }
+
+        /* 319 */
+        this.redisTemplate.delete(String.format("captcha:%s", new Object[]{userLoginDTO.getCaptchaToken()}));
+
+
+
+
+        /* 324 */
+        UserDO userDO = ChainWrappers.lambdaQueryChain(userMapper)
+                .eq(UserDO::getName, userLoginDTO.getName())
+                .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+                .one();
+        /* 325 */
+        if (ObjectUtil.isEmpty(userDO) ||
+                /* 326 */       !EnableStatusEnum.ENABLE.getStatus().equals(userDO.getStatus())) {
+            /* 327 */
+            throw new BusinessException("用户信息不存在.");
+
+        }
+
+        /* 330 */
+        if (!userDO.getPwd().equalsIgnoreCase(SecureUtil.md5(userLoginDTO.getPwd()))) {
+            /* 331 */
+            throw new BusinessException("用户信息不存在.");
+
+        }
+
+        /* 334 */
+        String token = IdUtil.simpleUUID();
+        /* 335 */
+        UserLoginVo userLoginVo = this.userConverter.toUserLoginVo(userDO);
+        /* 336 */
+        userLoginVo.setToken(token);
+        /* 337 */
+        if (StrUtil.isNotEmpty(userLoginVo.getAvatar())) {
+
+            /* 339 */
+            PrevFileVo prevFileVo = this.minioApiService.prevFile(PrevFileDTO.builder().filePath(userLoginVo.getAvatar()).build());
+            /* 340 */
+            if (ObjectUtil.isNotEmpty(prevFileVo)) {
+                /* 341 */
+                userLoginVo.setAvatarUrl(prevFileVo.getFileUrl());
+
+            }
+
+        }
+
+        /* 345 */
+        this.redisTemplate.opsForValue().set(String.format("login:%s", new Object[]{token}), JSON.toJSONString(userLoginVo));
+
+
+
+
+
+
+        /* 352 */
+        LoginLogSaveDTO loginLogSaveDTO = LoginLogSaveDTO.builder().userId(userLoginVo.getId()).name(userLoginVo.getName()).loginIp(userLoginDTO.getLoginIp()).build();
+        /* 353 */
+        this.loginLogApiService.save(loginLogSaveDTO);
+
+        /* 355 */
+        return userLoginVo;
+
+    }
+
+
+
+
+    public UserLoginVo info(UserInfoDTO userInfoDTO) {
+        /* 360 */
+        String userJson = (String) this.redisTemplate.opsForValue().get(String.format("login:%s", new Object[]{userInfoDTO.getToken()}));
+        /* 361 */
+        return ObjectUtil.isEmpty(userJson) ? null : (UserLoginVo) JSON.parseObject(userJson, UserLoginVo.class);
+
+    }
+
+
+
+    public UserLogoutVo logout(UserLogoutDTO userLogoutDTO) {
+        /* 365 */
+        this.redisTemplate.delete(String.format("login:%s", new Object[]{userLogoutDTO.getToken()}));
+        /* 366 */
+        return UserLogoutVo.builder()
+/* 367 */.build();
+
+    }
+
+
+
+    public boolean offline(UserOfflineDTO userOfflineDTO) {
+        /* 371 */
+        this.redisTemplate.delete(String.format("login:%s", new Object[]{userOfflineDTO.getToken()}));
+        /* 372 */
+        return Boolean.TRUE.booleanValue();
+
+    }
+
+
+
+
+
+
+    public Boolean authSaveOrUpdate(UserRoleAuthSaveOrUpdateDTO userRoleAuthSaveOrUpdateDTO) {
+        /* 379 */
+        UserRoleBatchDeleteDTO userRoleBatchDeleteDTO = UserRoleBatchDeleteDTO.builder().userId(userRoleAuthSaveOrUpdateDTO.getId()).build();
+        /* 380 */
+        this.userRoleApiService.batchDelete(userRoleBatchDeleteDTO);
+
+
+
+
+
+        /* 386 */
+        UserRoleBatchCreateDTO userRoleBatchCreateDTO = UserRoleBatchCreateDTO.builder().userId(userRoleAuthSaveOrUpdateDTO.getId()).roleIdList(userRoleAuthSaveOrUpdateDTO.getRoleIdList()).build();
+        /* 387 */
+        return this.userRoleApiService.batchCreate(userRoleBatchCreateDTO);
+
+    }
+
+
+
+
+    public List<MenuVo> queryUserMenuList(MenuQueryDTO menuQueryDTO) {
+        /* 392 */
+        if (ObjectUtil.isEmpty(menuQueryDTO.getUserId()) &&
+                /* 393 */       ObjectUtil.isEmpty(menuQueryDTO.getCurrentUserId())) {
+            /* 394 */
+            return Collections.emptyList();
+
+        }
+
+
+        /* 398 */
+        UserRoleQueryDTO userRoleQueryDTO = UserRoleQueryDTO.builder().userId((Long) ObjectUtil.defaultIfNull(menuQueryDTO.getCurrentUserId(), menuQueryDTO.getUserId())).build();
+        /* 399 */
+        List<UserRoleVo> userRoleVoList = this.userRoleApiService.queryUserRoleList(userRoleQueryDTO);
+        /* 400 */
+        if (ObjectUtil.isEmpty(userRoleVoList)) {
+            /* 401 */
+            return Collections.emptyList();
+
+        }
+        /* 403 */
+        List<Long> roleIdList = (List<Long>) userRoleVoList.stream().map(UserRoleVo::getRoleId).distinct().collect(Collectors.toList());
+
+
+
+        /* 407 */
+        RoleMenuQueryDTO roleMenuQueryDTO = RoleMenuQueryDTO.builder().roleIdList(roleIdList).build();
+        /* 408 */
+        List<RoleMenuVo> roleMenuVoList = this.roleMenuApiService.queryRoleMenuList(roleMenuQueryDTO);
+        /* 409 */
+        if (ObjectUtil.isEmpty(roleMenuVoList)) {
+            /* 410 */
+            return Collections.emptyList();
+
+        }
+
+        /* 413 */
+        List<Long> menuIdList = (List<Long>) roleMenuVoList.stream().map(RoleMenuVo::getMenuId).distinct().collect(Collectors.toList());
+        /* 414 */
+        return this.menuApiService.queryMenuList(MenuQueryDTO.builder().menuIdList(menuIdList).build());
+
+    }
+
+}

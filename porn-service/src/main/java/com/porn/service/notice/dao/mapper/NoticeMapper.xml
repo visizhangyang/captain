@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.porn.service.notice.dao.mapper.NoticeMapper">
+
+    <select id="queryNoticeReadStatusList" resultType="com.porn.client.notice.vo.NoticeVo">
+        SELECT
+        notice.id as id,
+        notice.top_flag as topFlag,
+        notice.lang_type as langType,
+        notice.title as title,
+        notice._content as content,
+        notice.create_time as createTime,
+        notice.create_by as createBy,
+        notice.modify_time as modifyTime,
+        notice.modify_by as modifyBy,
+        notice.del_flag as delFlag
+        FROM
+        porn_notice notice LEFT JOIN porn_notice_account na ON notice.id = na.notice_id
+        <if test="readType == 1">
+            and na.account_id = #{accountId}
+        </if>
+        where
+        notice.del_flag = 0
+        <if test="readType == 1">
+            and na.account_id = #{accountId}
+        </if>
+        <if test="readType == 0">
+            and na.account_id is null
+        </if>
+    </select>
+
+</mapper>

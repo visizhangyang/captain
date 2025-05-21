@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.porn.service.goods.dao.mapper.GoodsMapper">
+
+    <select id="groupRandGoodsList"
+            parameterType="com.porn.client.goods.dto.GoodsQueryPageDTO"
+            resultType="com.porn.client.goods.vo.GoodsVo">
+        select
+        tmp.*
+        from (
+        select
+        ANY_VALUE(id) as id,
+        merchant_id,
+        ANY_VALUE(merchant_name) as merchant_name,
+        ANY_VALUE(merchant_avatar) as merchant_avatar,
+        ANY_VALUE(_amount) as _amount,
+        ANY_VALUE(_rate) as _rate,
+        ANY_VALUE(goods_status) as goods_status,
+        ANY_VALUE(free_amount) as free_amount,
+        ANY_VALUE(create_time) as create_time,
+        ANY_VALUE(create_by) as create_by,
+        ANY_VALUE(modify_time) as modify_time,
+        ANY_VALUE(modify_by) as modify_by,
+        ANY_VALUE(del_flag) as del_flag,
+        ANY_VALUE(account_id) as account_id,
+        ANY_VALUE(account_name) as account_name
+        from
+        porn_goods
+        where
+        del_flag = 0
+        <if test="goodsStatus != null">
+            and goods_status = #{goodsStatus}
+        </if>
+        <if test="accountId != null">
+            and account_id = #{accountId}
+        </if>
+        group by merchant_id
+        order by rand()
+        ) tmp
+    </select>
+</mapper>

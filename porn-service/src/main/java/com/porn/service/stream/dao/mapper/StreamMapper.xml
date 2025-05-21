@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.porn.service.stream.dao.mapper.StreamMapper">
+
+    <!-- 统计分成 -->
+    <select id="statisticsTotalProxyProfit" parameterType="com.porn.client.stream.dto.StreamQueryDTO"
+            resultType="java.math.BigDecimal">
+        select
+        sum(_amount)
+        from
+        porn_stream
+        where
+        del_flag = 0
+        and account_id = #{accountId}
+        and _flag = #{flag}
+        <if test="typeList != null and typeList.size != 0">
+            and _type in
+            <foreach collection="typeList" item="type" separator="," open="(" close=")">
+                #{type}
+            </foreach>
+        </if>
+        <if test="startTime != null">
+            and create_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null">
+            and create_time &lt;= #{endTime}
+        </if>
+    </select>
+</mapper>
