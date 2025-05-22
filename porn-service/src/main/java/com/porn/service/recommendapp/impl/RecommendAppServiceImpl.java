@@ -173,16 +173,15 @@ import java.util.List;
     public PageVo<RecommendAppVo> queryPage(RecommendAppQueryPageDTO recommendAppQueryPageDTO) {
         /*  94 */
         Page page = new Page(recommendAppQueryPageDTO.getPageStart().intValue(), recommendAppQueryPageDTO.getPageSize().intValue(), true);
-        /*  95 */
-        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(recommendAppMapper)
-                .eq(ObjectUtil.isNotEmpty(recommendAppQueryPageDTO.getAppType()), RecommendAppDO::getAppType, recommendAppQueryPageDTO.getAppType())
-        /*  98 */.eq(ObjectUtil.isNotEmpty(recommendAppQueryPageDTO.getRecommendType()), RecommendAppDO::getRecommendType, recommendAppQueryPageDTO.getRecommendType())
-        /*  99 */.like(ObjectUtil.isNotEmpty(recommendAppQueryPageDTO.getLkName()), RecommendAppDO::getName, recommendAppQueryPageDTO.getLkName())
-        /* 100 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /* 101 */.orderByAsc(RecommendAppDO::getSortNo);
-        /*  96 */
-        /* 102 */
-        IPage<RecommendAppDO> recommendAppPage = this.recommendAppMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+
+        LambdaQueryWrapper<RecommendAppDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(recommendAppQueryPageDTO.getAppType()), RecommendAppDO::getAppType, recommendAppQueryPageDTO.getAppType());
+        wrapper.eq(ObjectUtil.isNotEmpty(recommendAppQueryPageDTO.getRecommendType()), RecommendAppDO::getRecommendType, recommendAppQueryPageDTO.getRecommendType());
+        wrapper.like(ObjectUtil.isNotEmpty(recommendAppQueryPageDTO.getLkName()), RecommendAppDO::getName, recommendAppQueryPageDTO.getLkName());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByAsc(RecommendAppDO::getSortNo);
+
+        IPage<RecommendAppDO> recommendAppPage = this.recommendAppMapper.selectPage((IPage) page, wrapper);
         /* 103 */
         List<RecommendAppVo> recommendAppVoList = this.recommendAppConverter.toRecommendAppVoList(recommendAppPage.getRecords());
         /* 104 */

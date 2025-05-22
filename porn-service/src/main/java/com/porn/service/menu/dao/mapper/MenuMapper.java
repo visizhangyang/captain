@@ -9,7 +9,3 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
 }
 
 
-/* Location:              /Users/wh/Documents/个人资料/work/20250507/UPeak-3.3.0/lib/porn-service-3.3.0.jar!/com/porn/service/menu/dao/mapper/MenuMapper.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */

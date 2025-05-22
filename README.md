@@ -43,16 +43,29 @@ minio server /Users/demo/miniodata
 ### 启动后端
 代码clone下来后：
 ```
+##### 本地环境 ####
 # 编译
 mvn clean package
+
+# 启动
+cd pron-web
+java -jar porn-web-3.3.0.jar --spring.profiles.active=local
+##### 本地环境 ####
+
+
+##### 生产环境 ####
+# 编译
+mvn clean
+mvn package -Pprod
 
 # 解压
 cd porn-web/target
 unzip -d captain Captain-3.3.0.zip
 
-# 启动,默认启用conf/application-prod.yml
+# 启动
 cd captain/bin
 sh start.sh
+##### 生产环境 ####
 
 ```
 

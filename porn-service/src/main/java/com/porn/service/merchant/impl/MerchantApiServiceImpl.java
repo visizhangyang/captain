@@ -150,19 +150,19 @@ import java.util.List;
         /* 107 */
         Page page = new Page(merchantQueryPageDTO.getPageStart().intValue(), merchantQueryPageDTO.getPageSize().intValue(), true);
         /* 108 */
-        QueryWrapper<MerchantDO> queryWrapper = new QueryWrapper();
-        LambdaQueryChainWrapper<MerchantDO> queryChainWrapper = ChainWrappers.lambdaQueryChain(merchantMapper)
-                .eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getName()), MerchantDO::getName, merchantQueryPageDTO.getName())
-        /* 111 */.like(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getLkName()), MerchantDO::getName, merchantQueryPageDTO.getLkName())
-        /* 112 */.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getStatus()), MerchantDO::getStatus, merchantQueryPageDTO.getStatus())
-        /* 113 */.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getMemberLevel()), MerchantDO::getMemberLevel, merchantQueryPageDTO.getMemberLevel())
-        /* 114 */.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getAuthLevel()), MerchantDO::getAuthLevel, merchantQueryPageDTO.getAuthLevel())
-        /* 115 */.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getMerchantType()), MerchantDO::getMerchantType, merchantQueryPageDTO.getMerchantType())
-        /* 116 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /* 117 */.orderByDesc(BaseDO::getCreateTime);
+        LambdaQueryWrapper<MerchantDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getName()), MerchantDO::getName, merchantQueryPageDTO.getName());
+        wrapper.like(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getLkName()), MerchantDO::getName, merchantQueryPageDTO.getLkName());
+        wrapper.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getStatus()), MerchantDO::getStatus, merchantQueryPageDTO.getStatus());
+        wrapper.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getMemberLevel()), MerchantDO::getMemberLevel, merchantQueryPageDTO.getMemberLevel());
+        wrapper.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getAuthLevel()), MerchantDO::getAuthLevel, merchantQueryPageDTO.getAuthLevel());
+        wrapper.eq(ObjectUtil.isNotEmpty(merchantQueryPageDTO.getMerchantType()), MerchantDO::getMerchantType, merchantQueryPageDTO.getMerchantType());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
+
         /* 109 */
         /* 118 */
-        IPage<MerchantDO> merchantPage = this.merchantMapper.selectPage((IPage) page, (Wrapper) queryChainWrapper);
+        IPage<MerchantDO> merchantPage = this.merchantMapper.selectPage((IPage) page, wrapper);
         /* 119 */
         List<MerchantVo> merchantVoList = this.merchantConverter.toMerchantVoList(merchantPage.getRecords());
         /* 120 */
@@ -454,7 +454,3 @@ import java.util.List;
 }
 
 
-/* Location:              /Users/wh/Documents/个人资料/work/20250507/UPeak-3.3.0/lib/porn-service-3.3.0.jar!/com/porn/service/merchant/impl/MerchantApiServiceImpl.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */

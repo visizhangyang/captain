@@ -138,20 +138,21 @@ import java.util.List;
         /*  74 */
         Page page = new Page(walletAddressQueryPageDTO.getPageStart().intValue(), walletAddressQueryPageDTO.getPageSize().intValue(), true);
         /*  75 */
-        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(walletAddressMapper)
-                .like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getName()), WalletAddressDO::getName, walletAddressQueryPageDTO.getName())
-        /*  78 */.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getLkName()), WalletAddressDO::getName, walletAddressQueryPageDTO.getLkName())
-        /*  79 */.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getCode()), WalletAddressDO::getCode, walletAddressQueryPageDTO.getCode())
-        /*  80 */.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getLkCode()), WalletAddressDO::getCode, walletAddressQueryPageDTO.getLkCode())
-        /*  81 */.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getLkAddress()), WalletAddressDO::getAddress, walletAddressQueryPageDTO.getLkAddress())
-        /*  82 */.eq(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getStatus()), WalletAddressDO::getStatus, walletAddressQueryPageDTO.getStatus())
-        /*  83 */.eq(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getAddressStatus()), WalletAddressDO::getAddressStatus, walletAddressQueryPageDTO.getAddressStatus())
-        /*  84 */.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getLkRemark()), WalletAddressDO::getRemark, walletAddressQueryPageDTO.getLkRemark())
-        /*  85 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /*  86 */.orderByDesc(BaseDO::getCreateTime);
+        LambdaQueryWrapper<WalletAddressDO> wrapper = new LambdaQueryWrapper();
+        wrapper.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getName()), WalletAddressDO::getName, walletAddressQueryPageDTO.getName());
+        wrapper.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getLkName()), WalletAddressDO::getName, walletAddressQueryPageDTO.getLkName());
+        wrapper.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getCode()), WalletAddressDO::getCode, walletAddressQueryPageDTO.getCode());
+        wrapper.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getLkCode()), WalletAddressDO::getCode, walletAddressQueryPageDTO.getLkCode());
+        wrapper.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getLkAddress()), WalletAddressDO::getAddress, walletAddressQueryPageDTO.getLkAddress());
+        wrapper.eq(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getStatus()), WalletAddressDO::getStatus, walletAddressQueryPageDTO.getStatus());
+        wrapper.eq(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getAddressStatus()), WalletAddressDO::getAddressStatus, walletAddressQueryPageDTO.getAddressStatus());
+        wrapper.like(ObjectUtil.isNotEmpty(walletAddressQueryPageDTO.getLkRemark()), WalletAddressDO::getRemark, walletAddressQueryPageDTO.getLkRemark());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
+
         /*  76 */
         /*  87 */
-        IPage<WalletAddressDO> walletAddressPage = this.walletAddressMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+        IPage<WalletAddressDO> walletAddressPage = this.walletAddressMapper.selectPage((IPage) page, wrapper);
         /*  88 */
         List<WalletAddressVo> walletAddressVoList = this.walletAddressConverter.toWalletAddressVoList(walletAddressPage.getRecords());
         /*  89 */

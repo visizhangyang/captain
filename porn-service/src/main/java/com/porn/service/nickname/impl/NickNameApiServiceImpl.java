@@ -125,16 +125,14 @@ import java.util.List;
     public PageVo<NickNameVo> queryPage(NickNameQueryPageDTO nickNameQueryPageDTO) {
         /*  67 */
         Page page = new Page(nickNameQueryPageDTO.getPageStart().intValue(), nickNameQueryPageDTO.getPageSize().intValue(), true);
-        /*  68 */
-        LambdaQueryChainWrapper<NickNameDO> lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(nickNameMapper)
-                .like(ObjectUtil.isNotEmpty(nickNameQueryPageDTO.getLkNickName()), NickNameDO::getNickName, nickNameQueryPageDTO.getLkNickName())
-        /*  71 */.eq(ObjectUtil.isNotEmpty(nickNameQueryPageDTO.getNickNameType()), NickNameDO::getNickNameType, nickNameQueryPageDTO.getNickNameType())
-        /*  72 */.eq(ObjectUtil.isNotEmpty(nickNameQueryPageDTO.getStatus()), NickNameDO::getStatus, nickNameQueryPageDTO.getStatus())
-        /*  73 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /*  74 */.orderByDesc(BaseDO::getCreateTime);
-        /*  69 */
-        /*  75 */
-        IPage<NickNameDO> nickNamePage = this.nickNameMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+
+        LambdaQueryWrapper<NickNameDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.like(ObjectUtil.isNotEmpty(nickNameQueryPageDTO.getLkNickName()), NickNameDO::getNickName, nickNameQueryPageDTO.getLkNickName());
+        wrapper.eq(ObjectUtil.isNotEmpty(nickNameQueryPageDTO.getNickNameType()), NickNameDO::getNickNameType, nickNameQueryPageDTO.getNickNameType());
+        wrapper.eq(ObjectUtil.isNotEmpty(nickNameQueryPageDTO.getStatus()), NickNameDO::getStatus, nickNameQueryPageDTO.getStatus());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
+        IPage<NickNameDO> nickNamePage = this.nickNameMapper.selectPage((IPage) page, wrapper);
         /*  76 */
         List<NickNameVo> nickNameVoList = this.nickNameConverter.toNickNameVoList(nickNamePage.getRecords());
         /*  77 */

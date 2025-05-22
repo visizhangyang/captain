@@ -170,15 +170,14 @@ import java.util.List;
         /*  90 */
         Page page = new Page(photoQueryPageDTO.getPageStart().intValue(), photoQueryPageDTO.getPageSize().intValue(), true);
         /*  91 */
-        LambdaQueryChainWrapper<PhotoDO> lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(photoMapper)
-                .eq(ObjectUtil.isNotEmpty(photoQueryPageDTO.getAccountId()), PhotoDO::getAccountId, photoQueryPageDTO.getAccountId())
-        /*  94 */.eq(ObjectUtil.isNotEmpty(photoQueryPageDTO.getLocalIdentifier()), PhotoDO::getLocalIdentifier, photoQueryPageDTO.getLocalIdentifier())
-        /*  95 */.like(ObjectUtil.isNotEmpty(photoQueryPageDTO.getLkAccountName()), PhotoDO::getAccountName, photoQueryPageDTO.getLkAccountName())
-        /*  96 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /*  97 */.orderByDesc(BaseDO::getCreateTime);
-        /*  92 */
-        /*  98 */
-        IPage<PhotoDO> photoPage = this.photoMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+        LambdaQueryWrapper<PhotoDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(photoQueryPageDTO.getAccountId()), PhotoDO::getAccountId, photoQueryPageDTO.getAccountId());
+        wrapper.eq(ObjectUtil.isNotEmpty(photoQueryPageDTO.getLocalIdentifier()), PhotoDO::getLocalIdentifier, photoQueryPageDTO.getLocalIdentifier());
+        wrapper.like(ObjectUtil.isNotEmpty(photoQueryPageDTO.getLkAccountName()), PhotoDO::getAccountName, photoQueryPageDTO.getLkAccountName());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
+
+        IPage<PhotoDO> photoPage = this.photoMapper.selectPage((IPage) page, wrapper);
         /*  99 */
         List<PhotoVo> photoVoList = this.photoConverter.toPhotoVoList(photoPage.getRecords());
         /* 100 */

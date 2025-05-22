@@ -139,16 +139,15 @@ import java.util.List;
     public PageVo<ImageLibVo> queryPage(ImageLibQueryPageDTO imageLibQueryPageDTO) {
         /*  75 */
         Page page = new Page(imageLibQueryPageDTO.getPageStart().intValue(), imageLibQueryPageDTO.getPageSize().intValue(), true);
-        /*  76 */
-        QueryWrapper<ImageLibDO> queryWrapper = new QueryWrapper();
-        LambdaQueryChainWrapper<ImageLibDO> queryChainWrapper = ChainWrappers.lambdaQueryChain(imageLibMapper)
-                .eq(ObjectUtil.isNotEmpty(imageLibQueryPageDTO.getImageType()), ImageLibDO::getImageType, imageLibQueryPageDTO.getImageType())
-                .eq(ObjectUtil.isNotEmpty(imageLibQueryPageDTO.getStatus()), ImageLibDO::getStatus, imageLibQueryPageDTO.getStatus())
-                .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-                .orderByDesc(BaseDO::getCreateTime);
+
+        LambdaQueryWrapper<ImageLibDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(imageLibQueryPageDTO.getImageType()), ImageLibDO::getImageType, imageLibQueryPageDTO.getImageType());
+        wrapper.eq(ObjectUtil.isNotEmpty(imageLibQueryPageDTO.getStatus()), ImageLibDO::getStatus, imageLibQueryPageDTO.getStatus());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
 
         /*  82 */
-        IPage<ImageLibDO> imageLibPage = this.imageLibMapper.selectPage((IPage) page, queryChainWrapper);
+        IPage<ImageLibDO> imageLibPage = this.imageLibMapper.selectPage((IPage) page, wrapper);
         /*  83 */
         List<ImageLibVo> imageLibVoList = this.imageLibConverter.toImageLibVoList(imageLibPage.getRecords());
         /*  84 */

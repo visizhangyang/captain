@@ -131,14 +131,16 @@ import java.util.List;
         /*  69 */
         Page page = new Page(planQueryPageDTO.getPageStart().intValue(), planQueryPageDTO.getPageSize().intValue(), true);
         /*  70 */
-        LambdaQueryChainWrapper<PlanDO> lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(planMapper)
-                .eq(ObjectUtil.isNotEmpty(planQueryPageDTO.getLangType()), PlanDO::getLangType, planQueryPageDTO.getLangType())
-        /*  73 */.like(ObjectUtil.isNotEmpty(planQueryPageDTO.getLkTitle()), PlanDO::getTitle, planQueryPageDTO.getLkTitle())
-        /*  74 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /*  75 */.orderByAsc(PlanDO::getSortNo);
+
+        LambdaQueryWrapper<PlanDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(planQueryPageDTO.getLangType()), PlanDO::getLangType, planQueryPageDTO.getLangType());
+        wrapper.like(ObjectUtil.isNotEmpty(planQueryPageDTO.getLkTitle()), PlanDO::getTitle, planQueryPageDTO.getLkTitle());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByAsc(PlanDO::getSortNo);
+
         /*  71 */
         /*  76 */
-        IPage<PlanDO> planPage = this.planMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+        IPage<PlanDO> planPage = this.planMapper.selectPage((IPage) page, wrapper);
         /*  77 */
         List<PlanVo> planVoList = this.planConverter.toPlanVoList(planPage.getRecords());
         /*  78 */
@@ -235,7 +237,3 @@ import java.util.List;
 }
 
 
-/* Location:              /Users/wh/Documents/个人资料/work/20250507/UPeak-3.3.0/lib/porn-service-3.3.0.jar!/com/porn/service/plan/impl/PlanApiServiceImpl.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */

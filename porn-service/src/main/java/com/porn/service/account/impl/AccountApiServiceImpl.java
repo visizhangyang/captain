@@ -1061,34 +1061,43 @@ public class AccountApiServiceImpl implements AccountApiService {
               .update();
    }
 
-   public List<Long> queryProxyTeams(AccountQueryProxyTeamsDTO accountQueryProxyTeamsDTO) {
-      if (ObjectUtil.isEmpty(accountQueryProxyTeamsDTO.getMngUserId()))
+   public List<Long> queryProxyTeams(AccountQueryProxyTeamsDTO dto) {
+      Long mngUserId = dto.getMngUserId();
+      if (ObjectUtil.isEmpty(mngUserId)) {
          return Collections.emptyList();
-      UserQueryDTO userQueryDTO = ((UserQueryDTO.UserQueryDTOBuilder)UserQueryDTO.builder().id(accountQueryProxyTeamsDTO.getMngUserId())).build();
-      UserVo userVo = this.userApiService.queryUser(userQueryDTO);
-      if (ObjectUtil.isEmpty(userVo))
-         throw new BusinessException("");
-                 AccountQueryDTO accountQueryDTO = AccountQueryDTO.builder().name(userVo.getName()).build();
-      AccountVo accountVo = queryAccount(accountQueryDTO);
-      if (ObjectUtil.isEmpty(accountVo))
-         throw new BusinessException("");
-                 List<AccountVo> firstLevelAccount = queryAccountList(AccountQueryDTO.builder().parentId(accountVo.getId()).build());
-      List<AccountVo> secondLevelAccount = ListUtil.list(false);
-      if (ObjectUtil.isNotEmpty(firstLevelAccount))
-         secondLevelAccount = queryAccountList(AccountQueryDTO.builder().parentIdList((List)firstLevelAccount.stream().map(BaseVo::getId).collect(Collectors.toList())).build());
-      List<AccountVo> thirdLevelAccount = ListUtil.list(false);
-      if (ObjectUtil.isNotEmpty(secondLevelAccount))
-         thirdLevelAccount = queryAccountList(AccountQueryDTO.builder().parentIdList((List)secondLevelAccount.stream().map(BaseVo::getId).collect(Collectors.toList())).build());
-      List<AccountVo> sunAccountList = new ArrayList<>();
-      if (ObjectUtil.isNotEmpty(firstLevelAccount))
-         sunAccountList.addAll(firstLevelAccount);
-      if (ObjectUtil.isNotEmpty(secondLevelAccount))
-         sunAccountList.addAll(secondLevelAccount);
-      if (ObjectUtil.isNotEmpty(thirdLevelAccount))
-         sunAccountList.addAll(thirdLevelAccount);
-      sunAccountList.add(accountVo);
-      return (List<Long>)sunAccountList.stream().map(BaseVo::getId).distinct().collect(Collectors.toList());
+      }
+
+      // 查询用户
+      UserQueryDTO userQueryDTO = UserQueryDTO.builder().id(mngUserId).build();
+      UserVo userVo = userApiService.queryUser(userQueryDTO);
+      if (ObjectUtil.isEmpty(userVo)) {
+         throw new BusinessException("用户不存在");
+      }
+
+      // 查询当前账号
+      AccountVo rootAccount = queryAccount(AccountQueryDTO.builder().name(userVo.getName()).build());
+      if (ObjectUtil.isEmpty(rootAccount)) {
+         throw new BusinessException("账号不存在");
+      }
+
+      // 递归查询下级账号
+      List<AccountVo> allAccounts = new ArrayList<>();
+      allAccounts.add(rootAccount);
+
+      List<AccountVo> currentLevel = ListUtil.toList(rootAccount);
+      for (int i = 0; i < 3; i++) {
+         if (ObjectUtil.isEmpty(currentLevel)) break;
+         List<Long> parentIds = currentLevel.stream().map(BaseVo::getId).collect(Collectors.toList());
+         currentLevel = queryAccountList(AccountQueryDTO.builder().parentIdList(parentIds).build());
+         allAccounts.addAll(currentLevel);
+      }
+
+      return allAccounts.stream()
+              .map(BaseVo::getId)
+              .distinct()
+              .collect(Collectors.toList());
    }
+
 
    public Boolean forceStopPlan(AccountForceStopPlanDTO accountForceStopPlanDTO) {
       PlanInsQueryDTO planInsQueryDTO = PlanInsQueryDTO.builder().accountId(accountForceStopPlanDTO.getId()).status(PlanInsStatusEnum.PROGRESSING.getStatus()).build();

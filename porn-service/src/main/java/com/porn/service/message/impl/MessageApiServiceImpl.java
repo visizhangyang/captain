@@ -134,16 +134,15 @@ import java.util.List;
     public PageVo<MessageVo> queryPage(MessageQueryPageDTO messageQueryPageDTO) {
         /*  72 */
         Page page = new Page(messageQueryPageDTO.getPageStart().intValue(), messageQueryPageDTO.getPageSize().intValue(), true);
-        /*  73 */
-        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(messageMapper)
-                .eq(ObjectUtil.isNotEmpty(messageQueryPageDTO.getAccountId()), MessageDO::getAccountId, messageQueryPageDTO.getAccountId())
-        /*  76 */.eq(ObjectUtil.isNotEmpty(messageQueryPageDTO.getAccountName()), MessageDO::getAccountName, messageQueryPageDTO.getAccountName())
-        /*  77 */.like(ObjectUtil.isNotEmpty(messageQueryPageDTO.getLkAccountName()), MessageDO::getAccountName, messageQueryPageDTO.getLkAccountName())
-        /*  78 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /*  79 */.orderByDesc(BaseDO::getCreateTime);
-        /*  74 */
-        /*  80 */
-        IPage<MessageDO> messagePage = this.messageMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+
+        LambdaQueryWrapper<MessageDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(messageQueryPageDTO.getAccountId()), MessageDO::getAccountId, messageQueryPageDTO.getAccountId());
+        wrapper.eq(ObjectUtil.isNotEmpty(messageQueryPageDTO.getAccountName()), MessageDO::getAccountName, messageQueryPageDTO.getAccountName());
+        wrapper.like(ObjectUtil.isNotEmpty(messageQueryPageDTO.getLkAccountName()), MessageDO::getAccountName, messageQueryPageDTO.getLkAccountName());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
+
+        IPage<MessageDO> messagePage = this.messageMapper.selectPage((IPage) page, wrapper);
         /*  81 */
         List<MessageVo> messageVoList = this.messageConverter.toMessageVoList(messagePage.getRecords());
         /*  82 */
@@ -277,7 +276,3 @@ import java.util.List;
 }
 
 
-/* Location:              /Users/wh/Documents/个人资料/work/20250507/UPeak-3.3.0/lib/porn-service-3.3.0.jar!/com/porn/service/message/impl/MessageApiServiceImpl.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */

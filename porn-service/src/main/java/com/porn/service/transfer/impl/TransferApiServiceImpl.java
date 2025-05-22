@@ -173,20 +173,19 @@ import java.util.stream.Collectors;
     public PageVo<TransferVo> queryPage(TransferQueryPageDTO transferQueryPageDTO) {
         /*  91 */
         Page page = new Page(transferQueryPageDTO.getPageStart().intValue(), transferQueryPageDTO.getPageSize().intValue(), true);
-        /*  92 */
-        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(transferMapper)
-                .eq(ObjectUtil.isNotEmpty(transferQueryPageDTO.getSrcAccountId()), TransferDO::getSrcAccountId, transferQueryPageDTO.getSrcAccountId())
-        /*  95 */.eq(ObjectUtil.isNotEmpty(transferQueryPageDTO.getDstAccountId()), TransferDO::getDstAccountId, transferQueryPageDTO.getDstAccountId())
-        /*  96 */.eq(ObjectUtil.isNotEmpty(transferQueryPageDTO.getTransferStatus()), TransferDO::getTransferStatus, transferQueryPageDTO.getTransferStatus())
-        /*  97 */.like(ObjectUtil.isNotEmpty(transferQueryPageDTO.getSrcLkAccountName()), TransferDO::getSrcAccountName, transferQueryPageDTO.getSrcLkAccountName())
-        /*  98 */.like(ObjectUtil.isNotEmpty(transferQueryPageDTO.getDstLkAccountName()), TransferDO::getDstAccountName, transferQueryPageDTO.getDstLkAccountName())
-        /*  99 */.like(ObjectUtil.isNotEmpty(transferQueryPageDTO.getLkSrcAccountRemark()), TransferDO::getSrcAccountRemark, transferQueryPageDTO.getLkSrcAccountRemark())
-        /* 100 */.like(ObjectUtil.isNotEmpty(transferQueryPageDTO.getLkDstAccountRemark()), TransferDO::getDstAccountRemark, transferQueryPageDTO.getLkDstAccountRemark())
-        /* 101 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /* 102 */.orderByDesc(BaseDO::getCreateTime);
+        LambdaQueryWrapper<TransferDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(transferQueryPageDTO.getSrcAccountId()), TransferDO::getSrcAccountId, transferQueryPageDTO.getSrcAccountId());
+        wrapper.eq(ObjectUtil.isNotEmpty(transferQueryPageDTO.getDstAccountId()), TransferDO::getDstAccountId, transferQueryPageDTO.getDstAccountId());
+        wrapper.eq(ObjectUtil.isNotEmpty(transferQueryPageDTO.getTransferStatus()), TransferDO::getTransferStatus, transferQueryPageDTO.getTransferStatus());
+        wrapper.like(ObjectUtil.isNotEmpty(transferQueryPageDTO.getSrcLkAccountName()), TransferDO::getSrcAccountName, transferQueryPageDTO.getSrcLkAccountName());
+        wrapper.like(ObjectUtil.isNotEmpty(transferQueryPageDTO.getDstLkAccountName()), TransferDO::getDstAccountName, transferQueryPageDTO.getDstLkAccountName());
+        wrapper.like(ObjectUtil.isNotEmpty(transferQueryPageDTO.getLkSrcAccountRemark()), TransferDO::getSrcAccountRemark, transferQueryPageDTO.getLkSrcAccountRemark());
+        wrapper.like(ObjectUtil.isNotEmpty(transferQueryPageDTO.getLkDstAccountRemark()), TransferDO::getDstAccountRemark, transferQueryPageDTO.getLkDstAccountRemark());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
         /*  93 */
         /* 103 */
-        IPage<TransferDO> transferPage = this.transferMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+        IPage<TransferDO> transferPage = this.transferMapper.selectPage((IPage) page, wrapper);
         /* 104 */
         List<TransferVo> transferVoList = this.transferConverter.toTransferVoList(transferPage.getRecords());
         /* 105 */

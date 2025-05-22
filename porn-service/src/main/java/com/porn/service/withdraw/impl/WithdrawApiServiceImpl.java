@@ -142,20 +142,21 @@ import java.util.List;
         /*  75 */
         Page page = new Page(withdrawQueryPageDTO.getPageStart().intValue(), withdrawQueryPageDTO.getPageSize().intValue(), true);
         /*  76 */
-        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(withdrawMapper)
-                .eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getAccountId()), WithdrawDO::getAccountId, withdrawQueryPageDTO.getAccountId())
-        /*  79 */.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getWithdrawNo()), WithdrawDO::getWithdrawNo, withdrawQueryPageDTO.getWithdrawNo())
-        /*  80 */.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getWalletCode()), WithdrawDO::getWalletCode, withdrawQueryPageDTO.getWalletCode())
-        /*  81 */.in(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getAccountIdList()), WithdrawDO::getAccountId, withdrawQueryPageDTO.getAccountIdList())
-        /*  82 */.like(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getLkAccountName()), WithdrawDO::getAccountName, withdrawQueryPageDTO.getLkAccountName())
-        /*  83 */.like(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getLkRemark()), WithdrawDO::getAccountRemark, withdrawQueryPageDTO.getLkRemark())
-        /*  84 */.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getReceiveAddress()), WithdrawDO::getReceiveAddress, withdrawQueryPageDTO.getReceiveAddress())
-        /*  85 */.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getStatus()), WithdrawDO::getStatus, withdrawQueryPageDTO.getStatus())
-        /*  86 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /*  87 */.orderByDesc(BaseDO::getCreateTime);
+        LambdaQueryWrapper<WithdrawDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getAccountId()), WithdrawDO::getAccountId, withdrawQueryPageDTO.getAccountId());
+        wrapper.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getWithdrawNo()), WithdrawDO::getWithdrawNo, withdrawQueryPageDTO.getWithdrawNo());
+        wrapper.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getWalletCode()), WithdrawDO::getWalletCode, withdrawQueryPageDTO.getWalletCode());
+        wrapper.in(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getAccountIdList()), WithdrawDO::getAccountId, withdrawQueryPageDTO.getAccountIdList());
+        wrapper.like(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getLkAccountName()), WithdrawDO::getAccountName, withdrawQueryPageDTO.getLkAccountName());
+        wrapper.like(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getLkRemark()), WithdrawDO::getAccountRemark, withdrawQueryPageDTO.getLkRemark());
+        wrapper.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getReceiveAddress()), WithdrawDO::getReceiveAddress, withdrawQueryPageDTO.getReceiveAddress());
+        wrapper.eq(ObjectUtil.isNotEmpty(withdrawQueryPageDTO.getStatus()), WithdrawDO::getStatus, withdrawQueryPageDTO.getStatus());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
+
         /*  77 */
         /*  88 */
-        IPage<WithdrawDO> withdrawPage = this.withdrawMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+        IPage<WithdrawDO> withdrawPage = this.withdrawMapper.selectPage((IPage) page, wrapper);
         /*  89 */
         List<WithdrawVo> withdrawVoList = this.withdrawConverter.toWithdrawVoList(withdrawPage.getRecords());
         /*  90 */

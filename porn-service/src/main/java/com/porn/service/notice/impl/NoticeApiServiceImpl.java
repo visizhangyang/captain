@@ -146,12 +146,20 @@ import java.util.List;
         Page page = new Page(noticeQueryPageDTO.getPageStart().intValue(), noticeQueryPageDTO.getPageSize().intValue(), true);
         /*  76 */
 //        QueryWrapper<NoticeDO> queryWrapper = new QueryWrapper();
-        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(noticeMapper)
-                .eq(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getTopFlag()), NoticeDO::getTopFlag, noticeQueryPageDTO.getTopFlag())
-        /*  79 */.eq(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getLangType()), NoticeDO::getLangType, noticeQueryPageDTO.getLangType())
-        /*  80 */.like(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getLkTitle()), NoticeDO::getTitle, noticeQueryPageDTO.getLkTitle())
-        /*  81 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /*  82 */.orderByDesc(NoticeDO::getTopFlag, BaseDO::getCreateTime);
+//        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(noticeMapper)
+//                .eq(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getTopFlag()), NoticeDO::getTopFlag, noticeQueryPageDTO.getTopFlag())
+//        /*  79 */.eq(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getLangType()), NoticeDO::getLangType, noticeQueryPageDTO.getLangType())
+//        /*  80 */.like(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getLkTitle()), NoticeDO::getTitle, noticeQueryPageDTO.getLkTitle())
+//        /*  81 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+//        /*  82 */.orderByDesc(NoticeDO::getTopFlag, BaseDO::getCreateTime);
+        LambdaQueryWrapper<NoticeDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getTopFlag()), NoticeDO::getTopFlag, noticeQueryPageDTO.getTopFlag());
+        wrapper.eq(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getLangType()), NoticeDO::getLangType, noticeQueryPageDTO.getLangType());
+        wrapper.like(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getLkTitle()), NoticeDO::getTitle, noticeQueryPageDTO.getLkTitle());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(NoticeDO::getTopFlag, BaseDO::getCreateTime);
+
+
         /*  77 */
 //        ((LambdaQueryWrapper) ((LambdaQueryWrapper) ((LambdaQueryWrapper) ((LambdaQueryWrapper) queryWrapper.lambda()
 ///*  78 */.eq(ObjectUtil.isNotEmpty(noticeQueryPageDTO.getTopFlag()), NoticeDO::getTopFlag, noticeQueryPageDTO.getTopFlag()))
@@ -160,7 +168,7 @@ import java.util.List;
 ///*  81 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag()))
 ///*  82 */.orderByDesc((Object[]) new SFunction[]{NoticeDO::getTopFlag, BaseDO::getCreateTime});
         /*  83 */
-        IPage<NoticeDO> noticePage = this.noticeMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+        IPage<NoticeDO> noticePage = this.noticeMapper.selectPage((IPage) page, wrapper);
         /*  84 */
         List<NoticeVo> noticeVoList = this.noticeConverter.toNoticeVoList(noticePage.getRecords());
         /*  85 */
@@ -275,7 +283,3 @@ import java.util.List;
 }
 
 
-/* Location:              /Users/wh/Documents/个人资料/work/20250507/UPeak-3.3.0/lib/porn-service-3.3.0.jar!/com/porn/service/notice/impl/NoticeApiServiceImpl.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */

@@ -78,9 +78,6 @@ import java.util.List;
      private StreamConverter streamConverter;
 
 
-
-
-
     public StreamVo queryStream(StreamQueryDTO streamQueryDTO) {
         /*  46 */
         List<StreamVo> streamVoList = queryStreamList(streamQueryDTO);
@@ -131,20 +128,31 @@ import java.util.List;
         /*  69 */
         Page page = new Page(streamQueryPageDTO.getPageStart().intValue(), streamQueryPageDTO.getPageSize().intValue(), true);
         /*  70 */
-        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(streamMapper)
-                .eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getBizId()), StreamDO::getBizId, streamQueryPageDTO.getBizId())
-        /*  73 */.eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getAccountId()), StreamDO::getAccountId, streamQueryPageDTO.getAccountId())
-        /*  74 */.in(ObjectUtil.isNotEmpty(streamQueryPageDTO.getFlagList()), StreamDO::getFlag, streamQueryPageDTO.getFlagList())
-        /*  75 */.in(ObjectUtil.isNotEmpty(streamQueryPageDTO.getAccountIdList()), StreamDO::getAccountId, streamQueryPageDTO.getAccountIdList())
-        /*  76 */.eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getFlag()), StreamDO::getFlag, streamQueryPageDTO.getFlag())
-        /*  77 */.eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getType()), StreamDO::getType, streamQueryPageDTO.getType())
-        /*  78 */.ge(ObjectUtil.isNotEmpty(streamQueryPageDTO.getStartTime()), BaseDO::getCreateTime, streamQueryPageDTO.getStartTime())
-        /*  79 */.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-        /*  80 */.orderByDesc(BaseDO::getCreateTime);
+//        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(streamMapper)
+//                .eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getBizId()), StreamDO::getBizId, streamQueryPageDTO.getBizId())
+//                .eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getAccountId()), StreamDO::getAccountId, streamQueryPageDTO.getAccountId())
+//                .in(ObjectUtil.isNotEmpty(streamQueryPageDTO.getFlagList()), StreamDO::getFlag, streamQueryPageDTO.getFlagList())
+//                .in(ObjectUtil.isNotEmpty(streamQueryPageDTO.getAccountIdList()), StreamDO::getAccountId, streamQueryPageDTO.getAccountIdList())
+//                .eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getFlag()), StreamDO::getFlag, streamQueryPageDTO.getFlag())
+//                .eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getType()), StreamDO::getType, streamQueryPageDTO.getType())
+//                .ge(ObjectUtil.isNotEmpty(streamQueryPageDTO.getStartTime()), BaseDO::getCreateTime, streamQueryPageDTO.getStartTime())
+//                .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
+//                .orderByDesc(BaseDO::getCreateTime);
+
+        LambdaQueryWrapper<StreamDO> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getBizId()), StreamDO::getBizId, streamQueryPageDTO.getBizId());
+        wrapper.eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getAccountId()), StreamDO::getAccountId, streamQueryPageDTO.getAccountId());
+        wrapper.in(ObjectUtil.isNotEmpty(streamQueryPageDTO.getFlagList()), StreamDO::getFlag, streamQueryPageDTO.getFlagList());
+        wrapper.in(ObjectUtil.isNotEmpty(streamQueryPageDTO.getAccountIdList()), StreamDO::getAccountId, streamQueryPageDTO.getAccountIdList());
+        wrapper.eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getFlag()), StreamDO::getFlag, streamQueryPageDTO.getFlag());
+        wrapper.eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getType()), StreamDO::getType, streamQueryPageDTO.getType());
+        wrapper.ge(ObjectUtil.isNotEmpty(streamQueryPageDTO.getStartTime()), BaseDO::getCreateTime, streamQueryPageDTO.getStartTime());
+        wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
+        wrapper.orderByDesc(BaseDO::getCreateTime);
 
         /*  71 */
         /*  81 */
-        IPage<StreamDO> streamPage = this.streamMapper.selectPage((IPage) page, lambdaQueryChainWrapper);
+        IPage<StreamDO> streamPage = this.streamMapper.selectPage((IPage) page, wrapper);
         /*  82 */
         List<StreamVo> streamVoList = this.streamConverter.toStreamVoList(streamPage.getRecords());
         /*  83 */
