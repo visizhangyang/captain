@@ -20,13 +20,13 @@ jobs:
         run: mvn clean package -Pprod
 
       - name: List target files
-        run: ls -l pron-web/target
+        run: pwd && ls -l porn-web/target
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: captain-zip
-          path: pron-web/target/Captain-3.3.0.zip
+          path: porn-web/target/Captain-3.3.0.zip
 
   release:
     needs: build
