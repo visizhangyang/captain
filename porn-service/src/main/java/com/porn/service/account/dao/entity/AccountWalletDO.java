@@ -1,15 +1,13 @@
-
 package com.porn.service.account.dao.entity;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableName;
-
-
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
-import lombok.*;import lombok.experimental.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @TableName("porn_account_wallet")
 @Data
@@ -17,21 +15,19 @@ import lombok.*;import lombok.experimental.*;
 @AllArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
- public class AccountWalletDO extends BaseDO {
+public class AccountWalletDO extends BaseDO {
 
     @TableField("account_id")
-     private Long accountId;
+    private Long accountId;
 
     @TableField("wallet_code")
-     private String walletCode;
+    private String walletCode;
 
     @TableField("wallet_name")
-     private String walletName;
+    private String walletName;
 
     @TableField("address")
-     private String address;
-
+    private String address;
 
 }
-
 

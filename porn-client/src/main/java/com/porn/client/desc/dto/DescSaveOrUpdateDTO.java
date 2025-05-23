@@ -1,8 +1,7 @@
-
 package com.porn.client.desc.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 
 public class DescSaveOrUpdateDTO extends BaseDTO {
@@ -18,29 +17,6 @@ public class DescSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("排序号")
     private Integer sortNo;
 
-    public void setDescType(Integer descType) {
-        this.descType = descType;
-    }
-
-    public void setDescText(String descText) {
-        this.descText = descText;
-    }
-
-    public void setLangType(Integer langType) {
-        this.langType = langType;
-    }
-
-    public void setSortNo(Integer sortNo) {
-        this.sortNo = sortNo;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof DescSaveOrUpdateDTO;
-    }
-
-
-
     protected DescSaveOrUpdateDTO(DescSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.descType = b.descType;
@@ -49,8 +25,54 @@ public class DescSaveOrUpdateDTO extends BaseDTO {
         this.sortNo = b.sortNo;
     }
 
+    public DescSaveOrUpdateDTO(Integer descType, String descText, Integer langType, Integer sortNo) {
+        this.descType = descType;
+        this.descText = descText;
+        this.langType = langType;
+        this.sortNo = sortNo;
+    }
+
+    public DescSaveOrUpdateDTO() {
+    }
+
     public static DescSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new DescSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof DescSaveOrUpdateDTO;
+    }
+
+    public Integer getDescType() {
+        return this.descType;
+    }
+
+    public void setDescType(Integer descType) {
+        this.descType = descType;
+    }
+
+    public String getDescText() {
+        return this.descText;
+    }
+
+    public void setDescText(String descText) {
+        this.descText = descText;
+    }
+
+    public Integer getLangType() {
+        return this.langType;
+    }
+
+    public void setLangType(Integer langType) {
+        this.langType = langType;
+    }
+
+    public Integer getSortNo() {
+        return this.sortNo;
+    }
+
+    public void setSortNo(Integer sortNo) {
+        this.sortNo = sortNo;
     }
 
     private static final class DescSaveOrUpdateDTOBuilderImpl extends DescSaveOrUpdateDTOBuilder<DescSaveOrUpdateDTO, DescSaveOrUpdateDTOBuilderImpl> {
@@ -69,14 +91,13 @@ public class DescSaveOrUpdateDTO extends BaseDTO {
     public static abstract class DescSaveOrUpdateDTOBuilder<C extends DescSaveOrUpdateDTO, B extends DescSaveOrUpdateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Integer descType;
         private String descText;
+        private Integer langType;
+        private Integer sortNo;
 
         public B descType(Integer descType) {
             this.descType = descType;
             return self();
         }
-
-        private Integer langType;
-        private Integer sortNo;
 
         public B descText(String descText) {
             this.descText = descText;
@@ -97,32 +118,6 @@ public class DescSaveOrUpdateDTO extends BaseDTO {
 
         public abstract C build();
 
-    }
-
-    public DescSaveOrUpdateDTO(Integer descType, String descText, Integer langType, Integer sortNo) {
-        this.descType = descType;
-        this.descText = descText;
-        this.langType = langType;
-        this.sortNo = sortNo;
-    }
-
-    public DescSaveOrUpdateDTO() {
-    }
-
-    public Integer getDescType() {
-        return this.descType;
-    }
-
-    public String getDescText() {
-        return this.descText;
-    }
-
-    public Integer getLangType() {
-        return this.langType;
-    }
-
-    public Integer getSortNo() {
-        return this.sortNo;
     }
 }
 

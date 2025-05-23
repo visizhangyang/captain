@@ -1,46 +1,45 @@
-
 package com.porn.client.mobile.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 
-
-
-
-
-
- public class UploadAvatarRequestDTO
-         implements Serializable
-         {
+public class UploadAvatarRequestDTO
+        implements Serializable {
 
     @ApiModelProperty("图像路径, 不是全路径")
-     private String avatarPath;
+    private String avatarPath;
 
-
-
-    public void setAvatarPath(String avatarPath) {
-        /* 15 */
-        this.avatarPath = avatarPath;
+    protected UploadAvatarRequestDTO(UploadAvatarRequestDTOBuilder<?, ?> b) {
+        this.avatarPath = b.avatarPath;
     }
 
+    public UploadAvatarRequestDTO(String avatarPath) {
+
+        this.avatarPath = avatarPath;
+
+    }
+
+    public UploadAvatarRequestDTO() {
+    }
+
+    public static UploadAvatarRequestDTOBuilder<?, ?> builder() {
+        return new UploadAvatarRequestDTOBuilderImpl();
+    }
 
     protected boolean canEqual(Object other) {
         return other instanceof UploadAvatarRequestDTO;
     }
 
+    public String getAvatarPath() {
 
+        return this.avatarPath;
 
-    /* 16 */
-    protected UploadAvatarRequestDTO(UploadAvatarRequestDTOBuilder<?, ?> b) {
-        this.avatarPath = b.avatarPath;
     }
 
-    public static UploadAvatarRequestDTOBuilder<?, ?> builder() {
-        return new UploadAvatarRequestDTOBuilderImpl();
+    public void setAvatarPath(String avatarPath) {
+
+        this.avatarPath = avatarPath;
     }
 
     private static final class UploadAvatarRequestDTOBuilderImpl extends UploadAvatarRequestDTOBuilder<UploadAvatarRequestDTO, UploadAvatarRequestDTOBuilderImpl> {
@@ -57,12 +56,12 @@ import java.io.Serializable;
     }
 
     public static abstract class UploadAvatarRequestDTOBuilder<C extends UploadAvatarRequestDTO, B extends UploadAvatarRequestDTOBuilder<C, B>> {
+        private String avatarPath;
+
         public B avatarPath(String avatarPath) {
             this.avatarPath = avatarPath;
             return self();
         }
-
-        private String avatarPath;
 
         protected abstract B self();
 
@@ -70,24 +69,5 @@ import java.io.Serializable;
 
     }
 
-    public UploadAvatarRequestDTO(String avatarPath) {
-        /* 17 */
-        this.avatarPath = avatarPath;
-
-    }
-
-
-    public UploadAvatarRequestDTO() {
-    }
-
-
-
-    public String getAvatarPath() {
-        /* 22 */
-        return this.avatarPath;
-
-    }
-
 }
-
 

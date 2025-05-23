@@ -21,4 +21,3 @@ public interface StreamApiService {
     BigDecimal statisticsTotalProxyProfit(StreamQueryDTO paramStreamQueryDTO);
 }
 
-

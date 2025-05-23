@@ -1,65 +1,30 @@
-
 package com.porn.client.transfer.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
- public class TransferSaveOrUpdateDTO extends BaseDTO {
+public class TransferSaveOrUpdateDTO extends BaseDTO {
 
     @ApiModelProperty("发起转账的ID")
-     private Long srcAccountId;
+    private Long srcAccountId;
 
     @ApiModelProperty("发起转账的名称")
-     private String srcAccountName;
+    private String srcAccountName;
 
     @ApiModelProperty("目标转账的ID")
-     private Long dstAccountId;
+    private Long dstAccountId;
 
     @ApiModelProperty("目标转账的名称")
-     private String dstAccountName;
+    private String dstAccountName;
 
     @ApiModelProperty("金额")
-     private BigDecimal amount;
+    private BigDecimal amount;
 
     @ApiModelProperty("交易密码")
-     private String tradePwd;
+    private String tradePwd;
 
-
-    /* 16 */
-    public void setSrcAccountId(Long srcAccountId) {
-        this.srcAccountId = srcAccountId;
-    }
-
-    public void setSrcAccountName(String srcAccountName) {
-        this.srcAccountName = srcAccountName;
-    }
-
-    public void setDstAccountId(Long dstAccountId) {
-        this.dstAccountId = dstAccountId;
-    }
-
-    public void setDstAccountName(String dstAccountName) {
-        this.dstAccountName = dstAccountName;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public void setTradePwd(String tradePwd) {
-        this.tradePwd = tradePwd;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof TransferSaveOrUpdateDTO;
-    }
-
-
-
-    /* 17 */
     protected TransferSaveOrUpdateDTO(TransferSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.srcAccountId = b.srcAccountId;
@@ -70,8 +35,86 @@ import java.math.BigDecimal;
         this.tradePwd = b.tradePwd;
     }
 
+    public TransferSaveOrUpdateDTO(Long srcAccountId, String srcAccountName, Long dstAccountId, String dstAccountName, BigDecimal amount, String tradePwd) {
+
+        this.srcAccountId = srcAccountId;
+        this.srcAccountName = srcAccountName;
+        this.dstAccountId = dstAccountId;
+        this.dstAccountName = dstAccountName;
+        this.amount = amount;
+        this.tradePwd = tradePwd;
+
+    }
+
+    public TransferSaveOrUpdateDTO() {
+    }
+
     public static TransferSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new TransferSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof TransferSaveOrUpdateDTO;
+    }
+
+    public Long getSrcAccountId() {
+
+        return this.srcAccountId;
+
+    }
+
+    public void setSrcAccountId(Long srcAccountId) {
+        this.srcAccountId = srcAccountId;
+    }
+
+    public String getSrcAccountName() {
+
+        return this.srcAccountName;
+
+    }
+
+    public void setSrcAccountName(String srcAccountName) {
+        this.srcAccountName = srcAccountName;
+    }
+
+    public Long getDstAccountId() {
+
+        return this.dstAccountId;
+
+    }
+
+    public void setDstAccountId(Long dstAccountId) {
+        this.dstAccountId = dstAccountId;
+    }
+
+    public String getDstAccountName() {
+
+        return this.dstAccountName;
+
+    }
+
+    public void setDstAccountName(String dstAccountName) {
+        this.dstAccountName = dstAccountName;
+    }
+
+    public BigDecimal getAmount() {
+
+        return this.amount;
+
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public String getTradePwd() {
+
+        return this.tradePwd;
+
+    }
+
+    public void setTradePwd(String tradePwd) {
+        this.tradePwd = tradePwd;
     }
 
     private static final class TransferSaveOrUpdateDTOBuilderImpl extends TransferSaveOrUpdateDTOBuilder<TransferSaveOrUpdateDTO, TransferSaveOrUpdateDTOBuilderImpl> {
@@ -91,15 +134,14 @@ import java.math.BigDecimal;
         private Long srcAccountId;
         private String srcAccountName;
         private Long dstAccountId;
+        private String dstAccountName;
+        private BigDecimal amount;
+        private String tradePwd;
 
         public B srcAccountId(Long srcAccountId) {
             this.srcAccountId = srcAccountId;
             return self();
         }
-
-        private String dstAccountName;
-        private BigDecimal amount;
-        private String tradePwd;
 
         public B srcAccountName(String srcAccountName) {
             this.srcAccountName = srcAccountName;
@@ -132,64 +174,5 @@ import java.math.BigDecimal;
 
     }
 
-    public TransferSaveOrUpdateDTO(Long srcAccountId, String srcAccountName, Long dstAccountId, String dstAccountName, BigDecimal amount, String tradePwd) {
-        /* 18 */
-        this.srcAccountId = srcAccountId;
-        this.srcAccountName = srcAccountName;
-        this.dstAccountId = dstAccountId;
-        this.dstAccountName = dstAccountName;
-        this.amount = amount;
-        this.tradePwd = tradePwd;
-
-    }
-
-
-    public TransferSaveOrUpdateDTO() {
-    }
-
-
-
-    public Long getSrcAccountId() {
-        /* 23 */
-        return this.srcAccountId;
-
-    }
-
-
-    public String getSrcAccountName() {
-        /* 26 */
-        return this.srcAccountName;
-
-    }
-
-
-    public Long getDstAccountId() {
-        /* 29 */
-        return this.dstAccountId;
-
-    }
-
-
-    public String getDstAccountName() {
-        /* 32 */
-        return this.dstAccountName;
-
-    }
-
-
-    public BigDecimal getAmount() {
-        /* 35 */
-        return this.amount;
-
-    }
-
-
-    public String getTradePwd() {
-        /* 38 */
-        return this.tradePwd;
-
-    }
-
 }
-
 

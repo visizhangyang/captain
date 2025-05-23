@@ -1,49 +1,48 @@
-
 package com.porn.client.mobile.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BasePageDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
-
-
-
-
-
-
- public class MerchantTradeRequestDTO
-         extends BasePageDTO
-         implements Serializable {
+public class MerchantTradeRequestDTO
+        extends BasePageDTO
+        implements Serializable {
 
     @ApiModelProperty("商户id")
-     private Long merchantId;
+    private Long merchantId;
 
-
-
-    public void setMerchantId(Long merchantId) {
-        /* 16 */
-        this.merchantId = merchantId;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MerchantTradeRequestDTO;
-    }
-
-
-
-    /* 17 */
     protected MerchantTradeRequestDTO(MerchantTradeRequestDTOBuilder<?, ?> b) {
         super(b);
         this.merchantId = b.merchantId;
     }
 
+    public MerchantTradeRequestDTO(Long merchantId) {
+
+        this.merchantId = merchantId;
+
+    }
+
+    public MerchantTradeRequestDTO() {
+    }
+
     public static MerchantTradeRequestDTOBuilder<?, ?> builder() {
         return new MerchantTradeRequestDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MerchantTradeRequestDTO;
+    }
+
+    public Long getMerchantId() {
+
+        return this.merchantId;
+
+    }
+
+    public void setMerchantId(Long merchantId) {
+
+        this.merchantId = merchantId;
     }
 
     private static final class MerchantTradeRequestDTOBuilderImpl extends MerchantTradeRequestDTOBuilder<MerchantTradeRequestDTO, MerchantTradeRequestDTOBuilderImpl> {
@@ -60,12 +59,12 @@ import java.io.Serializable;
     }
 
     public static abstract class MerchantTradeRequestDTOBuilder<C extends MerchantTradeRequestDTO, B extends MerchantTradeRequestDTOBuilder<C, B>> extends BasePageDTO.BasePageDTOBuilder<C, B> {
+        private Long merchantId;
+
         public B merchantId(Long merchantId) {
             this.merchantId = merchantId;
             return self();
         }
-
-        private Long merchantId;
 
         protected abstract B self();
 
@@ -73,25 +72,5 @@ import java.io.Serializable;
 
     }
 
-    public MerchantTradeRequestDTO(Long merchantId) {
-        /* 18 */
-        this.merchantId = merchantId;
-
-    }
-
-
-
-    public MerchantTradeRequestDTO() {
-    }
-
-
-
-    public Long getMerchantId() {
-        /* 24 */
-        return this.merchantId;
-
-    }
-
 }
-
 

@@ -1,44 +1,45 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
+public class UserQueryDTO
+        extends BaseDTO {
 
-
-
-
- public class UserQueryDTO
-         extends BaseDTO
-         {
-    
     @ApiModelProperty("账户")
-     private String name;
+    private String name;
 
-    
-    
-    public void setName(String name) {
-        /* 15 */
-        this.name = name;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserQueryDTO;
-    }
-
-
-
-    /* 16 */
     protected UserQueryDTO(UserQueryDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
     }
 
+    public UserQueryDTO(String name) {
+
+        this.name = name;
+
+    }
+
+    public UserQueryDTO() {
+    }
+
     public static UserQueryDTOBuilder<?, ?> builder() {
         return new UserQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserQueryDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
     }
 
     private static final class UserQueryDTOBuilderImpl extends UserQueryDTOBuilder<UserQueryDTO, UserQueryDTOBuilderImpl> {
@@ -55,12 +56,12 @@ import com.porn.client.common.dto.BaseDTO;
     }
 
     public static abstract class UserQueryDTOBuilder<C extends UserQueryDTO, B extends UserQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private String name;
+
         public B name(String name) {
             this.name = name;
             return self();
         }
-
-        private String name;
 
         protected abstract B self();
 
@@ -68,24 +69,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public UserQueryDTO(String name) {
-        /* 17 */
-        this.name = name;
-        
-    }
-
-    
-    public UserQueryDTO() {
-    }
-
-    
-    
-    public String getName() {
-        /* 22 */
-        return this.name;
-        
-    }
-    
 }
-
 

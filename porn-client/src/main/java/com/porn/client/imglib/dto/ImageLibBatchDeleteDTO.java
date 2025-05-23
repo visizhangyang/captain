@@ -1,49 +1,47 @@
-
 package com.porn.client.imglib.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-
-
-
-
-
-
- public class ImageLibBatchDeleteDTO
-         extends BaseDTO
-         {
+public class ImageLibBatchDeleteDTO
+        extends BaseDTO {
 
     @ApiModelProperty("id列表")
-     private List<Long> idList;
+    private List<Long> idList;
 
-
-
-    public void setIdList(List<Long> idList) {
-        /* 16 */
-        this.idList = idList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof ImageLibBatchDeleteDTO;
-    }
-
-
-
-    /* 17 */
     protected ImageLibBatchDeleteDTO(ImageLibBatchDeleteDTOBuilder<?, ?> b) {
         super(b);
         this.idList = b.idList;
     }
 
+    public ImageLibBatchDeleteDTO(List<Long> idList) {
+
+        this.idList = idList;
+
+    }
+
+    public ImageLibBatchDeleteDTO() {
+    }
+
     public static ImageLibBatchDeleteDTOBuilder<?, ?> builder() {
         return new ImageLibBatchDeleteDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof ImageLibBatchDeleteDTO;
+    }
+
+    public List<Long> getIdList() {
+
+        return this.idList;
+
+    }
+
+    public void setIdList(List<Long> idList) {
+
+        this.idList = idList;
     }
 
     private static final class ImageLibBatchDeleteDTOBuilderImpl extends ImageLibBatchDeleteDTOBuilder<ImageLibBatchDeleteDTO, ImageLibBatchDeleteDTOBuilderImpl> {
@@ -60,12 +58,12 @@ import java.util.List;
     }
 
     public static abstract class ImageLibBatchDeleteDTOBuilder<C extends ImageLibBatchDeleteDTO, B extends ImageLibBatchDeleteDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private List<Long> idList;
+
         public B idList(List<Long> idList) {
             this.idList = idList;
             return self();
         }
-
-        private List<Long> idList;
 
         protected abstract B self();
 
@@ -73,24 +71,5 @@ import java.util.List;
 
     }
 
-    public ImageLibBatchDeleteDTO(List<Long> idList) {
-        /* 18 */
-        this.idList = idList;
-
-    }
-
-
-    public ImageLibBatchDeleteDTO() {
-    }
-
-
-
-    public List<Long> getIdList() {
-        /* 23 */
-        return this.idList;
-
-    }
-
 }
-
 

@@ -1,9 +1,7 @@
-
 package com.porn.client.config.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BasePageDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
@@ -35,50 +33,6 @@ public class ConfigQueryPageDTO extends BasePageDTO {
     @ApiModelProperty("账户ID列表")
     private List<Long> accountIdList;
 
-    public void setConfigCode(String configCode) {
-        this.configCode = configCode;
-    }
-
-    public void setLkConfigCode(String lkConfigCode) {
-        this.lkConfigCode = lkConfigCode;
-    }
-
-    public void setConfigGroup(String configGroup) {
-        this.configGroup = configGroup;
-    }
-
-    public void setConfigValue(String configValue) {
-        this.configValue = configValue;
-    }
-
-    public void setConfigDesc(String configDesc) {
-        this.configDesc = configDesc;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setSortNo(Integer sortNo) {
-        this.sortNo = sortNo;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setAccountIdList(List<Long> accountIdList) {
-        this.accountIdList = accountIdList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof ConfigQueryPageDTO;
-    }
-
-
-
-    /* 17 */
     protected ConfigQueryPageDTO(ConfigQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.configCode = b.configCode;
@@ -92,8 +46,119 @@ public class ConfigQueryPageDTO extends BasePageDTO {
         this.accountIdList = b.accountIdList;
     }
 
+    public ConfigQueryPageDTO() {
+    }
+
+    public ConfigQueryPageDTO(String configCode, String lkConfigCode, String configGroup, String configValue, String configDesc, Integer status, Integer sortNo, Long accountId, List<Long> accountIdList) {
+
+        this.configCode = configCode;
+        this.lkConfigCode = lkConfigCode;
+        this.configGroup = configGroup;
+        this.configValue = configValue;
+        this.configDesc = configDesc;
+        this.status = status;
+        this.sortNo = sortNo;
+        this.accountId = accountId;
+        this.accountIdList = accountIdList;
+
+    }
+
     public static ConfigQueryPageDTOBuilder<?, ?> builder() {
         return new ConfigQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof ConfigQueryPageDTO;
+    }
+
+    public String getConfigCode() {
+
+        return this.configCode;
+
+    }
+
+    public void setConfigCode(String configCode) {
+        this.configCode = configCode;
+    }
+
+    public String getLkConfigCode() {
+
+        return this.lkConfigCode;
+
+    }
+
+    public void setLkConfigCode(String lkConfigCode) {
+        this.lkConfigCode = lkConfigCode;
+    }
+
+    public String getConfigGroup() {
+
+        return this.configGroup;
+
+    }
+
+    public void setConfigGroup(String configGroup) {
+        this.configGroup = configGroup;
+    }
+
+    public String getConfigValue() {
+
+        return this.configValue;
+
+    }
+
+    public void setConfigValue(String configValue) {
+        this.configValue = configValue;
+    }
+
+    public String getConfigDesc() {
+
+        return this.configDesc;
+
+    }
+
+    public void setConfigDesc(String configDesc) {
+        this.configDesc = configDesc;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getSortNo() {
+
+        return this.sortNo;
+
+    }
+
+    public void setSortNo(Integer sortNo) {
+        this.sortNo = sortNo;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public List<Long> getAccountIdList() {
+
+        return this.accountIdList;
+
+    }
+
+    public void setAccountIdList(List<Long> accountIdList) {
+        this.accountIdList = accountIdList;
     }
 
     private static final class ConfigQueryPageDTOBuilderImpl extends ConfigQueryPageDTOBuilder<ConfigQueryPageDTO, ConfigQueryPageDTOBuilderImpl> {
@@ -114,17 +179,16 @@ public class ConfigQueryPageDTO extends BasePageDTO {
         private String lkConfigCode;
         private String configGroup;
         private String configValue;
-
-        public B configCode(String configCode) {
-            this.configCode = configCode;
-            return self();
-        }
-
         private String configDesc;
         private Integer status;
         private Integer sortNo;
         private Long accountId;
         private List<Long> accountIdList;
+
+        public B configCode(String configCode) {
+            this.configCode = configCode;
+            return self();
+        }
 
         public B lkConfigCode(String lkConfigCode) {
             this.lkConfigCode = lkConfigCode;
@@ -170,89 +234,6 @@ public class ConfigQueryPageDTO extends BasePageDTO {
 
         public abstract C build();
 
-
-    }
-
-    public ConfigQueryPageDTO() {
-    }
-
-    public ConfigQueryPageDTO(String configCode, String lkConfigCode, String configGroup, String configValue, String configDesc, Integer status, Integer sortNo, Long accountId, List<Long> accountIdList) {
-        /* 19 */
-        this.configCode = configCode;
-        this.lkConfigCode = lkConfigCode;
-        this.configGroup = configGroup;
-        this.configValue = configValue;
-        this.configDesc = configDesc;
-        this.status = status;
-        this.sortNo = sortNo;
-        this.accountId = accountId;
-        this.accountIdList = accountIdList;
-
-    }
-
-
-
-    public String getConfigCode() {
-        /* 23 */
-        return this.configCode;
-
-    }
-
-
-    public String getLkConfigCode() {
-        /* 26 */
-        return this.lkConfigCode;
-
-    }
-
-
-    public String getConfigGroup() {
-        /* 29 */
-        return this.configGroup;
-
-    }
-
-
-    public String getConfigValue() {
-        /* 32 */
-        return this.configValue;
-
-    }
-
-
-    public String getConfigDesc() {
-        /* 35 */
-        return this.configDesc;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 38 */
-        return this.status;
-
-    }
-
-
-    public Integer getSortNo() {
-        /* 41 */
-        return this.sortNo;
-
-    }
-
-
-    public Long getAccountId() {
-        /* 44 */
-        return this.accountId;
-
-    }
-
-
-    public List<Long> getAccountIdList() {
-        /* 47 */
-        return this.accountIdList;
-
     }
 }
-
 

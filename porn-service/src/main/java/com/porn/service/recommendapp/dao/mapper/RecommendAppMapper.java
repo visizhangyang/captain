@@ -6,4 +6,3 @@ import com.porn.service.recommendapp.dao.entity.RecommendAppDO;
 public interface RecommendAppMapper extends BaseMapper<RecommendAppDO> {
 }
 
-

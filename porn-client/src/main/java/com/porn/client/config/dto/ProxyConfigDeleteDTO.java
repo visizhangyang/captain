@@ -1,43 +1,31 @@
-
 package com.porn.client.config.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class ProxyConfigDeleteDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class ProxyConfigDeleteDTO
-         extends BaseDTO
-         {
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof ProxyConfigDeleteDTO;
-    }
-
-
-
-    /* 14 */
     protected ProxyConfigDeleteDTO(ProxyConfigDeleteDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public ProxyConfigDeleteDTO() {
     }
 
     public static ProxyConfigDeleteDTOBuilder<?, ?> builder() {
         return new ProxyConfigDeleteDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof ProxyConfigDeleteDTO;
+    }
+
     private static final class ProxyConfigDeleteDTOBuilderImpl extends ProxyConfigDeleteDTOBuilder<ProxyConfigDeleteDTO, ProxyConfigDeleteDTOBuilderImpl> {
-        protected ProxyConfigDeleteDTOBuilderImpl self() {
-            return this;
+        private ProxyConfigDeleteDTOBuilderImpl() {
         }
 
-        private ProxyConfigDeleteDTOBuilderImpl() {
+        protected ProxyConfigDeleteDTOBuilderImpl self() {
+            return this;
         }
 
         public ProxyConfigDeleteDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class ProxyConfigDeleteDTOBuilder<C extends ProxyConfigDeleteDTO, B extends ProxyConfigDeleteDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-
-
-
         protected abstract B self();
-
-
 
         public abstract C build();
     }
 
-
-
-
-    public ProxyConfigDeleteDTO() {
-    }
-
 }
-
 

@@ -1,74 +1,134 @@
-
 package com.porn.client.mobile.dto;
+
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
 public class SaveReceiveAddressApiRequestDTO implements Serializable {
     @ApiModelProperty("钱包编码")
-     private String walletCode;
+    private String walletCode;
     @ApiModelProperty("收款地址")
-     private String receiveAddress;
+    private String receiveAddress;
 
     @ApiModelProperty("推广码")
-     private String promotionCode;
+    private String promotionCode;
 
     @ApiModelProperty("QQ号码")
-     private String qq;
+    private String qq;
 
     @ApiModelProperty("微信号码")
-     private String wechat;
+    private String wechat;
 
     @ApiModelProperty("手机号码")
-     private String phone;
+    private String phone;
 
     @ApiModelProperty("昵称")
-     private String nickName;
+    private String nickName;
+    @ApiModelProperty("默认收款地址")
+    private Boolean defaultAddress = Boolean.TRUE;
 
+    public SaveReceiveAddressApiRequestDTO(String walletCode, String receiveAddress, String promotionCode, String qq, String wechat, String phone, String nickName, Boolean defaultAddress) {
 
-    /* 15 */
+        this.walletCode = walletCode;
+        this.receiveAddress = receiveAddress;
+        this.promotionCode = promotionCode;
+        this.qq = qq;
+        this.wechat = wechat;
+        this.phone = phone;
+        this.nickName = nickName;
+        this.defaultAddress = defaultAddress;
+
+    }
+
+    public SaveReceiveAddressApiRequestDTO() {
+    }
+
+    public static SaveReceiveAddressApiRequestDTOBuilder builder() {
+        return new SaveReceiveAddressApiRequestDTOBuilder();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof SaveReceiveAddressApiRequestDTO;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
+
     public void setWalletCode(String walletCode) {
         this.walletCode = walletCode;
+    }
+
+    public String getReceiveAddress() {
+
+        return this.receiveAddress;
+
     }
 
     public void setReceiveAddress(String receiveAddress) {
         this.receiveAddress = receiveAddress;
     }
 
+    public String getPromotionCode() {
+
+        return this.promotionCode;
+
+    }
+
     public void setPromotionCode(String promotionCode) {
         this.promotionCode = promotionCode;
+    }
+
+    public String getQq() {
+
+        return this.qq;
+
     }
 
     public void setQq(String qq) {
         this.qq = qq;
     }
 
+    public String getWechat() {
+
+        return this.wechat;
+
+    }
+
     public void setWechat(String wechat) {
         this.wechat = wechat;
+    }
+
+    public String getPhone() {
+
+        return this.phone;
+
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    public String getNickName() {
+
+        return this.nickName;
+
+    }
+
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
 
+    public Boolean getDefaultAddress() {
+
+        return this.defaultAddress;
+
+    }
+
     public void setDefaultAddress(Boolean defaultAddress) {
         this.defaultAddress = defaultAddress;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof SaveReceiveAddressApiRequestDTO;
-    }
-
-
-
-    /* 16 */
-    public static SaveReceiveAddressApiRequestDTOBuilder builder() {
-        return new SaveReceiveAddressApiRequestDTOBuilder();
     }
 
     public static class SaveReceiveAddressApiRequestDTOBuilder {
@@ -76,16 +136,15 @@ public class SaveReceiveAddressApiRequestDTO implements Serializable {
         private String receiveAddress;
         private String promotionCode;
         private String qq;
+        private String wechat;
+        private String phone;
+        private String nickName;
+        private Boolean defaultAddress;
 
         public SaveReceiveAddressApiRequestDTOBuilder walletCode(String walletCode) {
             this.walletCode = walletCode;
             return this;
         }
-
-        private String wechat;
-        private String phone;
-        private String nickName;
-        private Boolean defaultAddress;
 
         public SaveReceiveAddressApiRequestDTOBuilder receiveAddress(String receiveAddress) {
             this.receiveAddress = receiveAddress;
@@ -127,84 +186,5 @@ public class SaveReceiveAddressApiRequestDTO implements Serializable {
         }
 
     }
-
-    public SaveReceiveAddressApiRequestDTO(String walletCode, String receiveAddress, String promotionCode, String qq, String wechat, String phone, String nickName, Boolean defaultAddress) {
-        /* 17 */
-        this.walletCode = walletCode;
-        this.receiveAddress = receiveAddress;
-        this.promotionCode = promotionCode;
-        this.qq = qq;
-        this.wechat = wechat;
-        this.phone = phone;
-        this.nickName = nickName;
-        this.defaultAddress = defaultAddress;
-
-    }
-
-
-
-
-    public String getWalletCode() {
-        /* 22 */
-        return this.walletCode;
-
-    }
-
-
-    public String getReceiveAddress() {
-        /* 25 */
-        return this.receiveAddress;
-
-    }
-
-
-    public String getPromotionCode() {
-        /* 28 */
-        return this.promotionCode;
-
-    }
-
-
-    public String getQq() {
-        /* 31 */
-        return this.qq;
-
-    }
-
-
-    public String getWechat() {
-        /* 34 */
-        return this.wechat;
-
-    }
-
-
-    public String getPhone() {
-        /* 37 */
-        return this.phone;
-
-    }
-
-
-    public String getNickName() {
-        /* 40 */
-        return this.nickName;
-
-    }
-
-    @ApiModelProperty("默认收款地址")
-    /* 42 */ private Boolean defaultAddress = Boolean.TRUE;
-
-    public Boolean getDefaultAddress() {
-        /* 43 */
-        return this.defaultAddress;
-
-    }
-
-
-
-    public SaveReceiveAddressApiRequestDTO() {
-    }
 }
-
 

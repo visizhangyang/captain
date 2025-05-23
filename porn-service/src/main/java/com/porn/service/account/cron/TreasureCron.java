@@ -1,6 +1,4 @@
-
 package com.porn.service.account.cron;
-
 
 
 import cn.hutool.core.util.NumberUtil;
@@ -29,97 +27,54 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Component
- public class TreasureCron
-         implements ApplicationContextAware
-         {
-    /* 33 */   private static final Logger log = LoggerFactory.getLogger(TreasureCron.class);
-
-
-
-    @Autowired
-     private AccountApiService accountApiService;
-
+public class TreasureCron
+        implements ApplicationContextAware {
+    private static final Logger log = LoggerFactory.getLogger(TreasureCron.class);
 
 
     @Autowired
-     private ParamsetApiService paramsetApiService;
-
-       private ApplicationContext applicationContext;
+    private AccountApiService accountApiService;
 
 
+    @Autowired
+    private ParamsetApiService paramsetApiService;
 
+    private ApplicationContext applicationContext;
 
     @Scheduled(cron = "0 0 1 * * ?")
-     public void doCompare() {
-        /* 48 */
+    public void doCompare() {
+
         AccountQueryDTO accountQueryDTO = AccountQueryDTO.builder().build();
-        /* 49 */
+
         List<AccountVo> accountVoList = this.accountApiService.queryAccountList(accountQueryDTO);
-        /* 50 */
+
         if (ObjectUtil.isEmpty(accountVoList)) {
 
             return;
 
         }
 
-        /* 54 */
         ParamsetVo paramsetVo = this.paramsetApiService.queryParamset(ParamsetQueryDTO.builder().build());
 
-        /* 56 */
         for (AccountVo accountVo : accountVoList) {
 
             try {
-                /* 58 */
+
                 if (BigDecimal.ZERO.compareTo(accountVo.getAvailableBalance()) >= 0) {
 
                     continue;
 
                 }
 
-                /* 62 */
                 BigDecimal amount = NumberUtil.mul(accountVo.getAvailableBalance(), NumberUtil.div((accountVo.getAccountLevel() == AccountLevelEnum.NORMAL.getLevel()) ? paramsetVo.getNormalTreasureRate() : ((accountVo.getAccountLevel() == AccountLevelEnum.LARGE.getLevel()) ? paramsetVo.getLargeTreasureRate() : paramsetVo.getPartnerTreasureRate()), Integer.valueOf(100))).setScale(2, RoundingMode.HALF_UP);
 
-
-
-
-
-
-
-                /* 70 */
                 AccountAmountOperateDTO accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(accountVo.getId())).amountType(AmountTypeEnum.ADDTOTAL_ADDAVAILABLE.getType()).bizId(accountVo.getId()).streamTypeEnum(StreamTypeEnum.TREASURE).operateAmount(amount).build();
-                /* 71 */
+
                 this.accountApiService.operateAmount(accountAmountOperateDTO);
-                /* 72 */
+
             } catch (Exception e) {
-                /* 73 */
+
                 log.error("余U宝利润计算异常, 账户[{}], 异常[{}]", JSON.toJSONString(accountVo), e);
 
             }
@@ -129,17 +84,11 @@ import java.util.List;
     }
 
 
-
-
-
-
-
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        /* 83 */
+
         this.applicationContext = applicationContext;
 
     }
 
 }
-
 

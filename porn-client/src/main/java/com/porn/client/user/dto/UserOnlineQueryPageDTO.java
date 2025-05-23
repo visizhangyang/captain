@@ -1,48 +1,19 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BasePageDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class UserOnlineQueryPageDTO extends BasePageDTO {
+public class UserOnlineQueryPageDTO extends BasePageDTO {
 
     @ApiModelProperty("模糊匹配姓名")
-     private String lkName;
+    private String lkName;
 
     @ApiModelProperty("模糊匹配昵称")
-     private String lkNickName;
+    private String lkNickName;
 
     @ApiModelProperty("用户名称")
-     private String name;
+    private String name;
 
-
-    /* 15 */
-    public void setLkName(String lkName) {
-        this.lkName = lkName;
-    }
-
-    public void setLkNickName(String lkNickName) {
-        this.lkNickName = lkNickName;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserOnlineQueryPageDTO;
-    }
-
-
-
-    /* 16 */
     protected UserOnlineQueryPageDTO(UserOnlineQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.lkName = b.lkName;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BasePageDTO;
         this.name = b.name;
     }
 
+    public UserOnlineQueryPageDTO(String lkName, String lkNickName, String name) {
+
+        this.lkName = lkName;
+        this.lkNickName = lkNickName;
+        this.name = name;
+
+    }
+
+    public UserOnlineQueryPageDTO() {
+    }
+
     public static UserOnlineQueryPageDTOBuilder<?, ?> builder() {
         return new UserOnlineQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserOnlineQueryPageDTO;
+    }
+
+    public String getLkName() {
+
+        return this.lkName;
+
+    }
+
+    public void setLkName(String lkName) {
+        this.lkName = lkName;
+    }
+
+    public String getLkNickName() {
+
+        return this.lkNickName;
+
+    }
+
+    public void setLkNickName(String lkNickName) {
+        this.lkNickName = lkNickName;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     private static final class UserOnlineQueryPageDTOBuilderImpl extends UserOnlineQueryPageDTOBuilder<UserOnlineQueryPageDTO, UserOnlineQueryPageDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BasePageDTO;
 
     public static abstract class UserOnlineQueryPageDTOBuilder<C extends UserOnlineQueryPageDTO, B extends UserOnlineQueryPageDTOBuilder<C, B>> extends BasePageDTO.BasePageDTOBuilder<C, B> {
         private String lkName;
+        private String lkNickName;
+        private String name;
 
         public B lkName(String lkName) {
             this.lkName = lkName;
             return self();
         }
-
-        private String lkNickName;
-        private String name;
 
         public B lkNickName(String lkNickName) {
             this.lkNickName = lkNickName;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BasePageDTO;
 
     }
 
-    public UserOnlineQueryPageDTO(String lkName, String lkNickName, String name) {
-        /* 17 */
-        this.lkName = lkName;
-        this.lkNickName = lkNickName;
-        this.name = name;
-
-    }
-
-
-    public UserOnlineQueryPageDTO() {
-    }
-
-
-
-    public String getLkName() {
-        /* 22 */
-        return this.lkName;
-
-    }
-
-
-    public String getLkNickName() {
-        /* 25 */
-        return this.lkNickName;
-
-    }
-
-
-    public String getName() {
-        /* 28 */
-        return this.name;
-
-    }
-
 }
-
 

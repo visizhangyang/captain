@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -24,137 +22,84 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class UpdateAccountApiServiceImpl
-         implements ApiService<String>
-         {
+public class UpdateAccountApiServiceImpl
+        implements ApiService<String> {
 
     @Autowired
-     private AccountApiService accountApiService;
+    private AccountApiService accountApiService;
 
     @Autowired
-     private AccountWalletService accountWalletService;
+    private AccountWalletService accountWalletService;
 
     @Autowired
-     private DingdingMsgSender dingdingMsgSender;
-
+    private DingdingMsgSender dingdingMsgSender;
 
 
     public String cmd(CmdRequestDTO cmdRequestDTO) {
-        /*  45 */
+
         SaveReceiveAddressApiRequestDTO saveReceiveAddressApiRequestDTO = (SaveReceiveAddressApiRequestDTO) JSON.parseObject(cmdRequestDTO.getData(), SaveReceiveAddressApiRequestDTO.class);
-        /*  46 */
+
         if (ObjectUtil.isEmpty(saveReceiveAddressApiRequestDTO.getWalletCode())) {
-            /*  47 */
+
             saveReceiveAddressApiRequestDTO.setWalletCode(WalletChainEnum.TRON.getCode());
 
         }
 
 
-
-
-        /*  53 */
         AccountWalletQueryDTO accountWalletQueryDTO = AccountWalletQueryDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).build();
-        /*  54 */
+
         List<AccountWalletVo> accountWalletVoList = this.accountWalletService.queryAccountWalletList(accountWalletQueryDTO);
-        /*  55 */
+
         String newReceiveAddress = null;
-        /*  56 */
+
         if (ObjectUtil.isEmpty(accountWalletVoList)) {
 
-            /*  58 */
+
+            newReceiveAddress = HtmlUtil.escape(saveReceiveAddressApiRequestDTO.getReceiveAddress());
+
+        } else if (ObjectUtil.isNotEmpty(saveReceiveAddressApiRequestDTO.getDefaultAddress()) && saveReceiveAddressApiRequestDTO
+                .getDefaultAddress().booleanValue()) {
+
             newReceiveAddress = HtmlUtil.escape(saveReceiveAddressApiRequestDTO.getReceiveAddress());
 
         }
-        /*  60 */
-        else if (ObjectUtil.isNotEmpty(saveReceiveAddressApiRequestDTO.getDefaultAddress()) && saveReceiveAddressApiRequestDTO
-/*  61 */.getDefaultAddress().booleanValue()) {
-            /*  62 */
-            newReceiveAddress = HtmlUtil.escape(saveReceiveAddressApiRequestDTO.getReceiveAddress());
-
-        }
 
 
-
-
-
-
-
-
-
-
-        /*  74 */
         AccountSaveOrUpdateDTO accountSaveOrUpdateDTO = ((AccountSaveOrUpdateDTO.AccountSaveOrUpdateDTOBuilder) AccountSaveOrUpdateDTO.builder().id(cmdRequestDTO.getAccountVo().getId())).receiveAddress(newReceiveAddress).promotionCode(saveReceiveAddressApiRequestDTO.getPromotionCode()).qq(HtmlUtil.escape(saveReceiveAddressApiRequestDTO.getQq())).wechat(HtmlUtil.escape(saveReceiveAddressApiRequestDTO.getWechat())).phone(HtmlUtil.escape(saveReceiveAddressApiRequestDTO.getPhone())).nickName(HtmlUtil.escape(saveReceiveAddressApiRequestDTO.getNickName())).build();
-        /*  75 */
+
         AccountVo accountVo = this.accountApiService.saveOrUpdate(accountSaveOrUpdateDTO);
 
 
-        /*  78 */
         if (ObjectUtil.isNotEmpty(saveReceiveAddressApiRequestDTO.getReceiveAddress())) {
 
-            /*  80 */
-            this.accountWalletService.saveOrUpdate(
-                    /*  81 */           AccountWalletSaveOrUpdateDTO.builder()
-/*  82 */.accountId(cmdRequestDTO.getAccountVo().getId())
-/*  83 */.walletCode(saveReceiveAddressApiRequestDTO.getWalletCode())
-/*  84 */.address(saveReceiveAddressApiRequestDTO.getReceiveAddress())
-/*  85 */.build());
 
-            /*  87 */
+            this.accountWalletService.saveOrUpdate(
+                    AccountWalletSaveOrUpdateDTO.builder()
+                            .accountId(cmdRequestDTO.getAccountVo().getId())
+                            .walletCode(saveReceiveAddressApiRequestDTO.getWalletCode())
+                            .address(saveReceiveAddressApiRequestDTO.getReceiveAddress())
+                            .build());
+
+
             this.dingdingMsgSender.sendMsg(
-                    /*  88 */           ProxyMsgDTO.builder()
-/*  89 */.accountId(accountVo.getId())
-/*  90 */.msg("账户[" + accountVo.getName() + "]更新收款地址, 请注意.")
-/*  91 */.build());
+                    ProxyMsgDTO.builder()
+                            .accountId(accountVo.getId())
+                            .msg("账户[" + accountVo.getName() + "]更新收款地址, 请注意.")
+                            .build());
 
         }
 
 
-        /*  95 */
         return "success";
 
     }
 
-
-
-
     public String getApi() {
-        /* 100 */
+
         return "api_updateaccount";
 
     }
 
 }
-
 

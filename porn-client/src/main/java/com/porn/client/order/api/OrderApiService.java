@@ -36,4 +36,3 @@ public interface OrderApiService {
     BigDecimal sumOrderAmount(OrderQueryDTO paramOrderQueryDTO);
 }
 
-

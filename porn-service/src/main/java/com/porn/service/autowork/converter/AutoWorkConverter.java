@@ -16,4 +16,3 @@ public interface AutoWorkConverter {
     AutoWorkDO toAutoWorkDO(AutoWorkSaveOrUpdateDTO paramAutoWorkSaveOrUpdateDTO);
 }
 
-

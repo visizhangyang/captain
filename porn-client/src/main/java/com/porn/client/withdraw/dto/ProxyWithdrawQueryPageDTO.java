@@ -1,14 +1,12 @@
-
 package com.porn.client.withdraw.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BasePageDTO;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
 
 @ApiModel("代理提现查询分页DTO")
 @Data

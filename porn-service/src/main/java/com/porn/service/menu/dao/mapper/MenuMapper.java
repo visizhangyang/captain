@@ -8,4 +8,3 @@ public interface MenuMapper extends BaseMapper<MenuDO> {
     Integer queryMaxSortNo(@Param("parentId") Long paramLong);
 }
 
-

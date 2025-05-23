@@ -1,17 +1,12 @@
-
 package com.porn.service.goods.impl;
-
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import com.porn.client.account.api.AccountApiService;
@@ -49,58 +44,41 @@ import java.util.Collections;
 import java.util.List;
 
 
-
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class GoodsApiServiceImpl implements GoodsApiService {
-    /*  47 */   private static final Logger log = LoggerFactory.getLogger(GoodsApiServiceImpl.class);
-
-
-
-    @Autowired
-     private GoodsConverter goodsConverter;
-
+public class GoodsApiServiceImpl implements GoodsApiService {
+    private static final Logger log = LoggerFactory.getLogger(GoodsApiServiceImpl.class);
 
 
     @Autowired
-     private GoodsMapper goodsMapper;
-
-
-
-    @Autowired
-     private MinioApiService minioApiService;
-
+    private GoodsConverter goodsConverter;
 
 
     @Autowired
-     private MerchantApiService merchantApiService;
+    private GoodsMapper goodsMapper;
 
 
     @Autowired
-     private ParamsetApiService paramsetApiService;
+    private MinioApiService minioApiService;
 
 
     @Autowired
-     private AccountApiService accountApiService;
+    private MerchantApiService merchantApiService;
 
+    @Autowired
+    private ParamsetApiService paramsetApiService;
 
-
+    @Autowired
+    private AccountApiService accountApiService;
 
     public GoodsVo queryGoods(GoodsQueryDTO goodsQueryDTO) {
-        /*  73 */
+
         List<GoodsVo> goodsVoList = queryGoodsList(goodsQueryDTO);
-        /*  74 */
+
         return ObjectUtil.isEmpty(goodsVoList) ? null : goodsVoList.get(0);
 
     }
-
-
-
-
-
-
-
 
 
     public List<GoodsVo> queryGoodsList(GoodsQueryDTO goodsQueryDTO) {
@@ -134,9 +112,7 @@ import java.util.List;
 
         return goodsVoList;
 
-
     }
-
 
 
     public PageVo<GoodsVo> queryPage(GoodsQueryPageDTO goodsQueryPageDTO) {
@@ -193,7 +169,6 @@ import java.util.List;
             goodsVo.setMerchantAvatar(prevFileVo.getFileUrl());
         }
     }
-
 
     private MerchantVo fetchMerchant(Long merchantId) {
         if (ObjectUtil.isEmpty(merchantId)) return null;
@@ -264,45 +239,32 @@ import java.util.List;
     }
 
 
-
-
-
     public Boolean batchCreate(GoodsBatchSaveDTO goodsBatchSaveDTO) {
-        /* 191 */
+
         ParamsetQueryDTO paramsetQueryDTO = ParamsetQueryDTO.builder().build();
-        /* 192 */
+
         ParamsetVo paramsetVo = this.paramsetApiService.queryParamset(paramsetQueryDTO);
-        /* 193 */
+
         if (ObjectUtil.isEmpty(paramsetVo)) {
-            /* 194 */
+
             throw new BusinessException("全局配置不存在.");
 
         }
-        /* 196 */
+
         for (int i = 0; i < goodsBatchSaveDTO.getCreateCount().intValue(); i++) {
-            /* 197 */
+
             BigDecimal amount = new BigDecimal(RandomUtil.randomInt(goodsBatchSaveDTO.getMinAmount().intValue(), goodsBatchSaveDTO.getMaxAmount().intValue()));
 
 
-
-
-
-
-
-
-
-
-            /* 208 */
             GoodsSaveOrUpdateDTO goodsSaveOrUpdateDTO = GoodsSaveOrUpdateDTO.builder().merchantId(goodsBatchSaveDTO.getMerchantId()).merchantName(goodsBatchSaveDTO.getMerchantName()).merchantAvatar(goodsBatchSaveDTO.getMerchantAvatar()).amount(amount).rate(BigDecimal.ZERO).freeAmount(BigDecimal.ZERO).goodsStatus(GoodsStatusEnum.WAIT_WORING.getStatus()).accountId(goodsBatchSaveDTO.getAccountId()).accountName(goodsBatchSaveDTO.getAccountName()).build();
-            /* 209 */
+
             saveOrUpdate(goodsSaveOrUpdateDTO);
 
         }
-        /* 211 */
+
         return Boolean.TRUE;
 
     }
-
 
 
     public Boolean delete(GoodsDeleteDTO goodsDeleteDTO) {
@@ -312,7 +274,6 @@ import java.util.List;
                 .in(ObjectUtil.isNotEmpty(goodsDeleteDTO.getIdList()), BaseDO::getId, goodsDeleteDTO.getIdList())
                 .update();
     }
-
 
 
     public Integer queryGoodsCount(GoodsQueryCountDTO goodsQueryCountDTO) {
@@ -325,19 +286,17 @@ import java.util.List;
     }
 
 
-
     public List<GoodsVo> groupRandGoodsList(GoodsQueryPageDTO goodsQueryPageDTO) {
-        /* 232 */
+
         List<GoodsVo> resultList = this.goodsMapper.groupRandGoodsList(goodsQueryPageDTO);
-        /* 233 */
+
         if (ObjectUtil.isNotEmpty(resultList)) {
-            /* 234 */
+
             resultList.forEach(goodsVo -> {
 
                 if (ObjectUtil.isNotEmpty(goodsVo.getMerchantAvatar())) {
 
                     PrevFileVo prevFileVo = this.minioApiService.prevFile(PrevFileDTO.builder().filePath(goodsVo.getMerchantAvatar()).build());
-
 
                     if (ObjectUtil.isNotEmpty(prevFileVo)) {
 
@@ -350,11 +309,10 @@ import java.util.List;
             });
 
         }
-        /* 244 */
+
         return resultList;
 
     }
 
 }
-
 

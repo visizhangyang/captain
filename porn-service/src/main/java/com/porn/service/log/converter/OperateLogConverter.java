@@ -13,4 +13,3 @@ public interface OperateLogConverter {
     List<OperateLogVo> toOperateLogVoList(List<OperateLogDO> paramList);
 }
 
-

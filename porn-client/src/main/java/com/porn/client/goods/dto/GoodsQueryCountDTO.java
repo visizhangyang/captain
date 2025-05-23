@@ -1,50 +1,59 @@
-
 package com.porn.client.goods.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class GoodsQueryCountDTO extends BaseDTO {
+public class GoodsQueryCountDTO extends BaseDTO {
 
     @ApiModelProperty("商户id")
-     private Long merchantId;
+    private Long merchantId;
 
     @ApiModelProperty("商品状态, GoodsStatusEnum")
-     private Integer goodsStatus;
+    private Integer goodsStatus;
 
-
-
-    public void setMerchantId(Long merchantId) {
-        /* 15 */
-        this.merchantId = merchantId;
-    }
-
-    public void setGoodsStatus(Integer goodsStatus) {
-        this.goodsStatus = goodsStatus;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof GoodsQueryCountDTO;
-    }
-
-
-
-    /* 16 */
     protected GoodsQueryCountDTO(GoodsQueryCountDTOBuilder<?, ?> b) {
         super(b);
         this.merchantId = b.merchantId;
         this.goodsStatus = b.goodsStatus;
     }
 
+    public GoodsQueryCountDTO(Long merchantId, Integer goodsStatus) {
+
+        this.merchantId = merchantId;
+        this.goodsStatus = goodsStatus;
+
+    }
+
+    public GoodsQueryCountDTO() {
+    }
+
     public static GoodsQueryCountDTOBuilder<?, ?> builder() {
         return new GoodsQueryCountDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof GoodsQueryCountDTO;
+    }
+
+    public Long getMerchantId() {
+
+        return this.merchantId;
+
+    }
+
+    public void setMerchantId(Long merchantId) {
+
+        this.merchantId = merchantId;
+    }
+
+    public Integer getGoodsStatus() {
+
+        return this.goodsStatus;
+
+    }
+
+    public void setGoodsStatus(Integer goodsStatus) {
+        this.goodsStatus = goodsStatus;
     }
 
     private static final class GoodsQueryCountDTOBuilderImpl extends GoodsQueryCountDTOBuilder<GoodsQueryCountDTO, GoodsQueryCountDTOBuilderImpl> {
@@ -62,13 +71,12 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class GoodsQueryCountDTOBuilder<C extends GoodsQueryCountDTO, B extends GoodsQueryCountDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long merchantId;
+        private Integer goodsStatus;
 
         public B merchantId(Long merchantId) {
             this.merchantId = merchantId;
             return self();
         }
-
-        private Integer goodsStatus;
 
         public B goodsStatus(Integer goodsStatus) {
             this.goodsStatus = goodsStatus;
@@ -81,32 +89,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public GoodsQueryCountDTO(Long merchantId, Integer goodsStatus) {
-        /* 17 */
-        this.merchantId = merchantId;
-        this.goodsStatus = goodsStatus;
-
-    }
-
-
-    public GoodsQueryCountDTO() {
-    }
-
-
-
-    public Long getMerchantId() {
-        /* 22 */
-        return this.merchantId;
-
-    }
-
-
-    public Integer getGoodsStatus() {
-        /* 25 */
-        return this.goodsStatus;
-
-    }
-
 }
-
 

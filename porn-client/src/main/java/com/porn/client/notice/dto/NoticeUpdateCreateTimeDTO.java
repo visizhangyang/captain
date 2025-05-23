@@ -1,50 +1,47 @@
-
 package com.porn.client.notice.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 
-
-
-
-
-
-
-
- public class NoticeUpdateCreateTimeDTO
-         extends BaseDTO
-         {
+public class NoticeUpdateCreateTimeDTO
+        extends BaseDTO {
 
     @ApiModelProperty("更新时间")
-     private LocalDateTime createTime;
+    private LocalDateTime createTime;
 
-
-
-    public void setCreateTime(LocalDateTime createTime) {
-        /* 17 */
-        this.createTime = createTime;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof NoticeUpdateCreateTimeDTO;
-    }
-
-
-
-    /* 18 */
     protected NoticeUpdateCreateTimeDTO(NoticeUpdateCreateTimeDTOBuilder<?, ?> b) {
         super(b);
         this.createTime = b.createTime;
     }
 
+    public NoticeUpdateCreateTimeDTO() {
+    }
+
+    public NoticeUpdateCreateTimeDTO(LocalDateTime createTime) {
+
+        this.createTime = createTime;
+
+    }
+
     public static NoticeUpdateCreateTimeDTOBuilder<?, ?> builder() {
         return new NoticeUpdateCreateTimeDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof NoticeUpdateCreateTimeDTO;
+    }
+
+    public LocalDateTime getCreateTime() {
+
+        return this.createTime;
+
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+
+        this.createTime = createTime;
     }
 
     private static final class NoticeUpdateCreateTimeDTOBuilderImpl extends NoticeUpdateCreateTimeDTOBuilder<NoticeUpdateCreateTimeDTO, NoticeUpdateCreateTimeDTOBuilderImpl> {
@@ -61,37 +58,18 @@ import java.time.LocalDateTime;
     }
 
     public static abstract class NoticeUpdateCreateTimeDTOBuilder<C extends NoticeUpdateCreateTimeDTO, B extends NoticeUpdateCreateTimeDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private LocalDateTime createTime;
+
         public B createTime(LocalDateTime createTime) {
             this.createTime = createTime;
             return self();
         }
 
-        private LocalDateTime createTime;
-
         protected abstract B self();
 
         public abstract C build();
 
-
-    }
-
-    public NoticeUpdateCreateTimeDTO() {
-    }
-
-    public NoticeUpdateCreateTimeDTO(LocalDateTime createTime) {
-        /* 20 */
-        this.createTime = createTime;
-
-    }
-
-
-
-    public LocalDateTime getCreateTime() {
-        /* 24 */
-        return this.createTime;
-
     }
 
 }
-
 

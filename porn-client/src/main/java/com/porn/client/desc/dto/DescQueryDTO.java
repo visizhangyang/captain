@@ -1,48 +1,19 @@
-
 package com.porn.client.desc.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class DescQueryDTO extends BaseDTO {
+public class DescQueryDTO extends BaseDTO {
 
     @ApiModelProperty("描述类型, DescTypeEnum")
-     private Integer descType;
+    private Integer descType;
 
     @ApiModelProperty("语言类型")
-     private Integer langType;
+    private Integer langType;
 
     @ApiModelProperty("语言名称")
-     private String langTypeName;
+    private String langTypeName;
 
-
-    /* 15 */
-    public void setDescType(Integer descType) {
-        this.descType = descType;
-    }
-
-    public void setLangType(Integer langType) {
-        this.langType = langType;
-    }
-
-    public void setLangTypeName(String langTypeName) {
-        this.langTypeName = langTypeName;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof DescQueryDTO;
-    }
-
-
-
-    /* 16 */
     protected DescQueryDTO(DescQueryDTOBuilder<?, ?> b) {
         super(b);
         this.descType = b.descType;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BaseDTO;
         this.langTypeName = b.langTypeName;
     }
 
+    public DescQueryDTO(Integer descType, Integer langType, String langTypeName) {
+
+        this.descType = descType;
+        this.langType = langType;
+        this.langTypeName = langTypeName;
+
+    }
+
+    public DescQueryDTO() {
+    }
+
     public static DescQueryDTOBuilder<?, ?> builder() {
         return new DescQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof DescQueryDTO;
+    }
+
+    public Integer getDescType() {
+
+        return this.descType;
+
+    }
+
+    public void setDescType(Integer descType) {
+        this.descType = descType;
+    }
+
+    public Integer getLangType() {
+
+        return this.langType;
+
+    }
+
+    public void setLangType(Integer langType) {
+        this.langType = langType;
+    }
+
+    public String getLangTypeName() {
+
+        return this.langTypeName;
+
+    }
+
+    public void setLangTypeName(String langTypeName) {
+        this.langTypeName = langTypeName;
     }
 
     private static final class DescQueryDTOBuilderImpl extends DescQueryDTOBuilder<DescQueryDTO, DescQueryDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class DescQueryDTOBuilder<C extends DescQueryDTO, B extends DescQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Integer descType;
+        private Integer langType;
+        private String langTypeName;
 
         public B descType(Integer descType) {
             this.descType = descType;
             return self();
         }
-
-        private Integer langType;
-        private String langTypeName;
 
         public B langType(Integer langType) {
             this.langType = langType;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public DescQueryDTO(Integer descType, Integer langType, String langTypeName) {
-        /* 17 */
-        this.descType = descType;
-        this.langType = langType;
-        this.langTypeName = langTypeName;
-
-    }
-
-
-    public DescQueryDTO() {
-    }
-
-
-
-    public Integer getDescType() {
-        /* 22 */
-        return this.descType;
-
-    }
-
-
-    public Integer getLangType() {
-        /* 25 */
-        return this.langType;
-
-    }
-
-
-    public String getLangTypeName() {
-        /* 28 */
-        return this.langTypeName;
-
-    }
-
 }
-
 

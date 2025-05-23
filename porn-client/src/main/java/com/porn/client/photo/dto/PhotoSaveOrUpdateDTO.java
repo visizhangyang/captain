@@ -1,52 +1,22 @@
-
 package com.porn.client.photo.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
- public class PhotoSaveOrUpdateDTO extends BaseDTO {
+public class PhotoSaveOrUpdateDTO extends BaseDTO {
 
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("账户名称")
-     private String accountName;
+    private String accountName;
 
     @ApiModelProperty("文件路径")
-     private String filePath;
+    private String filePath;
 
     @ApiModelProperty("app端唯一")
-     private String localIdentifier;
+    private String localIdentifier;
 
-
-    /* 15 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public void setLocalIdentifier(String localIdentifier) {
-        this.localIdentifier = localIdentifier;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof PhotoSaveOrUpdateDTO;
-    }
-
-
-
-    /* 16 */
     protected PhotoSaveOrUpdateDTO(PhotoSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -55,8 +25,64 @@ import com.porn.client.common.dto.BaseDTO;
         this.localIdentifier = b.localIdentifier;
     }
 
+    public PhotoSaveOrUpdateDTO(Long accountId, String accountName, String filePath, String localIdentifier) {
+
+        this.accountId = accountId;
+        this.accountName = accountName;
+        this.filePath = filePath;
+        this.localIdentifier = localIdentifier;
+
+    }
+
+    public PhotoSaveOrUpdateDTO() {
+    }
+
     public static PhotoSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new PhotoSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof PhotoSaveOrUpdateDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getAccountName() {
+
+        return this.accountName;
+
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public String getFilePath() {
+
+        return this.filePath;
+
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getLocalIdentifier() {
+
+        return this.localIdentifier;
+
+    }
+
+    public void setLocalIdentifier(String localIdentifier) {
+        this.localIdentifier = localIdentifier;
     }
 
     private static final class PhotoSaveOrUpdateDTOBuilderImpl extends PhotoSaveOrUpdateDTOBuilder<PhotoSaveOrUpdateDTO, PhotoSaveOrUpdateDTOBuilderImpl> {
@@ -75,14 +101,13 @@ import com.porn.client.common.dto.BaseDTO;
     public static abstract class PhotoSaveOrUpdateDTOBuilder<C extends PhotoSaveOrUpdateDTO, B extends PhotoSaveOrUpdateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
         private String accountName;
+        private String filePath;
+        private String localIdentifier;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private String filePath;
-        private String localIdentifier;
 
         public B accountName(String accountName) {
             this.accountName = accountName;
@@ -105,48 +130,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public PhotoSaveOrUpdateDTO(Long accountId, String accountName, String filePath, String localIdentifier) {
-        /* 17 */
-        this.accountId = accountId;
-        this.accountName = accountName;
-        this.filePath = filePath;
-        this.localIdentifier = localIdentifier;
-
-    }
-
-
-    public PhotoSaveOrUpdateDTO() {
-    }
-
-
-
-    public Long getAccountId() {
-        /* 22 */
-        return this.accountId;
-
-    }
-
-
-    public String getAccountName() {
-        /* 25 */
-        return this.accountName;
-
-    }
-
-
-    public String getFilePath() {
-        /* 28 */
-        return this.filePath;
-
-    }
-
-
-    public String getLocalIdentifier() {
-        /* 31 */
-        return this.localIdentifier;
-
-    }
-
 }
-
 

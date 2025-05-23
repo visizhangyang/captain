@@ -1,44 +1,45 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class UserInfoDTO
-         extends BaseDTO
-         {
+public class UserInfoDTO
+        extends BaseDTO {
 
     @ApiModelProperty("token")
-     private String token;
+    private String token;
 
-
-
-    public void setToken(String token) {
-        /* 15 */
-        this.token = token;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserInfoDTO;
-    }
-
-
-
-    /* 16 */
     protected UserInfoDTO(UserInfoDTOBuilder<?, ?> b) {
         super(b);
         this.token = b.token;
     }
 
+    public UserInfoDTO(String token) {
+
+        this.token = token;
+
+    }
+
+    public UserInfoDTO() {
+    }
+
     public static UserInfoDTOBuilder<?, ?> builder() {
         return new UserInfoDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserInfoDTO;
+    }
+
+    public String getToken() {
+
+        return this.token;
+
+    }
+
+    public void setToken(String token) {
+
+        this.token = token;
     }
 
     private static final class UserInfoDTOBuilderImpl extends UserInfoDTOBuilder<UserInfoDTO, UserInfoDTOBuilderImpl> {
@@ -55,12 +56,12 @@ import com.porn.client.common.dto.BaseDTO;
     }
 
     public static abstract class UserInfoDTOBuilder<C extends UserInfoDTO, B extends UserInfoDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private String token;
+
         public B token(String token) {
             this.token = token;
             return self();
         }
-
-        private String token;
 
         protected abstract B self();
 
@@ -68,24 +69,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public UserInfoDTO(String token) {
-        /* 17 */
-        this.token = token;
-
-    }
-
-
-    public UserInfoDTO() {
-    }
-
-
-
-    public String getToken() {
-        /* 22 */
-        return this.token;
-
-    }
-
 }
-
 

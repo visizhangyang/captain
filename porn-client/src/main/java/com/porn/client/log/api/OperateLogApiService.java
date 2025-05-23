@@ -11,4 +11,3 @@ public interface OperateLogApiService {
     PageVo<OperateLogVo> queryPage(OperateLogQueryPageDTO paramOperateLogQueryPageDTO);
 }
 
-

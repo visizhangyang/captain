@@ -6,4 +6,3 @@ import com.porn.service.imglib.dao.entity.ImageLibDO;
 public interface ImageLibMapper extends BaseMapper<ImageLibDO> {
 }
 
-

@@ -1,51 +1,22 @@
-
 package com.porn.client.notice.dto;
+
 import com.porn.client.common.dto.BasePageDTO;
 import io.swagger.annotations.ApiModelProperty;
 
-
-
-
- public class NoticeQueryPageDTO extends BasePageDTO {
+public class NoticeQueryPageDTO extends BasePageDTO {
 
     @ApiModelProperty("置顶标识, TopFlagEnum")
-     private Integer topFlag;
+    private Integer topFlag;
 
     @ApiModelProperty("语言类型, LangTypeEnum")
-     private Integer langType;
+    private Integer langType;
 
     @ApiModelProperty("语言类型")
-     private String langTypeName;
+    private String langTypeName;
 
     @ApiModelProperty("标题")
-     private String lkTitle;
+    private String lkTitle;
 
-
-    /* 15 */
-    public void setTopFlag(Integer topFlag) {
-        this.topFlag = topFlag;
-    }
-
-    public void setLangType(Integer langType) {
-        this.langType = langType;
-    }
-
-    public void setLangTypeName(String langTypeName) {
-        this.langTypeName = langTypeName;
-    }
-
-    public void setLkTitle(String lkTitle) {
-        this.lkTitle = lkTitle;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof NoticeQueryPageDTO;
-    }
-
-
-
-    /* 16 */
     protected NoticeQueryPageDTO(NoticeQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.topFlag = b.topFlag;
@@ -54,8 +25,64 @@ import io.swagger.annotations.ApiModelProperty;
         this.lkTitle = b.lkTitle;
     }
 
+    public NoticeQueryPageDTO(Integer topFlag, Integer langType, String langTypeName, String lkTitle) {
+
+        this.topFlag = topFlag;
+        this.langType = langType;
+        this.langTypeName = langTypeName;
+        this.lkTitle = lkTitle;
+
+    }
+
+    public NoticeQueryPageDTO() {
+    }
+
     public static NoticeQueryPageDTOBuilder<?, ?> builder() {
         return new NoticeQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof NoticeQueryPageDTO;
+    }
+
+    public Integer getTopFlag() {
+
+        return this.topFlag;
+
+    }
+
+    public void setTopFlag(Integer topFlag) {
+        this.topFlag = topFlag;
+    }
+
+    public Integer getLangType() {
+
+        return this.langType;
+
+    }
+
+    public void setLangType(Integer langType) {
+        this.langType = langType;
+    }
+
+    public String getLangTypeName() {
+
+        return this.langTypeName;
+
+    }
+
+    public void setLangTypeName(String langTypeName) {
+        this.langTypeName = langTypeName;
+    }
+
+    public String getLkTitle() {
+
+        return this.lkTitle;
+
+    }
+
+    public void setLkTitle(String lkTitle) {
+        this.lkTitle = lkTitle;
     }
 
     private static final class NoticeQueryPageDTOBuilderImpl extends NoticeQueryPageDTOBuilder<NoticeQueryPageDTO, NoticeQueryPageDTOBuilderImpl> {
@@ -74,14 +101,13 @@ import io.swagger.annotations.ApiModelProperty;
     public static abstract class NoticeQueryPageDTOBuilder<C extends NoticeQueryPageDTO, B extends NoticeQueryPageDTOBuilder<C, B>> extends BasePageDTO.BasePageDTOBuilder<C, B> {
         private Integer topFlag;
         private Integer langType;
+        private String langTypeName;
+        private String lkTitle;
 
         public B topFlag(Integer topFlag) {
             this.topFlag = topFlag;
             return self();
         }
-
-        private String langTypeName;
-        private String lkTitle;
 
         public B langType(Integer langType) {
             this.langType = langType;
@@ -104,48 +130,5 @@ import io.swagger.annotations.ApiModelProperty;
 
     }
 
-    public NoticeQueryPageDTO(Integer topFlag, Integer langType, String langTypeName, String lkTitle) {
-        /* 17 */
-        this.topFlag = topFlag;
-        this.langType = langType;
-        this.langTypeName = langTypeName;
-        this.lkTitle = lkTitle;
-
-    }
-
-
-    public NoticeQueryPageDTO() {
-    }
-
-
-
-    public Integer getTopFlag() {
-        /* 22 */
-        return this.topFlag;
-
-    }
-
-
-    public Integer getLangType() {
-        /* 25 */
-        return this.langType;
-
-    }
-
-
-    public String getLangTypeName() {
-        /* 28 */
-        return this.langTypeName;
-
-    }
-
-
-    public String getLkTitle() {
-        /* 31 */
-        return this.lkTitle;
-
-    }
-
 }
-
 

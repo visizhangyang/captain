@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import com.alibaba.fastjson2.JSON;
@@ -16,62 +14,36 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QueryAccountApiServiceImpl
-         implements ApiService<List<AccountVo>>
-         {
+public class QueryAccountApiServiceImpl
+        implements ApiService<List<AccountVo>> {
 
     @Autowired
-     private RedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;
 
     @Autowired
-     private AccountApiService accountApiService;
-
+    private AccountApiService accountApiService;
 
 
     public List<AccountVo> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 30 */
+
         AccountQueryDTO accountQueryDTO = (AccountQueryDTO) JSON.parseObject(cmdRequestDTO.getData(), AccountQueryDTO.class);
-        /* 31 */
+
         return this.accountApiService.queryAccountList(accountQueryDTO);
 
     }
 
-
-
-
     public String getApi() {
-        /* 36 */
+
         return "api_queryaccount";
 
     }
 
-
-
-
     public boolean validateToken() {
-        /* 41 */
+
         return Boolean.FALSE.booleanValue();
 
     }
 
 }
-
 

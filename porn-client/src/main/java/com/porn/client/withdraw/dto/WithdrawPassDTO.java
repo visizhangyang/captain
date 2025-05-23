@@ -1,43 +1,31 @@
-
 package com.porn.client.withdraw.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class WithdrawPassDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class WithdrawPassDTO
-         extends BaseDTO
-         {
-    
-
-    protected boolean canEqual(Object other) {
-        return other instanceof WithdrawPassDTO;
-    }
-
-
-
-    /* 14 */
     protected WithdrawPassDTO(WithdrawPassDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public WithdrawPassDTO() {
     }
 
     public static WithdrawPassDTOBuilder<?, ?> builder() {
         return new WithdrawPassDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof WithdrawPassDTO;
+    }
+
     private static final class WithdrawPassDTOBuilderImpl extends WithdrawPassDTOBuilder<WithdrawPassDTO, WithdrawPassDTOBuilderImpl> {
-        protected WithdrawPassDTOBuilderImpl self() {
-            return this;
+        private WithdrawPassDTOBuilderImpl() {
         }
 
-        private WithdrawPassDTOBuilderImpl() {
+        protected WithdrawPassDTOBuilderImpl self() {
+            return this;
         }
 
         public WithdrawPassDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class WithdrawPassDTOBuilder<C extends WithdrawPassDTO, B extends WithdrawPassDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-        
-        
-        
         protected abstract B self();
 
-        
-        
         public abstract C build();
     }
 
-    
-    
-    
-    public WithdrawPassDTO() {
-    }
-    
 }
-
 

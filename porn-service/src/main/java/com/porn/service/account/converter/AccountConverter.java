@@ -5,11 +5,7 @@ import com.porn.client.account.dto.AccountSaveOrUpdateDTO;
 import com.porn.client.account.dto.ProxyAccountQueryPageDTO;
 import com.porn.client.account.vo.AccountVo;
 import com.porn.service.account.dao.entity.AccountDO;
-import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
@@ -27,5 +23,4 @@ public interface AccountConverter {
 
     AccountQueryPageDTO toAccountQueryPageDTO(ProxyAccountQueryPageDTO paramProxyAccountQueryPageDTO);
 }
-
 

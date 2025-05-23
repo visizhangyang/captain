@@ -6,4 +6,3 @@ import com.porn.service.rhamount.dao.entity.RhAmountDO;
 public interface RhAmountMapper extends BaseMapper<RhAmountDO> {
 }
 
-

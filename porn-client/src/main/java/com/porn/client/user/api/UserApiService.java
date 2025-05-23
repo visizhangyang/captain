@@ -46,4 +46,3 @@ public interface UserApiService {
     List<MenuVo> queryUserMenuList(MenuQueryDTO paramMenuQueryDTO);
 }
 
-

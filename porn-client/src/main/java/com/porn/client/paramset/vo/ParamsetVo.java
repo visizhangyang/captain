@@ -1,12 +1,11 @@
-/*     */
 package com.porn.client.paramset.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -50,35 +49,35 @@ public class ParamsetVo extends BaseVo {
     @ApiModelProperty("普通搬砖次数")
     private Integer normalLevelWorkCount;
     @ApiModelProperty("大户搬砖时间间隔, 分钟")
-    /*     */ private Integer largeLevelWorkSpace;
+    private Integer largeLevelWorkSpace;
     @ApiModelProperty("普通搬砖时间间隔, 分钟")
-    /*     */ private Integer normalLevelWorkSpace;
+    private Integer normalLevelWorkSpace;
     @ApiModelProperty("大户搬砖时间段")
-    /*     */ private String largeLevelWorkMinRange;
+    private String largeLevelWorkMinRange;
     @ApiModelProperty("大户搬砖时间段")
-    /*     */ private String largeLevelWorkMaxRange;
+    private String largeLevelWorkMaxRange;
     @ApiModelProperty("普通搬砖时间段")
-    /*     */ private String normalLevelWorkMinRange;
+    private String normalLevelWorkMinRange;
     @ApiModelProperty("普通搬砖时间段")
-    /*     */ private String normalLevelWorkMaxRange;
+    private String normalLevelWorkMaxRange;
     @ApiModelProperty("大户升级额度")
-    /*     */ private BigDecimal largeLevelIncAmount;
+    private BigDecimal largeLevelIncAmount;
     @ApiModelProperty("最少搬砖人数")
-    /*     */ private Integer minWorkCount;
+    private Integer minWorkCount;
     @ApiModelProperty("最大搬砖人数")
-    /*     */ private Integer maxWorkCount;
+    private Integer maxWorkCount;
     @ApiModelProperty("普通用户提现时间段-开始")
-    /*     */ private String normalWithdrawMinRange;
+    private String normalWithdrawMinRange;
     @ApiModelProperty("普通用户提现时间段-结束")
-    /*     */ private String normalWithdrawMaxRange;
+    private String normalWithdrawMaxRange;
     @ApiModelProperty("大户用户提现时间段-开始")
-    /*     */ private String largeWithdrawMinRange;
+    private String largeWithdrawMinRange;
     @ApiModelProperty("大户用户提现时间段-结束")
-    /*     */ private String largeWithdrawMaxRange;
+    private String largeWithdrawMaxRange;
     @ApiModelProperty("普通提现次数")
-    /*     */ private Integer normalWithdrawDayCount;
+    private Integer normalWithdrawDayCount;
     @ApiModelProperty("大户提现次数")
-    /*  16 */ private Integer largeWithdrawDayCount;
+    private Integer largeWithdrawDayCount;
 
     @ApiModelProperty("普通用户转账时间段-开始")
     private String normalTransferMinRange;
@@ -146,5 +145,4 @@ public class ParamsetVo extends BaseVo {
     private BigDecimal partnerTreasureRate;
 
 }
-
 

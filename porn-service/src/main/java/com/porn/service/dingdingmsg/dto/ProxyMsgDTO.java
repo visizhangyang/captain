@@ -1,34 +1,32 @@
-
 package com.porn.service.dingdingmsg.dto;
-
 
 
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
-
-
-
- public class ProxyMsgDTO
-         implements Serializable
-         {
+public class ProxyMsgDTO
+        implements Serializable {
 
     @ApiModelProperty("工作的账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("推送的消息")
-     private String msg;
+    private String msg;
 
 
-
-    public void setAccountId(Long accountId) {
-        /* 15 */
-        this.accountId = accountId;
+    public ProxyMsgDTO() {
     }
 
-    public void setMsg(String msg) {
+    public ProxyMsgDTO(Long accountId, String msg) {
+
+        this.accountId = accountId;
         this.msg = msg;
+
+    }
+
+    public static ProxyMsgDTOBuilder builder() {
+        return new ProxyMsgDTOBuilder();
     }
 
     public boolean equals(Object o) {
@@ -51,20 +49,35 @@ import java.io.Serializable;
         return "ProxyMsgDTO(accountId=" + getAccountId() + ", msg=" + getMsg() + ")";
     }
 
-    /* 16 */
-    public static ProxyMsgDTOBuilder builder() {
-        return new ProxyMsgDTOBuilder();
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+
+        this.accountId = accountId;
+    }
+
+    public String getMsg() {
+
+        return this.msg;
+
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public static class ProxyMsgDTOBuilder {
         private Long accountId;
+        private String msg;
 
         public ProxyMsgDTOBuilder accountId(Long accountId) {
             this.accountId = accountId;
             return this;
         }
-
-        private String msg;
 
         public ProxyMsgDTOBuilder msg(String msg) {
             this.msg = msg;
@@ -81,31 +94,5 @@ import java.io.Serializable;
 
     }
 
-    public ProxyMsgDTO() {
-    }
-
-    public ProxyMsgDTO(Long accountId, String msg) {
-        /* 18 */
-        this.accountId = accountId;
-        this.msg = msg;
-
-    }
-
-
-
-    public Long getAccountId() {
-        /* 22 */
-        return this.accountId;
-
-    }
-
-
-    public String getMsg() {
-        /* 25 */
-        return this.msg;
-
-    }
-
 }
-
 

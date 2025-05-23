@@ -1,9 +1,7 @@
-
 package com.porn.client.goods.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
@@ -35,49 +33,6 @@ public class GoodsSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("账户名称")
     private String accountName;
 
-    public void setMerchantId(Long merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
-    }
-
-    public void setMerchantAvatar(String merchantAvatar) {
-        this.merchantAvatar = merchantAvatar;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public void setRate(BigDecimal rate) {
-        this.rate = rate;
-    }
-
-    public void setFreeAmount(BigDecimal freeAmount) {
-        this.freeAmount = freeAmount;
-    }
-
-    public void setGoodsStatus(Integer goodsStatus) {
-        this.goodsStatus = goodsStatus;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof GoodsSaveOrUpdateDTO;
-    }
-
-
-
     protected GoodsSaveOrUpdateDTO(GoodsSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.merchantId = b.merchantId;
@@ -91,8 +46,99 @@ public class GoodsSaveOrUpdateDTO extends BaseDTO {
         this.accountName = b.accountName;
     }
 
+    public GoodsSaveOrUpdateDTO(Long merchantId, String merchantName, String merchantAvatar, BigDecimal amount, BigDecimal rate, BigDecimal freeAmount, Integer goodsStatus, Long accountId, String accountName) {
+        this.merchantId = merchantId;
+        this.merchantName = merchantName;
+        this.merchantAvatar = merchantAvatar;
+        this.amount = amount;
+        this.rate = rate;
+        this.freeAmount = freeAmount;
+        this.goodsStatus = goodsStatus;
+        this.accountId = accountId;
+        this.accountName = accountName;
+    }
+
+    public GoodsSaveOrUpdateDTO() {
+    }
+
     public static GoodsSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new GoodsSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof GoodsSaveOrUpdateDTO;
+    }
+
+    public Long getMerchantId() {
+        return this.merchantId;
+    }
+
+    public void setMerchantId(Long merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public String getMerchantName() {
+        return this.merchantName;
+    }
+
+    public void setMerchantName(String merchantName) {
+        this.merchantName = merchantName;
+    }
+
+    public String getMerchantAvatar() {
+        return this.merchantAvatar;
+    }
+
+    public void setMerchantAvatar(String merchantAvatar) {
+        this.merchantAvatar = merchantAvatar;
+    }
+
+    public BigDecimal getAmount() {
+        return this.amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getRate() {
+        return this.rate;
+    }
+
+    public void setRate(BigDecimal rate) {
+        this.rate = rate;
+    }
+
+    public BigDecimal getFreeAmount() {
+        return this.freeAmount;
+    }
+
+    public void setFreeAmount(BigDecimal freeAmount) {
+        this.freeAmount = freeAmount;
+    }
+
+    public Integer getGoodsStatus() {
+        return this.goodsStatus;
+    }
+
+    public void setGoodsStatus(Integer goodsStatus) {
+        this.goodsStatus = goodsStatus;
+    }
+
+    public Long getAccountId() {
+        return this.accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getAccountName() {
+        return this.accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     private static final class GoodsSaveOrUpdateDTOBuilderImpl extends GoodsSaveOrUpdateDTOBuilder<GoodsSaveOrUpdateDTO, GoodsSaveOrUpdateDTOBuilderImpl> {
@@ -113,17 +159,16 @@ public class GoodsSaveOrUpdateDTO extends BaseDTO {
         private String merchantName;
         private String merchantAvatar;
         private BigDecimal amount;
-
-        public B merchantId(Long merchantId) {
-            this.merchantId = merchantId;
-            return self();
-        }
-
         private BigDecimal rate;
         private BigDecimal freeAmount;
         private Integer goodsStatus;
         private Long accountId;
         private String accountName;
+
+        public B merchantId(Long merchantId) {
+            this.merchantId = merchantId;
+            return self();
+        }
 
         public B merchantName(String merchantName) {
             this.merchantName = merchantName;
@@ -170,57 +215,5 @@ public class GoodsSaveOrUpdateDTO extends BaseDTO {
         public abstract C build();
 
     }
-
-    public GoodsSaveOrUpdateDTO(Long merchantId, String merchantName, String merchantAvatar, BigDecimal amount, BigDecimal rate, BigDecimal freeAmount, Integer goodsStatus, Long accountId, String accountName) {
-        this.merchantId = merchantId;
-        this.merchantName = merchantName;
-        this.merchantAvatar = merchantAvatar;
-        this.amount = amount;
-        this.rate = rate;
-        this.freeAmount = freeAmount;
-        this.goodsStatus = goodsStatus;
-        this.accountId = accountId;
-        this.accountName = accountName;
-    }
-
-    public GoodsSaveOrUpdateDTO() {
-    }
-
-    public Long getMerchantId() {
-        return this.merchantId;
-    }
-
-    public String getMerchantName() {
-        return this.merchantName;
-    }
-
-    public String getMerchantAvatar() {
-        return this.merchantAvatar;
-    }
-
-    public BigDecimal getAmount() {
-        return this.amount;
-    }
-
-    public BigDecimal getRate() {
-        return this.rate;
-    }
-
-    public BigDecimal getFreeAmount() {
-        return this.freeAmount;
-    }
-
-    public Integer getGoodsStatus() {
-        return this.goodsStatus;
-    }
-
-    public Long getAccountId() {
-        return this.accountId;
-    }
-
-    public String getAccountName() {
-        return this.accountName;
-    }
 }
-
 

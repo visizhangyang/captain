@@ -1,43 +1,31 @@
-
 package com.porn.client.menu.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class MenuDeleteDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class MenuDeleteDTO
-         extends BaseDTO
-         {
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MenuDeleteDTO;
-    }
-
-
-
-    /* 14 */
     protected MenuDeleteDTO(MenuDeleteDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public MenuDeleteDTO() {
     }
 
     public static MenuDeleteDTOBuilder<?, ?> builder() {
         return new MenuDeleteDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof MenuDeleteDTO;
+    }
+
     private static final class MenuDeleteDTOBuilderImpl extends MenuDeleteDTOBuilder<MenuDeleteDTO, MenuDeleteDTOBuilderImpl> {
-        protected MenuDeleteDTOBuilderImpl self() {
-            return this;
+        private MenuDeleteDTOBuilderImpl() {
         }
 
-        private MenuDeleteDTOBuilderImpl() {
+        protected MenuDeleteDTOBuilderImpl self() {
+            return this;
         }
 
         public MenuDeleteDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class MenuDeleteDTOBuilder<C extends MenuDeleteDTO, B extends MenuDeleteDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-
-
-
         protected abstract B self();
-
-
 
         public abstract C build();
     }
 
-
-
-
-    public MenuDeleteDTO() {
-    }
-
 }
-
 

@@ -6,4 +6,3 @@ import com.porn.service.user.dao.entity.UserRoleDO;
 public interface UserRoleMapper extends BaseMapper<UserRoleDO> {
 }
 
-

@@ -6,4 +6,3 @@ import com.porn.service.notice.dao.entity.NoticeAccountDO;
 public interface NoticeAccountMapper extends BaseMapper<NoticeAccountDO> {
 }
 
-

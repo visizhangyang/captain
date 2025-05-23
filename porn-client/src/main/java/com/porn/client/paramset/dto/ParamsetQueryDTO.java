@@ -1,43 +1,31 @@
-
 package com.porn.client.paramset.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class ParamsetQueryDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class ParamsetQueryDTO
-         extends BaseDTO
-         {
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof ParamsetQueryDTO;
-    }
-
-
-
-    /* 14 */
     protected ParamsetQueryDTO(ParamsetQueryDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public ParamsetQueryDTO() {
     }
 
     public static ParamsetQueryDTOBuilder<?, ?> builder() {
         return new ParamsetQueryDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof ParamsetQueryDTO;
+    }
+
     private static final class ParamsetQueryDTOBuilderImpl extends ParamsetQueryDTOBuilder<ParamsetQueryDTO, ParamsetQueryDTOBuilderImpl> {
-        protected ParamsetQueryDTOBuilderImpl self() {
-            return this;
+        private ParamsetQueryDTOBuilderImpl() {
         }
 
-        private ParamsetQueryDTOBuilderImpl() {
+        protected ParamsetQueryDTOBuilderImpl self() {
+            return this;
         }
 
         public ParamsetQueryDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class ParamsetQueryDTOBuilder<C extends ParamsetQueryDTO, B extends ParamsetQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-
-
-
         protected abstract B self();
-
-
 
         public abstract C build();
     }
 
-
-
-
-    public ParamsetQueryDTO() {
-    }
-
 }
-
 

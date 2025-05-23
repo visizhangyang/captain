@@ -16,4 +16,3 @@ public interface RichTextConverter {
     RichTextDO toRichTextDO(RichTextSaveOrUpdateDTO paramRichTextSaveOrUpdateDTO);
 }
 
-

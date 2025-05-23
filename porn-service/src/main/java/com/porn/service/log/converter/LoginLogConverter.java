@@ -13,4 +13,3 @@ public interface LoginLogConverter {
     List<LoginLogVo> toLoginLogVoList(List<LoginLogDO> paramList);
 }
 
-

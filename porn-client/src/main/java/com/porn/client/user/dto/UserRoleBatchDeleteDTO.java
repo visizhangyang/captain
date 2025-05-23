@@ -1,56 +1,24 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
+public class UserRoleBatchDeleteDTO extends BaseDTO {
 
-
-
- public class UserRoleBatchDeleteDTO extends BaseDTO {
-    
     @ApiModelProperty("用户ID")
-     private Long userId;
-    
+    private Long userId;
+
     @ApiModelProperty("角色ID列表")
-     private List<Long> roleIdList;
-    
+    private List<Long> roleIdList;
+
     @ApiModelProperty("角色ID")
-     private Long roleId;
-    
+    private Long roleId;
+
     @ApiModelProperty("用户ID列表")
-     private List<Long> userIdList;
+    private List<Long> userIdList;
 
-    
-    /* 16 */
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public void setRoleIdList(List<Long> roleIdList) {
-        this.roleIdList = roleIdList;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
-    public void setUserIdList(List<Long> userIdList) {
-        this.userIdList = userIdList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserRoleBatchDeleteDTO;
-    }
-
-
-
-    /* 17 */
     protected UserRoleBatchDeleteDTO(UserRoleBatchDeleteDTOBuilder<?, ?> b) {
         super(b);
         this.userId = b.userId;
@@ -59,8 +27,64 @@ import java.util.List;
         this.userIdList = b.userIdList;
     }
 
+    public UserRoleBatchDeleteDTO(Long userId, List<Long> roleIdList, Long roleId, List<Long> userIdList) {
+
+        this.userId = userId;
+        this.roleIdList = roleIdList;
+        this.roleId = roleId;
+        this.userIdList = userIdList;
+
+    }
+
+    public UserRoleBatchDeleteDTO() {
+    }
+
     public static UserRoleBatchDeleteDTOBuilder<?, ?> builder() {
         return new UserRoleBatchDeleteDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserRoleBatchDeleteDTO;
+    }
+
+    public Long getUserId() {
+
+        return this.userId;
+
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public List<Long> getRoleIdList() {
+
+        return this.roleIdList;
+
+    }
+
+    public void setRoleIdList(List<Long> roleIdList) {
+        this.roleIdList = roleIdList;
+    }
+
+    public Long getRoleId() {
+
+        return this.roleId;
+
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    public List<Long> getUserIdList() {
+
+        return this.userIdList;
+
+    }
+
+    public void setUserIdList(List<Long> userIdList) {
+        this.userIdList = userIdList;
     }
 
     private static final class UserRoleBatchDeleteDTOBuilderImpl extends UserRoleBatchDeleteDTOBuilder<UserRoleBatchDeleteDTO, UserRoleBatchDeleteDTOBuilderImpl> {
@@ -79,14 +103,13 @@ import java.util.List;
     public static abstract class UserRoleBatchDeleteDTOBuilder<C extends UserRoleBatchDeleteDTO, B extends UserRoleBatchDeleteDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long userId;
         private List<Long> roleIdList;
+        private Long roleId;
+        private List<Long> userIdList;
 
         public B userId(Long userId) {
             this.userId = userId;
             return self();
         }
-
-        private Long roleId;
-        private List<Long> userIdList;
 
         public B roleIdList(List<Long> roleIdList) {
             this.roleIdList = roleIdList;
@@ -109,48 +132,5 @@ import java.util.List;
 
     }
 
-    public UserRoleBatchDeleteDTO(Long userId, List<Long> roleIdList, Long roleId, List<Long> userIdList) {
-        /* 18 */
-        this.userId = userId;
-        this.roleIdList = roleIdList;
-        this.roleId = roleId;
-        this.userIdList = userIdList;
-        
-    }
-
-    
-    public UserRoleBatchDeleteDTO() {
-    }
-
-    
-    
-    public Long getUserId() {
-        /* 23 */
-        return this.userId;
-        
-    }
-
-    
-    public List<Long> getRoleIdList() {
-        /* 26 */
-        return this.roleIdList;
-        
-    }
-
-    
-    public Long getRoleId() {
-        /* 29 */
-        return this.roleId;
-        
-    }
-
-    
-    public List<Long> getUserIdList() {
-        /* 32 */
-        return this.userIdList;
-        
-    }
-    
 }
-
 

@@ -1,52 +1,22 @@
-
 package com.porn.client.inline.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
+public class InlineSaveOrUpdateDTO extends BaseDTO {
 
- public class InlineSaveOrUpdateDTO extends BaseDTO {
-    
     @ApiModelProperty("最小在线人数")
-     private Long minInlineCount;
-    
+    private Long minInlineCount;
+
     @ApiModelProperty("最大搬砖金额")
-     private Long maxInlineCount;
-    
+    private Long maxInlineCount;
+
     @ApiModelProperty("在线时间范围(小)")
-     private String minInlineTime;
-    
+    private String minInlineTime;
+
     @ApiModelProperty("在线时间范围(大)")
-     private String maxInlineTime;
+    private String maxInlineTime;
 
-    
-    /* 15 */
-    public void setMinInlineCount(Long minInlineCount) {
-        this.minInlineCount = minInlineCount;
-    }
-
-    public void setMaxInlineCount(Long maxInlineCount) {
-        this.maxInlineCount = maxInlineCount;
-    }
-
-    public void setMinInlineTime(String minInlineTime) {
-        this.minInlineTime = minInlineTime;
-    }
-
-    public void setMaxInlineTime(String maxInlineTime) {
-        this.maxInlineTime = maxInlineTime;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof InlineSaveOrUpdateDTO;
-    }
-
-
-
-    /* 16 */
     protected InlineSaveOrUpdateDTO(InlineSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.minInlineCount = b.minInlineCount;
@@ -55,8 +25,64 @@ import com.porn.client.common.dto.BaseDTO;
         this.maxInlineTime = b.maxInlineTime;
     }
 
+    public InlineSaveOrUpdateDTO(Long minInlineCount, Long maxInlineCount, String minInlineTime, String maxInlineTime) {
+
+        this.minInlineCount = minInlineCount;
+        this.maxInlineCount = maxInlineCount;
+        this.minInlineTime = minInlineTime;
+        this.maxInlineTime = maxInlineTime;
+
+    }
+
+    public InlineSaveOrUpdateDTO() {
+    }
+
     public static InlineSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new InlineSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof InlineSaveOrUpdateDTO;
+    }
+
+    public Long getMinInlineCount() {
+
+        return this.minInlineCount;
+
+    }
+
+    public void setMinInlineCount(Long minInlineCount) {
+        this.minInlineCount = minInlineCount;
+    }
+
+    public Long getMaxInlineCount() {
+
+        return this.maxInlineCount;
+
+    }
+
+    public void setMaxInlineCount(Long maxInlineCount) {
+        this.maxInlineCount = maxInlineCount;
+    }
+
+    public String getMinInlineTime() {
+
+        return this.minInlineTime;
+
+    }
+
+    public void setMinInlineTime(String minInlineTime) {
+        this.minInlineTime = minInlineTime;
+    }
+
+    public String getMaxInlineTime() {
+
+        return this.maxInlineTime;
+
+    }
+
+    public void setMaxInlineTime(String maxInlineTime) {
+        this.maxInlineTime = maxInlineTime;
     }
 
     private static final class InlineSaveOrUpdateDTOBuilderImpl extends InlineSaveOrUpdateDTOBuilder<InlineSaveOrUpdateDTO, InlineSaveOrUpdateDTOBuilderImpl> {
@@ -75,14 +101,13 @@ import com.porn.client.common.dto.BaseDTO;
     public static abstract class InlineSaveOrUpdateDTOBuilder<C extends InlineSaveOrUpdateDTO, B extends InlineSaveOrUpdateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long minInlineCount;
         private Long maxInlineCount;
+        private String minInlineTime;
+        private String maxInlineTime;
 
         public B minInlineCount(Long minInlineCount) {
             this.minInlineCount = minInlineCount;
             return self();
         }
-
-        private String minInlineTime;
-        private String maxInlineTime;
 
         public B maxInlineCount(Long maxInlineCount) {
             this.maxInlineCount = maxInlineCount;
@@ -105,48 +130,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public InlineSaveOrUpdateDTO(Long minInlineCount, Long maxInlineCount, String minInlineTime, String maxInlineTime) {
-        /* 17 */
-        this.minInlineCount = minInlineCount;
-        this.maxInlineCount = maxInlineCount;
-        this.minInlineTime = minInlineTime;
-        this.maxInlineTime = maxInlineTime;
-        
-    }
-
-    
-    public InlineSaveOrUpdateDTO() {
-    }
-
-    
-    
-    public Long getMinInlineCount() {
-        /* 22 */
-        return this.minInlineCount;
-        
-    }
-
-    
-    public Long getMaxInlineCount() {
-        /* 25 */
-        return this.maxInlineCount;
-        
-    }
-
-    
-    public String getMinInlineTime() {
-        /* 28 */
-        return this.minInlineTime;
-        
-    }
-
-    
-    public String getMaxInlineTime() {
-        /* 31 */
-        return this.maxInlineTime;
-        
-    }
-    
 }
-
 

@@ -17,4 +17,3 @@ public interface RewardBalanceApiService {
     RewardBalanceVo operateRewardBalance(OperateRewardBalanceDTO paramOperateRewardBalanceDTO);
 }
 
-

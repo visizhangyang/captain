@@ -1,12 +1,11 @@
 package com.porn.client.withdraw.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 

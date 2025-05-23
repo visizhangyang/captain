@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -19,76 +17,42 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class ReadAllNoticeApiServiceImpl
-         implements ApiService<String>
-         {
+public class ReadAllNoticeApiServiceImpl
+        implements ApiService<String> {
 
     @Autowired
-     private NoticeApiService noticeApiService;
+    private NoticeApiService noticeApiService;
 
     @Autowired
-     private NoticeAccountApiService noticeAccountApiService;
-
+    private NoticeAccountApiService noticeAccountApiService;
 
 
     public String cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 37 */
+
         NoticeQueryReadStatusDTO noticeQueryReadStatusDTO = NoticeQueryReadStatusDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).readType(CommonConst.IZERO).build();
-        /* 38 */
+
         List<NoticeVo> noticeVoList = this.noticeApiService.queryNoticeReadStatusList(noticeQueryReadStatusDTO);
-        /* 39 */
+
         if (ObjectUtil.isNotEmpty(noticeVoList)) {
-            /* 40 */
+
             List<Long> noticeIdList = (List<Long>) noticeVoList.stream().map(BaseVo::getId).distinct().collect(Collectors.toList());
 
-
-
-            /* 44 */
             NoticeAccountBatchSaveDTO noticeAccountBatchSaveDTO = NoticeAccountBatchSaveDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).noticeIdList(noticeIdList).build();
-            /* 45 */
+
             this.noticeAccountApiService.batchSave(noticeAccountBatchSaveDTO);
 
         }
-        /* 47 */
+
         return "success";
 
     }
 
-
-
-
     public String getApi() {
-        /* 52 */
+
         return "api_readallnotice";
 
     }
 
 }
-
 

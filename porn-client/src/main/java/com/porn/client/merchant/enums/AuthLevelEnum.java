@@ -13,14 +13,6 @@ public enum AuthLevelEnum {
         this.description = description;
     }
 
-    public Integer getLevel() {
-        return this.level;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
     public static String queryByLevel(Integer level) {
         for (AuthLevelEnum authLevelEnum : values()) {
             if (authLevelEnum.getLevel().equals(level)) {
@@ -28,5 +20,13 @@ public enum AuthLevelEnum {
             }
         }
         return null;
+    }
+
+    public Integer getLevel() {
+        return this.level;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

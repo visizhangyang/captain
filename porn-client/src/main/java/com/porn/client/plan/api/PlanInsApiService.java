@@ -14,4 +14,3 @@ public interface PlanInsApiService {
     PlanInsVo saveOrUpdate(PlanInsSaveOrUpdateDTO paramPlanInsSaveOrUpdateDTO);
 }
 
-

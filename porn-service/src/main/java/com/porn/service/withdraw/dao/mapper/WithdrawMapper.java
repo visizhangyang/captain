@@ -6,4 +6,3 @@ import com.porn.service.withdraw.dao.entity.WithdrawDO;
 public interface WithdrawMapper extends BaseMapper<WithdrawDO> {
 }
 
-

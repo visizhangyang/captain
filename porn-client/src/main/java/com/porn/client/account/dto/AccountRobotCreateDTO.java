@@ -1,44 +1,45 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class AccountRobotCreateDTO
-         extends BaseDTO
-         {
+public class AccountRobotCreateDTO
+        extends BaseDTO {
 
     @ApiModelProperty("创建次数")
-     private Integer createCount;
+    private Integer createCount;
 
-
-
-    public void setCreateCount(Integer createCount) {
-        /* 15 */
-        this.createCount = createCount;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountRobotCreateDTO;
-    }
-
-
-
-    /* 16 */
     protected AccountRobotCreateDTO(AccountRobotCreateDTOBuilder<?, ?> b) {
         super(b);
         this.createCount = b.createCount;
     }
 
+    public AccountRobotCreateDTO(Integer createCount) {
+
+        this.createCount = createCount;
+
+    }
+
+    public AccountRobotCreateDTO() {
+    }
+
     public static AccountRobotCreateDTOBuilder<?, ?> builder() {
         return new AccountRobotCreateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountRobotCreateDTO;
+    }
+
+    public Integer getCreateCount() {
+
+        return this.createCount;
+
+    }
+
+    public void setCreateCount(Integer createCount) {
+
+        this.createCount = createCount;
     }
 
     private static final class AccountRobotCreateDTOBuilderImpl extends AccountRobotCreateDTOBuilder<AccountRobotCreateDTO, AccountRobotCreateDTOBuilderImpl> {
@@ -55,12 +56,12 @@ import com.porn.client.common.dto.BaseDTO;
     }
 
     public static abstract class AccountRobotCreateDTOBuilder<C extends AccountRobotCreateDTO, B extends AccountRobotCreateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private Integer createCount;
+
         public B createCount(Integer createCount) {
             this.createCount = createCount;
             return self();
         }
-
-        private Integer createCount;
 
         protected abstract B self();
 
@@ -68,24 +69,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public AccountRobotCreateDTO(Integer createCount) {
-        /* 17 */
-        this.createCount = createCount;
-
-    }
-
-
-    public AccountRobotCreateDTO() {
-    }
-
-
-
-    public Integer getCreateCount() {
-        /* 22 */
-        return this.createCount;
-
-    }
-
 }
-
 

@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -27,117 +25,68 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class LotteryApiServiceImpl
-         implements ApiService<LotteryVo>
-         {
-    
-    @Autowired
-     private RewardBalanceApiService rewardBalanceApiService;
-    
-    @Autowired
-     private AccountApiService accountApiService;
+public class LotteryApiServiceImpl
+        implements ApiService<LotteryVo> {
 
-    
-    
+    @Autowired
+    private RewardBalanceApiService rewardBalanceApiService;
+
+    @Autowired
+    private AccountApiService accountApiService;
+
+
     public LotteryVo cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 44 */
+
         RewardBalanceQueryDTO rewardBalanceQueryDTO = RewardBalanceQueryDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).build();
-        /* 45 */
+
         RewardBalanceVo rewardBalanceVo = this.rewardBalanceApiService.queryRewardBalance(rewardBalanceQueryDTO);
-        /* 46 */
+
         if (ObjectUtil.isEmpty(rewardBalanceVo)) {
-            /* 47 */
+
             throw new BusinessException("抽奖次数不足.");
-            
+
         }
-        /* 49 */
+
         if (rewardBalanceVo.getAvailableCount().compareTo(BigDecimal.ZERO) <= 0) {
-            /* 50 */
+
             throw new BusinessException("抽奖次数不足.");
-            
+
         }
-        
-        /* 53 */
+
+
         LotteryApiRequestDTO lotteryApiRequestDTO = (LotteryApiRequestDTO) JSON.parseObject(cmdRequestDTO.getData(), LotteryApiRequestDTO.class);
-        /* 54 */
+
         if (ObjectUtil.isEmpty(lotteryApiRequestDTO.getAmount()) || lotteryApiRequestDTO
-/* 55 */.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
-            /* 56 */
+                .getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+
             throw new BusinessException("数据异常.");
-            
+
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        /* 66 */
+
+
         OperateRewardBalanceDTO operateRewardBalanceDTO = OperateRewardBalanceDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).operateCount(BigDecimal.ONE).type(RewardRecordTypeEnum.SUB.getType()).bizType(RuleTypeEnum.LOTTERY_RULE.getType()).bizId(CommonConst.IZERO.toString()).build();
-        /* 67 */
+
         this.rewardBalanceApiService.operateRewardBalance(operateRewardBalanceDTO);
-        
-        
-        
-        
-        
-        
-        
-        
-        /* 76 */
+
+
         AccountAmountOperateDTO accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(cmdRequestDTO.getAccountVo().getId())).amountType(AmountTypeEnum.ADDTOTAL_ADDAVAILABLE.getType()).operateAmount(lotteryApiRequestDTO.getAmount()).bizId(rewardBalanceVo.getId()).streamTypeEnum(StreamTypeEnum.LOTTERY).build();
-        /* 77 */
+
         this.accountApiService.operateAmount(accountAmountOperateDTO);
-        
-        /* 79 */
+
+
         return LotteryVo.builder()
-/* 80 */.result(Boolean.TRUE)
-/* 81 */.build();
-        
+                .result(Boolean.TRUE)
+                .build();
+
     }
 
-    
-    
+
     public String getApi() {
-        /* 85 */
-        return "api_lottery";
-        
-    }
-    
-}
 
+        return "api_lottery";
+
+    }
+
+}
 

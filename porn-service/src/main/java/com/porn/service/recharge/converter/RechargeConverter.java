@@ -17,4 +17,3 @@ public interface RechargeConverter {
     RechargeQueryPageDTO toRechargeQueryPageDTO(ProxyRechargeQueryPageDTO paramProxyRechargeQueryPageDTO);
 }
 
-

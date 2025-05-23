@@ -1,55 +1,61 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-
-
-
-
-
-
- public class UserRoleBatchCreateDTO extends BaseDTO {
+public class UserRoleBatchCreateDTO extends BaseDTO {
 
     @ApiModelProperty(" 用户ID")
-     private Long userId;
+    private Long userId;
 
     @ApiModelProperty("角色ID列表")
-     private List<Long> roleIdList;
+    private List<Long> roleIdList;
 
-
-
-    public void setUserId(Long userId) {
-        /* 16 */
-        this.userId = userId;
-    }
-
-    public void setRoleIdList(List<Long> roleIdList) {
-        this.roleIdList = roleIdList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserRoleBatchCreateDTO;
-    }
-
-
-
-    /* 17 */
     protected UserRoleBatchCreateDTO(UserRoleBatchCreateDTOBuilder<?, ?> b) {
         super(b);
         this.userId = b.userId;
         this.roleIdList = b.roleIdList;
     }
 
+    public UserRoleBatchCreateDTO(Long userId, List<Long> roleIdList) {
+
+        this.userId = userId;
+        this.roleIdList = roleIdList;
+
+    }
+
+    public UserRoleBatchCreateDTO() {
+    }
+
     public static UserRoleBatchCreateDTOBuilder<?, ?> builder() {
         return new UserRoleBatchCreateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserRoleBatchCreateDTO;
+    }
+
+    public Long getUserId() {
+
+        return this.userId;
+
+    }
+
+    public void setUserId(Long userId) {
+
+        this.userId = userId;
+    }
+
+    public List<Long> getRoleIdList() {
+
+        return this.roleIdList;
+
+    }
+
+    public void setRoleIdList(List<Long> roleIdList) {
+        this.roleIdList = roleIdList;
     }
 
     private static final class UserRoleBatchCreateDTOBuilderImpl extends UserRoleBatchCreateDTOBuilder<UserRoleBatchCreateDTO, UserRoleBatchCreateDTOBuilderImpl> {
@@ -67,13 +73,12 @@ import java.util.List;
 
     public static abstract class UserRoleBatchCreateDTOBuilder<C extends UserRoleBatchCreateDTO, B extends UserRoleBatchCreateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long userId;
+        private List<Long> roleIdList;
 
         public B userId(Long userId) {
             this.userId = userId;
             return self();
         }
-
-        private List<Long> roleIdList;
 
         public B roleIdList(List<Long> roleIdList) {
             this.roleIdList = roleIdList;
@@ -86,32 +91,5 @@ import java.util.List;
 
     }
 
-    public UserRoleBatchCreateDTO(Long userId, List<Long> roleIdList) {
-        /* 18 */
-        this.userId = userId;
-        this.roleIdList = roleIdList;
-
-    }
-
-
-    public UserRoleBatchCreateDTO() {
-    }
-
-
-
-    public Long getUserId() {
-        /* 23 */
-        return this.userId;
-
-    }
-
-
-    public List<Long> getRoleIdList() {
-        /* 26 */
-        return this.roleIdList;
-
-    }
-
 }
-
 

@@ -1,10 +1,8 @@
-
 package com.porn.client.plan.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
 import io.swagger.annotations.ApiModel;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
@@ -40,84 +38,84 @@ public class PlanSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("额外加成")
     private BigDecimal extraBonus;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public void setMinRange(BigDecimal minRange) {
-        this.minRange = minRange;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public BigDecimal getMinRange() {
         return this.minRange;
     }
 
-    public void setMaxRange(BigDecimal maxRange) {
-        this.maxRange = maxRange;
+    public void setMinRange(BigDecimal minRange) {
+        this.minRange = minRange;
     }
 
     public BigDecimal getMaxRange() {
         return this.maxRange;
     }
 
-    public void setFree(BigDecimal free) {
-        this.free = free;
+    public void setMaxRange(BigDecimal maxRange) {
+        this.maxRange = maxRange;
     }
 
     public BigDecimal getFree() {
         return this.free;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setFree(BigDecimal free) {
+        this.free = free;
     }
 
     public String getDesc() {
         return this.desc;
     }
 
-    public void setRevenue(BigDecimal revenue) {
-        this.revenue = revenue;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public BigDecimal getRevenue() {
         return this.revenue;
     }
 
-    public void setDays(Integer days) {
-        this.days = days;
+    public void setRevenue(BigDecimal revenue) {
+        this.revenue = revenue;
     }
 
     public Integer getDays() {
         return this.days;
     }
 
-    public void setLangType(Integer langType) {
-        this.langType = langType;
+    public void setDays(Integer days) {
+        this.days = days;
     }
 
     public Integer getLangType() {
         return this.langType;
     }
 
-    public void setSortNo(Integer sortNo) {
-        this.sortNo = sortNo;
+    public void setLangType(Integer langType) {
+        this.langType = langType;
     }
 
     public Integer getSortNo() {
         return this.sortNo;
     }
 
-    public void setExtraBonus(BigDecimal extraBonus) {
-        this.extraBonus = extraBonus;
+    public void setSortNo(Integer sortNo) {
+        this.sortNo = sortNo;
     }
 
     public BigDecimal getExtraBonus() {
         return this.extraBonus;
+    }
+
+    public void setExtraBonus(BigDecimal extraBonus) {
+        this.extraBonus = extraBonus;
     }
 
     // 保留原有的builder模式代码

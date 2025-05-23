@@ -1,43 +1,35 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BasePageDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
- public class AccountQueryPageDTO extends BasePageDTO {
+public class AccountQueryPageDTO extends BasePageDTO {
     @ApiModelProperty("用户ID")
-     private Long id;
+    private Long id;
     @ApiModelProperty("名称")
-     private String name;
+    private String name;
     @ApiModelProperty("名称模糊")
-     private String lkName;
+    private String lkName;
     @ApiModelProperty("状态")
-     private Integer status;
-    
+    private Integer status;
+
     @ApiModelProperty("账户级别")
-     private Integer accountLevel;
-    
+    private Integer accountLevel;
+
     @ApiModelProperty("账户级别")
-     private List<Integer> accountLevelList;
-    
+    private List<Integer> accountLevelList;
+
     @ApiModelProperty("账户类型, com.porn.client.account.enums.AccountTypeEnum")
-     private Integer accountType;
-    
+    private Integer accountType;
+
     @ApiModelProperty("账户类型, com.porn.client.account.enums.AccountTypeEnum")
-     private List<Integer> accountTypeList;
-    
+    private List<Integer> accountTypeList;
+
     @ApiModelProperty("当前账户的推广码")
-     private String lkPromotionCode;
-
-    
-    /* 18 */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    private String lkPromotionCode;
     @ApiModelProperty("当前账户的父推荐码")
     private String lkParentPromotionCode;
     @ApiModelProperty("备注")
@@ -59,86 +51,6 @@ import java.util.List;
     @ApiModelProperty("账户ID列表")
     private List<Long> accountIdList;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLkName(String lkName) {
-        this.lkName = lkName;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setAccountLevel(Integer accountLevel) {
-        this.accountLevel = accountLevel;
-    }
-
-    public void setAccountLevelList(List<Integer> accountLevelList) {
-        this.accountLevelList = accountLevelList;
-    }
-
-    public void setAccountType(Integer accountType) {
-        this.accountType = accountType;
-    }
-
-    public void setAccountTypeList(List<Integer> accountTypeList) {
-        this.accountTypeList = accountTypeList;
-    }
-
-    public void setLkPromotionCode(String lkPromotionCode) {
-        this.lkPromotionCode = lkPromotionCode;
-    }
-
-    public void setLkParentPromotionCode(String lkParentPromotionCode) {
-        this.lkParentPromotionCode = lkParentPromotionCode;
-    }
-
-    public void setLkRemark(String lkRemark) {
-        this.lkRemark = lkRemark;
-    }
-
-    public void setCreateTimeStart(LocalDateTime createTimeStart) {
-        this.createTimeStart = createTimeStart;
-    }
-
-    public void setCreateTimeEnd(LocalDateTime createTimeEnd) {
-        this.createTimeEnd = createTimeEnd;
-    }
-
-    public void setAutoWork(Integer autoWork) {
-        this.autoWork = autoWork;
-    }
-
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public void setLkDeviceId(String lkDeviceId) {
-        this.lkDeviceId = lkDeviceId;
-    }
-
-    public void setPhotoStatus(Integer photoStatus) {
-        this.photoStatus = photoStatus;
-    }
-
-    public void setUploadStatus(Integer uploadStatus) {
-        this.uploadStatus = uploadStatus;
-    }
-
-    public void setAccountIdList(List<Long> accountIdList) {
-        this.accountIdList = accountIdList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountQueryPageDTO;
-    }
-
-
-
-    /* 19 */
     protected AccountQueryPageDTO(AccountQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.id = b.id;
@@ -162,8 +74,229 @@ import java.util.List;
         this.accountIdList = b.accountIdList;
     }
 
+    public AccountQueryPageDTO(Long id, String name, String lkName, Integer status, Integer accountLevel, List<Integer> accountLevelList, Integer accountType, List<Integer> accountTypeList, String lkPromotionCode, String lkParentPromotionCode, String lkRemark, LocalDateTime createTimeStart, LocalDateTime createTimeEnd, Integer autoWork, String deviceId, String lkDeviceId, Integer photoStatus, Integer uploadStatus, List<Long> accountIdList) {
+
+        this.id = id;
+        this.name = name;
+        this.lkName = lkName;
+        this.status = status;
+        this.accountLevel = accountLevel;
+        this.accountLevelList = accountLevelList;
+        this.accountType = accountType;
+        this.accountTypeList = accountTypeList;
+        this.lkPromotionCode = lkPromotionCode;
+        this.lkParentPromotionCode = lkParentPromotionCode;
+        this.lkRemark = lkRemark;
+        this.createTimeStart = createTimeStart;
+        this.createTimeEnd = createTimeEnd;
+        this.autoWork = autoWork;
+        this.deviceId = deviceId;
+        this.lkDeviceId = lkDeviceId;
+        this.photoStatus = photoStatus;
+        this.uploadStatus = uploadStatus;
+        this.accountIdList = accountIdList;
+
+    }
+
+    public AccountQueryPageDTO() {
+    }
+
     public static AccountQueryPageDTOBuilder<?, ?> builder() {
         return new AccountQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountQueryPageDTO;
+    }
+
+    public Long getId() {
+
+        return this.id;
+
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLkName() {
+
+        return this.lkName;
+
+    }
+
+    public void setLkName(String lkName) {
+        this.lkName = lkName;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getAccountLevel() {
+
+        return this.accountLevel;
+
+    }
+
+    public void setAccountLevel(Integer accountLevel) {
+        this.accountLevel = accountLevel;
+    }
+
+    public List<Integer> getAccountLevelList() {
+
+        return this.accountLevelList;
+
+    }
+
+    public void setAccountLevelList(List<Integer> accountLevelList) {
+        this.accountLevelList = accountLevelList;
+    }
+
+    public Integer getAccountType() {
+
+        return this.accountType;
+
+    }
+
+    public void setAccountType(Integer accountType) {
+        this.accountType = accountType;
+    }
+
+    public List<Integer> getAccountTypeList() {
+
+        return this.accountTypeList;
+
+    }
+
+    public void setAccountTypeList(List<Integer> accountTypeList) {
+        this.accountTypeList = accountTypeList;
+    }
+
+    public String getLkPromotionCode() {
+
+        return this.lkPromotionCode;
+
+    }
+
+    public void setLkPromotionCode(String lkPromotionCode) {
+        this.lkPromotionCode = lkPromotionCode;
+    }
+
+    public String getLkParentPromotionCode() {
+
+        return this.lkParentPromotionCode;
+
+    }
+
+    public void setLkParentPromotionCode(String lkParentPromotionCode) {
+        this.lkParentPromotionCode = lkParentPromotionCode;
+    }
+
+    public String getLkRemark() {
+
+        return this.lkRemark;
+
+    }
+
+    public void setLkRemark(String lkRemark) {
+        this.lkRemark = lkRemark;
+    }
+
+    public LocalDateTime getCreateTimeStart() {
+
+        return this.createTimeStart;
+
+    }
+
+    public void setCreateTimeStart(LocalDateTime createTimeStart) {
+        this.createTimeStart = createTimeStart;
+    }
+
+    public LocalDateTime getCreateTimeEnd() {
+
+        return this.createTimeEnd;
+
+    }
+
+    public void setCreateTimeEnd(LocalDateTime createTimeEnd) {
+        this.createTimeEnd = createTimeEnd;
+    }
+
+    public Integer getAutoWork() {
+
+        return this.autoWork;
+
+    }
+
+    public void setAutoWork(Integer autoWork) {
+        this.autoWork = autoWork;
+    }
+
+    public String getDeviceId() {
+
+        return this.deviceId;
+
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getLkDeviceId() {
+
+        return this.lkDeviceId;
+
+    }
+
+    public void setLkDeviceId(String lkDeviceId) {
+        this.lkDeviceId = lkDeviceId;
+    }
+
+    public Integer getPhotoStatus() {
+
+        return this.photoStatus;
+
+    }
+
+    public void setPhotoStatus(Integer photoStatus) {
+        this.photoStatus = photoStatus;
+    }
+
+    public Integer getUploadStatus() {
+
+        return this.uploadStatus;
+
+    }
+
+    public void setUploadStatus(Integer uploadStatus) {
+        this.uploadStatus = uploadStatus;
+    }
+
+    public List<Long> getAccountIdList() {
+
+        return this.accountIdList;
+
+    }
+
+    public void setAccountIdList(List<Long> accountIdList) {
+        this.accountIdList = accountIdList;
     }
 
     private static final class AccountQueryPageDTOBuilderImpl extends AccountQueryPageDTOBuilder<AccountQueryPageDTO, AccountQueryPageDTOBuilderImpl> {
@@ -300,168 +433,5 @@ import java.util.List;
         public abstract C build();
 
     }
-
-    public AccountQueryPageDTO(Long id, String name, String lkName, Integer status, Integer accountLevel, List<Integer> accountLevelList, Integer accountType, List<Integer> accountTypeList, String lkPromotionCode, String lkParentPromotionCode, String lkRemark, LocalDateTime createTimeStart, LocalDateTime createTimeEnd, Integer autoWork, String deviceId, String lkDeviceId, Integer photoStatus, Integer uploadStatus, List<Long> accountIdList) {
-        /* 20 */
-        this.id = id;
-        this.name = name;
-        this.lkName = lkName;
-        this.status = status;
-        this.accountLevel = accountLevel;
-        this.accountLevelList = accountLevelList;
-        this.accountType = accountType;
-        this.accountTypeList = accountTypeList;
-        this.lkPromotionCode = lkPromotionCode;
-        this.lkParentPromotionCode = lkParentPromotionCode;
-        this.lkRemark = lkRemark;
-        this.createTimeStart = createTimeStart;
-        this.createTimeEnd = createTimeEnd;
-        this.autoWork = autoWork;
-        this.deviceId = deviceId;
-        this.lkDeviceId = lkDeviceId;
-        this.photoStatus = photoStatus;
-        this.uploadStatus = uploadStatus;
-        this.accountIdList = accountIdList;
-        
-    }
-
-    
-    public AccountQueryPageDTO() {
-    }
-
-    
-    
-    public Long getId() {
-        /* 25 */
-        return this.id;
-        
-    }
-
-    
-    public String getName() {
-        /* 28 */
-        return this.name;
-        
-    }
-
-    
-    public String getLkName() {
-        /* 31 */
-        return this.lkName;
-        
-    }
-
-    
-    public Integer getStatus() {
-        /* 34 */
-        return this.status;
-        
-    }
-
-    
-    public Integer getAccountLevel() {
-        /* 37 */
-        return this.accountLevel;
-        
-    }
-
-    
-    public List<Integer> getAccountLevelList() {
-        /* 40 */
-        return this.accountLevelList;
-        
-    }
-
-    
-    public Integer getAccountType() {
-        /* 43 */
-        return this.accountType;
-        
-    }
-
-    
-    public List<Integer> getAccountTypeList() {
-        /* 46 */
-        return this.accountTypeList;
-        
-    }
-
-    
-    public String getLkPromotionCode() {
-        /* 49 */
-        return this.lkPromotionCode;
-        
-    }
-
-    
-    public String getLkParentPromotionCode() {
-        /* 52 */
-        return this.lkParentPromotionCode;
-        
-    }
-
-    
-    public String getLkRemark() {
-        /* 55 */
-        return this.lkRemark;
-        
-    }
-
-    
-    public LocalDateTime getCreateTimeStart() {
-        /* 58 */
-        return this.createTimeStart;
-        
-    }
-
-    
-    public LocalDateTime getCreateTimeEnd() {
-        /* 61 */
-        return this.createTimeEnd;
-        
-    }
-
-    
-    public Integer getAutoWork() {
-        /* 64 */
-        return this.autoWork;
-        
-    }
-
-    
-    public String getDeviceId() {
-        /* 67 */
-        return this.deviceId;
-        
-    }
-
-    
-    public String getLkDeviceId() {
-        /* 70 */
-        return this.lkDeviceId;
-        
-    }
-
-    
-    public Integer getPhotoStatus() {
-        /* 73 */
-        return this.photoStatus;
-        
-    }
-
-    
-    public Integer getUploadStatus() {
-        /* 76 */
-        return this.uploadStatus;
-        
-    }
-
-    
-    public List<Long> getAccountIdList() {
-        /* 79 */
-        return this.accountIdList;
-        
-    }
 }
-
 

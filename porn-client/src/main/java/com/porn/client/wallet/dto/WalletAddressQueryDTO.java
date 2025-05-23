@@ -1,58 +1,25 @@
-
 package com.porn.client.wallet.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
- public class WalletAddressQueryDTO extends BaseDTO {
-    
+public class WalletAddressQueryDTO extends BaseDTO {
+
     @ApiModelProperty("地址名称")
-     private String name;
-    
+    private String name;
+
     @ApiModelProperty("编码")
-     private String code;
-    
+    private String code;
+
     @ApiModelProperty("地址")
-     private String address;
-    
+    private String address;
+
     @ApiModelProperty("地址状态")
-     private Integer addressStatus;
-    
+    private Integer addressStatus;
+
     @ApiModelProperty("状态, 1-启用, 0-禁用")
-     private Integer status;
+    private Integer status;
 
-    
-    /* 17 */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setAddressStatus(Integer addressStatus) {
-        this.addressStatus = addressStatus;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof WalletAddressQueryDTO;
-    }
-
-
-
-    /* 18 */
     protected WalletAddressQueryDTO(WalletAddressQueryDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
@@ -62,8 +29,75 @@ import com.porn.client.common.dto.BaseDTO;
         this.status = b.status;
     }
 
+    public WalletAddressQueryDTO(String name, String code, String address, Integer addressStatus, Integer status) {
+
+        this.name = name;
+        this.code = code;
+        this.address = address;
+        this.addressStatus = addressStatus;
+        this.status = status;
+
+    }
+
+    public WalletAddressQueryDTO() {
+    }
+
     public static WalletAddressQueryDTOBuilder<?, ?> builder() {
         return new WalletAddressQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof WalletAddressQueryDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+
+        return this.code;
+
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getAddress() {
+
+        return this.address;
+
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getAddressStatus() {
+
+        return this.addressStatus;
+
+    }
+
+    public void setAddressStatus(Integer addressStatus) {
+        this.addressStatus = addressStatus;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     private static final class WalletAddressQueryDTOBuilderImpl extends WalletAddressQueryDTOBuilder<WalletAddressQueryDTO, WalletAddressQueryDTOBuilderImpl> {
@@ -82,15 +116,14 @@ import com.porn.client.common.dto.BaseDTO;
     public static abstract class WalletAddressQueryDTOBuilder<C extends WalletAddressQueryDTO, B extends WalletAddressQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private String name;
         private String code;
+        private String address;
+        private Integer addressStatus;
+        private Integer status;
 
         public B name(String name) {
             this.name = name;
             return self();
         }
-
-        private String address;
-        private Integer addressStatus;
-        private Integer status;
 
         public B code(String code) {
             this.code = code;
@@ -118,56 +151,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public WalletAddressQueryDTO(String name, String code, String address, Integer addressStatus, Integer status) {
-        /* 19 */
-        this.name = name;
-        this.code = code;
-        this.address = address;
-        this.addressStatus = addressStatus;
-        this.status = status;
-        
-    }
-
-    
-    public WalletAddressQueryDTO() {
-    }
-
-    
-    
-    public String getName() {
-        /* 24 */
-        return this.name;
-        
-    }
-
-    
-    public String getCode() {
-        /* 27 */
-        return this.code;
-        
-    }
-
-    
-    public String getAddress() {
-        /* 30 */
-        return this.address;
-        
-    }
-
-    
-    public Integer getAddressStatus() {
-        /* 33 */
-        return this.addressStatus;
-        
-    }
-
-    
-    public Integer getStatus() {
-        /* 36 */
-        return this.status;
-        
-    }
-    
 }
-
 

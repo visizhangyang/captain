@@ -1,32 +1,32 @@
-
 package com.porn.client.common.entity;
-
-
 
 import java.io.Serializable;
 
+public class PairPlus<K, V, D>
+        implements Serializable {
+    private K key;
+    private V value;
+    private D descrition;
 
+    public PairPlus(K key, V value, D descrition) {
 
- public class PairPlus<K, V, D>
-         implements Serializable
-         {
-       private K key;
-       private V value;
-       private D descrition;
-
-
-
-    public void setKey(K key) {
-        /* 14 */
         this.key = key;
-    }
-
-    public void setValue(V value) {
         this.value = value;
+        this.descrition = descrition;
+
     }
 
-    public void setDescrition(D descrition) {
-        this.descrition = descrition;
+    public PairPlus() {
+    }
+
+    public static <K, V, D> PairPlusBuilder<K, V, D> builder() {
+        return new PairPlusBuilder<>();
+    }
+
+    public static <K, V, D> PairPlus of(K key, V value, D descrition) {
+
+        return new PairPlus<>(key, value, descrition);
+
     }
 
     public boolean equals(Object o) {
@@ -46,26 +46,50 @@ import java.io.Serializable;
         return other instanceof PairPlus;
     }
 
-
     public String toString() {
         return "PairPlus(key=" + getKey() + ", value=" + getValue() + ", descrition=" + getDescrition() + ")";
     }
 
-    /* 15 */
-    public static <K, V, D> PairPlusBuilder<K, V, D> builder() {
-        return new PairPlusBuilder<>();
+    public K getKey() {
+
+        return this.key;
+
+    }
+
+    public void setKey(K key) {
+
+        this.key = key;
+    }
+
+    public V getValue() {
+
+        return this.value;
+
+    }
+
+    public void setValue(V value) {
+        this.value = value;
+    }
+
+    public D getDescrition() {
+
+        return this.descrition;
+
+    }
+
+    public void setDescrition(D descrition) {
+        this.descrition = descrition;
     }
 
     public static class PairPlusBuilder<K, V, D> {
         private K key;
+        private V value;
+        private D descrition;
 
         public PairPlusBuilder<K, V, D> key(K key) {
             this.key = key;
             return this;
         }
-
-        private V value;
-        private D descrition;
 
         public PairPlusBuilder<K, V, D> value(V value) {
             this.value = value;
@@ -86,54 +110,5 @@ import java.io.Serializable;
         }
     }
 
-    public PairPlus(K key, V value, D descrition) {
-        /* 16 */
-        this.key = key;
-        this.value = value;
-        this.descrition = descrition;
-
-    }
-
-
-    public PairPlus() {
-    }
-
-
-    public K getKey() {
-        /* 20 */
-        return this.key;
-
-    }
-
-    public V getValue() {
-        /* 22 */
-        return this.value;
-
-    }
-
-    public D getDescrition() {
-        /* 24 */
-        return this.descrition;
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    public static <K, V, D> PairPlus of(K key, V value, D descrition) {
-        /* 37 */
-        return new PairPlus<>(key, value, descrition);
-
-    }
-
 }
-
 

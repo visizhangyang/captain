@@ -1,61 +1,27 @@
-
 package com.porn.client.reward.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
+public class OperateRewardBalanceDTO extends BaseDTO {
 
- public class OperateRewardBalanceDTO extends BaseDTO {
-    
     @ApiModelProperty("账户ID")
-     private Long accountId;
-    
+    private Long accountId;
+
     @ApiModelProperty("操作后次数")
-     private BigDecimal operateCount;
-    
+    private BigDecimal operateCount;
+
     @ApiModelProperty("类型, RewardRecordTypeEnum")
-     private Integer type;
-    
+    private Integer type;
+
     @ApiModelProperty("业务类型, RuleTypeEnum")
-     private Integer bizType;
-    
+    private Integer bizType;
+
     @ApiModelProperty("业务ID")
-     private String bizId;
+    private String bizId;
 
-    
-    /* 17 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setOperateCount(BigDecimal operateCount) {
-        this.operateCount = operateCount;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public void setBizType(Integer bizType) {
-        this.bizType = bizType;
-    }
-
-    public void setBizId(String bizId) {
-        this.bizId = bizId;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof OperateRewardBalanceDTO;
-    }
-
-
-
-    /* 18 */
     protected OperateRewardBalanceDTO(OperateRewardBalanceDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -65,8 +31,75 @@ import java.math.BigDecimal;
         this.bizId = b.bizId;
     }
 
+    public OperateRewardBalanceDTO(Long accountId, BigDecimal operateCount, Integer type, Integer bizType, String bizId) {
+
+        this.accountId = accountId;
+        this.operateCount = operateCount;
+        this.type = type;
+        this.bizType = bizType;
+        this.bizId = bizId;
+
+    }
+
+    public OperateRewardBalanceDTO() {
+    }
+
     public static OperateRewardBalanceDTOBuilder<?, ?> builder() {
         return new OperateRewardBalanceDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof OperateRewardBalanceDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public BigDecimal getOperateCount() {
+
+        return this.operateCount;
+
+    }
+
+    public void setOperateCount(BigDecimal operateCount) {
+        this.operateCount = operateCount;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getBizType() {
+
+        return this.bizType;
+
+    }
+
+    public void setBizType(Integer bizType) {
+        this.bizType = bizType;
+    }
+
+    public String getBizId() {
+
+        return this.bizId;
+
+    }
+
+    public void setBizId(String bizId) {
+        this.bizId = bizId;
     }
 
     private static final class OperateRewardBalanceDTOBuilderImpl extends OperateRewardBalanceDTOBuilder<OperateRewardBalanceDTO, OperateRewardBalanceDTOBuilderImpl> {
@@ -85,15 +118,14 @@ import java.math.BigDecimal;
     public static abstract class OperateRewardBalanceDTOBuilder<C extends OperateRewardBalanceDTO, B extends OperateRewardBalanceDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
         private BigDecimal operateCount;
+        private Integer type;
+        private Integer bizType;
+        private String bizId;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private Integer type;
-        private Integer bizType;
-        private String bizId;
 
         public B operateCount(BigDecimal operateCount) {
             this.operateCount = operateCount;
@@ -121,56 +153,5 @@ import java.math.BigDecimal;
 
     }
 
-    public OperateRewardBalanceDTO(Long accountId, BigDecimal operateCount, Integer type, Integer bizType, String bizId) {
-        /* 19 */
-        this.accountId = accountId;
-        this.operateCount = operateCount;
-        this.type = type;
-        this.bizType = bizType;
-        this.bizId = bizId;
-        
-    }
-
-    
-    public OperateRewardBalanceDTO() {
-    }
-
-    
-    
-    public Long getAccountId() {
-        /* 24 */
-        return this.accountId;
-        
-    }
-
-    
-    public BigDecimal getOperateCount() {
-        /* 27 */
-        return this.operateCount;
-        
-    }
-
-    
-    public Integer getType() {
-        /* 30 */
-        return this.type;
-        
-    }
-
-    
-    public Integer getBizType() {
-        /* 33 */
-        return this.bizType;
-        
-    }
-
-    
-    public String getBizId() {
-        /* 36 */
-        return this.bizId;
-        
-    }
-    
 }
-
 

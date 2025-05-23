@@ -1,6 +1,4 @@
-
 package com.porn.service.log.impl;
-
 
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -28,39 +26,23 @@ import java.util.List;
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class OperateLogApiServiceImpl implements OperateLogApiService {
-    /* 27 */   private static final Logger log = LoggerFactory.getLogger(OperateLogApiServiceImpl.class);
-
-
-
-
-
+public class OperateLogApiServiceImpl implements OperateLogApiService {
+    private static final Logger log = LoggerFactory.getLogger(OperateLogApiServiceImpl.class);
 
     @Autowired
-     private OperateLogMapper operateLogMapper;
-
-
-
-
-
+    private OperateLogMapper operateLogMapper;
 
     @Autowired
-     private OperateLogConverter operateLogConverter;
-
-
-
-
-
+    private OperateLogConverter operateLogConverter;
 
 
     public boolean save(OperateLogSaveDTO operateLogSaveDTO) {
-        /* 48 */
+
         OperateLogDO operateLogDO = OperateLogDO.builder().userId(operateLogSaveDTO.getUserId()).name(operateLogSaveDTO.getName()).method(operateLogSaveDTO.getMethod()).action(operateLogSaveDTO.getAction()).params(operateLogSaveDTO.getParams()).timeConsume(Long.valueOf(operateLogSaveDTO.getEndTime().longValue() - operateLogSaveDTO.getStartTime().longValue())).build();
-        /* 49 */
+
         return (this.operateLogMapper.insert(operateLogDO) > 0);
 
     }
-
 
 
     public PageVo<OperateLogVo> queryPage(OperateLogQueryPageDTO operateLogQueryPageDTO) {

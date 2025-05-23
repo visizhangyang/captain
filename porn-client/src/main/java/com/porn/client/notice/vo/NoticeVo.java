@@ -1,35 +1,32 @@
-
 package com.porn.client.notice.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class NoticeVo extends BaseVo {
+public class NoticeVo extends BaseVo {
 
     @ApiModelProperty("置顶标识, TopFlagEnum")
-     private Integer topFlag;
+    private Integer topFlag;
 
     @ApiModelProperty("语言类型, LangTypeEnum")
-     private Integer langType;
+    private Integer langType;
 
     @ApiModelProperty("语言名称")
-     private String langTypeName;
+    private String langTypeName;
 
     @ApiModelProperty("标题")
-     private String title;
+    private String title;
 
     @ApiModelProperty("内容(富文本)")
-     private String content;
-
+    private String content;
 
 }
-
 

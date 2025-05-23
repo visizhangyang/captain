@@ -1,15 +1,13 @@
-
 package com.porn.service.imglib.dao.entity;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
-
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
-import lombok.*;import lombok.experimental.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @TableName("porn_imagelib")
 @Data
@@ -17,18 +15,17 @@ import lombok.*;import lombok.experimental.*;
 @AllArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
- public class ImageLibDO extends BaseDO {
-    
+public class ImageLibDO extends BaseDO {
+
     @TableField("img_path")
-     private String imgPath;
-    
+    private String imgPath;
+
     @TableField("image_type")
-     private Integer imageType;
-    
+    private Integer imageType;
+
     @TableField("_status")
-     private Integer status;
+    private Integer status;
 
 
-    
 }
 

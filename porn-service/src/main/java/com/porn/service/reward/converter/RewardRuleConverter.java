@@ -20,4 +20,3 @@ public interface RewardRuleConverter {
     TurntableVo toTurntableVo(TurntableSaveOrUpdateDTO paramTurntableSaveOrUpdateDTO);
 }
 
-

@@ -1,38 +1,29 @@
 package com.porn.client.stream.dto;
-import io.swagger.annotations.ApiModelProperty;
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
- public class StreamSaveOrUpdateDTO extends BaseDTO {
-    
+public class StreamSaveOrUpdateDTO extends BaseDTO {
+
     @ApiModelProperty("账户ID")
-     private Long accountId;
-    
+    private Long accountId;
+
     @ApiModelProperty("账户名称")
-     private String accountName;
-    
+    private String accountName;
+
     @ApiModelProperty("操作前总余额")
-     private BigDecimal beforeTotalBalance;
-    
+    private BigDecimal beforeTotalBalance;
+
     @ApiModelProperty("操作前可用余额")
-     private BigDecimal beforeAvailableBalance;
-    
+    private BigDecimal beforeAvailableBalance;
+
     @ApiModelProperty("操作前冻结余额")
-     private BigDecimal beforeFreezeBalance;
-    
+    private BigDecimal beforeFreezeBalance;
+
     @ApiModelProperty("操作后总余额")
-     private BigDecimal afterTotalBalance;
-
-    
-    /* 16 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
+    private BigDecimal afterTotalBalance;
     @ApiModelProperty("操作后可用余额")
     private BigDecimal afterAvailableBalance;
     @ApiModelProperty("操作后冻结余额")
@@ -46,58 +37,6 @@ import java.math.BigDecimal;
     @ApiModelProperty("标识, StreamTypeEnum")
     private Integer flag;
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public void setBeforeTotalBalance(BigDecimal beforeTotalBalance) {
-        this.beforeTotalBalance = beforeTotalBalance;
-    }
-
-    public void setBeforeAvailableBalance(BigDecimal beforeAvailableBalance) {
-        this.beforeAvailableBalance = beforeAvailableBalance;
-    }
-
-    public void setBeforeFreezeBalance(BigDecimal beforeFreezeBalance) {
-        this.beforeFreezeBalance = beforeFreezeBalance;
-    }
-
-    public void setAfterTotalBalance(BigDecimal afterTotalBalance) {
-        this.afterTotalBalance = afterTotalBalance;
-    }
-
-    public void setAfterAvailableBalance(BigDecimal afterAvailableBalance) {
-        this.afterAvailableBalance = afterAvailableBalance;
-    }
-
-    public void setAfterFreezeBalance(BigDecimal afterFreezeBalance) {
-        this.afterFreezeBalance = afterFreezeBalance;
-    }
-
-    public void setBizId(Long bizId) {
-        this.bizId = bizId;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public void setFlag(Integer flag) {
-        this.flag = flag;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof StreamSaveOrUpdateDTO;
-    }
-
-
-
-    /* 17 */
     protected StreamSaveOrUpdateDTO(StreamSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -114,8 +53,152 @@ import java.math.BigDecimal;
         this.flag = b.flag;
     }
 
+    public StreamSaveOrUpdateDTO(Long accountId, String accountName, BigDecimal beforeTotalBalance, BigDecimal beforeAvailableBalance, BigDecimal beforeFreezeBalance, BigDecimal afterTotalBalance, BigDecimal afterAvailableBalance, BigDecimal afterFreezeBalance, Long bizId, BigDecimal amount, Integer type, Integer flag) {
+
+        this.accountId = accountId;
+        this.accountName = accountName;
+        this.beforeTotalBalance = beforeTotalBalance;
+        this.beforeAvailableBalance = beforeAvailableBalance;
+        this.beforeFreezeBalance = beforeFreezeBalance;
+        this.afterTotalBalance = afterTotalBalance;
+        this.afterAvailableBalance = afterAvailableBalance;
+        this.afterFreezeBalance = afterFreezeBalance;
+        this.bizId = bizId;
+        this.amount = amount;
+        this.type = type;
+        this.flag = flag;
+
+    }
+
+    public StreamSaveOrUpdateDTO() {
+    }
+
     public static StreamSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new StreamSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof StreamSaveOrUpdateDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getAccountName() {
+
+        return this.accountName;
+
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public BigDecimal getBeforeTotalBalance() {
+
+        return this.beforeTotalBalance;
+
+    }
+
+    public void setBeforeTotalBalance(BigDecimal beforeTotalBalance) {
+        this.beforeTotalBalance = beforeTotalBalance;
+    }
+
+    public BigDecimal getBeforeAvailableBalance() {
+
+        return this.beforeAvailableBalance;
+
+    }
+
+    public void setBeforeAvailableBalance(BigDecimal beforeAvailableBalance) {
+        this.beforeAvailableBalance = beforeAvailableBalance;
+    }
+
+    public BigDecimal getBeforeFreezeBalance() {
+
+        return this.beforeFreezeBalance;
+
+    }
+
+    public void setBeforeFreezeBalance(BigDecimal beforeFreezeBalance) {
+        this.beforeFreezeBalance = beforeFreezeBalance;
+    }
+
+    public BigDecimal getAfterTotalBalance() {
+
+        return this.afterTotalBalance;
+
+    }
+
+    public void setAfterTotalBalance(BigDecimal afterTotalBalance) {
+        this.afterTotalBalance = afterTotalBalance;
+    }
+
+    public BigDecimal getAfterAvailableBalance() {
+
+        return this.afterAvailableBalance;
+
+    }
+
+    public void setAfterAvailableBalance(BigDecimal afterAvailableBalance) {
+        this.afterAvailableBalance = afterAvailableBalance;
+    }
+
+    public BigDecimal getAfterFreezeBalance() {
+
+        return this.afterFreezeBalance;
+
+    }
+
+    public void setAfterFreezeBalance(BigDecimal afterFreezeBalance) {
+        this.afterFreezeBalance = afterFreezeBalance;
+    }
+
+    public Long getBizId() {
+
+        return this.bizId;
+
+    }
+
+    public void setBizId(Long bizId) {
+        this.bizId = bizId;
+    }
+
+    public BigDecimal getAmount() {
+
+        return this.amount;
+
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getFlag() {
+
+        return this.flag;
+
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 
     private static final class StreamSaveOrUpdateDTOBuilderImpl extends StreamSaveOrUpdateDTOBuilder<StreamSaveOrUpdateDTO, StreamSaveOrUpdateDTOBuilderImpl> {
@@ -211,112 +294,5 @@ import java.math.BigDecimal;
 
     }
 
-    public StreamSaveOrUpdateDTO(Long accountId, String accountName, BigDecimal beforeTotalBalance, BigDecimal beforeAvailableBalance, BigDecimal beforeFreezeBalance, BigDecimal afterTotalBalance, BigDecimal afterAvailableBalance, BigDecimal afterFreezeBalance, Long bizId, BigDecimal amount, Integer type, Integer flag) {
-        /* 18 */
-        this.accountId = accountId;
-        this.accountName = accountName;
-        this.beforeTotalBalance = beforeTotalBalance;
-        this.beforeAvailableBalance = beforeAvailableBalance;
-        this.beforeFreezeBalance = beforeFreezeBalance;
-        this.afterTotalBalance = afterTotalBalance;
-        this.afterAvailableBalance = afterAvailableBalance;
-        this.afterFreezeBalance = afterFreezeBalance;
-        this.bizId = bizId;
-        this.amount = amount;
-        this.type = type;
-        this.flag = flag;
-        
-    }
-
-    
-    public StreamSaveOrUpdateDTO() {
-    }
-
-    
-    
-    public Long getAccountId() {
-        /* 23 */
-        return this.accountId;
-        
-    }
-
-    
-    public String getAccountName() {
-        /* 26 */
-        return this.accountName;
-        
-    }
-
-    
-    public BigDecimal getBeforeTotalBalance() {
-        /* 29 */
-        return this.beforeTotalBalance;
-        
-    }
-
-    
-    public BigDecimal getBeforeAvailableBalance() {
-        /* 32 */
-        return this.beforeAvailableBalance;
-        
-    }
-
-    
-    public BigDecimal getBeforeFreezeBalance() {
-        /* 35 */
-        return this.beforeFreezeBalance;
-        
-    }
-
-    
-    public BigDecimal getAfterTotalBalance() {
-        /* 38 */
-        return this.afterTotalBalance;
-        
-    }
-
-    
-    public BigDecimal getAfterAvailableBalance() {
-        /* 41 */
-        return this.afterAvailableBalance;
-        
-    }
-
-    
-    public BigDecimal getAfterFreezeBalance() {
-        /* 44 */
-        return this.afterFreezeBalance;
-        
-    }
-
-    
-    public Long getBizId() {
-        /* 47 */
-        return this.bizId;
-        
-    }
-
-    
-    public BigDecimal getAmount() {
-        /* 50 */
-        return this.amount;
-        
-    }
-
-    
-    public Integer getType() {
-        /* 53 */
-        return this.type;
-        
-    }
-
-    
-    public Integer getFlag() {
-        /* 56 */
-        return this.flag;
-        
-    }
-    
 }
-
 

@@ -1,9 +1,10 @@
 package com.porn.client.server.vo;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 
@@ -45,5 +46,4 @@ public class JvmInfoVo implements Serializable {
     @ApiModelProperty("运行参数")
     private String inputArgs;
 }
-
 

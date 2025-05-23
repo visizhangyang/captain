@@ -1,12 +1,11 @@
-
 package com.porn.client.transfer.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -16,30 +15,28 @@ import java.math.BigDecimal;
 @SuperBuilder
 public class TransferVo extends BaseVo {
     @ApiModelProperty("发起转账的ID")
-     private Long srcAccountId;
+    private Long srcAccountId;
     @ApiModelProperty("发起转账的名称")
-     private String srcAccountName;
+    private String srcAccountName;
     @ApiModelProperty("发起转账的头像")
-     private String srcAccountAvatarUrl;
+    private String srcAccountAvatarUrl;
     @ApiModelProperty("目标转账的ID")
-     private Long dstAccountId;
+    private Long dstAccountId;
     @ApiModelProperty("目标转账的名称")
-     private String dstAccountName;
+    private String dstAccountName;
     @ApiModelProperty("接收转账的头像")
-     private String dstAccountAvatarUrl;
+    private String dstAccountAvatarUrl;
     @ApiModelProperty("金额")
-     private BigDecimal amount;
+    private BigDecimal amount;
 
     @ApiModelProperty("转账状态, TransferStatusEnum")
-     private Integer transferStatus;
+    private Integer transferStatus;
 
     @ApiModelProperty("源账户备注")
-     private String srcAccountRemark;
+    private String srcAccountRemark;
 
     @ApiModelProperty("目标账户备注")
-     private String dstAccountRemark;
-
+    private String dstAccountRemark;
 
 }
-
 

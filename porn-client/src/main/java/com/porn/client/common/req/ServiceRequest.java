@@ -1,34 +1,32 @@
-
 package com.porn.client.common.req;
-
-
-
-
 
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
-
-
-
-
- public class ServiceRequest
-         implements Serializable
-         {
+public class ServiceRequest
+        implements Serializable {
 
     @ApiModelProperty(value = "请求资源", hidden = true)
-     private transient String beUsedSource;
+    private transient String beUsedSource;
 
     @ApiModelProperty(value = "请求序列号", hidden = true)
-     private transient String serialNumber;
-
-
+    private transient String serialNumber;
 
     protected ServiceRequest(ServiceRequestBuilder<?, ?> b) {
-        /* 16 */
+
         this.beUsedSource = b.beUsedSource;
         this.serialNumber = b.serialNumber;
+    }
+
+    public ServiceRequest(String beUsedSource, String serialNumber) {
+
+        this.beUsedSource = beUsedSource;
+        this.serialNumber = serialNumber;
+
+    }
+
+    public ServiceRequest() {
     }
 
     public static ServiceRequestBuilder<?, ?> builder() {
@@ -50,13 +48,12 @@ import java.io.Serializable;
 
     public static abstract class ServiceRequestBuilder<C extends ServiceRequest, B extends ServiceRequestBuilder<C, B>> {
         private String beUsedSource;
+        private String serialNumber;
 
         public B beUsedSource(String beUsedSource) {
             this.beUsedSource = beUsedSource;
             return self();
         }
-
-        private String serialNumber;
 
         public B serialNumber(String serialNumber) {
             this.serialNumber = serialNumber;
@@ -72,18 +69,5 @@ import java.io.Serializable;
         }
     }
 
-    public ServiceRequest(String beUsedSource, String serialNumber) {
-        /* 17 */
-        this.beUsedSource = beUsedSource;
-        this.serialNumber = serialNumber;
-
-    }
-
-
-
-    public ServiceRequest() {
-    }
-
 }
-
 

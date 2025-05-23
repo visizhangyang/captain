@@ -1,44 +1,42 @@
-
 package com.porn.service.merchant.dao.entity;
-import java.time.LocalDateTime;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-
 
 @TableName("porn_merchant")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class MerchantDO extends BaseDO {
+public class MerchantDO extends BaseDO {
     @TableField("name")
-     private String name;
+    private String name;
     @TableField("avatar")
-     private String avatar;
+    private String avatar;
     @TableField("rate_range")
-     private String rateRange;
+    private String rateRange;
     @TableField("ensure_amount")
-     private BigDecimal ensureAmount;
+    private BigDecimal ensureAmount;
     @TableField("area_name")
-     private String areaName;
+    private String areaName;
     @TableField("member_level")
-     private Integer memberLevel;
+    private Integer memberLevel;
 
     @TableField("member_levelname")
-     private String memberLevelName;
+    private String memberLevelName;
 
     @TableField("auth_level")
-     private Integer authLevel;
+    private Integer authLevel;
 
     @TableField("auth_levelname")
-     private String authLevelName;
+    private String authLevelName;
 
     @TableField("mail_auth")
     private Integer mailAuth;

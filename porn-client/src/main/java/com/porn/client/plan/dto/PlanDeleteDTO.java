@@ -1,43 +1,31 @@
-
 package com.porn.client.plan.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class PlanDeleteDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class PlanDeleteDTO
-         extends BaseDTO
-         {
-    
-
-    protected boolean canEqual(Object other) {
-        return other instanceof PlanDeleteDTO;
-    }
-
-
-
-    /* 14 */
     protected PlanDeleteDTO(PlanDeleteDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public PlanDeleteDTO() {
     }
 
     public static PlanDeleteDTOBuilder<?, ?> builder() {
         return new PlanDeleteDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof PlanDeleteDTO;
+    }
+
     private static final class PlanDeleteDTOBuilderImpl extends PlanDeleteDTOBuilder<PlanDeleteDTO, PlanDeleteDTOBuilderImpl> {
-        protected PlanDeleteDTOBuilderImpl self() {
-            return this;
+        private PlanDeleteDTOBuilderImpl() {
         }
 
-        private PlanDeleteDTOBuilderImpl() {
+        protected PlanDeleteDTOBuilderImpl self() {
+            return this;
         }
 
         public PlanDeleteDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class PlanDeleteDTOBuilder<C extends PlanDeleteDTO, B extends PlanDeleteDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-        
-        
-        
         protected abstract B self();
 
-        
-        
         public abstract C build();
     }
 
-    
-    
-    
-    public PlanDeleteDTO() {
-    }
-    
 }
-
 

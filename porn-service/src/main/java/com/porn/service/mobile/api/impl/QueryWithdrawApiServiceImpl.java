@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.date.LocalDateTimeUtil;
@@ -19,67 +17,38 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QueryWithdrawApiServiceImpl
-         implements ApiService<List<WithdrawVo>>
-         {
+public class QueryWithdrawApiServiceImpl
+        implements ApiService<List<WithdrawVo>> {
 
     @Autowired
-     private WithdrawApiService withdrawApiService;
-
+    private WithdrawApiService withdrawApiService;
 
 
     public List<WithdrawVo> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 32 */
+
         QueryWithdrawApiRequestDTO queryWithdrawApiRequestDTO = (QueryWithdrawApiRequestDTO) JSON.parseObject(cmdRequestDTO.getData(), QueryWithdrawApiRequestDTO.class);
 
 
-
-
-        /* 37 */
         WithdrawQueryDTO withdrawQueryDTO = WithdrawQueryDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).startTime(LocalDateTimeUtil.offset(LocalDateTimeUtil.now(), -7L, ChronoUnit.DAYS)).statusList(queryWithdrawApiRequestDTO.getStatusList()).build();
-        /* 38 */
+
         if (ObjectUtil.isNotEmpty(queryWithdrawApiRequestDTO.getDateRange()) &&
-                /* 39 */       Integer.valueOf(0).equals(queryWithdrawApiRequestDTO.getDateRange())) {
-            /* 40 */
+                Integer.valueOf(0).equals(queryWithdrawApiRequestDTO.getDateRange())) {
+
             withdrawQueryDTO.setStartTime(LocalDateTimeUtil.beginOfDay(LocalDateTimeUtil.now()));
 
         }
 
-        /* 43 */
         return this.withdrawApiService.queryWithdrawList(withdrawQueryDTO);
 
     }
 
 
-
     public String getApi() {
-        /* 47 */
+
         return "api_querywithdraw";
 
     }
 
 }
-
 

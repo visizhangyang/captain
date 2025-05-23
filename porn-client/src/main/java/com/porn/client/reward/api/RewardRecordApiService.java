@@ -14,4 +14,3 @@ public interface RewardRecordApiService {
     RewardRecordVo saveOrUpdate(RewardRecordSaveOrUpdateDTO paramRewardRecordSaveOrUpdateDTO);
 }
 
-

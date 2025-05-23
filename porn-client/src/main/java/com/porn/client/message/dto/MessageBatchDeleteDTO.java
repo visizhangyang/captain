@@ -1,49 +1,47 @@
-
 package com.porn.client.message.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-
-
-
-
-
-
- public class MessageBatchDeleteDTO
-         extends BaseDTO
-         {
+public class MessageBatchDeleteDTO
+        extends BaseDTO {
 
     @ApiModelProperty("批量删除")
-     private List<Long> idList;
+    private List<Long> idList;
 
-
-
-    public void setIdList(List<Long> idList) {
-        /* 16 */
-        this.idList = idList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MessageBatchDeleteDTO;
-    }
-
-
-
-    /* 17 */
     protected MessageBatchDeleteDTO(MessageBatchDeleteDTOBuilder<?, ?> b) {
         super(b);
         this.idList = b.idList;
     }
 
+    public MessageBatchDeleteDTO(List<Long> idList) {
+
+        this.idList = idList;
+
+    }
+
+    public MessageBatchDeleteDTO() {
+    }
+
     public static MessageBatchDeleteDTOBuilder<?, ?> builder() {
         return new MessageBatchDeleteDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MessageBatchDeleteDTO;
+    }
+
+    public List<Long> getIdList() {
+
+        return this.idList;
+
+    }
+
+    public void setIdList(List<Long> idList) {
+
+        this.idList = idList;
     }
 
     private static final class MessageBatchDeleteDTOBuilderImpl extends MessageBatchDeleteDTOBuilder<MessageBatchDeleteDTO, MessageBatchDeleteDTOBuilderImpl> {
@@ -60,12 +58,12 @@ import java.util.List;
     }
 
     public static abstract class MessageBatchDeleteDTOBuilder<C extends MessageBatchDeleteDTO, B extends MessageBatchDeleteDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private List<Long> idList;
+
         public B idList(List<Long> idList) {
             this.idList = idList;
             return self();
         }
-
-        private List<Long> idList;
 
         protected abstract B self();
 
@@ -73,24 +71,5 @@ import java.util.List;
 
     }
 
-    public MessageBatchDeleteDTO(List<Long> idList) {
-        /* 18 */
-        this.idList = idList;
-
-    }
-
-
-    public MessageBatchDeleteDTO() {
-    }
-
-
-
-    public List<Long> getIdList() {
-        /* 23 */
-        return this.idList;
-
-    }
-
 }
-
 

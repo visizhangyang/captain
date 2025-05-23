@@ -1,13 +1,12 @@
-
 package com.porn.service.paramset.dao.entity;
-import java.time.LocalDateTime;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -48,37 +47,37 @@ public class ParamsetDO extends BaseDO {
     @TableField("ordermatch_time")
     private Integer orderMatchTime;
     @TableField("largelevelwork_count")
-     private Integer largeLevelWorkCount;
+    private Integer largeLevelWorkCount;
     @TableField("normallevelwork_count")
-     private Integer normalLevelWorkCount;
+    private Integer normalLevelWorkCount;
     @TableField("largelevelwork_space")
-     private Integer largeLevelWorkSpace;
+    private Integer largeLevelWorkSpace;
     @TableField("normallevelwork_space")
-     private Integer normalLevelWorkSpace;
+    private Integer normalLevelWorkSpace;
     @TableField("largelevelwork_minrange")
-     private String largeLevelWorkMinRange;
+    private String largeLevelWorkMinRange;
     @TableField("largelevelwork_maxrange")
-     private String largeLevelWorkMaxRange;
+    private String largeLevelWorkMaxRange;
     @TableField("normallevelwork_minrange")
-     private String normalLevelWorkMinRange;
+    private String normalLevelWorkMinRange;
     @TableField("normallevelwork_maxnrange")
-     private String normalLevelWorkMaxRange;
+    private String normalLevelWorkMaxRange;
     @TableField("largelevelinc_amount")
-     private BigDecimal largeLevelIncAmount;
+    private BigDecimal largeLevelIncAmount;
     @TableField("min_workcount")
-     private Integer minWorkCount;
+    private Integer minWorkCount;
     @TableField("max_workcount")
-     private Integer maxWorkCount;
+    private Integer maxWorkCount;
     @TableField("normalwithdraw_minrange")
-     private String normalWithdrawMinRange;
+    private String normalWithdrawMinRange;
     @TableField("normalwithdraw_maxrange")
-     private String normalWithdrawMaxRange;
+    private String normalWithdrawMaxRange;
     @TableField("largewithdraw_minrange")
-     private String largeWithdrawMinRange;
+    private String largeWithdrawMinRange;
     @TableField("largewithdraw_maxrange")
-     private String largeWithdrawMaxRange;
+    private String largeWithdrawMaxRange;
     @TableField("normalwithdraw_daycount")
-    /*  17 */ private Integer normalWithdrawDayCount;
+    private Integer normalWithdrawDayCount;
 
     @TableField("largewithdraw_daycount")
     private Integer largeWithdrawDayCount;

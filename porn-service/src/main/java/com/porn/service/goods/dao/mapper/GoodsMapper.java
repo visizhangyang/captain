@@ -11,4 +11,3 @@ public interface GoodsMapper extends BaseMapper<GoodsDO> {
     List<GoodsVo> groupRandGoodsList(GoodsQueryPageDTO paramGoodsQueryPageDTO);
 }
 
-

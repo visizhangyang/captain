@@ -21,4 +21,3 @@ public interface RewardRuleApiService {
     TurntableVo saveOrUpdateTurntable(TurntableSaveOrUpdateDTO paramTurntableSaveOrUpdateDTO);
 }
 
-

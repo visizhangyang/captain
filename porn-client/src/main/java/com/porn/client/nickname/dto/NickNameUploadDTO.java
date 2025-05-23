@@ -1,49 +1,47 @@
-
 package com.porn.client.nickname.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-
-
-
-
-
-
- public class NickNameUploadDTO
-         extends BaseDTO
-         {
+public class NickNameUploadDTO
+        extends BaseDTO {
 
     @ApiModelProperty("行数据")
-     private List<String> lines;
+    private List<String> lines;
 
-
-
-    public void setLines(List<String> lines) {
-        /* 16 */
-        this.lines = lines;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof NickNameUploadDTO;
-    }
-
-
-
-    /* 17 */
     protected NickNameUploadDTO(NickNameUploadDTOBuilder<?, ?> b) {
         super(b);
         this.lines = b.lines;
     }
 
+    public NickNameUploadDTO(List<String> lines) {
+
+        this.lines = lines;
+
+    }
+
+    public NickNameUploadDTO() {
+    }
+
     public static NickNameUploadDTOBuilder<?, ?> builder() {
         return new NickNameUploadDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof NickNameUploadDTO;
+    }
+
+    public List<String> getLines() {
+
+        return this.lines;
+
+    }
+
+    public void setLines(List<String> lines) {
+
+        this.lines = lines;
     }
 
     private static final class NickNameUploadDTOBuilderImpl extends NickNameUploadDTOBuilder<NickNameUploadDTO, NickNameUploadDTOBuilderImpl> {
@@ -60,12 +58,12 @@ import java.util.List;
     }
 
     public static abstract class NickNameUploadDTOBuilder<C extends NickNameUploadDTO, B extends NickNameUploadDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private List<String> lines;
+
         public B lines(List<String> lines) {
             this.lines = lines;
             return self();
         }
-
-        private List<String> lines;
 
         protected abstract B self();
 
@@ -73,24 +71,5 @@ import java.util.List;
 
     }
 
-    public NickNameUploadDTO(List<String> lines) {
-        /* 18 */
-        this.lines = lines;
-
-    }
-
-
-    public NickNameUploadDTO() {
-    }
-
-
-
-    public List<String> getLines() {
-        /* 23 */
-        return this.lines;
-
-    }
-
 }
-
 

@@ -6,4 +6,3 @@ import com.porn.service.config.dao.entity.ConfigDO;
 public interface ConfigMapper extends BaseMapper<ConfigDO> {
 }
 
-

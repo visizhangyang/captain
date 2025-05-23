@@ -6,4 +6,3 @@ import com.porn.service.richtext.dao.entity.RichTextDO;
 public interface RichTextMapper extends BaseMapper<RichTextDO> {
 }
 
-

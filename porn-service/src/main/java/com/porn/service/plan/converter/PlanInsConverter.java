@@ -19,4 +19,3 @@ public interface PlanInsConverter {
     PlanInsExtVo toPlanInsExtVo(PlanInsVo paramPlanInsVo);
 }
 
-

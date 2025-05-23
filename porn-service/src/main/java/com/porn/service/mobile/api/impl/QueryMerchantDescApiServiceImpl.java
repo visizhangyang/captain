@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -14,56 +12,32 @@ import com.porn.service.mobile.api.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QueryMerchantDescApiServiceImpl
-         implements ApiService<MerchantDescVo>
-         {
-    
+public class QueryMerchantDescApiServiceImpl
+        implements ApiService<MerchantDescVo> {
+
     @Autowired
-     private MerchantDescApiService merchantDescApiService;
+    private MerchantDescApiService merchantDescApiService;
 
-    
-    
+
     public MerchantDescVo cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 29 */
+
         MerchantDescQueryDTO merchantDescQueryDTO = (MerchantDescQueryDTO) JSON.parseObject(cmdRequestDTO.getData(), MerchantDescQueryDTO.class);
-        /* 30 */
+
         LangTypeEnum langTypeEnum = LangTypeEnum.queryByTag(merchantDescQueryDTO.getLangTypeName());
-        /* 31 */
+
         merchantDescQueryDTO.setLangType(ObjectUtil.isEmpty(langTypeEnum) ? LangTypeEnum.ZH.getType() : langTypeEnum.getType());
-        /* 32 */
+
         return this.merchantDescApiService.queryMerchantDesc(merchantDescQueryDTO);
-        
+
     }
 
-    
-    
-    
+
     public String getApi() {
-        /* 37 */
-        return "api_querymerchantdesc";
-        
-    }
-    
-}
 
+        return "api_querymerchantdesc";
+
+    }
+
+}
 

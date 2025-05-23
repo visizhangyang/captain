@@ -1,6 +1,4 @@
-
 package com.porn.service.withdraw.cron;
-
 
 
 import cn.hutool.core.date.LocalDateTimeUtil;
@@ -32,71 +30,35 @@ import java.util.Arrays;
 import java.util.List;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Component
- public class WithdrawCron
-         implements ApplicationContextAware
-         {
-    /*  34 */   private static final Logger log = LoggerFactory.getLogger(WithdrawCron.class);
+public class WithdrawCron
+        implements ApplicationContextAware {
+    private static final Logger log = LoggerFactory.getLogger(WithdrawCron.class);
 
-
-       private static final int EXPIRE_MIN = 30;
-
+    private static final int EXPIRE_MIN = 30;
 
 
     @Autowired
-     private WithdrawApiService withdrawApiService;
-
-
-
-    @Autowired
-     private ParamsetApiService paramsetApiService;
-
+    private WithdrawApiService withdrawApiService;
 
 
     @Autowired
-     private AccountApiService accountApiService;
+    private ParamsetApiService paramsetApiService;
 
 
-       private ApplicationContext applicationContext;
+    @Autowired
+    private AccountApiService accountApiService;
 
-
-
+    private ApplicationContext applicationContext;
 
 
     @Scheduled(cron = "0/5 * * * * ?")
-     public void doCompare() {
-        /*  58 */
+    public void doCompare() {
+
         WithdrawQueryDTO withdrawQueryDTO = WithdrawQueryDTO.builder().statusList(Arrays.asList(new Integer[]{WithdrawStatusEnum.EXAMINEING.getStatus()})).build();
-        /*  59 */
+
         List<WithdrawVo> withdrawVoList = this.withdrawApiService.queryWithdrawList(withdrawQueryDTO);
-        /*  60 */
+
         if (ObjectUtil.isEmpty(withdrawVoList)) {
 
             return;
@@ -104,21 +66,19 @@ import java.util.List;
         }
 
 
-        /*  65 */
         ParamsetVo paramsetVo = this.paramsetApiService.queryParamset(ParamsetQueryDTO.builder().build());
 
 
-        /*  68 */
         for (WithdrawVo withdrawVo : withdrawVoList) {
-            /*  69 */
+
             if (isExpire(withdrawVo, paramsetVo)) {
 
                 try {
-                    /*  71 */
+
                     ((WithdrawCron) this.applicationContext.getBean(WithdrawCron.class)).doExpire(withdrawVo);
-                    /*  72 */
+
                 } catch (Exception e) {
-                    /*  73 */
+
                     log.error(e.getMessage(), e);
 
                 }
@@ -130,65 +90,35 @@ import java.util.List;
     }
 
 
-
-
-
-
-
-
-
     protected boolean isExpire(WithdrawVo withdrawVo, ParamsetVo paramsetVo) {
-        /*  86 */
+
         return
 
-                /*  88 */       (LocalDateTimeUtil.between(withdrawVo.getCreateTime(), LocalDateTimeUtil.now()).toMinutes() > (ObjectUtil.isEmpty(paramsetVo) ? 30L : ((Integer) ObjectUtil.defaultIfNull(paramsetVo.getWithdrawMatchTime(), Integer.valueOf(30))).intValue()));
+                (LocalDateTimeUtil.between(withdrawVo.getCreateTime(), LocalDateTimeUtil.now()).toMinutes() > (ObjectUtil.isEmpty(paramsetVo) ? 30L : ((Integer) ObjectUtil.defaultIfNull(paramsetVo.getWithdrawMatchTime(), Integer.valueOf(30))).intValue()));
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Transactional(rollbackFor = {Exception.class}, propagation = Propagation.REQUIRES_NEW)
-     public void doExpire(WithdrawVo withdrawVo) {
-        /* 105 */
+    public void doExpire(WithdrawVo withdrawVo) {
+
         AccountAmountOperateDTO accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(withdrawVo.getAccountId())).operateAmount(withdrawVo.getTotalAmount()).amountType(AmountTypeEnum.ADDAVAILABLE_SUBFREEZE.getType()).bizId(withdrawVo.getId()).streamTypeEnum(StreamTypeEnum.WITHDRAW_UNLOCK).build();
-        /* 106 */
+
         this.accountApiService.operateAmount(accountAmountOperateDTO);
 
 
-
-
-
-        /* 112 */
         WithdrawSaveOrUpdateDTO withdrawSaveOrUpdateDTO = ((WithdrawSaveOrUpdateDTO.WithdrawSaveOrUpdateDTOBuilder) WithdrawSaveOrUpdateDTO.builder().id(withdrawVo.getId())).status(WithdrawStatusEnum.TIMEOUT.getStatus()).build();
-        /* 113 */
+
         this.withdrawApiService.saveOrUpdate(withdrawSaveOrUpdateDTO);
 
     }
 
 
-
-
-
-
-
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        /* 121 */
+
         this.applicationContext = applicationContext;
 
     }
 
 }
-
 

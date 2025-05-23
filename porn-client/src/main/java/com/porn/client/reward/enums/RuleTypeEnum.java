@@ -20,6 +20,10 @@ public enum RuleTypeEnum {
         this.description = description;
     }
 
+    public static List<Integer> getRuleTypes() {
+        return Arrays.asList(WORK_RULE.type, PROMOTION_RULE.type, RECHARGE_RULE.type, BALANCE_RULE.type);
+    }
+
     public Integer getType() {
         return this.type;
     }
@@ -30,9 +34,5 @@ public enum RuleTypeEnum {
 
     public String getDescription() {
         return this.description;
-    }
-
-    public static List<Integer> getRuleTypes() {
-        return Arrays.asList(WORK_RULE.type, PROMOTION_RULE.type, RECHARGE_RULE.type, BALANCE_RULE.type);
     }
 }

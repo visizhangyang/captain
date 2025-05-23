@@ -1,13 +1,12 @@
 package com.porn.client.minio.vo;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 @Data
 @NoArgsConstructor

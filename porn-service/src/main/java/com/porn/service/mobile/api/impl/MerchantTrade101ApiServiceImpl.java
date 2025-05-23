@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -22,86 +20,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class MerchantTrade101ApiServiceImpl
-         implements ApiService<List<MerchantTradeItemVo>>
-         {
+public class MerchantTrade101ApiServiceImpl
+        implements ApiService<List<MerchantTradeItemVo>> {
 
     @Autowired
-     private OrderApiService orderApiService;
+    private OrderApiService orderApiService;
 
     @Autowired
-     private MobileConverter mobileConverter;
-
+    private MobileConverter mobileConverter;
 
 
     public List<MerchantTradeItemVo> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 38 */
+
         MerchantTradeRequestDTO merchantTradeRequestDTO = (MerchantTradeRequestDTO) JSON.parseObject(cmdRequestDTO.getData(), MerchantTradeRequestDTO.class);
 
-
-
-
-
-        /* 44 */
         OrderQueryPageDTO orderQueryPageDTO = ((OrderQueryPageDTO.OrderQueryPageDTOBuilder) ((OrderQueryPageDTO.OrderQueryPageDTOBuilder) OrderQueryPageDTO.builder().merchantId(merchantTradeRequestDTO.getMerchantId()).orderStatus(OrderStatusEnum.CONFIRED.getStatus()).pageStart(Integer.valueOf(ObjectUtil.isEmpty(merchantTradeRequestDTO.getPageStart()) ? 1 : merchantTradeRequestDTO.getPageStart().intValue()))).pageSize(Integer.valueOf(ObjectUtil.isEmpty(merchantTradeRequestDTO.getPageSize()) ? 50 : merchantTradeRequestDTO.getPageSize().intValue()))).build();
-        /* 45 */
+
         PageVo<OrderVo> orderVoPage = this.orderApiService.queryPage(orderQueryPageDTO);
-        /* 46 */
+
         List<MerchantTradeItemVo> result = new ArrayList<>();
-        /* 47 */
+
         if (ObjectUtil.isNotEmpty(orderVoPage) &&
-                /* 48 */       ObjectUtil.isNotEmpty(orderVoPage.getData())) {
-            /* 49 */
+                ObjectUtil.isNotEmpty(orderVoPage.getData())) {
+
             result = this.mobileConverter.toMerchantTradeItemVoList(orderVoPage.getData());
 
         }
-        /* 51 */
+
         return result;
 
     }
 
 
-
     public String getApi() {
-        /* 55 */
+
         return "api_merchanttrade";
 
     }
 
 
-
     public String getVersion() {
-        /* 59 */
+
         return "1.0.1";
 
     }
 
 }
-
 

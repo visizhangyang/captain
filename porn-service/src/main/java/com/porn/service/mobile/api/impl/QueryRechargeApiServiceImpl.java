@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.date.LocalDateTimeUtil;
@@ -16,53 +14,28 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QueryRechargeApiServiceImpl
-         implements ApiService<List<RechargeVo>>
-         {
+public class QueryRechargeApiServiceImpl
+        implements ApiService<List<RechargeVo>> {
 
     @Autowired
-     private RechargeApiService rechargeApiService;
-
+    private RechargeApiService rechargeApiService;
 
 
     public List<RechargeVo> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 32 */
+
         RechargeQueryDTO rechargeQueryDTO = RechargeQueryDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).startTime(LocalDateTimeUtil.offset(LocalDateTimeUtil.now(), -7L, ChronoUnit.DAYS)).build();
-        /* 33 */
+
         return this.rechargeApiService.queryRechargeList(rechargeQueryDTO);
 
     }
 
 
-
     public String getApi() {
-        /* 37 */
+
         return "api_queryrecharge";
 
     }
 
 }
-
 

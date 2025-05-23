@@ -1,73 +1,33 @@
-
 package com.porn.client.recharge.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
- public class RechargeQueryDTO extends BaseDTO {
+public class RechargeQueryDTO extends BaseDTO {
     @ApiModelProperty("账户ID")
-     private Long accountId;
-    
+    private Long accountId;
+
     @ApiModelProperty("钱包编码")
-     private String walletCode;
-    
+    private String walletCode;
+
     @ApiModelProperty("状态, RechargeStatusEnum")
-     private Integer status;
-    
+    private Integer status;
+
     @ApiModelProperty("hash值列表")
-     private List<String> hashList;
-    
+    private List<String> hashList;
+
     @ApiModelProperty("存在hash")
-     private Boolean hasHash;
-    
+    private Boolean hasHash;
+
     @ApiModelProperty("开始时间")
-     private LocalDateTime startTime;
-    
+    private LocalDateTime startTime;
+
     @ApiModelProperty("结束时间")
-     private LocalDateTime endTime;
+    private LocalDateTime endTime;
 
-    
-    /* 17 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setWalletCode(String walletCode) {
-        this.walletCode = walletCode;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setHashList(List<String> hashList) {
-        this.hashList = hashList;
-    }
-
-    public void setHasHash(Boolean hasHash) {
-        this.hasHash = hasHash;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RechargeQueryDTO;
-    }
-
-
-
-    /* 18 */
     protected RechargeQueryDTO(RechargeQueryDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -79,8 +39,97 @@ import java.util.List;
         this.endTime = b.endTime;
     }
 
+    public RechargeQueryDTO(Long accountId, String walletCode, Integer status, List<String> hashList, Boolean hasHash, LocalDateTime startTime, LocalDateTime endTime) {
+
+        this.accountId = accountId;
+        this.walletCode = walletCode;
+        this.status = status;
+        this.hashList = hashList;
+        this.hasHash = hasHash;
+        this.startTime = startTime;
+        this.endTime = endTime;
+
+    }
+
+    public RechargeQueryDTO() {
+    }
+
     public static RechargeQueryDTOBuilder<?, ?> builder() {
         return new RechargeQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RechargeQueryDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
+
+    public void setWalletCode(String walletCode) {
+        this.walletCode = walletCode;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public List<String> getHashList() {
+
+        return this.hashList;
+
+    }
+
+    public void setHashList(List<String> hashList) {
+        this.hashList = hashList;
+    }
+
+    public Boolean getHasHash() {
+
+        return this.hasHash;
+
+    }
+
+    public void setHasHash(Boolean hasHash) {
+        this.hasHash = hasHash;
+    }
+
+    public LocalDateTime getStartTime() {
+
+        return this.startTime;
+
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+
+        return this.endTime;
+
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     private static final class RechargeQueryDTOBuilderImpl extends RechargeQueryDTOBuilder<RechargeQueryDTO, RechargeQueryDTOBuilderImpl> {
@@ -100,16 +149,15 @@ import java.util.List;
         private Long accountId;
         private String walletCode;
         private Integer status;
+        private List<String> hashList;
+        private Boolean hasHash;
+        private LocalDateTime startTime;
+        private LocalDateTime endTime;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private List<String> hashList;
-        private Boolean hasHash;
-        private LocalDateTime startTime;
-        private LocalDateTime endTime;
 
         public B walletCode(String walletCode) {
             this.walletCode = walletCode;
@@ -146,72 +194,5 @@ import java.util.List;
         public abstract C build();
 
     }
-
-    public RechargeQueryDTO(Long accountId, String walletCode, Integer status, List<String> hashList, Boolean hasHash, LocalDateTime startTime, LocalDateTime endTime) {
-        /* 19 */
-        this.accountId = accountId;
-        this.walletCode = walletCode;
-        this.status = status;
-        this.hashList = hashList;
-        this.hasHash = hasHash;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        
-    }
-
-    
-    public RechargeQueryDTO() {
-    }
-
-    
-    
-    public Long getAccountId() {
-        /* 24 */
-        return this.accountId;
-        
-    }
-
-    
-    public String getWalletCode() {
-        /* 27 */
-        return this.walletCode;
-        
-    }
-
-    
-    public Integer getStatus() {
-        /* 30 */
-        return this.status;
-        
-    }
-
-    
-    public List<String> getHashList() {
-        /* 33 */
-        return this.hashList;
-        
-    }
-
-    
-    public Boolean getHasHash() {
-        /* 36 */
-        return this.hasHash;
-        
-    }
-
-    
-    public LocalDateTime getStartTime() {
-        /* 39 */
-        return this.startTime;
-        
-    }
-
-    
-    public LocalDateTime getEndTime() {
-        /* 42 */
-        return this.endTime;
-        
-    }
 }
-
 

@@ -1,12 +1,11 @@
-
 package com.porn.client.merchant.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -14,29 +13,28 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class MerchantVo extends BaseVo {
+public class MerchantVo extends BaseVo {
     @ApiModelProperty("商户名称")
-     private String name;
+    private String name;
     @ApiModelProperty("头像")
-     private String avatar;
+    private String avatar;
     @ApiModelProperty("头像地址")
-     private String avatarUrl;
+    private String avatarUrl;
     @ApiModelProperty("保证金")
-     private BigDecimal ensureAmount;
+    private BigDecimal ensureAmount;
     @ApiModelProperty("费率范围")
-     private String rateRange;
+    private String rateRange;
     @ApiModelProperty("地区名称")
-     private String areaName;
+    private String areaName;
 
     @ApiModelProperty("会员级别")
-     private Integer memberLevel;
+    private Integer memberLevel;
 
     @ApiModelProperty("会员级别名称")
-     private String memberLevelName;
+    private String memberLevelName;
 
     @ApiModelProperty("认证级别")
-     private Integer authLevel;
-
+    private Integer authLevel;
 
     @ApiModelProperty("认证级别名称")
     private String authLevelName;
@@ -60,5 +58,4 @@ import java.math.BigDecimal;
     private String merchantTag;
 
 }
-
 

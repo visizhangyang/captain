@@ -1,38 +1,27 @@
-
 package com.porn.client.merchant.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+public class MerchantRobotCreateDTO extends BaseDTO {
 
- public class MerchantRobotCreateDTO extends BaseDTO {
-    
     @ApiModelProperty("保证金(小)")
-     private BigDecimal ensureAmountMin;
-    
+    private BigDecimal ensureAmountMin;
+
     @ApiModelProperty("保证金(大)")
-     private BigDecimal ensureAmountMax;
-    
+    private BigDecimal ensureAmountMax;
+
     @ApiModelProperty("费率(小)")
-     private Integer rateRangeMin;
-    
+    private Integer rateRangeMin;
+
     @ApiModelProperty("费率(大)")
-     private Integer rateRangeMax;
-    
+    private Integer rateRangeMax;
+
     @ApiModelProperty("会员级别")
-     private List<Integer> memberLevelList;
-
-    
-    /* 17 */
-    public void setEnsureAmountMin(BigDecimal ensureAmountMin) {
-        this.ensureAmountMin = ensureAmountMin;
-    }
-
+    private List<Integer> memberLevelList;
     @ApiModelProperty("认证级别")
     private List<Integer> authLevelList;
     @ApiModelProperty("邮箱认证")
@@ -46,54 +35,6 @@ import java.util.List;
     @ApiModelProperty("创建次数")
     private Integer createCount;
 
-    public void setEnsureAmountMax(BigDecimal ensureAmountMax) {
-        this.ensureAmountMax = ensureAmountMax;
-    }
-
-    public void setRateRangeMin(Integer rateRangeMin) {
-        this.rateRangeMin = rateRangeMin;
-    }
-
-    public void setRateRangeMax(Integer rateRangeMax) {
-        this.rateRangeMax = rateRangeMax;
-    }
-
-    public void setMemberLevelList(List<Integer> memberLevelList) {
-        this.memberLevelList = memberLevelList;
-    }
-
-    public void setAuthLevelList(List<Integer> authLevelList) {
-        this.authLevelList = authLevelList;
-    }
-
-    public void setMailAuthList(List<Integer> mailAuthList) {
-        this.mailAuthList = mailAuthList;
-    }
-
-    public void setPhoneAuthList(List<Integer> phoneAuthList) {
-        this.phoneAuthList = phoneAuthList;
-    }
-
-    public void setKycAuthList(List<Integer> kycAuthList) {
-        this.kycAuthList = kycAuthList;
-    }
-
-    public void setAddressAuthList(List<Integer> addressAuthList) {
-        this.addressAuthList = addressAuthList;
-    }
-
-    public void setCreateCount(Integer createCount) {
-        this.createCount = createCount;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MerchantRobotCreateDTO;
-    }
-
-
-
-    /* 18 */
     protected MerchantRobotCreateDTO(MerchantRobotCreateDTOBuilder<?, ?> b) {
         super(b);
         this.ensureAmountMin = b.ensureAmountMin;
@@ -109,8 +50,141 @@ import java.util.List;
         this.createCount = b.createCount;
     }
 
+    public MerchantRobotCreateDTO(BigDecimal ensureAmountMin, BigDecimal ensureAmountMax, Integer rateRangeMin, Integer rateRangeMax, List<Integer> memberLevelList, List<Integer> authLevelList, List<Integer> mailAuthList, List<Integer> phoneAuthList, List<Integer> kycAuthList, List<Integer> addressAuthList, Integer createCount) {
+
+        this.ensureAmountMin = ensureAmountMin;
+        this.ensureAmountMax = ensureAmountMax;
+        this.rateRangeMin = rateRangeMin;
+        this.rateRangeMax = rateRangeMax;
+        this.memberLevelList = memberLevelList;
+        this.authLevelList = authLevelList;
+        this.mailAuthList = mailAuthList;
+        this.phoneAuthList = phoneAuthList;
+        this.kycAuthList = kycAuthList;
+        this.addressAuthList = addressAuthList;
+        this.createCount = createCount;
+
+    }
+
+    public MerchantRobotCreateDTO() {
+    }
+
     public static MerchantRobotCreateDTOBuilder<?, ?> builder() {
         return new MerchantRobotCreateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MerchantRobotCreateDTO;
+    }
+
+    public BigDecimal getEnsureAmountMin() {
+
+        return this.ensureAmountMin;
+
+    }
+
+    public void setEnsureAmountMin(BigDecimal ensureAmountMin) {
+        this.ensureAmountMin = ensureAmountMin;
+    }
+
+    public BigDecimal getEnsureAmountMax() {
+
+        return this.ensureAmountMax;
+
+    }
+
+    public void setEnsureAmountMax(BigDecimal ensureAmountMax) {
+        this.ensureAmountMax = ensureAmountMax;
+    }
+
+    public Integer getRateRangeMin() {
+
+        return this.rateRangeMin;
+
+    }
+
+    public void setRateRangeMin(Integer rateRangeMin) {
+        this.rateRangeMin = rateRangeMin;
+    }
+
+    public Integer getRateRangeMax() {
+
+        return this.rateRangeMax;
+
+    }
+
+    public void setRateRangeMax(Integer rateRangeMax) {
+        this.rateRangeMax = rateRangeMax;
+    }
+
+    public List<Integer> getMemberLevelList() {
+
+        return this.memberLevelList;
+
+    }
+
+    public void setMemberLevelList(List<Integer> memberLevelList) {
+        this.memberLevelList = memberLevelList;
+    }
+
+    public List<Integer> getAuthLevelList() {
+
+        return this.authLevelList;
+
+    }
+
+    public void setAuthLevelList(List<Integer> authLevelList) {
+        this.authLevelList = authLevelList;
+    }
+
+    public List<Integer> getMailAuthList() {
+
+        return this.mailAuthList;
+
+    }
+
+    public void setMailAuthList(List<Integer> mailAuthList) {
+        this.mailAuthList = mailAuthList;
+    }
+
+    public List<Integer> getPhoneAuthList() {
+
+        return this.phoneAuthList;
+
+    }
+
+    public void setPhoneAuthList(List<Integer> phoneAuthList) {
+        this.phoneAuthList = phoneAuthList;
+    }
+
+    public List<Integer> getKycAuthList() {
+
+        return this.kycAuthList;
+
+    }
+
+    public void setKycAuthList(List<Integer> kycAuthList) {
+        this.kycAuthList = kycAuthList;
+    }
+
+    public List<Integer> getAddressAuthList() {
+
+        return this.addressAuthList;
+
+    }
+
+    public void setAddressAuthList(List<Integer> addressAuthList) {
+        this.addressAuthList = addressAuthList;
+    }
+
+    public Integer getCreateCount() {
+
+        return this.createCount;
+
+    }
+
+    public void setCreateCount(Integer createCount) {
+        this.createCount = createCount;
     }
 
     private static final class MerchantRobotCreateDTOBuilderImpl extends MerchantRobotCreateDTOBuilder<MerchantRobotCreateDTO, MerchantRobotCreateDTOBuilderImpl> {
@@ -200,104 +274,5 @@ import java.util.List;
 
     }
 
-    public MerchantRobotCreateDTO(BigDecimal ensureAmountMin, BigDecimal ensureAmountMax, Integer rateRangeMin, Integer rateRangeMax, List<Integer> memberLevelList, List<Integer> authLevelList, List<Integer> mailAuthList, List<Integer> phoneAuthList, List<Integer> kycAuthList, List<Integer> addressAuthList, Integer createCount) {
-        /* 19 */
-        this.ensureAmountMin = ensureAmountMin;
-        this.ensureAmountMax = ensureAmountMax;
-        this.rateRangeMin = rateRangeMin;
-        this.rateRangeMax = rateRangeMax;
-        this.memberLevelList = memberLevelList;
-        this.authLevelList = authLevelList;
-        this.mailAuthList = mailAuthList;
-        this.phoneAuthList = phoneAuthList;
-        this.kycAuthList = kycAuthList;
-        this.addressAuthList = addressAuthList;
-        this.createCount = createCount;
-        
-    }
-
-    
-    public MerchantRobotCreateDTO() {
-    }
-
-    
-    
-    public BigDecimal getEnsureAmountMin() {
-        /* 24 */
-        return this.ensureAmountMin;
-        
-    }
-
-    
-    public BigDecimal getEnsureAmountMax() {
-        /* 27 */
-        return this.ensureAmountMax;
-        
-    }
-
-    
-    public Integer getRateRangeMin() {
-        /* 30 */
-        return this.rateRangeMin;
-        
-    }
-
-    
-    public Integer getRateRangeMax() {
-        /* 33 */
-        return this.rateRangeMax;
-        
-    }
-
-    
-    public List<Integer> getMemberLevelList() {
-        /* 36 */
-        return this.memberLevelList;
-        
-    }
-
-    
-    public List<Integer> getAuthLevelList() {
-        /* 39 */
-        return this.authLevelList;
-        
-    }
-
-    
-    public List<Integer> getMailAuthList() {
-        /* 42 */
-        return this.mailAuthList;
-        
-    }
-
-    
-    public List<Integer> getPhoneAuthList() {
-        /* 45 */
-        return this.phoneAuthList;
-        
-    }
-
-    
-    public List<Integer> getKycAuthList() {
-        /* 48 */
-        return this.kycAuthList;
-        
-    }
-
-    
-    public List<Integer> getAddressAuthList() {
-        /* 51 */
-        return this.addressAuthList;
-        
-    }
-
-    
-    public Integer getCreateCount() {
-        /* 54 */
-        return this.createCount;
-        
-    }
-    
 }
-
 

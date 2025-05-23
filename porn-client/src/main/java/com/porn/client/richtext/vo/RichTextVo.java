@@ -1,33 +1,26 @@
-
 package com.porn.client.richtext.vo;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class RichTextVo extends BaseVo {
+public class RichTextVo extends BaseVo {
 
     @ApiModelProperty("类型, RichTextTypeEnum")
-     private Integer type;
+    private Integer type;
 
     @ApiModelProperty("语言类型, LangTypeEnum")
-     private Integer langType;
+    private Integer langType;
 
     @ApiModelProperty("大字符串")
-     private String richText;
-
-
+    private String richText;
 
 }
-
 

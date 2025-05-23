@@ -16,4 +16,3 @@ public interface RoleMenuConverter {
     RoleMenuDO toRoleMenuDO(RoleMenuSaveOrUpdateDTO paramRoleMenuSaveOrUpdateDTO);
 }
 
-

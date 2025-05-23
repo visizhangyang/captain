@@ -6,4 +6,3 @@ import com.porn.service.log.dao.entity.LoginLogDO;
 public interface LoginLogMapper extends BaseMapper<LoginLogDO> {
 }
 
-

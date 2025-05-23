@@ -1,26 +1,18 @@
-
 package com.porn.client.merchant.enums;
 
+public enum MemberLevelEnum {
+    BRONZE(Integer.valueOf(0), "青铜VIP"),
 
+    SILVER(Integer.valueOf(1), "白银VIP"),
 
+    GOLD(Integer.valueOf(2), "黄金VIP"),
 
+    DIAMOND(Integer.valueOf(3), "钻石VIP");
+    private Integer level;
 
+    private String description;
 
- public enum MemberLevelEnum
-         {
-    /* 15 */   BRONZE(Integer.valueOf(0), "青铜VIP"),
-
-    /* 17 */   SILVER(Integer.valueOf(1), "白银VIP"),
-
-    /* 19 */   GOLD(Integer.valueOf(2), "黄金VIP"),
-
-    /* 21 */   DIAMOND(Integer.valueOf(3), "钻石VIP");
-       private Integer level;
-
-
-       private String description;
-
-       MemberLevelEnum(Integer level, String description) {
+    MemberLevelEnum(Integer level, String description) {
 
         this.level = level;
 
@@ -28,44 +20,33 @@ package com.porn.client.merchant.enums;
 
     }
 
-
-
-
-    public Integer getLevel() {
-        /* 26 */
-        return this.level;
-
-    }
-
-
-    public String getDescription() {
-        /* 29 */
-        return this.description;
-
-    }
-
-
-
-
-
-
-
     public static String queryByLevel(Integer level) {
-        /* 37 */
+
         for (MemberLevelEnum memberLevelEnum : values()) {
-            /* 38 */
+
             if (memberLevelEnum.getLevel().equals(level)) {
-                /* 39 */
+
                 return memberLevelEnum.getDescription();
 
             }
 
         }
-        /* 42 */
+
         return null;
 
     }
 
-}
+    public Integer getLevel() {
 
+        return this.level;
+
+    }
+
+    public String getDescription() {
+
+        return this.description;
+
+    }
+
+}
 

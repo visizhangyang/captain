@@ -1,44 +1,45 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class AccountChangeParentDTO
-         extends BaseDTO
-         {
+public class AccountChangeParentDTO
+        extends BaseDTO {
 
     @ApiModelProperty("父节点ID")
-     private Long parentId;
+    private Long parentId;
 
-
-
-    public void setParentId(Long parentId) {
-        /* 15 */
-        this.parentId = parentId;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountChangeParentDTO;
-    }
-
-
-
-    /* 16 */
     protected AccountChangeParentDTO(AccountChangeParentDTOBuilder<?, ?> b) {
         super(b);
         this.parentId = b.parentId;
     }
 
+    public AccountChangeParentDTO(Long parentId) {
+
+        this.parentId = parentId;
+
+    }
+
+    public AccountChangeParentDTO() {
+    }
+
     public static AccountChangeParentDTOBuilder<?, ?> builder() {
         return new AccountChangeParentDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountChangeParentDTO;
+    }
+
+    public Long getParentId() {
+
+        return this.parentId;
+
+    }
+
+    public void setParentId(Long parentId) {
+
+        this.parentId = parentId;
     }
 
     private static final class AccountChangeParentDTOBuilderImpl extends AccountChangeParentDTOBuilder<AccountChangeParentDTO, AccountChangeParentDTOBuilderImpl> {
@@ -55,12 +56,12 @@ import com.porn.client.common.dto.BaseDTO;
     }
 
     public static abstract class AccountChangeParentDTOBuilder<C extends AccountChangeParentDTO, B extends AccountChangeParentDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private Long parentId;
+
         public B parentId(Long parentId) {
             this.parentId = parentId;
             return self();
         }
-
-        private Long parentId;
 
         protected abstract B self();
 
@@ -68,24 +69,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public AccountChangeParentDTO(Long parentId) {
-        /* 17 */
-        this.parentId = parentId;
-
-    }
-
-
-    public AccountChangeParentDTO() {
-    }
-
-
-
-    public Long getParentId() {
-        /* 22 */
-        return this.parentId;
-
-    }
-
 }
-
 

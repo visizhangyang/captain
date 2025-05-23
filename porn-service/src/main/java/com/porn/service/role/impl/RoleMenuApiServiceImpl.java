@@ -1,11 +1,6 @@
-
 package com.porn.service.role.impl;
 
-
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import com.porn.client.common.enums.DelFlagEnum;
 import com.porn.client.common.exceptions.BusinessException;
@@ -27,69 +22,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class RoleMenuApiServiceImpl implements RoleMenuApiService {
-    /*  27 */   private static final Logger log = LoggerFactory.getLogger(RoleMenuApiServiceImpl.class);
-
-
-
-    @Autowired
-     private RoleMenuConverter roleMenuConverter;
-
+public class RoleMenuApiServiceImpl implements RoleMenuApiService {
+    private static final Logger log = LoggerFactory.getLogger(RoleMenuApiServiceImpl.class);
 
 
     @Autowired
-     private RoleMenuMapper roleMenuMapper;
+    private RoleMenuConverter roleMenuConverter;
 
 
-
+    @Autowired
+    private RoleMenuMapper roleMenuMapper;
 
 
     public RoleMenuVo queryRoleMenu(RoleMenuQueryDTO roleMenuQueryDTO) {
-        /*  40 */
+
         List<RoleMenuVo> roleMenuVoList = queryRoleMenuList(roleMenuQueryDTO);
-        /*  41 */
+
         return ObjectUtil.isEmpty(roleMenuVoList) ? null : roleMenuVoList.get(0);
 
     }
 
 
-
-
-
-
-
-
-
-
-
     public List<RoleMenuVo> queryRoleMenuList(RoleMenuQueryDTO roleMenuQueryDTO) {
-        /*  53 */
+
         List<RoleMenuDO> roleMenuList = ChainWrappers.lambdaQueryChain(roleMenuMapper)
                 .eq(ObjectUtil.isNotEmpty(roleMenuQueryDTO.getId()), BaseDO::getId, roleMenuQueryDTO.getId())
                 .eq(ObjectUtil.isNotEmpty(roleMenuQueryDTO.getRoleId()), RoleMenuDO::getRoleId, roleMenuQueryDTO.getRoleId())
@@ -98,62 +56,51 @@ import java.util.List;
                 .in(ObjectUtil.isNotEmpty(roleMenuQueryDTO.getMenuIdList()), RoleMenuDO::getMenuId, roleMenuQueryDTO.getMenuIdList())
                 .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
                 .list();
-        /*  54 */
+
         List<RoleMenuVo> roleMenuVoList = this.roleMenuConverter.toRoleMenuVoList(roleMenuList);
-        /*  55 */
+
         return roleMenuVoList;
 
     }
 
-
-
-
     public RoleMenuVo saveOrUpdate(RoleMenuSaveOrUpdateDTO roleMenuSaveOrUpdateDTO) {
-        /*  60 */
+
         if (ObjectUtil.isEmpty(roleMenuSaveOrUpdateDTO.getId())) {
-            /*  61 */
+
             RoleMenuDO roleMenuDO = this.roleMenuConverter.toRoleMenuDO(roleMenuSaveOrUpdateDTO);
-            /*  62 */
+
             if (this.roleMenuMapper.insert(roleMenuDO) <= 0) {
-                /*  63 */
+
                 throw new BusinessException("保存权限信息失败.");
 
             }
-            /*  65 */
+
             return queryRoleMenu(((RoleMenuQueryDTO.RoleMenuQueryDTOBuilder) RoleMenuQueryDTO.builder().id(roleMenuDO.getId())).build());
 
         }
 
 
-
-
-
-
-        /*  73 */
         boolean rs = ChainWrappers.lambdaUpdateChain(roleMenuMapper)
                 .set(ObjectUtil.isNotEmpty(roleMenuSaveOrUpdateDTO.getRoleId()), RoleMenuDO::getRoleId, roleMenuSaveOrUpdateDTO.getRoleId())
                 .set(ObjectUtil.isNotEmpty(roleMenuSaveOrUpdateDTO.getMenuId()), RoleMenuDO::getMenuId, roleMenuSaveOrUpdateDTO.getMenuId())
                 .eq(BaseDO::getId, roleMenuSaveOrUpdateDTO.getId())
                 .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
                 .update();
-        /*  74 */
+
         if (!rs) {
-            /*  75 */
+
             throw new BusinessException("更新权限信息失败.");
 
         }
-        /*  77 */
+
         return queryRoleMenu(((RoleMenuQueryDTO.RoleMenuQueryDTOBuilder) RoleMenuQueryDTO.builder().id(roleMenuSaveOrUpdateDTO.getId())).build());
 
     }
 
 
-
-
-
     public Boolean batchDelete(RoleMenuBatchDeleteDTO roleMenuBatchDeleteDTO) {
-        /*  83 */
-        return  ChainWrappers.lambdaUpdateChain(roleMenuMapper)
+
+        return ChainWrappers.lambdaUpdateChain(roleMenuMapper)
                 .set(BaseDO::getDelFlag, DelFlagEnum.DELETED.getFlag())
                 .eq(ObjectUtil.isNotEmpty(roleMenuBatchDeleteDTO.getId()), BaseDO::getId, roleMenuBatchDeleteDTO.getId())
                 .eq(ObjectUtil.isNotEmpty(roleMenuBatchDeleteDTO.getRoleId()), RoleMenuDO::getRoleId, roleMenuBatchDeleteDTO.getRoleId())
@@ -161,33 +108,27 @@ import java.util.List;
                 .eq(ObjectUtil.isNotEmpty(roleMenuBatchDeleteDTO.getMenuId()), RoleMenuDO::getMenuId, roleMenuBatchDeleteDTO.getMenuId())
                 .in(ObjectUtil.isNotEmpty(roleMenuBatchDeleteDTO.getMenuIdList()), RoleMenuDO::getRoleId, roleMenuBatchDeleteDTO.getMenuIdList())
                 .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
-/*  91 */.update();
+                .update();
 
     }
 
-
-
-
     public Boolean batchCreate(RoleMenuBatchCreateDTO roleMenuBatchCreateDTO) {
-        /*  96 */
+
         if (ObjectUtil.isEmpty(roleMenuBatchCreateDTO.getRoleId()) ||
-                /*  97 */       ObjectUtil.isEmpty(roleMenuBatchCreateDTO.getMenuIdList())) {
-            /*  98 */
+                ObjectUtil.isEmpty(roleMenuBatchCreateDTO.getMenuIdList())) {
+
             return Boolean.FALSE;
 
         }
-        /* 100 */
+
         for (Long menuId : roleMenuBatchCreateDTO.getMenuIdList()) {
 
-
-
-            /* 104 */
             RoleMenuSaveOrUpdateDTO roleMenuSaveOrUpdateDTO = RoleMenuSaveOrUpdateDTO.builder().roleId(roleMenuBatchCreateDTO.getRoleId()).menuId(menuId).build();
-            /* 105 */
+
             saveOrUpdate(roleMenuSaveOrUpdateDTO);
 
         }
-        /* 107 */
+
         return Boolean.TRUE;
 
     }

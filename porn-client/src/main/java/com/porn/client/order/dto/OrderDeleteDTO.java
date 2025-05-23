@@ -1,43 +1,31 @@
-
 package com.porn.client.order.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class OrderDeleteDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class OrderDeleteDTO
-         extends BaseDTO
-         {
-    
-
-    protected boolean canEqual(Object other) {
-        return other instanceof OrderDeleteDTO;
-    }
-
-
-
-    /* 14 */
     protected OrderDeleteDTO(OrderDeleteDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public OrderDeleteDTO() {
     }
 
     public static OrderDeleteDTOBuilder<?, ?> builder() {
         return new OrderDeleteDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof OrderDeleteDTO;
+    }
+
     private static final class OrderDeleteDTOBuilderImpl extends OrderDeleteDTOBuilder<OrderDeleteDTO, OrderDeleteDTOBuilderImpl> {
-        protected OrderDeleteDTOBuilderImpl self() {
-            return this;
+        private OrderDeleteDTOBuilderImpl() {
         }
 
-        private OrderDeleteDTOBuilderImpl() {
+        protected OrderDeleteDTOBuilderImpl self() {
+            return this;
         }
 
         public OrderDeleteDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class OrderDeleteDTOBuilder<C extends OrderDeleteDTO, B extends OrderDeleteDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-        
-        
-        
         protected abstract B self();
 
-        
-        
         public abstract C build();
     }
 
-    
-    
-    
-    public OrderDeleteDTO() {
-    }
-    
 }
-
 

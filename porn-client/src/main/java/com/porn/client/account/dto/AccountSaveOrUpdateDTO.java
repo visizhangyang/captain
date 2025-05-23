@@ -1,44 +1,36 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
- public class AccountSaveOrUpdateDTO extends BaseDTO {
+public class AccountSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("账户名称")
-     private String name;
+    private String name;
     @ApiModelProperty("昵称")
-     private String nickName;
+    private String nickName;
     @ApiModelProperty("头像")
-     private String avatar;
+    private String avatar;
     @ApiModelProperty("密码")
-     private String loginPwd;
+    private String loginPwd;
     @ApiModelProperty("收款地址")
-     private String receiveAddress;
+    private String receiveAddress;
     @ApiModelProperty("QQ号码")
-     private String qq;
+    private String qq;
     @ApiModelProperty("微信号码")
-     private String wechat;
+    private String wechat;
     @ApiModelProperty("手机号码")
-     private String phone;
+    private String phone;
     @ApiModelProperty("当前账户的推广码")
-     private String promotionCode;
+    private String promotionCode;
     @ApiModelProperty("当前账户的父推荐码")
-     private String parentPromotionCode;
+    private String parentPromotionCode;
     @ApiModelProperty("总余额")
-     private BigDecimal totalBalance;
+    private BigDecimal totalBalance;
 
     @ApiModelProperty("可用余额")
-     private BigDecimal availableBalance;
-
-
-    /* 17 */
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    private BigDecimal availableBalance;
     @ApiModelProperty("冻结余额")
     private BigDecimal freezeBalance;
     @ApiModelProperty("账户级别")
@@ -64,106 +56,6 @@ import java.math.BigDecimal;
     @ApiModelProperty("上传状态, 上传状态, 默认禁用, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
     private Integer uploadStatus;
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public void setLoginPwd(String loginPwd) {
-        this.loginPwd = loginPwd;
-    }
-
-    public void setReceiveAddress(String receiveAddress) {
-        this.receiveAddress = receiveAddress;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-
-    public void setWechat(String wechat) {
-        this.wechat = wechat;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setPromotionCode(String promotionCode) {
-        this.promotionCode = promotionCode;
-    }
-
-    public void setParentPromotionCode(String parentPromotionCode) {
-        this.parentPromotionCode = parentPromotionCode;
-    }
-
-    public void setTotalBalance(BigDecimal totalBalance) {
-        this.totalBalance = totalBalance;
-    }
-
-    public void setAvailableBalance(BigDecimal availableBalance) {
-        this.availableBalance = availableBalance;
-    }
-
-    public void setFreezeBalance(BigDecimal freezeBalance) {
-        this.freezeBalance = freezeBalance;
-    }
-
-    public void setAccountLevel(Integer accountLevel) {
-        this.accountLevel = accountLevel;
-    }
-
-    public void setSubVisit(Integer subVisit) {
-        this.subVisit = subVisit;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setAccountType(Integer accountType) {
-        this.accountType = accountType;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public void setKeynoteFollow(Integer keynoteFollow) {
-        this.keynoteFollow = keynoteFollow;
-    }
-
-    public void setAutoWork(Integer autoWork) {
-        this.autoWork = autoWork;
-    }
-
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public void setPhotoStatus(Integer photoStatus) {
-        this.photoStatus = photoStatus;
-    }
-
-    public void setUploadStatus(Integer uploadStatus) {
-        this.uploadStatus = uploadStatus;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountSaveOrUpdateDTO;
-    }
-
-
-
-    /* 18 */
     protected AccountSaveOrUpdateDTO(AccountSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
@@ -192,8 +84,284 @@ import java.math.BigDecimal;
         this.uploadStatus = b.uploadStatus;
     }
 
+    public AccountSaveOrUpdateDTO(String name, String nickName, String avatar, String loginPwd, String receiveAddress, String qq, String wechat, String phone, String promotionCode, String parentPromotionCode, BigDecimal totalBalance, BigDecimal availableBalance, BigDecimal freezeBalance, Integer accountLevel, Integer subVisit, Integer status, Integer accountType, String remark, Long parentId, Integer keynoteFollow, Integer autoWork, String deviceId, Integer photoStatus, Integer uploadStatus) {
+
+        this.name = name;
+        this.nickName = nickName;
+        this.avatar = avatar;
+        this.loginPwd = loginPwd;
+        this.receiveAddress = receiveAddress;
+        this.qq = qq;
+        this.wechat = wechat;
+        this.phone = phone;
+        this.promotionCode = promotionCode;
+        this.parentPromotionCode = parentPromotionCode;
+        this.totalBalance = totalBalance;
+        this.availableBalance = availableBalance;
+        this.freezeBalance = freezeBalance;
+        this.accountLevel = accountLevel;
+        this.subVisit = subVisit;
+        this.status = status;
+        this.accountType = accountType;
+        this.remark = remark;
+        this.parentId = parentId;
+        this.keynoteFollow = keynoteFollow;
+        this.autoWork = autoWork;
+        this.deviceId = deviceId;
+        this.photoStatus = photoStatus;
+        this.uploadStatus = uploadStatus;
+
+    }
+
+    public AccountSaveOrUpdateDTO() {
+    }
+
     public static AccountSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new AccountSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountSaveOrUpdateDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNickName() {
+
+        return this.nickName;
+
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getAvatar() {
+
+        return this.avatar;
+
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getLoginPwd() {
+
+        return this.loginPwd;
+
+    }
+
+    public void setLoginPwd(String loginPwd) {
+        this.loginPwd = loginPwd;
+    }
+
+    public String getReceiveAddress() {
+
+        return this.receiveAddress;
+
+    }
+
+    public void setReceiveAddress(String receiveAddress) {
+        this.receiveAddress = receiveAddress;
+    }
+
+    public String getQq() {
+
+        return this.qq;
+
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWechat() {
+
+        return this.wechat;
+
+    }
+
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
+    }
+
+    public String getPhone() {
+
+        return this.phone;
+
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPromotionCode() {
+
+        return this.promotionCode;
+
+    }
+
+    public void setPromotionCode(String promotionCode) {
+        this.promotionCode = promotionCode;
+    }
+
+    public String getParentPromotionCode() {
+
+        return this.parentPromotionCode;
+
+    }
+
+    public void setParentPromotionCode(String parentPromotionCode) {
+        this.parentPromotionCode = parentPromotionCode;
+    }
+
+    public BigDecimal getTotalBalance() {
+
+        return this.totalBalance;
+
+    }
+
+    public void setTotalBalance(BigDecimal totalBalance) {
+        this.totalBalance = totalBalance;
+    }
+
+    public BigDecimal getAvailableBalance() {
+
+        return this.availableBalance;
+
+    }
+
+    public void setAvailableBalance(BigDecimal availableBalance) {
+        this.availableBalance = availableBalance;
+    }
+
+    public BigDecimal getFreezeBalance() {
+
+        return this.freezeBalance;
+
+    }
+
+    public void setFreezeBalance(BigDecimal freezeBalance) {
+        this.freezeBalance = freezeBalance;
+    }
+
+    public Integer getAccountLevel() {
+
+        return this.accountLevel;
+
+    }
+
+    public void setAccountLevel(Integer accountLevel) {
+        this.accountLevel = accountLevel;
+    }
+
+    public Integer getSubVisit() {
+
+        return this.subVisit;
+
+    }
+
+    public void setSubVisit(Integer subVisit) {
+        this.subVisit = subVisit;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getAccountType() {
+
+        return this.accountType;
+
+    }
+
+    public void setAccountType(Integer accountType) {
+        this.accountType = accountType;
+    }
+
+    public String getRemark() {
+
+        return this.remark;
+
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Long getParentId() {
+
+        return this.parentId;
+
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public Integer getKeynoteFollow() {
+
+        return this.keynoteFollow;
+
+    }
+
+    public void setKeynoteFollow(Integer keynoteFollow) {
+        this.keynoteFollow = keynoteFollow;
+    }
+
+    public Integer getAutoWork() {
+
+        return this.autoWork;
+
+    }
+
+    public void setAutoWork(Integer autoWork) {
+        this.autoWork = autoWork;
+    }
+
+    public String getDeviceId() {
+
+        return this.deviceId;
+
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public Integer getPhotoStatus() {
+
+        return this.photoStatus;
+
+    }
+
+    public void setPhotoStatus(Integer photoStatus) {
+        this.photoStatus = photoStatus;
+    }
+
+    public Integer getUploadStatus() {
+
+        return this.uploadStatus;
+
+    }
+
+    public void setUploadStatus(Integer uploadStatus) {
+        this.uploadStatus = uploadStatus;
     }
 
     private static final class AccountSaveOrUpdateDTOBuilderImpl extends AccountSaveOrUpdateDTOBuilder<AccountSaveOrUpdateDTO, AccountSaveOrUpdateDTOBuilderImpl> {
@@ -360,209 +528,5 @@ import java.math.BigDecimal;
         public abstract C build();
 
     }
-
-    public AccountSaveOrUpdateDTO(String name, String nickName, String avatar, String loginPwd, String receiveAddress, String qq, String wechat, String phone, String promotionCode, String parentPromotionCode, BigDecimal totalBalance, BigDecimal availableBalance, BigDecimal freezeBalance, Integer accountLevel, Integer subVisit, Integer status, Integer accountType, String remark, Long parentId, Integer keynoteFollow, Integer autoWork, String deviceId, Integer photoStatus, Integer uploadStatus) {
-        /* 19 */
-        this.name = name;
-        this.nickName = nickName;
-        this.avatar = avatar;
-        this.loginPwd = loginPwd;
-        this.receiveAddress = receiveAddress;
-        this.qq = qq;
-        this.wechat = wechat;
-        this.phone = phone;
-        this.promotionCode = promotionCode;
-        this.parentPromotionCode = parentPromotionCode;
-        this.totalBalance = totalBalance;
-        this.availableBalance = availableBalance;
-        this.freezeBalance = freezeBalance;
-        this.accountLevel = accountLevel;
-        this.subVisit = subVisit;
-        this.status = status;
-        this.accountType = accountType;
-        this.remark = remark;
-        this.parentId = parentId;
-        this.keynoteFollow = keynoteFollow;
-        this.autoWork = autoWork;
-        this.deviceId = deviceId;
-        this.photoStatus = photoStatus;
-        this.uploadStatus = uploadStatus;
-
-    }
-
-
-    public AccountSaveOrUpdateDTO() {
-    }
-
-
-
-    public String getName() {
-        /* 24 */
-        return this.name;
-
-    }
-
-
-    public String getNickName() {
-        /* 27 */
-        return this.nickName;
-
-    }
-
-
-    public String getAvatar() {
-        /* 30 */
-        return this.avatar;
-
-    }
-
-
-    public String getLoginPwd() {
-        /* 33 */
-        return this.loginPwd;
-
-    }
-
-
-    public String getReceiveAddress() {
-        /* 36 */
-        return this.receiveAddress;
-
-    }
-
-
-    public String getQq() {
-        /* 39 */
-        return this.qq;
-
-    }
-
-
-    public String getWechat() {
-        /* 42 */
-        return this.wechat;
-
-    }
-
-
-    public String getPhone() {
-        /* 45 */
-        return this.phone;
-
-    }
-
-
-    public String getPromotionCode() {
-        /* 48 */
-        return this.promotionCode;
-
-    }
-
-
-    public String getParentPromotionCode() {
-        /* 51 */
-        return this.parentPromotionCode;
-
-    }
-
-
-    public BigDecimal getTotalBalance() {
-        /* 54 */
-        return this.totalBalance;
-
-    }
-
-
-    public BigDecimal getAvailableBalance() {
-        /* 57 */
-        return this.availableBalance;
-
-    }
-
-
-    public BigDecimal getFreezeBalance() {
-        /* 60 */
-        return this.freezeBalance;
-
-    }
-
-
-    public Integer getAccountLevel() {
-        /* 63 */
-        return this.accountLevel;
-
-    }
-
-
-    public Integer getSubVisit() {
-        /* 66 */
-        return this.subVisit;
-
-    }
-
-
-
-    public Integer getStatus() {
-        /* 70 */
-        return this.status;
-
-    }
-
-
-    public Integer getAccountType() {
-        /* 73 */
-        return this.accountType;
-
-    }
-
-
-    public String getRemark() {
-        /* 76 */
-        return this.remark;
-
-    }
-
-
-    public Long getParentId() {
-        /* 79 */
-        return this.parentId;
-
-    }
-
-
-    public Integer getKeynoteFollow() {
-        /* 82 */
-        return this.keynoteFollow;
-
-    }
-
-
-    public Integer getAutoWork() {
-        /* 85 */
-        return this.autoWork;
-
-    }
-
-
-    public String getDeviceId() {
-        /* 88 */
-        return this.deviceId;
-
-    }
-
-
-    public Integer getPhotoStatus() {
-        /* 91 */
-        return this.photoStatus;
-
-    }
-
-
-    public Integer getUploadStatus() {
-        /* 94 */
-        return this.uploadStatus;
-
-    }
 }
-
 

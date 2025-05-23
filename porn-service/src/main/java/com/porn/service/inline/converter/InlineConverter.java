@@ -16,4 +16,3 @@ public interface InlineConverter {
     InlineDO toInlineDO(InlineSaveOrUpdateDTO paramInlineSaveOrUpdateDTO);
 }
 
-

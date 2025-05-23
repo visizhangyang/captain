@@ -9,4 +9,3 @@ public interface TestConverter {
     TestDO toTestDO(TestDTO paramTestDTO);
 }
 
-

@@ -1,6 +1,4 @@
-
 package com.porn.service.common.config;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -22,88 +20,70 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 @Configuration
- public class MyBatisPlusConfig
-         extends DefaultSqlInjector
-         {
+public class MyBatisPlusConfig
+        extends DefaultSqlInjector {
 
     @Bean
-     public MybatisPlusInterceptor paginationInterceptor() {
-        /* 34 */
+    public MybatisPlusInterceptor paginationInterceptor() {
+
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
 
-        /* 36 */
         interceptor.addInnerInterceptor((InnerInterceptor) new PaginationInnerInterceptor(DbType.MYSQL));
-        /* 37 */
+
         return interceptor;
 
     }
 
 
-
-
-
-
-
     @Bean
-     public FillObjectHandler fillObjectHandler() {
-        /* 46 */
+    public FillObjectHandler fillObjectHandler() {
+
         return new FillObjectHandler();
 
     }
 
 
-
-
-
     public List<AbstractMethod> getMethodList(Class<?> mapperClass) {
-        /* 52 */
+
         List<AbstractMethod> methodList = super.getMethodList(mapperClass);
-        /* 53 */
+
         methodList.add(new InsertBatchSomeColumn());
-        /* 54 */
+
         return methodList;
 
     }
 
-
-
-
-       public static class FillObjectHandler
-             implements MetaObjectHandler
-             {
+    public static class FillObjectHandler
+            implements MetaObjectHandler {
 
         public void insertFill(MetaObject metaObject) {
-            /* 63 */
+
             UserLoginVo userLoginVo = UserHolder.getUser();
 
-            /* 65 */
             LocalDateTime now = LocalDateTime.now();
-            /* 66 */
+
             setFieldValByName("createTime", now, metaObject);
-            /* 67 */
+
             setFieldValByName("modifyTime", now, metaObject);
-            /* 68 */
+
             setFieldValByName("createBy", Long.valueOf(ObjectUtil.isEmpty(userLoginVo) ? -1L : userLoginVo.getId().longValue()), metaObject);
-            /* 69 */
+
             setFieldValByName("modifyBy", Long.valueOf(ObjectUtil.isEmpty(userLoginVo) ? -1L : userLoginVo.getId().longValue()), metaObject);
-            /* 70 */
+
             setFieldValByName("delFlag", DelFlagEnum.NORMAL.getFlag(), metaObject);
 
         }
 
 
-
         public void updateFill(MetaObject metaObject) {
-            /* 74 */
+
             UserLoginVo userLoginVo = UserHolder.getUser();
 
-            /* 76 */
             LocalDateTime now = LocalDateTime.now();
-            /* 77 */
+
             setFieldValByName("modifyTime", now, metaObject);
-            /* 78 */
+
             setFieldValByName("modifyBy", Long.valueOf(ObjectUtil.isEmpty(userLoginVo) ? -1L : userLoginVo.getId().longValue()), metaObject);
 
         }
@@ -111,5 +91,4 @@ import java.util.List;
     }
 
 }
-
 

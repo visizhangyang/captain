@@ -1,14 +1,13 @@
 package com.porn.service.desc.dao.entity;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableName;
+
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @TableName("porn_desc")
 @Data

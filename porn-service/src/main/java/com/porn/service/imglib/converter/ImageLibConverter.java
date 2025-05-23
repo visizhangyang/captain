@@ -13,4 +13,3 @@ public interface ImageLibConverter {
     List<ImageLibVo> toImageLibVoList(List<ImageLibDO> paramList);
 }
 
-

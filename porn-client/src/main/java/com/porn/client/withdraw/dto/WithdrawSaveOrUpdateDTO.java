@@ -1,15 +1,14 @@
-
 package com.porn.client.withdraw.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-
 import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,5 +45,4 @@ public class WithdrawSaveOrUpdateDTO extends BaseDTO {
     private String accountRemark;
 
 }
-
 

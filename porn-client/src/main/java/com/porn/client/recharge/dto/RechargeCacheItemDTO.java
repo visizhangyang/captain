@@ -1,59 +1,65 @@
-
 package com.porn.client.recharge.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 
-
-
-
-
- public class RechargeCacheItemDTO
-         implements Serializable
-         {
+public class RechargeCacheItemDTO
+        implements Serializable {
 
     @ApiModelProperty(value = "编码", hidden = true)
-     private String code;
+    private String code;
 
     @ApiModelProperty("表达式")
-     private String expr;
+    private String expr;
 
+    public RechargeCacheItemDTO() {
+    }
 
+    public RechargeCacheItemDTO(String code, String expr) {
+
+        this.code = code;
+        this.expr = expr;
+
+    }
+
+    public static RechargeCacheItemDTOBuilder builder() {
+        return new RechargeCacheItemDTOBuilder();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RechargeCacheItemDTO;
+    }
+
+    public String getCode() {
+
+        return this.code;
+
+    }
 
     public void setCode(String code) {
-        /* 16 */
+
         this.code = code;
+    }
+
+    public String getExpr() {
+
+        return this.expr;
+
     }
 
     public void setExpr(String expr) {
         this.expr = expr;
     }
 
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RechargeCacheItemDTO;
-    }
-
-
-
-    /* 17 */
-    public static RechargeCacheItemDTOBuilder builder() {
-        return new RechargeCacheItemDTOBuilder();
-    }
-
     public static class RechargeCacheItemDTOBuilder {
         private String code;
+        private String expr;
 
         public RechargeCacheItemDTOBuilder code(String code) {
             this.code = code;
             return this;
         }
-
-        private String expr;
 
         public RechargeCacheItemDTOBuilder expr(String expr) {
             this.expr = expr;
@@ -64,34 +70,7 @@ import java.io.Serializable;
             return new RechargeCacheItemDTO(this.code, this.expr);
         }
 
-
-    }
-
-    public RechargeCacheItemDTO() {
-    }
-
-    public RechargeCacheItemDTO(String code, String expr) {
-        /* 19 */
-        this.code = code;
-        this.expr = expr;
-
-    }
-
-
-
-    public String getCode() {
-        /* 23 */
-        return this.code;
-
-    }
-
-
-    public String getExpr() {
-        /* 26 */
-        return this.expr;
-
     }
 
 }
-
 

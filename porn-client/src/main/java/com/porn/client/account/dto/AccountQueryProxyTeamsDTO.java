@@ -1,51 +1,50 @@
-
 package com.porn.client.account.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 
+public class AccountQueryProxyTeamsDTO
+        implements Serializable {
 
-
-
-
-
- public class AccountQueryProxyTeamsDTO
-         implements Serializable
-         {
-    
     @ApiModelProperty("管理系统用户ID")
-     private Long mngUserId;
+    private Long mngUserId;
 
-    
-    
-    public void setMngUserId(Long mngUserId) {
-        /* 15 */
+    public AccountQueryProxyTeamsDTO(Long mngUserId) {
+
         this.mngUserId = mngUserId;
+
     }
 
+    public AccountQueryProxyTeamsDTO() {
+    }
+
+    public static AccountQueryProxyTeamsDTOBuilder builder() {
+        return new AccountQueryProxyTeamsDTOBuilder();
+    }
 
     protected boolean canEqual(Object other) {
         return other instanceof AccountQueryProxyTeamsDTO;
     }
 
+    public Long getMngUserId() {
 
+        return this.mngUserId;
 
-    /* 16 */
-    public static AccountQueryProxyTeamsDTOBuilder builder() {
-        return new AccountQueryProxyTeamsDTOBuilder();
+    }
+
+    public void setMngUserId(Long mngUserId) {
+
+        this.mngUserId = mngUserId;
     }
 
     public static class AccountQueryProxyTeamsDTOBuilder {
+        private Long mngUserId;
+
         public AccountQueryProxyTeamsDTOBuilder mngUserId(Long mngUserId) {
             this.mngUserId = mngUserId;
             return this;
         }
-
-        private Long mngUserId;
 
         public AccountQueryProxyTeamsDTO build() {
             return new AccountQueryProxyTeamsDTO(this.mngUserId);
@@ -53,24 +52,5 @@ import java.io.Serializable;
 
     }
 
-    public AccountQueryProxyTeamsDTO(Long mngUserId) {
-        /* 17 */
-        this.mngUserId = mngUserId;
-        
-    }
-
-    
-    public AccountQueryProxyTeamsDTO() {
-    }
-
-    
-    
-    public Long getMngUserId() {
-        /* 22 */
-        return this.mngUserId;
-        
-    }
-    
 }
-
 

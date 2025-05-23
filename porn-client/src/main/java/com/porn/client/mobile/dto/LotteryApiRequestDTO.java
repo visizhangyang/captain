@@ -1,60 +1,66 @@
-
 package com.porn.client.mobile.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
-
-
-
- public class LotteryApiRequestDTO
-         implements Serializable
-         {
+public class LotteryApiRequestDTO
+        implements Serializable {
 
     @ApiModelProperty("幸运序号")
-     private Integer luckIndex;
+    private Integer luckIndex;
 
     @ApiModelProperty("金额")
-     private BigDecimal amount;
+    private BigDecimal amount;
 
+    public LotteryApiRequestDTO(Integer luckIndex, BigDecimal amount) {
 
+        this.luckIndex = luckIndex;
+        this.amount = amount;
+
+    }
+
+    public LotteryApiRequestDTO() {
+    }
+
+    public static LotteryApiRequestDTOBuilder builder() {
+        return new LotteryApiRequestDTOBuilder();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof LotteryApiRequestDTO;
+    }
+
+    public Integer getLuckIndex() {
+
+        return this.luckIndex;
+
+    }
 
     public void setLuckIndex(Integer luckIndex) {
-        /* 16 */
+
         this.luckIndex = luckIndex;
+    }
+
+    public BigDecimal getAmount() {
+
+        return this.amount;
+
     }
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-
-    protected boolean canEqual(Object other) {
-        return other instanceof LotteryApiRequestDTO;
-    }
-
-
-
-    /* 17 */
-    public static LotteryApiRequestDTOBuilder builder() {
-        return new LotteryApiRequestDTOBuilder();
-    }
-
     public static class LotteryApiRequestDTOBuilder {
         private Integer luckIndex;
+        private BigDecimal amount;
 
         public LotteryApiRequestDTOBuilder luckIndex(Integer luckIndex) {
             this.luckIndex = luckIndex;
             return this;
         }
-
-        private BigDecimal amount;
 
         public LotteryApiRequestDTOBuilder amount(BigDecimal amount) {
             this.amount = amount;
@@ -67,32 +73,5 @@ import java.math.BigDecimal;
 
     }
 
-    public LotteryApiRequestDTO(Integer luckIndex, BigDecimal amount) {
-        /* 18 */
-        this.luckIndex = luckIndex;
-        this.amount = amount;
-
-    }
-
-
-    public LotteryApiRequestDTO() {
-    }
-
-
-
-    public Integer getLuckIndex() {
-        /* 23 */
-        return this.luckIndex;
-
-    }
-
-
-    public BigDecimal getAmount() {
-        /* 26 */
-        return this.amount;
-
-    }
-
 }
-
 

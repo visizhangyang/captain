@@ -13,4 +13,3 @@ public interface PhotoConverter {
     List<PhotoVo> toPhotoVoList(List<PhotoDO> paramList);
 }
 
-

@@ -13,4 +13,3 @@ public interface RewardBalanceConverter {
     List<RewardBalanceVo> toRewardBalanceVoList(List<RewardBalanceDO> paramList);
 }
 
-

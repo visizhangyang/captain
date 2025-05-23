@@ -1,48 +1,19 @@
-
 package com.porn.client.recommendapp.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BasePageDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class RecommendAppQueryPageDTO extends BasePageDTO {
+public class RecommendAppQueryPageDTO extends BasePageDTO {
 
     @ApiModelProperty("应用类型, AppTypeEnum")
-     private Integer appType;
+    private Integer appType;
 
     @ApiModelProperty("模糊搜索名称")
-     private String lkName;
+    private String lkName;
 
     @ApiModelProperty("类型，RecommendTypeEnum")
-     private Integer recommendType;
+    private Integer recommendType;
 
-
-    /* 15 */
-    public void setAppType(Integer appType) {
-        this.appType = appType;
-    }
-
-    public void setLkName(String lkName) {
-        this.lkName = lkName;
-    }
-
-    public void setRecommendType(Integer recommendType) {
-        this.recommendType = recommendType;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RecommendAppQueryPageDTO;
-    }
-
-
-
-    /* 16 */
     protected RecommendAppQueryPageDTO(RecommendAppQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.appType = b.appType;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BasePageDTO;
         this.recommendType = b.recommendType;
     }
 
+    public RecommendAppQueryPageDTO(Integer appType, String lkName, Integer recommendType) {
+
+        this.appType = appType;
+        this.lkName = lkName;
+        this.recommendType = recommendType;
+
+    }
+
+    public RecommendAppQueryPageDTO() {
+    }
+
     public static RecommendAppQueryPageDTOBuilder<?, ?> builder() {
         return new RecommendAppQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RecommendAppQueryPageDTO;
+    }
+
+    public Integer getAppType() {
+
+        return this.appType;
+
+    }
+
+    public void setAppType(Integer appType) {
+        this.appType = appType;
+    }
+
+    public String getLkName() {
+
+        return this.lkName;
+
+    }
+
+    public void setLkName(String lkName) {
+        this.lkName = lkName;
+    }
+
+    public Integer getRecommendType() {
+
+        return this.recommendType;
+
+    }
+
+    public void setRecommendType(Integer recommendType) {
+        this.recommendType = recommendType;
     }
 
     private static final class RecommendAppQueryPageDTOBuilderImpl extends RecommendAppQueryPageDTOBuilder<RecommendAppQueryPageDTO, RecommendAppQueryPageDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BasePageDTO;
 
     public static abstract class RecommendAppQueryPageDTOBuilder<C extends RecommendAppQueryPageDTO, B extends RecommendAppQueryPageDTOBuilder<C, B>> extends BasePageDTO.BasePageDTOBuilder<C, B> {
         private Integer appType;
+        private String lkName;
+        private Integer recommendType;
 
         public B appType(Integer appType) {
             this.appType = appType;
             return self();
         }
-
-        private String lkName;
-        private Integer recommendType;
 
         public B lkName(String lkName) {
             this.lkName = lkName;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BasePageDTO;
 
     }
 
-    public RecommendAppQueryPageDTO(Integer appType, String lkName, Integer recommendType) {
-        /* 17 */
-        this.appType = appType;
-        this.lkName = lkName;
-        this.recommendType = recommendType;
-
-    }
-
-
-    public RecommendAppQueryPageDTO() {
-    }
-
-
-
-    public Integer getAppType() {
-        /* 22 */
-        return this.appType;
-
-    }
-
-
-    public String getLkName() {
-        /* 25 */
-        return this.lkName;
-
-    }
-
-
-    public Integer getRecommendType() {
-        /* 28 */
-        return this.recommendType;
-
-    }
-
 }
-
 

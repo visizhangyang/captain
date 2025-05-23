@@ -13,4 +13,3 @@ public interface RoleConverter {
     List<RoleVo> toRoleVoList(List<RoleDO> paramList);
 }
 
-

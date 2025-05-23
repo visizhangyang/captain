@@ -1,50 +1,59 @@
-
 package com.porn.client.notice.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class NoticeAccountSaveOrUpdateDTO extends BaseDTO {
+public class NoticeAccountSaveOrUpdateDTO extends BaseDTO {
 
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("公告ID")
-     private Long noticeId;
+    private Long noticeId;
 
-
-
-    public void setAccountId(Long accountId) {
-        /* 15 */
-        this.accountId = accountId;
-    }
-
-    public void setNoticeId(Long noticeId) {
-        this.noticeId = noticeId;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof NoticeAccountSaveOrUpdateDTO;
-    }
-
-
-
-    /* 16 */
     protected NoticeAccountSaveOrUpdateDTO(NoticeAccountSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
         this.noticeId = b.noticeId;
     }
 
+    public NoticeAccountSaveOrUpdateDTO(Long accountId, Long noticeId) {
+
+        this.accountId = accountId;
+        this.noticeId = noticeId;
+
+    }
+
+    public NoticeAccountSaveOrUpdateDTO() {
+    }
+
     public static NoticeAccountSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new NoticeAccountSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof NoticeAccountSaveOrUpdateDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+
+        this.accountId = accountId;
+    }
+
+    public Long getNoticeId() {
+
+        return this.noticeId;
+
+    }
+
+    public void setNoticeId(Long noticeId) {
+        this.noticeId = noticeId;
     }
 
     private static final class NoticeAccountSaveOrUpdateDTOBuilderImpl extends NoticeAccountSaveOrUpdateDTOBuilder<NoticeAccountSaveOrUpdateDTO, NoticeAccountSaveOrUpdateDTOBuilderImpl> {
@@ -62,13 +71,12 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class NoticeAccountSaveOrUpdateDTOBuilder<C extends NoticeAccountSaveOrUpdateDTO, B extends NoticeAccountSaveOrUpdateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
+        private Long noticeId;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private Long noticeId;
 
         public B noticeId(Long noticeId) {
             this.noticeId = noticeId;
@@ -81,32 +89,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public NoticeAccountSaveOrUpdateDTO(Long accountId, Long noticeId) {
-        /* 17 */
-        this.accountId = accountId;
-        this.noticeId = noticeId;
-
-    }
-
-
-    public NoticeAccountSaveOrUpdateDTO() {
-    }
-
-
-
-    public Long getAccountId() {
-        /* 22 */
-        return this.accountId;
-
-    }
-
-
-    public Long getNoticeId() {
-        /* 25 */
-        return this.noticeId;
-
-    }
-
 }
-
 

@@ -1,49 +1,47 @@
-
 package com.porn.client.merchant.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
-
-
-
-
-
-
- public class MerchantConfirmOrderDTO
-         extends BaseDTO
-         {
+public class MerchantConfirmOrderDTO
+        extends BaseDTO {
 
     @ApiModelProperty("确认金额")
-     private BigDecimal amount;
+    private BigDecimal amount;
 
-
-
-    public void setAmount(BigDecimal amount) {
-        /* 16 */
-        this.amount = amount;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MerchantConfirmOrderDTO;
-    }
-
-
-
-    /* 17 */
     protected MerchantConfirmOrderDTO(MerchantConfirmOrderDTOBuilder<?, ?> b) {
         super(b);
         this.amount = b.amount;
     }
 
+    public MerchantConfirmOrderDTO(BigDecimal amount) {
+
+        this.amount = amount;
+
+    }
+
+    public MerchantConfirmOrderDTO() {
+    }
+
     public static MerchantConfirmOrderDTOBuilder<?, ?> builder() {
         return new MerchantConfirmOrderDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MerchantConfirmOrderDTO;
+    }
+
+    public BigDecimal getAmount() {
+
+        return this.amount;
+
+    }
+
+    public void setAmount(BigDecimal amount) {
+
+        this.amount = amount;
     }
 
     private static final class MerchantConfirmOrderDTOBuilderImpl extends MerchantConfirmOrderDTOBuilder<MerchantConfirmOrderDTO, MerchantConfirmOrderDTOBuilderImpl> {
@@ -60,12 +58,12 @@ import java.math.BigDecimal;
     }
 
     public static abstract class MerchantConfirmOrderDTOBuilder<C extends MerchantConfirmOrderDTO, B extends MerchantConfirmOrderDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private BigDecimal amount;
+
         public B amount(BigDecimal amount) {
             this.amount = amount;
             return self();
         }
-
-        private BigDecimal amount;
 
         protected abstract B self();
 
@@ -73,24 +71,5 @@ import java.math.BigDecimal;
 
     }
 
-    public MerchantConfirmOrderDTO(BigDecimal amount) {
-        /* 18 */
-        this.amount = amount;
-
-    }
-
-
-    public MerchantConfirmOrderDTO() {
-    }
-
-
-
-    public BigDecimal getAmount() {
-        /* 23 */
-        return this.amount;
-
-    }
-
 }
-
 

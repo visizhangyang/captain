@@ -24,4 +24,3 @@ public interface WalletAddressApiService {
     List<String> queryWalletChainList(WalletChainQueryDTO paramWalletChainQueryDTO);
 }
 
-

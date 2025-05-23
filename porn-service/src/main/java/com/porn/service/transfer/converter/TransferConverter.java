@@ -16,4 +16,3 @@ public interface TransferConverter {
     TransferDO toTransferDO(TransferSaveOrUpdateDTO paramTransferSaveOrUpdateDTO);
 }
 
-

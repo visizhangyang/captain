@@ -1,57 +1,26 @@
-
 package com.porn.client.mobile.dto;
+
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
+public class ModifyPwdApiRequestDTO implements Serializable {
 
- public class ModifyPwdApiRequestDTO implements Serializable {
-    
     @ApiModelProperty("类型, ModifyPwdTypeEnum")
-     private Integer type;
-    
+    private Integer type;
+
     @ApiModelProperty("旧密码")
-     private String oldPwd;
-    
+    private String oldPwd;
+
     @ApiModelProperty("新密码")
-     private String newPwd;
-    
+    private String newPwd;
+
     @ApiModelProperty("验证码token")
-     private String captchaToken;
-    
+    private String captchaToken;
+
     @ApiModelProperty("验证码")
-     private String captcha;
+    private String captcha;
 
-    
-    /* 15 */
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public void setOldPwd(String oldPwd) {
-        this.oldPwd = oldPwd;
-    }
-
-    public void setNewPwd(String newPwd) {
-        this.newPwd = newPwd;
-    }
-
-    public void setCaptchaToken(String captchaToken) {
-        this.captchaToken = captchaToken;
-    }
-
-    public void setCaptcha(String captcha) {
-        this.captcha = captcha;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof ModifyPwdApiRequestDTO;
-    }
-
-
-
-    /* 16 */
     protected ModifyPwdApiRequestDTO(ModifyPwdApiRequestDTOBuilder<?, ?> b) {
         this.type = b.type;
         this.oldPwd = b.oldPwd;
@@ -60,8 +29,75 @@ import java.io.Serializable;
         this.captcha = b.captcha;
     }
 
+    public ModifyPwdApiRequestDTO(Integer type, String oldPwd, String newPwd, String captchaToken, String captcha) {
+
+        this.type = type;
+        this.oldPwd = oldPwd;
+        this.newPwd = newPwd;
+        this.captchaToken = captchaToken;
+        this.captcha = captcha;
+
+    }
+
+    public ModifyPwdApiRequestDTO() {
+    }
+
     public static ModifyPwdApiRequestDTOBuilder<?, ?> builder() {
         return new ModifyPwdApiRequestDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof ModifyPwdApiRequestDTO;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getOldPwd() {
+
+        return this.oldPwd;
+
+    }
+
+    public void setOldPwd(String oldPwd) {
+        this.oldPwd = oldPwd;
+    }
+
+    public String getNewPwd() {
+
+        return this.newPwd;
+
+    }
+
+    public void setNewPwd(String newPwd) {
+        this.newPwd = newPwd;
+    }
+
+    public String getCaptchaToken() {
+
+        return this.captchaToken;
+
+    }
+
+    public void setCaptchaToken(String captchaToken) {
+        this.captchaToken = captchaToken;
+    }
+
+    public String getCaptcha() {
+
+        return this.captcha;
+
+    }
+
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
     }
 
     private static final class ModifyPwdApiRequestDTOBuilderImpl extends ModifyPwdApiRequestDTOBuilder<ModifyPwdApiRequestDTO, ModifyPwdApiRequestDTOBuilderImpl> {
@@ -80,15 +116,14 @@ import java.io.Serializable;
     public static abstract class ModifyPwdApiRequestDTOBuilder<C extends ModifyPwdApiRequestDTO, B extends ModifyPwdApiRequestDTOBuilder<C, B>> {
         private Integer type;
         private String oldPwd;
+        private String newPwd;
+        private String captchaToken;
+        private String captcha;
 
         public B type(Integer type) {
             this.type = type;
             return self();
         }
-
-        private String newPwd;
-        private String captchaToken;
-        private String captcha;
 
         public B oldPwd(String oldPwd) {
             this.oldPwd = oldPwd;
@@ -116,56 +151,5 @@ import java.io.Serializable;
 
     }
 
-    public ModifyPwdApiRequestDTO(Integer type, String oldPwd, String newPwd, String captchaToken, String captcha) {
-        /* 17 */
-        this.type = type;
-        this.oldPwd = oldPwd;
-        this.newPwd = newPwd;
-        this.captchaToken = captchaToken;
-        this.captcha = captcha;
-        
-    }
-
-    
-    public ModifyPwdApiRequestDTO() {
-    }
-
-    
-    
-    public Integer getType() {
-        /* 22 */
-        return this.type;
-        
-    }
-
-    
-    public String getOldPwd() {
-        /* 25 */
-        return this.oldPwd;
-        
-    }
-
-    
-    public String getNewPwd() {
-        /* 28 */
-        return this.newPwd;
-        
-    }
-
-    
-    public String getCaptchaToken() {
-        /* 31 */
-        return this.captchaToken;
-        
-    }
-
-    
-    public String getCaptcha() {
-        /* 34 */
-        return this.captcha;
-        
-    }
-    
 }
-
 

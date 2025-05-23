@@ -1,44 +1,45 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class UserEnableOrDisableDTO
-         extends BaseDTO
-         {
+public class UserEnableOrDisableDTO
+        extends BaseDTO {
 
     @ApiModelProperty("状态, 1-启用, 0-禁用")
-     private Integer status;
+    private Integer status;
 
-
-
-    public void setStatus(Integer status) {
-        /* 15 */
-        this.status = status;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserEnableOrDisableDTO;
-    }
-
-
-
-    /* 16 */
     protected UserEnableOrDisableDTO(UserEnableOrDisableDTOBuilder<?, ?> b) {
         super(b);
         this.status = b.status;
     }
 
+    public UserEnableOrDisableDTO(Integer status) {
+
+        this.status = status;
+
+    }
+
+    public UserEnableOrDisableDTO() {
+    }
+
     public static UserEnableOrDisableDTOBuilder<?, ?> builder() {
         return new UserEnableOrDisableDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserEnableOrDisableDTO;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+
+        this.status = status;
     }
 
     private static final class UserEnableOrDisableDTOBuilderImpl extends UserEnableOrDisableDTOBuilder<UserEnableOrDisableDTO, UserEnableOrDisableDTOBuilderImpl> {
@@ -55,12 +56,12 @@ import com.porn.client.common.dto.BaseDTO;
     }
 
     public static abstract class UserEnableOrDisableDTOBuilder<C extends UserEnableOrDisableDTO, B extends UserEnableOrDisableDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private Integer status;
+
         public B status(Integer status) {
             this.status = status;
             return self();
         }
-
-        private Integer status;
 
         protected abstract B self();
 
@@ -68,24 +69,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public UserEnableOrDisableDTO(Integer status) {
-        /* 17 */
-        this.status = status;
-
-    }
-
-
-    public UserEnableOrDisableDTO() {
-    }
-
-
-
-    public Integer getStatus() {
-        /* 22 */
-        return this.status;
-
-    }
-
 }
-
 

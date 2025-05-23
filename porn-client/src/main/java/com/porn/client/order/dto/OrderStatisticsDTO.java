@@ -1,32 +1,19 @@
-
 package com.porn.client.order.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import java.io.Serializable;
 
+public class OrderStatisticsDTO
+        implements Serializable {
 
-
-
-
- public class OrderStatisticsDTO
-         implements Serializable
-         {
-
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof OrderStatisticsDTO;
-    }
-
-
-    /* 13 */
     protected OrderStatisticsDTO(OrderStatisticsDTOBuilder<?, ?> b) {
     }
 
     public static OrderStatisticsDTOBuilder<?, ?> builder() {
         return new OrderStatisticsDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof OrderStatisticsDTO;
     }
 
     private static final class OrderStatisticsDTOBuilderImpl extends OrderStatisticsDTOBuilder<OrderStatisticsDTO, OrderStatisticsDTOBuilderImpl> {
@@ -45,14 +32,8 @@ import java.io.Serializable;
     public static abstract class OrderStatisticsDTOBuilder<C extends OrderStatisticsDTO, B extends OrderStatisticsDTOBuilder<C, B>> {
         protected abstract B self();
 
-
-
-
-
         public abstract C build();
     }
 
-
 }
-
 

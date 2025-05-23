@@ -1,48 +1,19 @@
-
 package com.porn.client.role.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class RoleSaveOrUpdateDTO extends BaseDTO {
+public class RoleSaveOrUpdateDTO extends BaseDTO {
 
     @ApiModelProperty("用户名")
-     private String name;
+    private String name;
 
     @ApiModelProperty("状态")
-     private Integer status;
+    private Integer status;
 
     @ApiModelProperty("描述")
-     private String description;
+    private String description;
 
-
-    /* 15 */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RoleSaveOrUpdateDTO;
-    }
-
-
-
-    /* 16 */
     protected RoleSaveOrUpdateDTO(RoleSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BaseDTO;
         this.description = b.description;
     }
 
+    public RoleSaveOrUpdateDTO(String name, Integer status, String description) {
+
+        this.name = name;
+        this.status = status;
+        this.description = description;
+
+    }
+
+    public RoleSaveOrUpdateDTO() {
+    }
+
     public static RoleSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new RoleSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RoleSaveOrUpdateDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getDescription() {
+
+        return this.description;
+
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     private static final class RoleSaveOrUpdateDTOBuilderImpl extends RoleSaveOrUpdateDTOBuilder<RoleSaveOrUpdateDTO, RoleSaveOrUpdateDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class RoleSaveOrUpdateDTOBuilder<C extends RoleSaveOrUpdateDTO, B extends RoleSaveOrUpdateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private String name;
+        private Integer status;
+        private String description;
 
         public B name(String name) {
             this.name = name;
             return self();
         }
-
-        private Integer status;
-        private String description;
 
         public B status(Integer status) {
             this.status = status;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public RoleSaveOrUpdateDTO(String name, Integer status, String description) {
-        /* 17 */
-        this.name = name;
-        this.status = status;
-        this.description = description;
-
-    }
-
-
-    public RoleSaveOrUpdateDTO() {
-    }
-
-
-
-    public String getName() {
-        /* 22 */
-        return this.name;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 25 */
-        return this.status;
-
-    }
-
-
-    public String getDescription() {
-        /* 28 */
-        return this.description;
-
-    }
-
 }
-
 

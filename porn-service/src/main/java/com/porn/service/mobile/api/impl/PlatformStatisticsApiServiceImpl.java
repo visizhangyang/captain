@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.NumberUtil;
@@ -20,81 +18,48 @@ import com.porn.service.mobile.converter.MobileConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class PlatformStatisticsApiServiceImpl
-         implements ApiService<PlatformStatisticsVo>
-         {
+public class PlatformStatisticsApiServiceImpl
+        implements ApiService<PlatformStatisticsVo> {
 
     @Autowired
-     private OrderApiService orderApiService;
+    private OrderApiService orderApiService;
 
     @Autowired
-     private AccountApiService accountApiService;
+    private AccountApiService accountApiService;
 
     @Autowired
-     private MobileConverter mobileConverter;
+    private MobileConverter mobileConverter;
 
     @Autowired
-     private ParamsetApiService paramsetApiService;
-
+    private ParamsetApiService paramsetApiService;
 
 
     public PlatformStatisticsVo cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 45 */
+
         AccountStatisticsVo accountStatisticsVo = this.accountApiService.accountStatistics(AccountStatisticsDTO.builder().build());
 
-        /* 47 */
+
         ParamsetVo paramsetVo = this.paramsetApiService.queryParamset(ParamsetQueryDTO.builder().build());
 
-        /* 49 */
+
         OrderStatisticsVo orderStatisticsVo = this.orderApiService.orderStatistics(OrderStatisticsDTO.builder().build());
-        /* 50 */
+
         return PlatformStatisticsVo.builder()
-/* 51 */.totalAccountCount(Long.valueOf(NumberUtil.add(accountStatisticsVo.getTotalAccountCount(), paramsetVo.getRegisterCount()).longValue()))
-/* 52 */.todayAccountCount(accountStatisticsVo.getTodayAccountCount())
-/* 53 */.totalOrderCount(orderStatisticsVo.getTotalOrderCount())
-/* 54 */.totalOrderAmount(orderStatisticsVo.getTotalOrderAmount())
-/* 55 */.build();
+                .totalAccountCount(Long.valueOf(NumberUtil.add(accountStatisticsVo.getTotalAccountCount(), paramsetVo.getRegisterCount()).longValue()))
+                .todayAccountCount(accountStatisticsVo.getTodayAccountCount())
+                .totalOrderCount(orderStatisticsVo.getTotalOrderCount())
+                .totalOrderAmount(orderStatisticsVo.getTotalOrderAmount())
+                .build();
 
     }
 
 
-
     public String getApi() {
-        /* 59 */
+
         return "api_platformstatistics";
 
     }
 
 }
-
 

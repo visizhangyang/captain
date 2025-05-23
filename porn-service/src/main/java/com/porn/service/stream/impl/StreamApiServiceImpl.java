@@ -1,14 +1,8 @@
-
 package com.porn.service.stream.impl;
 
-
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import com.porn.client.common.enums.DelFlagEnum;
@@ -32,76 +26,31 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class StreamApiServiceImpl implements StreamApiService {
-    /*  33 */   private static final Logger log = LoggerFactory.getLogger(StreamApiServiceImpl.class);
-
-
-
-    @Autowired
-     private StreamMapper streamMapper;
-
+public class StreamApiServiceImpl implements StreamApiService {
+    private static final Logger log = LoggerFactory.getLogger(StreamApiServiceImpl.class);
 
 
     @Autowired
-     private StreamConverter streamConverter;
+    private StreamMapper streamMapper;
 
+
+    @Autowired
+    private StreamConverter streamConverter;
 
     public StreamVo queryStream(StreamQueryDTO streamQueryDTO) {
-        /*  46 */
+
         List<StreamVo> streamVoList = queryStreamList(streamQueryDTO);
-        /*  47 */
+
         return ObjectUtil.isEmpty(streamVoList) ? null : streamVoList.get(0);
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public List<StreamVo> queryStreamList(StreamQueryDTO streamQueryDTO) {
-        /*  63 */
+
         List<StreamDO> streamList = ChainWrappers.lambdaQueryChain(streamMapper)
                 .eq(ObjectUtil.isNotEmpty(streamQueryDTO.getId()), BaseDO::getId, streamQueryDTO.getId())
                 .eq(ObjectUtil.isNotEmpty(streamQueryDTO.getBizId()), StreamDO::getBizId, streamQueryDTO.getBizId())
@@ -115,19 +64,18 @@ import java.util.List;
                 .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
                 .orderByDesc(BaseDO::getCreateTime)
                 .list();
-        /*  64 */
+
         List<StreamVo> streamVoList = this.streamConverter.toStreamVoList(streamList);
-        /*  65 */
+
         return streamVoList;
 
     }
 
 
-
     public PageVo<StreamVo> queryPage(StreamQueryPageDTO streamQueryPageDTO) {
-        /*  69 */
+
         Page page = new Page(streamQueryPageDTO.getPageStart().intValue(), streamQueryPageDTO.getPageSize().intValue(), true);
-        /*  70 */
+
 //        LambdaQueryChainWrapper lambdaQueryChainWrapper = ChainWrappers.lambdaQueryChain(streamMapper)
 //                .eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getBizId()), StreamDO::getBizId, streamQueryPageDTO.getBizId())
 //                .eq(ObjectUtil.isNotEmpty(streamQueryPageDTO.getAccountId()), StreamDO::getAccountId, streamQueryPageDTO.getAccountId())
@@ -150,41 +98,38 @@ import java.util.List;
         wrapper.eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag());
         wrapper.orderByDesc(BaseDO::getCreateTime);
 
-        /*  71 */
-        /*  81 */
+
         IPage<StreamDO> streamPage = this.streamMapper.selectPage((IPage) page, wrapper);
-        /*  82 */
+
         List<StreamVo> streamVoList = this.streamConverter.toStreamVoList(streamPage.getRecords());
-        /*  83 */
+
         return PageVo.<StreamVo>builder()
-/*  84 */.pageStart(streamQueryPageDTO.getPageStart())
-/*  85 */.pageSize(streamQueryPageDTO.getPageSize())
-/*  86 */.total(Long.valueOf(streamPage.getTotal()))
-/*  87 */.data(streamVoList)
-/*  88 */.build();
+                .pageStart(streamQueryPageDTO.getPageStart())
+                .pageSize(streamQueryPageDTO.getPageSize())
+                .total(Long.valueOf(streamPage.getTotal()))
+                .data(streamVoList)
+                .build();
 
     }
 
 
-
     public StreamVo saveOrUpdate(StreamSaveOrUpdateDTO streamSaveOrUpdateDTO) {
-        /*  92 */
+
         StreamDO streamDO = this.streamConverter.toStreamDO(streamSaveOrUpdateDTO);
-        /*  93 */
+
         if (this.streamMapper.insert(streamDO) > 0) {
-            /*  94 */
+
             return queryStream(((StreamQueryDTO.StreamQueryDTOBuilder) StreamQueryDTO.builder().id(streamDO.getId())).bizId(streamDO.getBizId()).build());
 
         }
-        /*  96 */
+
         throw new BusinessException("流水插入失败.");
 
     }
 
 
-
     public BigDecimal statisticsTotalProxyProfit(StreamQueryDTO streamQueryDTO) {
-        /* 100 */
+
         return this.streamMapper.statisticsTotalProxyProfit(streamQueryDTO);
 
     }

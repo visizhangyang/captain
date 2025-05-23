@@ -1,56 +1,25 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
- public class UserLoginDTO extends BaseDTO {
+public class UserLoginDTO extends BaseDTO {
 
     @ApiModelProperty("登录的IP")
-     private String loginIp;
+    private String loginIp;
 
     @ApiModelProperty("账号")
-     private String name;
+    private String name;
 
     @ApiModelProperty("账号")
-     private String pwd;
+    private String pwd;
 
     @ApiModelProperty("验证码")
-     private String captchaCode;
+    private String captchaCode;
 
     @ApiModelProperty("验证码token")
-     private String captchaToken;
+    private String captchaToken;
 
-
-    /* 15 */
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public void setCaptchaCode(String captchaCode) {
-        this.captchaCode = captchaCode;
-    }
-
-    public void setCaptchaToken(String captchaToken) {
-        this.captchaToken = captchaToken;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserLoginDTO;
-    }
-
-
-
-    /* 16 */
     protected UserLoginDTO(UserLoginDTOBuilder<?, ?> b) {
         super(b);
         this.loginIp = b.loginIp;
@@ -60,8 +29,75 @@ import com.porn.client.common.dto.BaseDTO;
         this.captchaToken = b.captchaToken;
     }
 
+    public UserLoginDTO(String loginIp, String name, String pwd, String captchaCode, String captchaToken) {
+
+        this.loginIp = loginIp;
+        this.name = name;
+        this.pwd = pwd;
+        this.captchaCode = captchaCode;
+        this.captchaToken = captchaToken;
+
+    }
+
+    public UserLoginDTO() {
+    }
+
     public static UserLoginDTOBuilder<?, ?> builder() {
         return new UserLoginDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserLoginDTO;
+    }
+
+    public String getLoginIp() {
+
+        return this.loginIp;
+
+    }
+
+    public void setLoginIp(String loginIp) {
+        this.loginIp = loginIp;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPwd() {
+
+        return this.pwd;
+
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getCaptchaCode() {
+
+        return this.captchaCode;
+
+    }
+
+    public void setCaptchaCode(String captchaCode) {
+        this.captchaCode = captchaCode;
+    }
+
+    public String getCaptchaToken() {
+
+        return this.captchaToken;
+
+    }
+
+    public void setCaptchaToken(String captchaToken) {
+        this.captchaToken = captchaToken;
     }
 
     private static final class UserLoginDTOBuilderImpl extends UserLoginDTOBuilder<UserLoginDTO, UserLoginDTOBuilderImpl> {
@@ -80,15 +116,14 @@ import com.porn.client.common.dto.BaseDTO;
     public static abstract class UserLoginDTOBuilder<C extends UserLoginDTO, B extends UserLoginDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private String loginIp;
         private String name;
+        private String pwd;
+        private String captchaCode;
+        private String captchaToken;
 
         public B loginIp(String loginIp) {
             this.loginIp = loginIp;
             return self();
         }
-
-        private String pwd;
-        private String captchaCode;
-        private String captchaToken;
 
         public B name(String name) {
             this.name = name;
@@ -116,56 +151,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public UserLoginDTO(String loginIp, String name, String pwd, String captchaCode, String captchaToken) {
-        /* 17 */
-        this.loginIp = loginIp;
-        this.name = name;
-        this.pwd = pwd;
-        this.captchaCode = captchaCode;
-        this.captchaToken = captchaToken;
-
-    }
-
-
-    public UserLoginDTO() {
-    }
-
-
-
-    public String getLoginIp() {
-        /* 22 */
-        return this.loginIp;
-
-    }
-
-
-    public String getName() {
-        /* 25 */
-        return this.name;
-
-    }
-
-
-    public String getPwd() {
-        /* 28 */
-        return this.pwd;
-
-    }
-
-
-    public String getCaptchaCode() {
-        /* 31 */
-        return this.captchaCode;
-
-    }
-
-
-    public String getCaptchaToken() {
-        /* 34 */
-        return this.captchaToken;
-
-    }
-
 }
-
 

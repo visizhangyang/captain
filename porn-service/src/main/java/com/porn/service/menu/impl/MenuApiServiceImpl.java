@@ -1,10 +1,7 @@
-
 package com.porn.service.menu.impl;
-
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
@@ -31,70 +28,33 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class MenuApiServiceImpl implements MenuApiService {
-    /*  34 */   private static final Logger log = LoggerFactory.getLogger(MenuApiServiceImpl.class);
-
-
-
-    @Autowired
-     private MenuMapper menuMapper;
-
+public class MenuApiServiceImpl implements MenuApiService {
+    private static final Logger log = LoggerFactory.getLogger(MenuApiServiceImpl.class);
 
 
     @Autowired
-     private MenuConverter menuConverter;
-
+    private MenuMapper menuMapper;
 
 
     @Autowired
-     private MinioApiService minioApiService;
+    private MenuConverter menuConverter;
 
 
-
+    @Autowired
+    private MinioApiService minioApiService;
 
     public MenuVo queryMenu(MenuQueryDTO menuQueryDTO) {
-        /*  50 */
+
         List<MenuVo> menuVoList = queryMenuList(menuQueryDTO);
-        /*  51 */
+
         return ObjectUtil.isEmpty(menuVoList) ? null : menuVoList.get(0);
 
     }
-
 
     public List<MenuVo> queryMenuList(MenuQueryDTO menuQueryDTO) {
         // 构建查询条件
@@ -126,9 +86,6 @@ import java.util.stream.Collectors;
         return menuVoList;
 
     }
-
-
-
 
     public MenuVo saveOrUpdate(MenuSaveOrUpdateDTO menuSaveOrUpdateDTO) {
         // 新增逻辑
@@ -171,9 +128,6 @@ import java.util.stream.Collectors;
         return queryMenu(MenuQueryDTO.builder().id(menuSaveOrUpdateDTO.getId()).build());
 
     }
-
-
-
 
 
     public Boolean delete(MenuDeleteDTO menuDeleteDTO) {

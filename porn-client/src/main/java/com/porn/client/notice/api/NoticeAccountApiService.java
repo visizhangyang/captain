@@ -17,4 +17,3 @@ public interface NoticeAccountApiService {
     Boolean saveOrUpdate(NoticeAccountSaveOrUpdateDTO paramNoticeAccountSaveOrUpdateDTO);
 }
 
-

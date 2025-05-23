@@ -1,52 +1,22 @@
-
 package com.porn.client.reward.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
- public class QueryRewardRecordDTO extends BaseDTO {
+public class QueryRewardRecordDTO extends BaseDTO {
 
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("类型, RewardRecordTypeEnum")
-     private Integer type;
+    private Integer type;
 
     @ApiModelProperty("业务类型, RuleTypeEnum")
-     private Integer bizType;
+    private Integer bizType;
 
     @ApiModelProperty("业务ID")
-     private String bizId;
+    private String bizId;
 
-
-    /* 15 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public void setBizType(Integer bizType) {
-        this.bizType = bizType;
-    }
-
-    public void setBizId(String bizId) {
-        this.bizId = bizId;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof QueryRewardRecordDTO;
-    }
-
-
-
-    /* 16 */
     protected QueryRewardRecordDTO(QueryRewardRecordDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -55,8 +25,64 @@ import com.porn.client.common.dto.BaseDTO;
         this.bizId = b.bizId;
     }
 
+    public QueryRewardRecordDTO(Long accountId, Integer type, Integer bizType, String bizId) {
+
+        this.accountId = accountId;
+        this.type = type;
+        this.bizType = bizType;
+        this.bizId = bizId;
+
+    }
+
+    public QueryRewardRecordDTO() {
+    }
+
     public static QueryRewardRecordDTOBuilder<?, ?> builder() {
         return new QueryRewardRecordDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof QueryRewardRecordDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getBizType() {
+
+        return this.bizType;
+
+    }
+
+    public void setBizType(Integer bizType) {
+        this.bizType = bizType;
+    }
+
+    public String getBizId() {
+
+        return this.bizId;
+
+    }
+
+    public void setBizId(String bizId) {
+        this.bizId = bizId;
     }
 
     private static final class QueryRewardRecordDTOBuilderImpl extends QueryRewardRecordDTOBuilder<QueryRewardRecordDTO, QueryRewardRecordDTOBuilderImpl> {
@@ -75,14 +101,13 @@ import com.porn.client.common.dto.BaseDTO;
     public static abstract class QueryRewardRecordDTOBuilder<C extends QueryRewardRecordDTO, B extends QueryRewardRecordDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
         private Integer type;
+        private Integer bizType;
+        private String bizId;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private Integer bizType;
-        private String bizId;
 
         public B type(Integer type) {
             this.type = type;
@@ -105,48 +130,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public QueryRewardRecordDTO(Long accountId, Integer type, Integer bizType, String bizId) {
-        /* 17 */
-        this.accountId = accountId;
-        this.type = type;
-        this.bizType = bizType;
-        this.bizId = bizId;
-
-    }
-
-
-    public QueryRewardRecordDTO() {
-    }
-
-
-
-    public Long getAccountId() {
-        /* 22 */
-        return this.accountId;
-
-    }
-
-
-    public Integer getType() {
-        /* 25 */
-        return this.type;
-
-    }
-
-
-    public Integer getBizType() {
-        /* 28 */
-        return this.bizType;
-
-    }
-
-
-    public String getBizId() {
-        /* 31 */
-        return this.bizId;
-
-    }
-
 }
-
 

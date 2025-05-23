@@ -6,4 +6,3 @@ import com.porn.service.role.dao.entity.RoleDO;
 public interface RoleMapper extends BaseMapper<RoleDO> {
 }
 
-

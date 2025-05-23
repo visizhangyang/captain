@@ -6,4 +6,3 @@ import com.porn.service.nickname.dao.entity.NickNameDO;
 public interface NickNameMapper extends BaseMapper<NickNameDO> {
 }
 
-

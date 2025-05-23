@@ -1,43 +1,31 @@
-
 package com.porn.client.transfer.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class TransferDeleteDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class TransferDeleteDTO
-         extends BaseDTO
-         {
-    
-
-    protected boolean canEqual(Object other) {
-        return other instanceof TransferDeleteDTO;
-    }
-
-
-
-    /* 14 */
     protected TransferDeleteDTO(TransferDeleteDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public TransferDeleteDTO() {
     }
 
     public static TransferDeleteDTOBuilder<?, ?> builder() {
         return new TransferDeleteDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof TransferDeleteDTO;
+    }
+
     private static final class TransferDeleteDTOBuilderImpl extends TransferDeleteDTOBuilder<TransferDeleteDTO, TransferDeleteDTOBuilderImpl> {
-        protected TransferDeleteDTOBuilderImpl self() {
-            return this;
+        private TransferDeleteDTOBuilderImpl() {
         }
 
-        private TransferDeleteDTOBuilderImpl() {
+        protected TransferDeleteDTOBuilderImpl self() {
+            return this;
         }
 
         public TransferDeleteDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class TransferDeleteDTOBuilder<C extends TransferDeleteDTO, B extends TransferDeleteDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-        
-        
-        
         protected abstract B self();
 
-        
-        
         public abstract C build();
     }
 
-    
-    
-    
-    public TransferDeleteDTO() {
-    }
-    
 }
-
 

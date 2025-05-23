@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.date.LocalDateTimeUtil;
@@ -30,154 +28,101 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QueryPlanInsApiServiceImpl
-         implements ApiService<PlanInsExtVo>
-         {
-    /*  33 */   private static final Logger log = LoggerFactory.getLogger(QueryPlanInsApiServiceImpl.class);
+public class QueryPlanInsApiServiceImpl
+        implements ApiService<PlanInsExtVo> {
+    private static final Logger log = LoggerFactory.getLogger(QueryPlanInsApiServiceImpl.class);
 
-
+    @Autowired
+    private PlanInsApiService planInsApiService;
 
 
     @Autowired
-     private PlanInsApiService planInsApiService;
-
-
-
-    @Autowired
-     private PlanInsConverter planInsConverter;
-
+    private PlanInsConverter planInsConverter;
 
 
     @Autowired
-     private PlanApiService planApiService;
-
+    private PlanApiService planApiService;
 
 
     @Autowired
-     private StreamApiService streamApiService;
-
-
-
+    private StreamApiService streamApiService;
 
 
     public PlanInsExtVo cmd(CmdRequestDTO cmdRequestDTO) {
-        /*  55 */
+
         PlanInsQueryDTO planInsQueryDTO = PlanInsQueryDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).status(PlanInsStatusEnum.PROGRESSING.getStatus()).build();
-        /*  56 */
+
         PlanInsVo planInsVo = this.planInsApiService.queryPlanIns(planInsQueryDTO);
-        /*  57 */
+
         if (ObjectUtil.isEmpty(planInsVo)) {
-            /*  58 */
+
             return PlanInsExtVo.builder()
-/*  59 */.existsPlan(CommonConst.IZERO)
-/*  60 */.build();
+                    .existsPlan(CommonConst.IZERO)
+                    .build();
 
         }
-        /*  62 */
+
         PlanInsExtVo planInsExtVo = this.planInsConverter.toPlanInsExtVo(planInsVo);
-        /*  63 */
+
         PlanVo planVo = this.planApiService.queryPlan(((PlanQueryDTO.PlanQueryDTOBuilder) PlanQueryDTO.builder().id(planInsExtVo.getPlanId())).build());
 
-        /*  65 */
+
         if (planInsExtVo.getEndTime().compareTo(LocalDateTimeUtil.now()) >= 0) {
 
-            /*  67 */
+
             planInsExtVo.setTotalProgress(Long.valueOf(LocalDateTimeUtil.between(planInsExtVo.getStartTime(), planInsExtVo.getEndTime()).toMinutes()));
-            /*  68 */
+
             planInsExtVo.setCurProgress(Long.valueOf(LocalDateTimeUtil.between(planInsExtVo.getStartTime(), LocalDateTimeUtil.now()).toMinutes()));
 
         } else {
-            /*  70 */
+
             planInsExtVo.setTotalProgress(CommonConst.LONE);
-            /*  71 */
+
             planInsExtVo.setCurProgress(CommonConst.LONE);
 
         }
-        /*  73 */
+
         planInsExtVo.setExistsPlan(CommonConst.IONE);
 
-        /*  75 */
+
         if (ObjectUtil.isNotEmpty(planVo)) {
-            /*  76 */
+
             planInsExtVo.setPlanTitle(planVo.getTitle());
-            /*  77 */
+
             planInsExtVo.setMinRange(planVo.getMinRange());
-            /*  78 */
+
             planInsExtVo.setMaxRange(planVo.getMaxRange());
 
 
-            /*  81 */
             LocalDateTime now = LocalDateTimeUtil.now();
 
 
-
-
-
-
-            /*  88 */
             StreamQueryDTO yesterdayWorkStreamQueryDTO = StreamQueryDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).typeList(Arrays.asList(new Integer[]{StreamTypeEnum.PLAN_PROFIT.getType()})).flag(StreamTypeEnum.PLAN_PROFIT.getFlag()).startTime(LocalDateTimeUtil.beginOfDay(LocalDateTimeUtil.offset(now, -1L, ChronoUnit.DAYS))).endTime(LocalDateTimeUtil.beginOfDay(now)).build();
-            /*  89 */
+
             BigDecimal yesterdayWorkIncome = this.streamApiService.statisticsTotalProxyProfit(yesterdayWorkStreamQueryDTO);
-            /*  90 */
+
             planInsExtVo.setYesterdayProfit((BigDecimal) ObjectUtil.defaultIfNull(yesterdayWorkIncome, BigDecimal.ZERO));
 
 
-
-
-
-
-
-
-            /*  99 */
             StreamQueryDTO totalWorkStreamQueryDTO = StreamQueryDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).typeList(Arrays.asList(new Integer[]{StreamTypeEnum.PLAN_PROFIT.getType()})).flag(StreamTypeEnum.PLAN_PROFIT.getFlag()).startTime(planInsVo.getStartTime()).endTime(now).build();
-            /* 100 */
+
             BigDecimal totalWorkIncome = this.streamApiService.statisticsTotalProxyProfit(totalWorkStreamQueryDTO);
-            /* 101 */
+
             planInsExtVo.setTotalProfit((BigDecimal) ObjectUtil.defaultIfNull(totalWorkIncome, BigDecimal.ZERO));
 
         }
 
-        /* 104 */
         return planInsExtVo;
 
     }
 
 
-
     public String getApi() {
-        /* 108 */
+
         return "api_queryplanins";
 
     }
 
 }
-
 

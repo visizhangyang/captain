@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import com.porn.client.mobile.dto.CmdRequestDTO;
@@ -12,49 +10,28 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class ChainSelectApiServiceImpl
-         implements ApiService<List<String>>
-         {
+public class ChainSelectApiServiceImpl
+        implements ApiService<List<String>> {
 
     @Autowired
-     private WalletAddressApiService walletAddressApiService;
-
+    private WalletAddressApiService walletAddressApiService;
 
 
     public List<String> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 27 */
+
         WalletChainQueryDTO walletChainQueryDTO = WalletChainQueryDTO.builder().build();
-        /* 28 */
+
         return this.walletAddressApiService.queryWalletChainList(walletChainQueryDTO);
 
     }
 
 
-
     public String getApi() {
-        /* 32 */
+
         return "api_chainselect";
 
     }
 
 }
-
 

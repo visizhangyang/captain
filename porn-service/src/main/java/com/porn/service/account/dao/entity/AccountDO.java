@@ -1,12 +1,13 @@
-
 package com.porn.service.account.dao.entity;
-import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
-import lombok.*;import lombok.experimental.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -18,35 +19,35 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 public class AccountDO extends BaseDO {
     @TableField("name")
-     private String name;
+    private String name;
     @TableField("nick_name")
-     private String nickName;
+    private String nickName;
     @TableField("avatar")
-     private String avatar;
+    private String avatar;
     @TableField("login_pwd")
-     private String loginPwd;
+    private String loginPwd;
     @TableField("trade_pwd")
-     private String tradePwd;
+    private String tradePwd;
     @TableField("receive_address")
-     private String receiveAddress;
+    private String receiveAddress;
     @TableField("qq")
-     private String qq;
+    private String qq;
     @TableField("wechat")
-     private String wechat;
+    private String wechat;
     @TableField("phone")
-     private String phone;
+    private String phone;
     @TableField("promotion_code")
-     private String promotionCode;
+    private String promotionCode;
     @TableField("parent_promotion_code")
-     private String parentPromotionCode;
+    private String parentPromotionCode;
     @TableField("total_balance")
-     private BigDecimal totalBalance;
+    private BigDecimal totalBalance;
     @TableField("available_balance")
-     private BigDecimal availableBalance;
+    private BigDecimal availableBalance;
     @TableField("freeze_balance")
-     private BigDecimal freezeBalance;
+    private BigDecimal freezeBalance;
     @TableField("account_level")
-    /*  17 */ private Integer accountLevel;
+    private Integer accountLevel;
 
     @TableField("status_")
     private Integer status;
@@ -82,5 +83,4 @@ public class AccountDO extends BaseDO {
     private Integer rewardEnableStatus;
 
 }
-
 

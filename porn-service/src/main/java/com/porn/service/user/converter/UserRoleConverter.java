@@ -16,4 +16,3 @@ public interface UserRoleConverter {
     UserRoleDO toUserRoleDO(UserRoleSaveOrUpdateDTO paramUserRoleSaveOrUpdateDTO);
 }
 
-

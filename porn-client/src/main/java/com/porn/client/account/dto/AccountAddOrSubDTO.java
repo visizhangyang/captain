@@ -1,55 +1,61 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
-
-
-
-
-
-
- public class AccountAddOrSubDTO extends BaseDTO {
+public class AccountAddOrSubDTO extends BaseDTO {
 
     @ApiModelProperty("0-加, 1-减")
-     private Integer type;
+    private Integer type;
 
     @ApiModelProperty("金额")
-     private BigDecimal amount;
+    private BigDecimal amount;
 
-
-
-    public void setType(Integer type) {
-        /* 16 */
-        this.type = type;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountAddOrSubDTO;
-    }
-
-
-
-    /* 17 */
     protected AccountAddOrSubDTO(AccountAddOrSubDTOBuilder<?, ?> b) {
         super(b);
         this.type = b.type;
         this.amount = b.amount;
     }
 
+    public AccountAddOrSubDTO() {
+    }
+
+    public AccountAddOrSubDTO(Integer type, BigDecimal amount) {
+
+        this.type = type;
+        this.amount = amount;
+
+    }
+
     public static AccountAddOrSubDTOBuilder<?, ?> builder() {
         return new AccountAddOrSubDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountAddOrSubDTO;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
+
+    public void setType(Integer type) {
+
+        this.type = type;
+    }
+
+    public BigDecimal getAmount() {
+
+        return this.amount;
+
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     private static final class AccountAddOrSubDTOBuilderImpl extends AccountAddOrSubDTOBuilder<AccountAddOrSubDTO, AccountAddOrSubDTOBuilderImpl> {
@@ -67,13 +73,12 @@ import java.math.BigDecimal;
 
     public static abstract class AccountAddOrSubDTOBuilder<C extends AccountAddOrSubDTO, B extends AccountAddOrSubDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Integer type;
+        private BigDecimal amount;
 
         public B type(Integer type) {
             this.type = type;
             return self();
         }
-
-        private BigDecimal amount;
 
         public B amount(BigDecimal amount) {
             this.amount = amount;
@@ -84,34 +89,7 @@ import java.math.BigDecimal;
 
         public abstract C build();
 
-
-    }
-
-    public AccountAddOrSubDTO() {
-    }
-
-    public AccountAddOrSubDTO(Integer type, BigDecimal amount) {
-        /* 19 */
-        this.type = type;
-        this.amount = amount;
-
-    }
-
-
-
-    public Integer getType() {
-        /* 23 */
-        return this.type;
-
-    }
-
-
-    public BigDecimal getAmount() {
-        /* 26 */
-        return this.amount;
-
     }
 
 }
-
 

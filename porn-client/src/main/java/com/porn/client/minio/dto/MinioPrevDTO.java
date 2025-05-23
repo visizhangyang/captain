@@ -1,46 +1,45 @@
-
 package com.porn.client.minio.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 
-
-
-
-
-
- public class MinioPrevDTO
-         implements Serializable
-         {
+public class MinioPrevDTO
+        implements Serializable {
 
     @ApiModelProperty("文件路径")
-     private String filePath;
+    private String filePath;
 
-
-
-    public void setFilePath(String filePath) {
-        /* 15 */
-        this.filePath = filePath;
+    protected MinioPrevDTO(MinioPrevDTOBuilder<?, ?> b) {
+        this.filePath = b.filePath;
     }
 
+    public MinioPrevDTO(String filePath) {
+
+        this.filePath = filePath;
+
+    }
+
+    public MinioPrevDTO() {
+    }
+
+    public static MinioPrevDTOBuilder<?, ?> builder() {
+        return new MinioPrevDTOBuilderImpl();
+    }
 
     protected boolean canEqual(Object other) {
         return other instanceof MinioPrevDTO;
     }
 
+    public String getFilePath() {
 
+        return this.filePath;
 
-    /* 16 */
-    protected MinioPrevDTO(MinioPrevDTOBuilder<?, ?> b) {
-        this.filePath = b.filePath;
     }
 
-    public static MinioPrevDTOBuilder<?, ?> builder() {
-        return new MinioPrevDTOBuilderImpl();
+    public void setFilePath(String filePath) {
+
+        this.filePath = filePath;
     }
 
     private static final class MinioPrevDTOBuilderImpl extends MinioPrevDTOBuilder<MinioPrevDTO, MinioPrevDTOBuilderImpl> {
@@ -57,12 +56,12 @@ import java.io.Serializable;
     }
 
     public static abstract class MinioPrevDTOBuilder<C extends MinioPrevDTO, B extends MinioPrevDTOBuilder<C, B>> {
+        private String filePath;
+
         public B filePath(String filePath) {
             this.filePath = filePath;
             return self();
         }
-
-        private String filePath;
 
         protected abstract B self();
 
@@ -70,24 +69,5 @@ import java.io.Serializable;
 
     }
 
-    public MinioPrevDTO(String filePath) {
-        /* 17 */
-        this.filePath = filePath;
-
-    }
-
-
-    public MinioPrevDTO() {
-    }
-
-
-
-    public String getFilePath() {
-        /* 22 */
-        return this.filePath;
-
-    }
-
 }
-
 

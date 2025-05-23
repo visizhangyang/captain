@@ -1,43 +1,31 @@
-
 package com.porn.client.order.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class OrderUnFreezeDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class OrderUnFreezeDTO
-         extends BaseDTO
-         {
-    
-
-    protected boolean canEqual(Object other) {
-        return other instanceof OrderUnFreezeDTO;
-    }
-
-
-
-    /* 14 */
     protected OrderUnFreezeDTO(OrderUnFreezeDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public OrderUnFreezeDTO() {
     }
 
     public static OrderUnFreezeDTOBuilder<?, ?> builder() {
         return new OrderUnFreezeDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof OrderUnFreezeDTO;
+    }
+
     private static final class OrderUnFreezeDTOBuilderImpl extends OrderUnFreezeDTOBuilder<OrderUnFreezeDTO, OrderUnFreezeDTOBuilderImpl> {
-        protected OrderUnFreezeDTOBuilderImpl self() {
-            return this;
+        private OrderUnFreezeDTOBuilderImpl() {
         }
 
-        private OrderUnFreezeDTOBuilderImpl() {
+        protected OrderUnFreezeDTOBuilderImpl self() {
+            return this;
         }
 
         public OrderUnFreezeDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class OrderUnFreezeDTOBuilder<C extends OrderUnFreezeDTO, B extends OrderUnFreezeDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-        
-        
-        
         protected abstract B self();
 
-        
-        
         public abstract C build();
     }
 
-    
-    
-    
-    public OrderUnFreezeDTO() {
-    }
-    
 }
-
 

@@ -1,12 +1,11 @@
-/*     */
 package com.porn.client.account.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -26,35 +25,35 @@ public class AccountVo extends BaseVo {
     @ApiModelProperty("收款地址")
     private String receiveAddress;
     @ApiModelProperty("QQ号码")
-    /*     */ private String qq;
+    private String qq;
     @ApiModelProperty("微信号码")
-    /*     */ private String wechat;
+    private String wechat;
     @ApiModelProperty("手机号码")
-    /*     */ private String phone;
+    private String phone;
     @ApiModelProperty("当前账户的推广码")
-    /*     */ private String promotionCode;
+    private String promotionCode;
     @ApiModelProperty("当前账户的父推荐码")
-    /*     */ private String parentPromotionCode;
+    private String parentPromotionCode;
     @ApiModelProperty("总余额")
-    /*     */ private BigDecimal totalBalance;
+    private BigDecimal totalBalance;
     @ApiModelProperty("可用余额")
-    /*     */ private BigDecimal availableBalance;
+    private BigDecimal availableBalance;
     @ApiModelProperty("冻结余额")
-    /*     */ private BigDecimal freezeBalance;
+    private BigDecimal freezeBalance;
     @ApiModelProperty("账户级别")
-    /*     */ private Integer accountLevel;
+    private Integer accountLevel;
     @ApiModelProperty("状态, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
-    /*     */ private Integer status;
+    private Integer status;
     @ApiModelProperty("搬砖权限, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
-    /*     */ private Integer workStatus;
+    private Integer workStatus;
     @ApiModelProperty("提现权限, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
-    /*     */ private Integer withdrawStatus;
+    private Integer withdrawStatus;
     @ApiModelProperty("转账权限, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
-    /*     */ private Integer transferStatus;
+    private Integer transferStatus;
     @ApiModelProperty("账户类型, com.porn.client.account.enums.AccountTypeEnum")
-    /*     */ private Integer accountType;
+    private Integer accountType;
     @ApiModelProperty("搬砖自动到账, 默认禁用, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
-    /*  16 */ private Integer workAutoAudit;
+    private Integer workAutoAudit;
 
     @ApiModelProperty("下级是否可见, 默认不可见, 1-可见, 0-不可见 com.porn.client.common.enums.EnableStatusEnum")
     private Integer subVisit;
@@ -98,5 +97,4 @@ public class AccountVo extends BaseVo {
     private Integer rewardEnableStatus;
 
 }
-
 

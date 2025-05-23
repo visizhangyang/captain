@@ -20,4 +20,3 @@ public interface RoleMenuApiService {
     Boolean batchCreate(RoleMenuBatchCreateDTO paramRoleMenuBatchCreateDTO);
 }
 
-

@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -19,67 +17,42 @@ import java.util.Collections;
 import java.util.List;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QueryNoticeApiServiceImpl
-         implements ApiService<List<NoticeVo>>
-         {
+public class QueryNoticeApiServiceImpl
+        implements ApiService<List<NoticeVo>> {
 
     @Autowired
-     private NoticeApiService noticeApiService;
-
+    private NoticeApiService noticeApiService;
 
 
     public List<NoticeVo> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 32 */
+
         NoticeQueryPageDTO noticeQueryPageDTO = (NoticeQueryPageDTO) JSON.parseObject(cmdRequestDTO.getData(), NoticeQueryPageDTO.class);
-        /* 33 */
+
         if (ObjectUtil.isNotEmpty(noticeQueryPageDTO.getLangTypeName())) {
-            /* 34 */
+
             LangTypeEnum langTypeEnum = LangTypeEnum.queryByTag(noticeQueryPageDTO.getLangTypeName());
-            /* 35 */
+
             if (ObjectUtil.isNotEmpty(langTypeEnum)) {
-                /* 36 */
+
                 noticeQueryPageDTO.setLangType(langTypeEnum.getType());
 
             }
 
         }
-        /* 39 */
+
         PageVo<NoticeVo> pageVo = this.noticeApiService.queryPage(noticeQueryPageDTO);
-        /* 40 */
+
         return (ObjectUtil.isEmpty(pageVo) || ObjectUtil.isEmpty(pageVo.getData())) ? Collections.<NoticeVo>emptyList() : pageVo.getData();
 
     }
 
 
-
     public String getApi() {
-        /* 44 */
+
         return "api_querynotice";
 
     }
 
 }
-
 

@@ -1,50 +1,59 @@
-
 package com.porn.client.role.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BasePageDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class RoleQueryPageDTO extends BasePageDTO {
+public class RoleQueryPageDTO extends BasePageDTO {
 
     @ApiModelProperty("模糊匹配名称")
-     private String lkName;
+    private String lkName;
 
     @ApiModelProperty("状态")
-     private Integer status;
+    private Integer status;
 
-
-
-    public void setLkName(String lkName) {
-        /* 15 */
-        this.lkName = lkName;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RoleQueryPageDTO;
-    }
-
-
-
-    /* 16 */
     protected RoleQueryPageDTO(RoleQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.lkName = b.lkName;
         this.status = b.status;
     }
 
+    public RoleQueryPageDTO(String lkName, Integer status) {
+
+        this.lkName = lkName;
+        this.status = status;
+
+    }
+
+    public RoleQueryPageDTO() {
+    }
+
     public static RoleQueryPageDTOBuilder<?, ?> builder() {
         return new RoleQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RoleQueryPageDTO;
+    }
+
+    public String getLkName() {
+
+        return this.lkName;
+
+    }
+
+    public void setLkName(String lkName) {
+
+        this.lkName = lkName;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     private static final class RoleQueryPageDTOBuilderImpl extends RoleQueryPageDTOBuilder<RoleQueryPageDTO, RoleQueryPageDTOBuilderImpl> {
@@ -62,13 +71,12 @@ import com.porn.client.common.dto.BasePageDTO;
 
     public static abstract class RoleQueryPageDTOBuilder<C extends RoleQueryPageDTO, B extends RoleQueryPageDTOBuilder<C, B>> extends BasePageDTO.BasePageDTOBuilder<C, B> {
         private String lkName;
+        private Integer status;
 
         public B lkName(String lkName) {
             this.lkName = lkName;
             return self();
         }
-
-        private Integer status;
 
         public B status(Integer status) {
             this.status = status;
@@ -81,32 +89,5 @@ import com.porn.client.common.dto.BasePageDTO;
 
     }
 
-    public RoleQueryPageDTO(String lkName, Integer status) {
-        /* 17 */
-        this.lkName = lkName;
-        this.status = status;
-
-    }
-
-
-    public RoleQueryPageDTO() {
-    }
-
-
-
-    public String getLkName() {
-        /* 22 */
-        return this.lkName;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 25 */
-        return this.status;
-
-    }
-
 }
-
 

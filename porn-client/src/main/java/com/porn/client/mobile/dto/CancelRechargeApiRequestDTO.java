@@ -1,51 +1,50 @@
-
 package com.porn.client.mobile.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 
-
-
-
-
-
- public class CancelRechargeApiRequestDTO
-         implements Serializable
-         {
+public class CancelRechargeApiRequestDTO
+        implements Serializable {
 
     @ApiModelProperty("充值ID")
-     private Long rechargeId;
+    private Long rechargeId;
 
+    public CancelRechargeApiRequestDTO(Long rechargeId) {
 
-
-    public void setRechargeId(Long rechargeId) {
-        /* 15 */
         this.rechargeId = rechargeId;
+
     }
 
+    public CancelRechargeApiRequestDTO() {
+    }
+
+    public static CancelRechargeApiRequestDTOBuilder builder() {
+        return new CancelRechargeApiRequestDTOBuilder();
+    }
 
     protected boolean canEqual(Object other) {
         return other instanceof CancelRechargeApiRequestDTO;
     }
 
+    public Long getRechargeId() {
 
+        return this.rechargeId;
 
-    /* 16 */
-    public static CancelRechargeApiRequestDTOBuilder builder() {
-        return new CancelRechargeApiRequestDTOBuilder();
+    }
+
+    public void setRechargeId(Long rechargeId) {
+
+        this.rechargeId = rechargeId;
     }
 
     public static class CancelRechargeApiRequestDTOBuilder {
+        private Long rechargeId;
+
         public CancelRechargeApiRequestDTOBuilder rechargeId(Long rechargeId) {
             this.rechargeId = rechargeId;
             return this;
         }
-
-        private Long rechargeId;
 
         public CancelRechargeApiRequestDTO build() {
             return new CancelRechargeApiRequestDTO(this.rechargeId);
@@ -53,24 +52,5 @@ import java.io.Serializable;
 
     }
 
-    public CancelRechargeApiRequestDTO(Long rechargeId) {
-        /* 17 */
-        this.rechargeId = rechargeId;
-
-    }
-
-
-    public CancelRechargeApiRequestDTO() {
-    }
-
-
-
-    public Long getRechargeId() {
-        /* 22 */
-        return this.rechargeId;
-
-    }
-
 }
-
 

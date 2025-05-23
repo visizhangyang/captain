@@ -1,12 +1,11 @@
-
 package com.porn.client.recharge.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -14,27 +13,26 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class RechargeVo extends BaseVo {
+public class RechargeVo extends BaseVo {
     @ApiModelProperty("充值流水号")
-     private String rechargeNo;
+    private String rechargeNo;
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("账户名称")
-     private String accountName;
+    private String accountName;
 
     @ApiModelProperty("来源地址")
-     private String fromAddress;
+    private String fromAddress;
 
     @ApiModelProperty("交易hash")
-     private String hash;
+    private String hash;
 
     @ApiModelProperty("钱包ID")
-     private Long walletId;
+    private Long walletId;
 
     @ApiModelProperty("钱包编码")
-     private String walletCode;
-
+    private String walletCode;
 
     @ApiModelProperty("钱包名称")
     private String walletName;
@@ -54,5 +52,4 @@ import java.math.BigDecimal;
     private String walletRemark;
 
 }
-
 

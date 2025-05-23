@@ -1,37 +1,34 @@
-
 package com.porn.client.log.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class OperateLogVo extends BaseVo {
+public class OperateLogVo extends BaseVo {
     @ApiModelProperty("用户ID")
-     private Long userId;
+    private Long userId;
 
     @ApiModelProperty("用户名称")
-     private String name;
+    private String name;
 
     @ApiModelProperty("请求方法")
-     private String method;
+    private String method;
 
     @ApiModelProperty("请求入口")
-     private String action;
+    private String action;
 
     @ApiModelProperty("参数")
-     private String params;
+    private String params;
 
     @ApiModelProperty("耗时")
-     private Long timeConsume;
-
+    private Long timeConsume;
 
 }
-
 

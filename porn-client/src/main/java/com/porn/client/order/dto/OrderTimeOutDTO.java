@@ -1,43 +1,31 @@
-
 package com.porn.client.order.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class OrderTimeOutDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class OrderTimeOutDTO
-         extends BaseDTO
-         {
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof OrderTimeOutDTO;
-    }
-
-
-
-    /* 14 */
     protected OrderTimeOutDTO(OrderTimeOutDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public OrderTimeOutDTO() {
     }
 
     public static OrderTimeOutDTOBuilder<?, ?> builder() {
         return new OrderTimeOutDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof OrderTimeOutDTO;
+    }
+
     private static final class OrderTimeOutDTOBuilderImpl extends OrderTimeOutDTOBuilder<OrderTimeOutDTO, OrderTimeOutDTOBuilderImpl> {
-        protected OrderTimeOutDTOBuilderImpl self() {
-            return this;
+        private OrderTimeOutDTOBuilderImpl() {
         }
 
-        private OrderTimeOutDTOBuilderImpl() {
+        protected OrderTimeOutDTOBuilderImpl self() {
+            return this;
         }
 
         public OrderTimeOutDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class OrderTimeOutDTOBuilder<C extends OrderTimeOutDTO, B extends OrderTimeOutDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-
-
-
         protected abstract B self();
-
-
 
         public abstract C build();
     }
 
-
-
-
-    public OrderTimeOutDTO() {
-    }
-
 }
-
 

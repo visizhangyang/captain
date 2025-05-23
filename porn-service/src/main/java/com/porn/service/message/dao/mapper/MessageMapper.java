@@ -6,4 +6,3 @@ import com.porn.service.message.dao.entity.MessageDO;
 public interface MessageMapper extends BaseMapper<MessageDO> {
 }
 
-

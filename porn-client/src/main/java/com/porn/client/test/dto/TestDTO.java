@@ -1,41 +1,16 @@
-
 package com.porn.client.test.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.AbstractDTO;
 import io.swagger.annotations.ApiModel;
-
-
-
-
-
-
+import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("测试实体")
- public class TestDTO
-         extends AbstractDTO
-         {
-    
+public class TestDTO
+        extends AbstractDTO {
+
     @ApiModelProperty("名称")
-     private String name;
+    private String name;
 
-    
-    
-    public void setName(String name) {
-        /* 17 */
-        this.name = name;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof TestDTO;
-    }
-
-
-
-    /* 18 */
     protected TestDTO(TestDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
@@ -43,6 +18,21 @@ import io.swagger.annotations.ApiModel;
 
     public static TestDTOBuilder<?, ?> builder() {
         return new TestDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof TestDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
     }
 
     private static final class TestDTOBuilderImpl extends TestDTOBuilder<TestDTO, TestDTOBuilderImpl> {
@@ -59,29 +49,18 @@ import io.swagger.annotations.ApiModel;
     }
 
     public static abstract class TestDTOBuilder<C extends TestDTO, B extends TestDTOBuilder<C, B>> extends AbstractDTO.AbstractDTOBuilder<C, B> {
+        private String name;
+
         public B name(String name) {
             this.name = name;
             return self();
         }
 
-        private String name;
-
         protected abstract B self();
 
         public abstract C build();
 
-        
     }
 
-    
-    
-    
-    public String getName() {
-        /* 23 */
-        return this.name;
-        
-    }
-    
 }
-
 

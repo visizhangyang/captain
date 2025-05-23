@@ -1,60 +1,66 @@
-
 package com.porn.client.plan.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
-
-
-
- public class PlanInsCreateDTO
-         implements Serializable
-         {
+public class PlanInsCreateDTO
+        implements Serializable {
 
     @ApiModelProperty("计划实例")
-     private Long planId;
+    private Long planId;
 
     @ApiModelProperty("总投入")
-     private BigDecimal totalInvest;
+    private BigDecimal totalInvest;
 
+    public PlanInsCreateDTO(Long planId, BigDecimal totalInvest) {
 
+        this.planId = planId;
+        this.totalInvest = totalInvest;
+
+    }
+
+    public PlanInsCreateDTO() {
+    }
+
+    public static PlanInsCreateDTOBuilder builder() {
+        return new PlanInsCreateDTOBuilder();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof PlanInsCreateDTO;
+    }
+
+    public Long getPlanId() {
+
+        return this.planId;
+
+    }
 
     public void setPlanId(Long planId) {
-        /* 16 */
+
         this.planId = planId;
+    }
+
+    public BigDecimal getTotalInvest() {
+
+        return this.totalInvest;
+
     }
 
     public void setTotalInvest(BigDecimal totalInvest) {
         this.totalInvest = totalInvest;
     }
 
-
-    protected boolean canEqual(Object other) {
-        return other instanceof PlanInsCreateDTO;
-    }
-
-
-
-    /* 17 */
-    public static PlanInsCreateDTOBuilder builder() {
-        return new PlanInsCreateDTOBuilder();
-    }
-
     public static class PlanInsCreateDTOBuilder {
         private Long planId;
+        private BigDecimal totalInvest;
 
         public PlanInsCreateDTOBuilder planId(Long planId) {
             this.planId = planId;
             return this;
         }
-
-        private BigDecimal totalInvest;
 
         public PlanInsCreateDTOBuilder totalInvest(BigDecimal totalInvest) {
             this.totalInvest = totalInvest;
@@ -67,32 +73,5 @@ import java.math.BigDecimal;
 
     }
 
-    public PlanInsCreateDTO(Long planId, BigDecimal totalInvest) {
-        /* 18 */
-        this.planId = planId;
-        this.totalInvest = totalInvest;
-
-    }
-
-
-    public PlanInsCreateDTO() {
-    }
-
-
-
-    public Long getPlanId() {
-        /* 23 */
-        return this.planId;
-
-    }
-
-
-    public BigDecimal getTotalInvest() {
-        /* 26 */
-        return this.totalInvest;
-
-    }
-
 }
-
 

@@ -13,4 +13,3 @@ public interface NickNameConverter {
     List<NickNameVo> toNickNameVoList(List<NickNameDO> paramList);
 }
 
-

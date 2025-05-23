@@ -1,10 +1,13 @@
-
 package com.porn.service.goods.dao.entity;
-import java.time.LocalDateTime;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
-import lombok.*;import lombok.experimental.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -14,27 +17,27 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
- public class GoodsDO extends BaseDO {
+public class GoodsDO extends BaseDO {
     @TableField("merchant_id")
-     private Long merchantId;
+    private Long merchantId;
     @TableField("merchant_name")
-     private String merchantName;
+    private String merchantName;
     @TableField("merchant_avatar")
-     private String merchantAvatar;
+    private String merchantAvatar;
     @TableField("_amount")
-     private BigDecimal amount;
+    private BigDecimal amount;
     @TableField("_rate")
-     private BigDecimal rate;
+    private BigDecimal rate;
 
     @TableField("free_amount")
-     private BigDecimal freeAmount;
+    private BigDecimal freeAmount;
 
     @TableField("goods_status")
-     private Integer goodsStatus;
+    private Integer goodsStatus;
 
     @TableField("account_id")
-     private Long accountId;
+    private Long accountId;
 
     @TableField("account_name")
-     private String accountName;
+    private String accountName;
 }

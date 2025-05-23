@@ -1,11 +1,6 @@
-
 package com.porn.service.paramset.impl;
 
-
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import com.porn.client.common.enums.DelFlagEnum;
 import com.porn.client.common.exceptions.BusinessException;
@@ -26,166 +21,67 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class ParamsetApiServiceImpl implements ParamsetApiService {
-    /*  27 */   private static final Logger log = LoggerFactory.getLogger(ParamsetApiServiceImpl.class);
+public class ParamsetApiServiceImpl implements ParamsetApiService {
+    private static final Logger log = LoggerFactory.getLogger(ParamsetApiServiceImpl.class);
 
+    @Autowired
+    private ParamsetMapper paramsetMapper;
 
+    @Autowired
+    private ParamsetConverter paramsetConverter;
 
 
     @Autowired
-     private ParamsetMapper paramsetMapper;
-
-
-
-
-    @Autowired
-     private ParamsetConverter paramsetConverter;
-
-
-
-    @Autowired
-     private MinioApiService minioApiService;
-
-
-
+    private MinioApiService minioApiService;
 
 
     public ParamsetVo queryParamset(ParamsetQueryDTO paramsetQueryDTO) {
-        /*  46 */
-        ParamsetDO paramsetDO =  ChainWrappers.lambdaQueryChain(paramsetMapper)
+
+        ParamsetDO paramsetDO = ChainWrappers.lambdaQueryChain(paramsetMapper)
                 .eq(ObjectUtil.isNotEmpty(paramsetQueryDTO.getId()), BaseDO::getId, paramsetQueryDTO.getId())
                 .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
                 .one();
-        /*  47 */
+
         ParamsetVo paramsetVo = this.paramsetConverter.toParamsetVo(paramsetDO);
-        /*  48 */
+
         if (ObjectUtil.isNotEmpty(paramsetVo.getAppLogo())) {
-            /*  49 */
+
             PrevFileVo prevFileVo = this.minioApiService.prevFile(PrevFileDTO.builder().filePath(paramsetVo.getAppLogo()).build());
-            /*  50 */
+
             if (ObjectUtil.isNotEmpty(prevFileVo)) {
-                /*  51 */
+
                 paramsetVo.setAppLogoUrl(prevFileVo.getFileUrl());
 
             }
 
         }
-        /*  54 */
+
         return paramsetVo;
 
     }
 
 
-
     public ParamsetVo saveOrUpdate(ParamsetSaveOrUpdateDTO paramsetSaveOrUpdateDTO) {
-        /*  58 */
+
         if (ObjectUtil.isEmpty(paramsetSaveOrUpdateDTO.getId())) {
-            /*  59 */
+
             ParamsetDO paramsetDO = this.paramsetConverter.toParamsetDO(paramsetSaveOrUpdateDTO);
-            /*  60 */
+
             if (this.paramsetMapper.insert(paramsetDO) <= 0) {
-                /*  61 */
+
                 throw new BusinessException("保存参数信息失败.");
 
             }
-            /*  63 */
+
             return queryParamset(((ParamsetQueryDTO.ParamsetQueryDTOBuilder) ParamsetQueryDTO.builder().id(paramsetDO.getId())).build());
 
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* 131 */
-        boolean rs =  ChainWrappers.lambdaUpdateChain(paramsetMapper)
+        boolean rs = ChainWrappers.lambdaUpdateChain(paramsetMapper)
                 .set(ParamsetDO::getLargeLevelRate, paramsetSaveOrUpdateDTO.getLargeLevelRate())
                 .set(ParamsetDO::getNormalLevelRate, paramsetSaveOrUpdateDTO.getNormalLevelRate())
                 .set(ParamsetDO::getWorkRate, paramsetSaveOrUpdateDTO.getWorkRate())
@@ -226,7 +122,7 @@ import org.springframework.transaction.annotation.Transactional;
                 .set(ParamsetDO::getProxyLevel1Rate, paramsetSaveOrUpdateDTO.getProxyLevel1Rate())
                 .set(ParamsetDO::getProxyLevel2Rate, paramsetSaveOrUpdateDTO.getProxyLevel2Rate())
                 .set(ParamsetDO::getProxyLevel3Rate, paramsetSaveOrUpdateDTO.getProxyLevel3Rate())
-        .set(ParamsetDO::getNormalTreasureRate, paramsetSaveOrUpdateDTO.getNormalTreasureRate())
+                .set(ParamsetDO::getNormalTreasureRate, paramsetSaveOrUpdateDTO.getNormalTreasureRate())
                 .set(ParamsetDO::getLargeTreasureRate, paramsetSaveOrUpdateDTO.getLargeTreasureRate())
                 .set(ParamsetDO::getWorkPageRefreshSpace, paramsetSaveOrUpdateDTO.getWorkPageRefreshSpace())
                 .set(ParamsetDO::getAppLogo, paramsetSaveOrUpdateDTO.getAppLogo())
@@ -252,13 +148,13 @@ import org.springframework.transaction.annotation.Transactional;
                 .eq(BaseDO::getId, paramsetSaveOrUpdateDTO.getId())
                 .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
                 .update();
-        /* 132 */
+
         if (!rs) {
-            /* 133 */
+
             throw new BusinessException("更新参数信息失败.");
 
         }
-        /* 135 */
+
         return queryParamset(((ParamsetQueryDTO.ParamsetQueryDTOBuilder) ParamsetQueryDTO.builder().id(paramsetSaveOrUpdateDTO.getId())).build());
 
     }

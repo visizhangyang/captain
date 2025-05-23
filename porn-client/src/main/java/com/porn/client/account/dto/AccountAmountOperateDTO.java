@@ -1,58 +1,25 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 import com.porn.client.stream.enums.StreamTypeEnum;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
+public class AccountAmountOperateDTO extends BaseDTO {
 
-
-
-
- public class AccountAmountOperateDTO extends BaseDTO {
-    
     @ApiModelProperty("金额类型")
-     private Integer amountType;
-    
+    private Integer amountType;
+
     @ApiModelProperty("操作金额")
-     private BigDecimal operateAmount;
-    
+    private BigDecimal operateAmount;
+
     @ApiModelProperty("业务Id")
-     private Long bizId;
-    
+    private Long bizId;
+
     @ApiModelProperty("提现到账")
-     private StreamTypeEnum streamTypeEnum;
+    private StreamTypeEnum streamTypeEnum;
 
-    
-    /* 17 */
-    public void setAmountType(Integer amountType) {
-        this.amountType = amountType;
-    }
-
-    public void setOperateAmount(BigDecimal operateAmount) {
-        this.operateAmount = operateAmount;
-    }
-
-    public void setBizId(Long bizId) {
-        this.bizId = bizId;
-    }
-
-    public void setStreamTypeEnum(StreamTypeEnum streamTypeEnum) {
-        this.streamTypeEnum = streamTypeEnum;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountAmountOperateDTO;
-    }
-
-
-
-    /* 18 */
     protected AccountAmountOperateDTO(AccountAmountOperateDTOBuilder<?, ?> b) {
         super(b);
         this.amountType = b.amountType;
@@ -61,8 +28,64 @@ import java.math.BigDecimal;
         this.streamTypeEnum = b.streamTypeEnum;
     }
 
+    public AccountAmountOperateDTO(Integer amountType, BigDecimal operateAmount, Long bizId, StreamTypeEnum streamTypeEnum) {
+
+        this.amountType = amountType;
+        this.operateAmount = operateAmount;
+        this.bizId = bizId;
+        this.streamTypeEnum = streamTypeEnum;
+
+    }
+
+    public AccountAmountOperateDTO() {
+    }
+
     public static AccountAmountOperateDTOBuilder<?, ?> builder() {
         return new AccountAmountOperateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountAmountOperateDTO;
+    }
+
+    public Integer getAmountType() {
+
+        return this.amountType;
+
+    }
+
+    public void setAmountType(Integer amountType) {
+        this.amountType = amountType;
+    }
+
+    public BigDecimal getOperateAmount() {
+
+        return this.operateAmount;
+
+    }
+
+    public void setOperateAmount(BigDecimal operateAmount) {
+        this.operateAmount = operateAmount;
+    }
+
+    public Long getBizId() {
+
+        return this.bizId;
+
+    }
+
+    public void setBizId(Long bizId) {
+        this.bizId = bizId;
+    }
+
+    public StreamTypeEnum getStreamTypeEnum() {
+
+        return this.streamTypeEnum;
+
+    }
+
+    public void setStreamTypeEnum(StreamTypeEnum streamTypeEnum) {
+        this.streamTypeEnum = streamTypeEnum;
     }
 
     private static final class AccountAmountOperateDTOBuilderImpl extends AccountAmountOperateDTOBuilder<AccountAmountOperateDTO, AccountAmountOperateDTOBuilderImpl> {
@@ -81,14 +104,13 @@ import java.math.BigDecimal;
     public static abstract class AccountAmountOperateDTOBuilder<C extends AccountAmountOperateDTO, B extends AccountAmountOperateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Integer amountType;
         private BigDecimal operateAmount;
+        private Long bizId;
+        private StreamTypeEnum streamTypeEnum;
 
         public B amountType(Integer amountType) {
             this.amountType = amountType;
             return self();
         }
-
-        private Long bizId;
-        private StreamTypeEnum streamTypeEnum;
 
         public B operateAmount(BigDecimal operateAmount) {
             this.operateAmount = operateAmount;
@@ -111,48 +133,5 @@ import java.math.BigDecimal;
 
     }
 
-    public AccountAmountOperateDTO(Integer amountType, BigDecimal operateAmount, Long bizId, StreamTypeEnum streamTypeEnum) {
-        /* 19 */
-        this.amountType = amountType;
-        this.operateAmount = operateAmount;
-        this.bizId = bizId;
-        this.streamTypeEnum = streamTypeEnum;
-        
-    }
-
-    
-    public AccountAmountOperateDTO() {
-    }
-
-    
-    
-    public Integer getAmountType() {
-        /* 24 */
-        return this.amountType;
-        
-    }
-
-    
-    public BigDecimal getOperateAmount() {
-        /* 27 */
-        return this.operateAmount;
-        
-    }
-
-    
-    public Long getBizId() {
-        /* 30 */
-        return this.bizId;
-        
-    }
-
-    
-    public StreamTypeEnum getStreamTypeEnum() {
-        /* 33 */
-        return this.streamTypeEnum;
-        
-    }
-    
 }
-
 

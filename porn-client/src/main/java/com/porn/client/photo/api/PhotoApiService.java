@@ -18,4 +18,3 @@ public interface PhotoApiService {
     PhotoVo saveOrUpdate(PhotoSaveOrUpdateDTO paramPhotoSaveOrUpdateDTO);
 }
 
-

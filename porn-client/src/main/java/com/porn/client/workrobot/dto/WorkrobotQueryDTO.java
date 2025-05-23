@@ -1,43 +1,31 @@
-
 package com.porn.client.workrobot.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class WorkrobotQueryDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class WorkrobotQueryDTO
-         extends BaseDTO
-         {
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof WorkrobotQueryDTO;
-    }
-
-
-
-    /* 14 */
     protected WorkrobotQueryDTO(WorkrobotQueryDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public WorkrobotQueryDTO() {
     }
 
     public static WorkrobotQueryDTOBuilder<?, ?> builder() {
         return new WorkrobotQueryDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof WorkrobotQueryDTO;
+    }
+
     private static final class WorkrobotQueryDTOBuilderImpl extends WorkrobotQueryDTOBuilder<WorkrobotQueryDTO, WorkrobotQueryDTOBuilderImpl> {
-        protected WorkrobotQueryDTOBuilderImpl self() {
-            return this;
+        private WorkrobotQueryDTOBuilderImpl() {
         }
 
-        private WorkrobotQueryDTOBuilderImpl() {
+        protected WorkrobotQueryDTOBuilderImpl self() {
+            return this;
         }
 
         public WorkrobotQueryDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class WorkrobotQueryDTOBuilder<C extends WorkrobotQueryDTO, B extends WorkrobotQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-
-
-
         protected abstract B self();
-
-
 
         public abstract C build();
     }
 
-
-
-
-    public WorkrobotQueryDTO() {
-    }
-
 }
-
 

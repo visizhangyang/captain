@@ -1,28 +1,30 @@
-
 package com.porn.client.common.entity;
-
-
 
 import java.io.Serializable;
 
+public class Pair<K, V>
+        implements Serializable {
+    private K key;
+    private V value;
 
+    public Pair(K key, V value) {
 
-
- public class Pair<K, V>
-         implements Serializable
-         {
-       private K key;
-       private V value;
-
-
-
-    public void setKey(K key) {
-        /* 14 */
         this.key = key;
+        this.value = value;
+
     }
 
-    public void setValue(V value) {
-        this.value = value;
+    public Pair() {
+    }
+
+    public static <K, V> PairBuilder<K, V> builder() {
+        return new PairBuilder<>();
+    }
+
+    public static <K, V> Pair of(K key, V value) {
+
+        return new Pair<>(key, value);
+
     }
 
     public boolean equals(Object o) {
@@ -40,25 +42,39 @@ import java.io.Serializable;
         return other instanceof Pair;
     }
 
-
     public String toString() {
         return "Pair(key=" + getKey() + ", value=" + getValue() + ")";
     }
 
-    /* 15 */
-    public static <K, V> PairBuilder<K, V> builder() {
-        return new PairBuilder<>();
+    public K getKey() {
+
+        return this.key;
+
+    }
+
+    public void setKey(K key) {
+
+        this.key = key;
+    }
+
+    public V getValue() {
+
+        return this.value;
+
+    }
+
+    public void setValue(V value) {
+        this.value = value;
     }
 
     public static class PairBuilder<K, V> {
         private K key;
+        private V value;
 
         public PairBuilder<K, V> key(K key) {
             this.key = key;
             return this;
         }
-
-        private V value;
 
         public PairBuilder<K, V> value(V value) {
             this.value = value;
@@ -74,45 +90,5 @@ import java.io.Serializable;
         }
     }
 
-    public Pair(K key, V value) {
-        /* 16 */
-        this.key = key;
-        this.value = value;
-
-    }
-
-
-    public Pair() {
-    }
-
-
-    public K getKey() {
-        /* 20 */
-        return this.key;
-
-    }
-
-    public V getValue() {
-        /* 22 */
-        return this.value;
-
-    }
-
-
-
-
-
-
-
-
-
-
-    public static <K, V> Pair of(K key, V value) {
-        /* 33 */
-        return new Pair<>(key, value);
-
-    }
-
 }
-
 

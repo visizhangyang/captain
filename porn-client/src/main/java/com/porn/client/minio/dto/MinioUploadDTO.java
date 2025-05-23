@@ -1,58 +1,24 @@
-
 package com.porn.client.minio.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.req.ServiceRequest;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
-
-
-
- public class MinioUploadDTO extends ServiceRequest implements Serializable {
+public class MinioUploadDTO extends ServiceRequest implements Serializable {
 
     @ApiModelProperty("文件名称")
-     private String fileName;
+    private String fileName;
 
     @ApiModelProperty("文件大小")
-     private Long fileSize;
+    private Long fileSize;
 
     @ApiModelProperty("内容类型")
-     private String contentType;
+    private String contentType;
 
     @ApiModelProperty("文件内容")
-     private byte[] fileBytes;
+    private byte[] fileBytes;
 
-
-    /* 16 */
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public void setFileSize(Long fileSize) {
-        this.fileSize = fileSize;
-    }
-
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
-    public void setFileBytes(byte[] fileBytes) {
-        this.fileBytes = fileBytes;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MinioUploadDTO;
-    }
-
-
-
-    /* 17 */
     protected MinioUploadDTO(MinioUploadDTOBuilder<?, ?> b) {
         super(b);
         this.fileName = b.fileName;
@@ -61,8 +27,64 @@ import java.util.Arrays;
         this.fileBytes = b.fileBytes;
     }
 
+    public MinioUploadDTO(String fileName, Long fileSize, String contentType, byte[] fileBytes) {
+
+        this.fileName = fileName;
+        this.fileSize = fileSize;
+        this.contentType = contentType;
+        this.fileBytes = fileBytes;
+
+    }
+
+    public MinioUploadDTO() {
+    }
+
     public static MinioUploadDTOBuilder<?, ?> builder() {
         return new MinioUploadDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MinioUploadDTO;
+    }
+
+    public String getFileName() {
+
+        return this.fileName;
+
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public Long getFileSize() {
+
+        return this.fileSize;
+
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getContentType() {
+
+        return this.contentType;
+
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public byte[] getFileBytes() {
+
+        return this.fileBytes;
+
+    }
+
+    public void setFileBytes(byte[] fileBytes) {
+        this.fileBytes = fileBytes;
     }
 
     private static final class MinioUploadDTOBuilderImpl extends MinioUploadDTOBuilder<MinioUploadDTO, MinioUploadDTOBuilderImpl> {
@@ -81,14 +103,13 @@ import java.util.Arrays;
     public static abstract class MinioUploadDTOBuilder<C extends MinioUploadDTO, B extends MinioUploadDTOBuilder<C, B>> extends ServiceRequest.ServiceRequestBuilder<C, B> {
         private String fileName;
         private Long fileSize;
+        private String contentType;
+        private byte[] fileBytes;
 
         public B fileName(String fileName) {
             this.fileName = fileName;
             return self();
         }
-
-        private String contentType;
-        private byte[] fileBytes;
 
         public B fileSize(Long fileSize) {
             this.fileSize = fileSize;
@@ -111,49 +132,5 @@ import java.util.Arrays;
 
     }
 
-    public MinioUploadDTO(String fileName, Long fileSize, String contentType, byte[] fileBytes) {
-        /* 18 */
-        this.fileName = fileName;
-        this.fileSize = fileSize;
-        this.contentType = contentType;
-        this.fileBytes = fileBytes;
-
-    }
-
-
-
-    public MinioUploadDTO() {
-    }
-
-
-
-    public String getFileName() {
-        /* 24 */
-        return this.fileName;
-
-    }
-
-
-    public Long getFileSize() {
-        /* 27 */
-        return this.fileSize;
-
-    }
-
-
-    public String getContentType() {
-        /* 30 */
-        return this.contentType;
-
-    }
-
-
-    public byte[] getFileBytes() {
-        /* 33 */
-        return this.fileBytes;
-
-    }
-
 }
-
 

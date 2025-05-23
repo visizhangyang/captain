@@ -1,53 +1,21 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-
-
-
-
-
-
- public class AccountEnableOrDisableDTO extends BaseDTO {
+public class AccountEnableOrDisableDTO extends BaseDTO {
 
     @ApiModelProperty("id列表")
-     private List<Long> idList;
+    private List<Long> idList;
 
     @ApiModelProperty("0-状态, 1-搬砖, 2-提现, 3-转账, 4-搬砖自动审核, 5-重点关注, 6-自动搬砖, 7-上传, 8-计划, 9-抽奖")
-     private Integer type;
+    private Integer type;
 
     @ApiModelProperty("状态, 1-启用, 0-禁用")
-     private Integer status;
+    private Integer status;
 
-
-    /* 17 */
-    public void setIdList(List<Long> idList) {
-        this.idList = idList;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountEnableOrDisableDTO;
-    }
-
-
-
-    /* 18 */
     protected AccountEnableOrDisableDTO(AccountEnableOrDisableDTOBuilder<?, ?> b) {
         super(b);
         this.idList = b.idList;
@@ -55,8 +23,53 @@ import java.util.List;
         this.status = b.status;
     }
 
+    public AccountEnableOrDisableDTO(List<Long> idList, Integer type, Integer status) {
+
+        this.idList = idList;
+        this.type = type;
+        this.status = status;
+
+    }
+
+    public AccountEnableOrDisableDTO() {
+    }
+
     public static AccountEnableOrDisableDTOBuilder<?, ?> builder() {
         return new AccountEnableOrDisableDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountEnableOrDisableDTO;
+    }
+
+    public List<Long> getIdList() {
+
+        return this.idList;
+
+    }
+
+    public void setIdList(List<Long> idList) {
+        this.idList = idList;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     private static final class AccountEnableOrDisableDTOBuilderImpl extends AccountEnableOrDisableDTOBuilder<AccountEnableOrDisableDTO, AccountEnableOrDisableDTOBuilderImpl> {
@@ -74,14 +87,13 @@ import java.util.List;
 
     public static abstract class AccountEnableOrDisableDTOBuilder<C extends AccountEnableOrDisableDTO, B extends AccountEnableOrDisableDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private List<Long> idList;
+        private Integer type;
+        private Integer status;
 
         public B idList(List<Long> idList) {
             this.idList = idList;
             return self();
         }
-
-        private Integer type;
-        private Integer status;
 
         public B type(Integer type) {
             this.type = type;
@@ -99,40 +111,5 @@ import java.util.List;
 
     }
 
-    public AccountEnableOrDisableDTO(List<Long> idList, Integer type, Integer status) {
-        /* 19 */
-        this.idList = idList;
-        this.type = type;
-        this.status = status;
-
-    }
-
-
-    public AccountEnableOrDisableDTO() {
-    }
-
-
-
-    public List<Long> getIdList() {
-        /* 24 */
-        return this.idList;
-
-    }
-
-
-    public Integer getType() {
-        /* 27 */
-        return this.type;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 30 */
-        return this.status;
-
-    }
-
 }
-
 

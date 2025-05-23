@@ -1,13 +1,8 @@
-
 package com.porn.service.autowork.impl;
-
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import com.porn.client.autowork.api.AutoWorkApiService;
 import com.porn.client.autowork.dto.AutoWorkQueryDTO;
@@ -31,29 +26,27 @@ import java.util.List;
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class AutoWorkApiServiceImpl implements AutoWorkApiService {
-    /* 27 */   private static final Logger log = LoggerFactory.getLogger(AutoWorkApiServiceImpl.class);
-
-
-
-    @Autowired
-     private AutoWorkConverter autoWorkConverter;
-
+public class AutoWorkApiServiceImpl implements AutoWorkApiService {
+    private static final Logger log = LoggerFactory.getLogger(AutoWorkApiServiceImpl.class);
 
 
     @Autowired
-     private AutoWorkMapper autoWorkMapper;
+    private AutoWorkConverter autoWorkConverter;
+
+
+    @Autowired
+    private AutoWorkMapper autoWorkMapper;
 
     public AutoWorkVo queryAutoWork(AutoWorkQueryDTO autoWorkQueryDTO) {
-        /* 40 */
+
         List<AutoWorkVo> autoWorkVoList = queryAutoWorkList(autoWorkQueryDTO);
-        /* 41 */
+
         return ObjectUtil.isEmpty(autoWorkVoList) ? null : autoWorkVoList.get(0);
 
     }
 
     public List<AutoWorkVo> queryAutoWorkList(AutoWorkQueryDTO autoWorkQueryDTO) {
-        /* 49 */
+
         List<AutoWorkDO> autoWorkList = ChainWrappers.lambdaQueryChain(autoWorkMapper)
                 .eq(ObjectUtil.isNotEmpty(autoWorkQueryDTO.getAccountId()), AutoWorkDO::getAccountId, autoWorkQueryDTO.getAccountId())
                 .eq(ObjectUtil.isNotEmpty(autoWorkQueryDTO.getId()), BaseDO::getId, autoWorkQueryDTO.getId())
@@ -66,9 +59,7 @@ import java.util.List;
 
         return autoWorkConverter.toAutoWorkList(autoWorkList);
 
-
     }
-
 
 
     public AutoWorkVo saveOrUpdate(AutoWorkSaveOrUpdateDTO dto) {

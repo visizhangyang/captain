@@ -1,42 +1,40 @@
-
 package com.porn.service.order.dao.entity;
-import java.time.LocalDateTime;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-
 
 @TableName("porn_order")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class OrderDO extends BaseDO {
+public class OrderDO extends BaseDO {
     @TableField("order_no")
-     private String orderNo;
+    private String orderNo;
     @TableField("account_id")
-     private Long accountId;
-    
+    private Long accountId;
+
     @TableField("account_name")
-     private String accountName;
-    
+    private String accountName;
+
     @TableField("merchant_id")
-     private Long merchantId;
-    
+    private Long merchantId;
+
     @TableField("merchant_name")
-     private String merchantName;
-    
+    private String merchantName;
+
     @TableField("order_amount")
-     private BigDecimal orderAmount;
-    
+    private BigDecimal orderAmount;
+
     @TableField("order_rate")
-     private BigDecimal orderRate;
+    private BigDecimal orderRate;
 
     @TableField("free_amount")
     private BigDecimal freeAmount;

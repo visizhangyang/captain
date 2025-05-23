@@ -11,14 +11,6 @@ public enum EncryptTypeEnum {
         this.description = description;
     }
 
-    public Integer getType() {
-        return this.type;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
     public static EncryptTypeEnum queryByType(Integer type) {
         if (null == type) {
             return null;
@@ -29,5 +21,13 @@ public enum EncryptTypeEnum {
             }
         }
         return null;
+    }
+
+    public Integer getType() {
+        return this.type;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

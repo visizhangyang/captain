@@ -20,4 +20,3 @@ public interface OrderConverter {
     OrderQueryPageDTO toOrderQueryPageDTO(ProxyOrderQueryPageDTO paramProxyOrderQueryPageDTO);
 }
 
-

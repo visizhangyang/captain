@@ -1,64 +1,79 @@
-
 package com.porn.client.mobile.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 
-
-
-
- public class CreateOrderDTO implements Serializable {
+public class CreateOrderDTO implements Serializable {
 
     @ApiModelProperty("商品ID")
-     private Long goodsId;
+    private Long goodsId;
 
     @ApiModelProperty("钱包编码")
-     private String walletCode;
+    private String walletCode;
 
     @ApiModelProperty("钱包地址")
-     private String walletAddress;
+    private String walletAddress;
 
+    public CreateOrderDTO(Long goodsId, String walletCode, String walletAddress) {
 
+        this.goodsId = goodsId;
+        this.walletCode = walletCode;
+        this.walletAddress = walletAddress;
+
+    }
+
+    public CreateOrderDTO() {
+    }
+
+    public static CreateOrderDTOBuilder builder() {
+        return new CreateOrderDTOBuilder();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof CreateOrderDTO;
+    }
+
+    public Long getGoodsId() {
+
+        return this.goodsId;
+
+    }
 
     public void setGoodsId(Long goodsId) {
-        /* 15 */
+
         this.goodsId = goodsId;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
     }
 
     public void setWalletCode(String walletCode) {
         this.walletCode = walletCode;
     }
 
+    public String getWalletAddress() {
+
+        return this.walletAddress;
+
+    }
+
     public void setWalletAddress(String walletAddress) {
         this.walletAddress = walletAddress;
     }
 
-
-    protected boolean canEqual(Object other) {
-        return other instanceof CreateOrderDTO;
-    }
-
-
-
-    /* 16 */
-    public static CreateOrderDTOBuilder builder() {
-        return new CreateOrderDTOBuilder();
-    }
-
     public static class CreateOrderDTOBuilder {
         private Long goodsId;
+        private String walletCode;
+        private String walletAddress;
 
         public CreateOrderDTOBuilder goodsId(Long goodsId) {
             this.goodsId = goodsId;
             return this;
         }
-
-        private String walletCode;
-        private String walletAddress;
 
         public CreateOrderDTOBuilder walletCode(String walletCode) {
             this.walletCode = walletCode;
@@ -76,40 +91,5 @@ import java.io.Serializable;
 
     }
 
-    public CreateOrderDTO(Long goodsId, String walletCode, String walletAddress) {
-        /* 17 */
-        this.goodsId = goodsId;
-        this.walletCode = walletCode;
-        this.walletAddress = walletAddress;
-
-    }
-
-
-    public CreateOrderDTO() {
-    }
-
-
-
-    public Long getGoodsId() {
-        /* 22 */
-        return this.goodsId;
-
-    }
-
-
-    public String getWalletCode() {
-        /* 25 */
-        return this.walletCode;
-
-    }
-
-
-    public String getWalletAddress() {
-        /* 28 */
-        return this.walletAddress;
-
-    }
-
 }
-
 

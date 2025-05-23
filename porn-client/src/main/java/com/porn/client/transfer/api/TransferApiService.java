@@ -22,4 +22,3 @@ public interface TransferApiService {
     Boolean delete(TransferDeleteDTO paramTransferDeleteDTO);
 }
 
-

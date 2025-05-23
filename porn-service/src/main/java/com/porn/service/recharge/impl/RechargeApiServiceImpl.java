@@ -1,13 +1,9 @@
-
 package com.porn.service.recharge.impl;
-
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
@@ -60,60 +56,29 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class RechargeApiServiceImpl implements RechargeApiService {
-    /*  54 */   private static final Logger log = LoggerFactory.getLogger(RechargeApiServiceImpl.class);
-
-
-
+public class RechargeApiServiceImpl implements RechargeApiService {
+    private static final Logger log = LoggerFactory.getLogger(RechargeApiServiceImpl.class);
+    private final Map<String, RechargeCacheItemDTO> rechargeCacheItemMap = new ConcurrentHashMap<>();
     @Autowired
-     private RechargeMapper rechargeMapper;
-
-
-
+    private RechargeMapper rechargeMapper;
     @Autowired
-     private RechargeConverter rechargeConverter;
-
-
-
+    private RechargeConverter rechargeConverter;
     @Autowired
-     private AccountApiService accountApiService;
-
-
-
+    private AccountApiService accountApiService;
     @Autowired
-     private WalletAddressApiService walletAddressApiService;
-
-
+    private WalletAddressApiService walletAddressApiService;
     @Autowired
-     private RedisTemplate redisTemplate;
-
-
+    private RedisTemplate redisTemplate;
     @Autowired
-     private ParamsetApiService paramsetApiService;
-
-    /*  78 */   private final Map<String, RechargeCacheItemDTO> rechargeCacheItemMap = new ConcurrentHashMap<>();
-
-
-
+    private ParamsetApiService paramsetApiService;
 
     public RechargeVo queryRecharge(RechargeQueryDTO rechargeQueryDTO) {
-        /*  82 */
+
         List<RechargeVo> rechargeVoList = queryRechargeList(rechargeQueryDTO);
-        /*  83 */
+
         return ObjectUtil.isEmpty(rechargeVoList) ? null : rechargeVoList.get(0);
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
     public List<RechargeVo> queryRechargeList(RechargeQueryDTO rechargeQueryDTO) {
         LambdaQueryChainWrapper<RechargeDO> query = ChainWrappers.lambdaQueryChain(rechargeMapper);
@@ -150,7 +115,6 @@ import java.util.concurrent.ConcurrentHashMap;
         return rechargeConverter.toRechargeVoList(rechargeList);
 
     }
-
 
 
     public PageVo<RechargeVo> queryPage(RechargeQueryPageDTO rechargeQueryPageDTO) {
@@ -199,11 +163,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
     }
 
-
-
-
-
-
     public PageVo<RechargeVo> queryProxyPage(ProxyRechargeQueryPageDTO proxyRechargeQueryPageDTO) {
         AccountQueryProxyTeamsDTO proxyTeamsDTO = AccountQueryProxyTeamsDTO.builder()
                 .mngUserId(proxyRechargeQueryPageDTO.getCurrentUserId())
@@ -226,7 +185,6 @@ import java.util.concurrent.ConcurrentHashMap;
         return queryPage(rechargeQueryPageDTO);
 
     }
-
 
 
     public RechargeVo saveOrUpdate(RechargeSaveOrUpdateDTO rechargeSaveOrUpdateDTO) {
@@ -348,11 +306,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
     }
 
-
-
-
-
-
     public Boolean receipt(RechargeReceiptDTO rechargeReceiptDTO) {
         RechargeQueryDTO rechargeQueryDTO = RechargeQueryDTO.builder()
                 .id(rechargeReceiptDTO.getId())
@@ -414,9 +367,6 @@ import java.util.concurrent.ConcurrentHashMap;
     }
 
 
-
-
-
     public Boolean cancel(RechargeCancelDTO rechargeCancelDTO) {
         RechargeQueryDTO rechargeQueryDTO = RechargeQueryDTO.builder()
                 .id(rechargeCancelDTO.getId())
@@ -446,7 +396,6 @@ import java.util.concurrent.ConcurrentHashMap;
     }
 
 
-
     public Boolean delete(RechargeDeleteDTO rechargeDeleteDTO) {
         return ChainWrappers.lambdaUpdateChain(rechargeMapper)
                 .set(BaseDO::getDelFlag, DelFlagEnum.DELETED.getFlag())
@@ -457,56 +406,47 @@ import java.util.concurrent.ConcurrentHashMap;
     }
 
 
-
     public BigDecimal sumRechargeAmount(RechargeQueryDTO rechargeQueryDTO) {
-        /* 352 */
+
         BigDecimal result = this.rechargeMapper.sumRechargeAmount(rechargeQueryDTO);
-        /* 353 */
+
         return ObjectUtil.isEmpty(result) ? BigDecimal.ZERO : result;
 
     }
 
-
-
-
-
-
     protected String genRechargeNo() {
-        /* 360 */
+
         String orderDate = LocalDateTimeUtil.format(LocalDateTimeUtil.now(), "HHmmss");
-        /* 361 */
+
         String randNum = String.format("%04d", new Object[]{Integer.valueOf((new Random()).nextInt(1000))});
-        /* 362 */
+
         Long incNum = this.redisTemplate.opsForValue().increment("rechargeno_key");
-        /* 363 */
+
         return StrUtil.join("", new Object[]{"NO", orderDate, randNum, String.valueOf(incNum)});
 
     }
 
 
-
     public Boolean addCacheItem(RechargeCacheItemDTO rechargeCacheItemDTO) {
-        /* 367 */
+
         this.rechargeCacheItemMap.put(rechargeCacheItemDTO.getCode().toUpperCase(), rechargeCacheItemDTO);
-        /* 368 */
+
         return Boolean.TRUE;
 
     }
-
 
 
     public Boolean clearCacheItem() {
-        /* 372 */
+
         this.rechargeCacheItemMap.clear();
-        /* 373 */
+
         return Boolean.TRUE;
 
     }
 
 
-
     public RechargeCacheItemDTO getCacheItem(String code) {
-        /* 377 */
+
         return this.rechargeCacheItemMap.get(code);
 
     }

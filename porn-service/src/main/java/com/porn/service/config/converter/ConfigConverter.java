@@ -22,4 +22,3 @@ public interface ConfigConverter {
     ConfigDeleteDTO toConfigDeleteDTO(ProxyConfigDeleteDTO paramProxyConfigDeleteDTO);
 }
 
-

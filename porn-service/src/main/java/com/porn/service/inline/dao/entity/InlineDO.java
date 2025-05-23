@@ -1,32 +1,29 @@
-
 package com.porn.service.inline.dao.entity;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableName;
-
-
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
-import lombok.*;import lombok.experimental.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @TableName("porn_inline")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class InlineDO extends BaseDO {
-    
+public class InlineDO extends BaseDO {
+
     @TableField("mininline_count")
-     private Long minInlineCount;
-    
+    private Long minInlineCount;
+
     @TableField("maxinline_count")
-     private Long maxInlineCount;
-    
+    private Long maxInlineCount;
+
     @TableField("mininline_time")
-     private String minInlineTime;
-    
+    private String minInlineTime;
+
     @TableField("maxinline_time")
-     private String maxInlineTime;
+    private String maxInlineTime;
 }

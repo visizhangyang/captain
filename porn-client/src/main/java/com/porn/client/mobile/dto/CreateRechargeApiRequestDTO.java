@@ -1,60 +1,66 @@
-
 package com.porn.client.mobile.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
-
-
-
- public class CreateRechargeApiRequestDTO
-         implements Serializable
-         {
+public class CreateRechargeApiRequestDTO
+        implements Serializable {
 
     @ApiModelProperty("钱包编码")
-     private String walletCode;
+    private String walletCode;
 
     @ApiModelProperty("充值金额")
-     private BigDecimal amount;
+    private BigDecimal amount;
 
+    public CreateRechargeApiRequestDTO(String walletCode, BigDecimal amount) {
 
+        this.walletCode = walletCode;
+        this.amount = amount;
+
+    }
+
+    public CreateRechargeApiRequestDTO() {
+    }
+
+    public static CreateRechargeApiRequestDTOBuilder builder() {
+        return new CreateRechargeApiRequestDTOBuilder();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof CreateRechargeApiRequestDTO;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
 
     public void setWalletCode(String walletCode) {
-        /* 16 */
+
         this.walletCode = walletCode;
+    }
+
+    public BigDecimal getAmount() {
+
+        return this.amount;
+
     }
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-
-    protected boolean canEqual(Object other) {
-        return other instanceof CreateRechargeApiRequestDTO;
-    }
-
-
-
-    /* 17 */
-    public static CreateRechargeApiRequestDTOBuilder builder() {
-        return new CreateRechargeApiRequestDTOBuilder();
-    }
-
     public static class CreateRechargeApiRequestDTOBuilder {
         private String walletCode;
+        private BigDecimal amount;
 
         public CreateRechargeApiRequestDTOBuilder walletCode(String walletCode) {
             this.walletCode = walletCode;
             return this;
         }
-
-        private BigDecimal amount;
 
         public CreateRechargeApiRequestDTOBuilder amount(BigDecimal amount) {
             this.amount = amount;
@@ -67,32 +73,5 @@ import java.math.BigDecimal;
 
     }
 
-    public CreateRechargeApiRequestDTO(String walletCode, BigDecimal amount) {
-        /* 18 */
-        this.walletCode = walletCode;
-        this.amount = amount;
-
-    }
-
-
-    public CreateRechargeApiRequestDTO() {
-    }
-
-
-
-    public String getWalletCode() {
-        /* 23 */
-        return this.walletCode;
-
-    }
-
-
-    public BigDecimal getAmount() {
-        /* 26 */
-        return this.amount;
-
-    }
-
 }
-
 

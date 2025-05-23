@@ -1,64 +1,30 @@
-
 package com.porn.client.recharge.dto;
+
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
- public class TrcTransferItemDTO implements Serializable {
+public class TrcTransferItemDTO implements Serializable {
 
     @ApiModelProperty("金额, 需要去除decimals位后才是金额")
-     private BigDecimal amount;
+    private BigDecimal amount;
 
     @ApiModelProperty("源地址")
-     private String from;
+    private String from;
 
     @ApiModelProperty("接收地址, 也就是我们钱包地址")
-     private String to;
+    private String to;
 
     @ApiModelProperty("交易hash")
-     private String hash;
+    private String hash;
 
     @ApiModelProperty("合约返回值")
-     private String contract_ret;
+    private String contract_ret;
 
     @ApiModelProperty("精度")
-     private Integer decimals;
+    private Integer decimals;
 
-
-    /* 16 */
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
-    public void setContract_ret(String contract_ret) {
-        this.contract_ret = contract_ret;
-    }
-
-    public void setDecimals(Integer decimals) {
-        this.decimals = decimals;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof TrcTransferItemDTO;
-    }
-
-
-
-    /* 17 */
     protected TrcTransferItemDTO(TrcTransferItemDTOBuilder<?, ?> b) {
         this.amount = b.amount;
         this.from = b.from;
@@ -68,8 +34,86 @@ import java.math.BigDecimal;
         this.decimals = b.decimals;
     }
 
+    public TrcTransferItemDTO(BigDecimal amount, String from, String to, String hash, String contract_ret, Integer decimals) {
+
+        this.amount = amount;
+        this.from = from;
+        this.to = to;
+        this.hash = hash;
+        this.contract_ret = contract_ret;
+        this.decimals = decimals;
+
+    }
+
+    public TrcTransferItemDTO() {
+    }
+
     public static TrcTransferItemDTOBuilder<?, ?> builder() {
         return new TrcTransferItemDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof TrcTransferItemDTO;
+    }
+
+    public BigDecimal getAmount() {
+
+        return this.amount;
+
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public String getFrom() {
+
+        return this.from;
+
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+
+        return this.to;
+
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getHash() {
+
+        return this.hash;
+
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public String getContract_ret() {
+
+        return this.contract_ret;
+
+    }
+
+    public void setContract_ret(String contract_ret) {
+        this.contract_ret = contract_ret;
+    }
+
+    public Integer getDecimals() {
+
+        return this.decimals;
+
+    }
+
+    public void setDecimals(Integer decimals) {
+        this.decimals = decimals;
     }
 
     private static final class TrcTransferItemDTOBuilderImpl extends TrcTransferItemDTOBuilder<TrcTransferItemDTO, TrcTransferItemDTOBuilderImpl> {
@@ -89,15 +133,14 @@ import java.math.BigDecimal;
         private BigDecimal amount;
         private String from;
         private String to;
+        private String hash;
+        private String contract_ret;
+        private Integer decimals;
 
         public B amount(BigDecimal amount) {
             this.amount = amount;
             return self();
         }
-
-        private String hash;
-        private String contract_ret;
-        private Integer decimals;
 
         public B from(String from) {
             this.from = from;
@@ -130,64 +173,5 @@ import java.math.BigDecimal;
 
     }
 
-    public TrcTransferItemDTO(BigDecimal amount, String from, String to, String hash, String contract_ret, Integer decimals) {
-        /* 18 */
-        this.amount = amount;
-        this.from = from;
-        this.to = to;
-        this.hash = hash;
-        this.contract_ret = contract_ret;
-        this.decimals = decimals;
-
-    }
-
-
-    public TrcTransferItemDTO() {
-    }
-
-
-
-    public BigDecimal getAmount() {
-        /* 23 */
-        return this.amount;
-
-    }
-
-
-    public String getFrom() {
-        /* 26 */
-        return this.from;
-
-    }
-
-
-    public String getTo() {
-        /* 29 */
-        return this.to;
-
-    }
-
-
-    public String getHash() {
-        /* 32 */
-        return this.hash;
-
-    }
-
-
-    public String getContract_ret() {
-        /* 35 */
-        return this.contract_ret;
-
-    }
-
-
-    public Integer getDecimals() {
-        /* 38 */
-        return this.decimals;
-
-    }
-
 }
-
 

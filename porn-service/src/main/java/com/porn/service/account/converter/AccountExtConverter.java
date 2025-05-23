@@ -16,4 +16,3 @@ public interface AccountExtConverter {
     AccountExtDO toAccountExtDO(AccountExtSaveOrUpdateDTO paramAccountExtSaveOrUpdateDTO);
 }
 
-

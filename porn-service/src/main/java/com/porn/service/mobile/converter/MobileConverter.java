@@ -29,4 +29,3 @@ public interface MobileConverter {
     CreateRechargeVo toCreateRechargeVo(RechargeVo paramRechargeVo);
 }
 
-

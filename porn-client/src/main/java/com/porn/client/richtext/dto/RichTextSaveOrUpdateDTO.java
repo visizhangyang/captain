@@ -1,48 +1,19 @@
-
 package com.porn.client.richtext.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
+public class RichTextSaveOrUpdateDTO extends BaseDTO {
 
-
-
-
- public class RichTextSaveOrUpdateDTO extends BaseDTO {
-    
     @ApiModelProperty("类型, RichTextTypeEnum")
-     private Integer type;
-    
+    private Integer type;
+
     @ApiModelProperty("语言类型, LangTypeEnum")
-     private Integer langType;
-    
+    private Integer langType;
+
     @ApiModelProperty("大字符串")
-     private String richText;
+    private String richText;
 
-    
-    /* 15 */
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public void setLangType(Integer langType) {
-        this.langType = langType;
-    }
-
-    public void setRichText(String richText) {
-        this.richText = richText;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RichTextSaveOrUpdateDTO;
-    }
-
-
-
-    /* 16 */
     protected RichTextSaveOrUpdateDTO(RichTextSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.type = b.type;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BaseDTO;
         this.richText = b.richText;
     }
 
+    public RichTextSaveOrUpdateDTO(Integer type, Integer langType, String richText) {
+
+        this.type = type;
+        this.langType = langType;
+        this.richText = richText;
+
+    }
+
+    public RichTextSaveOrUpdateDTO() {
+    }
+
     public static RichTextSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new RichTextSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RichTextSaveOrUpdateDTO;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getLangType() {
+
+        return this.langType;
+
+    }
+
+    public void setLangType(Integer langType) {
+        this.langType = langType;
+    }
+
+    public String getRichText() {
+
+        return this.richText;
+
+    }
+
+    public void setRichText(String richText) {
+        this.richText = richText;
     }
 
     private static final class RichTextSaveOrUpdateDTOBuilderImpl extends RichTextSaveOrUpdateDTOBuilder<RichTextSaveOrUpdateDTO, RichTextSaveOrUpdateDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class RichTextSaveOrUpdateDTOBuilder<C extends RichTextSaveOrUpdateDTO, B extends RichTextSaveOrUpdateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Integer type;
+        private Integer langType;
+        private String richText;
 
         public B type(Integer type) {
             this.type = type;
             return self();
         }
-
-        private Integer langType;
-        private String richText;
 
         public B langType(Integer langType) {
             this.langType = langType;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public RichTextSaveOrUpdateDTO(Integer type, Integer langType, String richText) {
-        /* 17 */
-        this.type = type;
-        this.langType = langType;
-        this.richText = richText;
-        
-    }
-
-    
-    public RichTextSaveOrUpdateDTO() {
-    }
-
-    
-    
-    public Integer getType() {
-        /* 22 */
-        return this.type;
-        
-    }
-
-    
-    public Integer getLangType() {
-        /* 25 */
-        return this.langType;
-        
-    }
-
-    
-    public String getRichText() {
-        /* 28 */
-        return this.richText;
-        
-    }
-    
 }
-
 

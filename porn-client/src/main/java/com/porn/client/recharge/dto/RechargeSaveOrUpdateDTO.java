@@ -1,35 +1,26 @@
-
 package com.porn.client.recharge.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
+public class RechargeSaveOrUpdateDTO extends BaseDTO {
 
- public class RechargeSaveOrUpdateDTO extends BaseDTO {
-    
     @ApiModelProperty("来源地址")
-     private String fromAddress;
-    
+    private String fromAddress;
+
     @ApiModelProperty("钱包编码")
-     private String walletCode;
-    
+    private String walletCode;
+
     @ApiModelProperty("交易hash")
-     private String hash;
-    
+    private String hash;
+
     @ApiModelProperty("账户ID")
-     private Long accountId;
-    
+    private Long accountId;
+
     @ApiModelProperty("充值金额")
-     private BigDecimal amount;
-
-    
-    /* 15 */
-    public void setFromAddress(String fromAddress) {
-        this.fromAddress = fromAddress;
-    }
-
+    private BigDecimal amount;
     @ApiModelProperty("手续费")
     private BigDecimal gasAmount;
     @ApiModelProperty("到账金额")
@@ -43,54 +34,6 @@ import java.math.BigDecimal;
     @ApiModelProperty("钱包备注")
     private String walletRemark;
 
-    public void setWalletCode(String walletCode) {
-        this.walletCode = walletCode;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public void setGasAmount(BigDecimal gasAmount) {
-        this.gasAmount = gasAmount;
-    }
-
-    public void setReceiveAmount(BigDecimal receiveAmount) {
-        this.receiveAmount = receiveAmount;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setUpdateCreateTime(Boolean updateCreateTime) {
-        this.updateCreateTime = updateCreateTime;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public void setWalletRemark(String walletRemark) {
-        this.walletRemark = walletRemark;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RechargeSaveOrUpdateDTO;
-    }
-
-
-
-    /* 16 */
     protected RechargeSaveOrUpdateDTO(RechargeSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.fromAddress = b.fromAddress;
@@ -106,8 +49,141 @@ import java.math.BigDecimal;
         this.walletRemark = b.walletRemark;
     }
 
+    public RechargeSaveOrUpdateDTO(String fromAddress, String walletCode, String hash, Long accountId, BigDecimal amount, BigDecimal gasAmount, BigDecimal receiveAmount, Integer status, Boolean updateCreateTime, String remark, String walletRemark) {
+
+        this.fromAddress = fromAddress;
+        this.walletCode = walletCode;
+        this.hash = hash;
+        this.accountId = accountId;
+        this.amount = amount;
+        this.gasAmount = gasAmount;
+        this.receiveAmount = receiveAmount;
+        this.status = status;
+        this.updateCreateTime = updateCreateTime;
+        this.remark = remark;
+        this.walletRemark = walletRemark;
+
+    }
+
+    public RechargeSaveOrUpdateDTO() {
+    }
+
     public static RechargeSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new RechargeSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RechargeSaveOrUpdateDTO;
+    }
+
+    public String getFromAddress() {
+
+        return this.fromAddress;
+
+    }
+
+    public void setFromAddress(String fromAddress) {
+        this.fromAddress = fromAddress;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
+
+    public void setWalletCode(String walletCode) {
+        this.walletCode = walletCode;
+    }
+
+    public String getHash() {
+
+        return this.hash;
+
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public BigDecimal getAmount() {
+
+        return this.amount;
+
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getGasAmount() {
+
+        return this.gasAmount;
+
+    }
+
+    public void setGasAmount(BigDecimal gasAmount) {
+        this.gasAmount = gasAmount;
+    }
+
+    public BigDecimal getReceiveAmount() {
+
+        return this.receiveAmount;
+
+    }
+
+    public void setReceiveAmount(BigDecimal receiveAmount) {
+        this.receiveAmount = receiveAmount;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Boolean getUpdateCreateTime() {
+
+        return this.updateCreateTime;
+
+    }
+
+    public void setUpdateCreateTime(Boolean updateCreateTime) {
+        this.updateCreateTime = updateCreateTime;
+    }
+
+    public String getRemark() {
+
+        return this.remark;
+
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getWalletRemark() {
+
+        return this.walletRemark;
+
+    }
+
+    public void setWalletRemark(String walletRemark) {
+        this.walletRemark = walletRemark;
     }
 
     private static final class RechargeSaveOrUpdateDTOBuilderImpl extends RechargeSaveOrUpdateDTOBuilder<RechargeSaveOrUpdateDTO, RechargeSaveOrUpdateDTOBuilderImpl> {
@@ -197,104 +273,5 @@ import java.math.BigDecimal;
 
     }
 
-    public RechargeSaveOrUpdateDTO(String fromAddress, String walletCode, String hash, Long accountId, BigDecimal amount, BigDecimal gasAmount, BigDecimal receiveAmount, Integer status, Boolean updateCreateTime, String remark, String walletRemark) {
-        /* 17 */
-        this.fromAddress = fromAddress;
-        this.walletCode = walletCode;
-        this.hash = hash;
-        this.accountId = accountId;
-        this.amount = amount;
-        this.gasAmount = gasAmount;
-        this.receiveAmount = receiveAmount;
-        this.status = status;
-        this.updateCreateTime = updateCreateTime;
-        this.remark = remark;
-        this.walletRemark = walletRemark;
-        
-    }
-
-    
-    public RechargeSaveOrUpdateDTO() {
-    }
-
-    
-    
-    public String getFromAddress() {
-        /* 22 */
-        return this.fromAddress;
-        
-    }
-
-    
-    public String getWalletCode() {
-        /* 25 */
-        return this.walletCode;
-        
-    }
-
-    
-    public String getHash() {
-        /* 28 */
-        return this.hash;
-        
-    }
-
-    
-    public Long getAccountId() {
-        /* 31 */
-        return this.accountId;
-        
-    }
-
-    
-    public BigDecimal getAmount() {
-        /* 34 */
-        return this.amount;
-        
-    }
-
-    
-    public BigDecimal getGasAmount() {
-        /* 37 */
-        return this.gasAmount;
-        
-    }
-
-    
-    public BigDecimal getReceiveAmount() {
-        /* 40 */
-        return this.receiveAmount;
-        
-    }
-
-    
-    public Integer getStatus() {
-        /* 43 */
-        return this.status;
-        
-    }
-
-    
-    public Boolean getUpdateCreateTime() {
-        /* 46 */
-        return this.updateCreateTime;
-        
-    }
-
-    
-    public String getRemark() {
-        /* 49 */
-        return this.remark;
-        
-    }
-
-    
-    public String getWalletRemark() {
-        /* 52 */
-        return this.walletRemark;
-        
-    }
-    
 }
-
 

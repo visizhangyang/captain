@@ -6,6 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
+
 import java.util.Collection;
 
 public class OptionalConditionHelper {
@@ -52,5 +53,4 @@ public class OptionalConditionHelper {
         }
     }
 }
-
 

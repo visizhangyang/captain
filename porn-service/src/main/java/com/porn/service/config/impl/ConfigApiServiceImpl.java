@@ -1,12 +1,8 @@
-
 package com.porn.service.config.impl;
-
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
@@ -38,45 +34,28 @@ import java.util.List;
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class ConfigApiServiceImpl implements ConfigApiService {
-    /*  33 */   private static final Logger log = LoggerFactory.getLogger(ConfigApiServiceImpl.class);
-
-
-
-    @Autowired
-     private ConfigConverter configConverter;
-
+public class ConfigApiServiceImpl implements ConfigApiService {
+    private static final Logger log = LoggerFactory.getLogger(ConfigApiServiceImpl.class);
 
 
     @Autowired
-     private ConfigMapper configMapper;
-
+    private ConfigConverter configConverter;
 
 
     @Autowired
-     private AccountApiService accountApiService;
+    private ConfigMapper configMapper;
 
 
-
+    @Autowired
+    private AccountApiService accountApiService;
 
     public ConfigVo queryConfig(ConfigQueryDTO configQueryDTO) {
-        /*  49 */
+
         List<ConfigVo> configVoList = queryConfigList(configQueryDTO);
-        /*  50 */
+
         return ObjectUtil.isEmpty(configVoList) ? null : configVoList.get(0);
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     public List<ConfigVo> queryConfigList(ConfigQueryDTO configQueryDTO) {
@@ -100,7 +79,6 @@ import java.util.List;
 
         return configConverter.toConfigVoList(configList);
     }
-
 
 
     public PageVo<ConfigVo> queryPage(ConfigQueryPageDTO configQueryPageDTO) {
@@ -131,7 +109,6 @@ import java.util.List;
                 .data(configVoList)
                 .build();
     }
-
 
 
     public ConfigVo saveOrUpdate(ConfigSaveOrUpdateDTO configSaveOrUpdateDTO) {
@@ -180,9 +157,6 @@ import java.util.List;
     }
 
 
-
-
-
     public Boolean enableOrDisable(ConfigEnableOrDisableDTO configEnableOrDisableDTO) {
         Integer newStatus = EnableStatusEnum.ENABLE.getStatus().equals(configEnableOrDisableDTO.getStatus())
                 ? EnableStatusEnum.DISABLED.getStatus()
@@ -195,9 +169,6 @@ import java.util.List;
                 .update();
     }
 
-
-
-
     public Boolean delete(ConfigDeleteDTO configDeleteDTO) {
         return ChainWrappers.lambdaUpdateChain(configMapper)
                 .set(BaseDO::getDelFlag, DelFlagEnum.DELETED.getFlag())
@@ -206,11 +177,6 @@ import java.util.List;
                 .eq(ObjectUtil.isNotEmpty(configDeleteDTO.getAccountId()), ConfigDO::getAccountId, configDeleteDTO.getAccountId())
                 .update();
     }
-
-
-
-
-
 
 
     public PageVo<ConfigVo> queryProxyPage(ProxyConfigQueryPageDTO proxyConfigQueryPageDTO) {
@@ -238,55 +204,49 @@ import java.util.List;
     }
 
     public ConfigVo proxySaveOrUpdate(ProxyConfigSaveOrUpdateDTO proxyConfigSaveOrUpdateDTO) {
-        /* 167 */
+
         AccountQueryProxyTeamsDTO accountQueryProxyTeamsDTO = AccountQueryProxyTeamsDTO.builder().mngUserId(proxyConfigSaveOrUpdateDTO.getCurrentUserId()).build();
-        /* 168 */
+
         List<Long> accountIdList = this.accountApiService.queryProxyTeams(accountQueryProxyTeamsDTO);
-        /* 169 */
+
         if (ObjectUtil.isEmpty(accountIdList)) {
-            /* 170 */
+
             return null;
 
         }
-        /* 172 */
+
         Long accountId = accountIdList.get(accountIdList.size() - 1);
-        /* 173 */
+
         ConfigSaveOrUpdateDTO configSaveOrUpdateDTO = this.configConverter.toConfigSaveOrUpdateDTO(proxyConfigSaveOrUpdateDTO);
-        /* 174 */
+
         configSaveOrUpdateDTO.setAccountId(accountId);
-        /* 175 */
+
         return saveOrUpdate(configSaveOrUpdateDTO);
 
     }
 
 
-
-
-
-
-
     public Boolean proxyDelete(ProxyConfigDeleteDTO proxyConfigDeleteDTO) {
-        /* 183 */
+
         AccountQueryProxyTeamsDTO accountQueryProxyTeamsDTO = AccountQueryProxyTeamsDTO.builder().mngUserId(proxyConfigDeleteDTO.getCurrentUserId()).build();
-        /* 184 */
+
         List<Long> accountIdList = this.accountApiService.queryProxyTeams(accountQueryProxyTeamsDTO);
-        /* 185 */
+
         if (ObjectUtil.isEmpty(accountIdList)) {
-            /* 186 */
+
             return Boolean.FALSE;
 
         }
-        /* 188 */
+
         Long accountId = accountIdList.get(accountIdList.size() - 1);
-        /* 189 */
+
         ConfigDeleteDTO configDeleteDTO = this.configConverter.toConfigDeleteDTO(proxyConfigDeleteDTO);
-        /* 190 */
+
         configDeleteDTO.setAccountId(accountId);
-        /* 191 */
+
         return delete(configDeleteDTO);
 
     }
 
 }
-
 

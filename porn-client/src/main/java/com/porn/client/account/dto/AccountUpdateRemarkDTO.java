@@ -1,46 +1,45 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
-
-
- public class AccountUpdateRemarkDTO
-         extends BaseDTO
-         {
+public class AccountUpdateRemarkDTO
+        extends BaseDTO {
 
     @ApiModelProperty("备注")
-     private String remark;
+    private String remark;
 
-
-
-    public void setRemark(String remark) {
-        /* 17 */
-        this.remark = remark;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountUpdateRemarkDTO;
-    }
-
-
-
-    /* 18 */
     protected AccountUpdateRemarkDTO(AccountUpdateRemarkDTOBuilder<?, ?> b) {
         super(b);
         this.remark = b.remark;
     }
 
+    public AccountUpdateRemarkDTO(String remark) {
+
+        this.remark = remark;
+
+    }
+
+    public AccountUpdateRemarkDTO() {
+    }
+
     public static AccountUpdateRemarkDTOBuilder<?, ?> builder() {
         return new AccountUpdateRemarkDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountUpdateRemarkDTO;
+    }
+
+    public String getRemark() {
+
+        return this.remark;
+
+    }
+
+    public void setRemark(String remark) {
+
+        this.remark = remark;
     }
 
     private static final class AccountUpdateRemarkDTOBuilderImpl extends AccountUpdateRemarkDTOBuilder<AccountUpdateRemarkDTO, AccountUpdateRemarkDTOBuilderImpl> {
@@ -57,12 +56,12 @@ import com.porn.client.common.dto.BaseDTO;
     }
 
     public static abstract class AccountUpdateRemarkDTOBuilder<C extends AccountUpdateRemarkDTO, B extends AccountUpdateRemarkDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private String remark;
+
         public B remark(String remark) {
             this.remark = remark;
             return self();
         }
-
-        private String remark;
 
         protected abstract B self();
 
@@ -70,24 +69,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public AccountUpdateRemarkDTO(String remark) {
-        /* 19 */
-        this.remark = remark;
-
-    }
-
-
-    public AccountUpdateRemarkDTO() {
-    }
-
-
-
-    public String getRemark() {
-        /* 24 */
-        return this.remark;
-
-    }
-
 }
-
 

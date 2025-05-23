@@ -1,55 +1,61 @@
-
 package com.porn.client.notice.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
+public class NoticeAccountBatchSaveDTO extends BaseDTO {
 
-
-
-
-
-
- public class NoticeAccountBatchSaveDTO extends BaseDTO {
-    
     @ApiModelProperty("账户ID")
-     private Long accountId;
-    
+    private Long accountId;
+
     @ApiModelProperty("公告ID列表")
-     private List<Long> noticeIdList;
+    private List<Long> noticeIdList;
 
-    
-    
-    public void setAccountId(Long accountId) {
-        /* 16 */
-        this.accountId = accountId;
-    }
-
-    public void setNoticeIdList(List<Long> noticeIdList) {
-        this.noticeIdList = noticeIdList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof NoticeAccountBatchSaveDTO;
-    }
-
-
-
-    /* 17 */
     protected NoticeAccountBatchSaveDTO(NoticeAccountBatchSaveDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
         this.noticeIdList = b.noticeIdList;
     }
 
+    public NoticeAccountBatchSaveDTO(Long accountId, List<Long> noticeIdList) {
+
+        this.accountId = accountId;
+        this.noticeIdList = noticeIdList;
+
+    }
+
+    public NoticeAccountBatchSaveDTO() {
+    }
+
     public static NoticeAccountBatchSaveDTOBuilder<?, ?> builder() {
         return new NoticeAccountBatchSaveDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof NoticeAccountBatchSaveDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+
+        this.accountId = accountId;
+    }
+
+    public List<Long> getNoticeIdList() {
+
+        return this.noticeIdList;
+
+    }
+
+    public void setNoticeIdList(List<Long> noticeIdList) {
+        this.noticeIdList = noticeIdList;
     }
 
     private static final class NoticeAccountBatchSaveDTOBuilderImpl extends NoticeAccountBatchSaveDTOBuilder<NoticeAccountBatchSaveDTO, NoticeAccountBatchSaveDTOBuilderImpl> {
@@ -67,13 +73,12 @@ import java.util.List;
 
     public static abstract class NoticeAccountBatchSaveDTOBuilder<C extends NoticeAccountBatchSaveDTO, B extends NoticeAccountBatchSaveDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
+        private List<Long> noticeIdList;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private List<Long> noticeIdList;
 
         public B noticeIdList(List<Long> noticeIdList) {
             this.noticeIdList = noticeIdList;
@@ -86,32 +91,5 @@ import java.util.List;
 
     }
 
-    public NoticeAccountBatchSaveDTO(Long accountId, List<Long> noticeIdList) {
-        /* 18 */
-        this.accountId = accountId;
-        this.noticeIdList = noticeIdList;
-        
-    }
-
-    
-    public NoticeAccountBatchSaveDTO() {
-    }
-
-    
-    
-    public Long getAccountId() {
-        /* 23 */
-        return this.accountId;
-        
-    }
-
-    
-    public List<Long> getNoticeIdList() {
-        /* 26 */
-        return this.noticeIdList;
-        
-    }
-    
 }
-
 

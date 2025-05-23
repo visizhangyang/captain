@@ -1,48 +1,19 @@
-
 package com.porn.client.message.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BasePageDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class MessageQueryPageDTO extends BasePageDTO {
+public class MessageQueryPageDTO extends BasePageDTO {
 
     @ApiModelProperty("账户id")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("账户名称")
-     private String accountName;
+    private String accountName;
 
     @ApiModelProperty("账户名称(模糊)")
-     private String lkAccountName;
+    private String lkAccountName;
 
-
-    /* 15 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public void setLkAccountName(String lkAccountName) {
-        this.lkAccountName = lkAccountName;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MessageQueryPageDTO;
-    }
-
-
-
-    /* 16 */
     protected MessageQueryPageDTO(MessageQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BasePageDTO;
         this.lkAccountName = b.lkAccountName;
     }
 
+    public MessageQueryPageDTO(Long accountId, String accountName, String lkAccountName) {
+
+        this.accountId = accountId;
+        this.accountName = accountName;
+        this.lkAccountName = lkAccountName;
+
+    }
+
+    public MessageQueryPageDTO() {
+    }
+
     public static MessageQueryPageDTOBuilder<?, ?> builder() {
         return new MessageQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MessageQueryPageDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getAccountName() {
+
+        return this.accountName;
+
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public String getLkAccountName() {
+
+        return this.lkAccountName;
+
+    }
+
+    public void setLkAccountName(String lkAccountName) {
+        this.lkAccountName = lkAccountName;
     }
 
     private static final class MessageQueryPageDTOBuilderImpl extends MessageQueryPageDTOBuilder<MessageQueryPageDTO, MessageQueryPageDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BasePageDTO;
 
     public static abstract class MessageQueryPageDTOBuilder<C extends MessageQueryPageDTO, B extends MessageQueryPageDTOBuilder<C, B>> extends BasePageDTO.BasePageDTOBuilder<C, B> {
         private Long accountId;
+        private String accountName;
+        private String lkAccountName;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private String accountName;
-        private String lkAccountName;
 
         public B accountName(String accountName) {
             this.accountName = accountName;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BasePageDTO;
 
     }
 
-    public MessageQueryPageDTO(Long accountId, String accountName, String lkAccountName) {
-        /* 17 */
-        this.accountId = accountId;
-        this.accountName = accountName;
-        this.lkAccountName = lkAccountName;
-
-    }
-
-
-    public MessageQueryPageDTO() {
-    }
-
-
-
-    public Long getAccountId() {
-        /* 22 */
-        return this.accountId;
-
-    }
-
-
-    public String getAccountName() {
-        /* 25 */
-        return this.accountName;
-
-    }
-
-
-    public String getLkAccountName() {
-        /* 28 */
-        return this.lkAccountName;
-
-    }
-
 }
-
 

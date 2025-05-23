@@ -1,9 +1,10 @@
 package com.porn.client.common.vo;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -25,5 +26,4 @@ public class BaseVo implements Serializable {
     private Long modifyBy;
 
 }
-
 

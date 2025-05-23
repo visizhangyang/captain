@@ -1,8 +1,7 @@
-
 package com.porn.client.autowork.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,11 +19,6 @@ public class AutoWorkSaveOrUpdateDTO extends BaseDTO {
     private BigDecimal maxWorkAmount;
     @ApiModelProperty("最小搬砖间隔")
     private Integer minWorkSpace;
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
     @ApiModelProperty("最大搬砖间隔")
     private Integer maxWorkSpace;
     @ApiModelProperty("搬砖开始时间")
@@ -40,62 +34,6 @@ public class AutoWorkSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("完成时间(大)")
     private Integer maxCompleteTime;
 
-    public void setMinWorkCount(Integer minWorkCount) {
-        this.minWorkCount = minWorkCount;
-    }
-
-    public void setMaxWorkCount(Integer maxWorkCount) {
-        this.maxWorkCount = maxWorkCount;
-    }
-
-    public void setMinWorkAmount(BigDecimal minWorkAmount) {
-        this.minWorkAmount = minWorkAmount;
-    }
-
-    public void setMaxWorkAmount(BigDecimal maxWorkAmount) {
-        this.maxWorkAmount = maxWorkAmount;
-    }
-
-    public void setMinWorkSpace(Integer minWorkSpace) {
-        this.minWorkSpace = minWorkSpace;
-    }
-
-    public void setMaxWorkSpace(Integer maxWorkSpace) {
-        this.maxWorkSpace = maxWorkSpace;
-    }
-
-    public void setMinWorkTime(LocalDateTime minWorkTime) {
-        this.minWorkTime = minWorkTime;
-    }
-
-    public void setMaxWorkTime(LocalDateTime maxWorkTime) {
-        this.maxWorkTime = maxWorkTime;
-    }
-
-    public void setMinLoanTime(Integer minLoanTime) {
-        this.minLoanTime = minLoanTime;
-    }
-
-    public void setMaxLoanTime(Integer maxLoanTime) {
-        this.maxLoanTime = maxLoanTime;
-    }
-
-    public void setMinCompleteTime(Integer minCompleteTime) {
-        this.minCompleteTime = minCompleteTime;
-    }
-
-    public void setMaxCompleteTime(Integer maxCompleteTime) {
-        this.maxCompleteTime = maxCompleteTime;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AutoWorkSaveOrUpdateDTO;
-    }
-
-
-
-    /* 18 */
     protected AutoWorkSaveOrUpdateDTO(AutoWorkSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -113,8 +51,163 @@ public class AutoWorkSaveOrUpdateDTO extends BaseDTO {
         this.maxCompleteTime = b.maxCompleteTime;
     }
 
+    public AutoWorkSaveOrUpdateDTO(Long accountId, Integer minWorkCount, Integer maxWorkCount, BigDecimal minWorkAmount, BigDecimal maxWorkAmount, Integer minWorkSpace, Integer maxWorkSpace, LocalDateTime minWorkTime, LocalDateTime maxWorkTime, Integer minLoanTime, Integer maxLoanTime, Integer minCompleteTime, Integer maxCompleteTime) {
+
+        this.accountId = accountId;
+        this.minWorkCount = minWorkCount;
+        this.maxWorkCount = maxWorkCount;
+        this.minWorkAmount = minWorkAmount;
+        this.maxWorkAmount = maxWorkAmount;
+        this.minWorkSpace = minWorkSpace;
+        this.maxWorkSpace = maxWorkSpace;
+        this.minWorkTime = minWorkTime;
+        this.maxWorkTime = maxWorkTime;
+        this.minLoanTime = minLoanTime;
+        this.maxLoanTime = maxLoanTime;
+        this.minCompleteTime = minCompleteTime;
+        this.maxCompleteTime = maxCompleteTime;
+
+    }
+
+    public AutoWorkSaveOrUpdateDTO() {
+    }
+
     public static AutoWorkSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new AutoWorkSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AutoWorkSaveOrUpdateDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public Integer getMinWorkCount() {
+
+        return this.minWorkCount;
+
+    }
+
+    public void setMinWorkCount(Integer minWorkCount) {
+        this.minWorkCount = minWorkCount;
+    }
+
+    public Integer getMaxWorkCount() {
+
+        return this.maxWorkCount;
+
+    }
+
+    public void setMaxWorkCount(Integer maxWorkCount) {
+        this.maxWorkCount = maxWorkCount;
+    }
+
+    public BigDecimal getMinWorkAmount() {
+
+        return this.minWorkAmount;
+
+    }
+
+    public void setMinWorkAmount(BigDecimal minWorkAmount) {
+        this.minWorkAmount = minWorkAmount;
+    }
+
+    public BigDecimal getMaxWorkAmount() {
+
+        return this.maxWorkAmount;
+
+    }
+
+    public void setMaxWorkAmount(BigDecimal maxWorkAmount) {
+        this.maxWorkAmount = maxWorkAmount;
+    }
+
+    public Integer getMinWorkSpace() {
+
+        return this.minWorkSpace;
+
+    }
+
+    public void setMinWorkSpace(Integer minWorkSpace) {
+        this.minWorkSpace = minWorkSpace;
+    }
+
+    public Integer getMaxWorkSpace() {
+
+        return this.maxWorkSpace;
+
+    }
+
+    public void setMaxWorkSpace(Integer maxWorkSpace) {
+        this.maxWorkSpace = maxWorkSpace;
+    }
+
+    public LocalDateTime getMinWorkTime() {
+
+        return this.minWorkTime;
+
+    }
+
+    public void setMinWorkTime(LocalDateTime minWorkTime) {
+        this.minWorkTime = minWorkTime;
+    }
+
+    public LocalDateTime getMaxWorkTime() {
+
+        return this.maxWorkTime;
+
+    }
+
+    public void setMaxWorkTime(LocalDateTime maxWorkTime) {
+        this.maxWorkTime = maxWorkTime;
+    }
+
+    public Integer getMinLoanTime() {
+
+        return this.minLoanTime;
+
+    }
+
+    public void setMinLoanTime(Integer minLoanTime) {
+        this.minLoanTime = minLoanTime;
+    }
+
+    public Integer getMaxLoanTime() {
+
+        return this.maxLoanTime;
+
+    }
+
+    public void setMaxLoanTime(Integer maxLoanTime) {
+        this.maxLoanTime = maxLoanTime;
+    }
+
+    public Integer getMinCompleteTime() {
+
+        return this.minCompleteTime;
+
+    }
+
+    public void setMinCompleteTime(Integer minCompleteTime) {
+        this.minCompleteTime = minCompleteTime;
+    }
+
+    public Integer getMaxCompleteTime() {
+
+        return this.maxCompleteTime;
+
+    }
+
+    public void setMaxCompleteTime(Integer maxCompleteTime) {
+        this.maxCompleteTime = maxCompleteTime;
     }
 
     private static final class AutoWorkSaveOrUpdateDTOBuilderImpl extends AutoWorkSaveOrUpdateDTOBuilder<AutoWorkSaveOrUpdateDTO, AutoWorkSaveOrUpdateDTOBuilderImpl> {
@@ -216,120 +309,5 @@ public class AutoWorkSaveOrUpdateDTO extends BaseDTO {
 
     }
 
-    public AutoWorkSaveOrUpdateDTO(Long accountId, Integer minWorkCount, Integer maxWorkCount, BigDecimal minWorkAmount, BigDecimal maxWorkAmount, Integer minWorkSpace, Integer maxWorkSpace, LocalDateTime minWorkTime, LocalDateTime maxWorkTime, Integer minLoanTime, Integer maxLoanTime, Integer minCompleteTime, Integer maxCompleteTime) {
-        /* 19 */
-        this.accountId = accountId;
-        this.minWorkCount = minWorkCount;
-        this.maxWorkCount = maxWorkCount;
-        this.minWorkAmount = minWorkAmount;
-        this.maxWorkAmount = maxWorkAmount;
-        this.minWorkSpace = minWorkSpace;
-        this.maxWorkSpace = maxWorkSpace;
-        this.minWorkTime = minWorkTime;
-        this.maxWorkTime = maxWorkTime;
-        this.minLoanTime = minLoanTime;
-        this.maxLoanTime = maxLoanTime;
-        this.minCompleteTime = minCompleteTime;
-        this.maxCompleteTime = maxCompleteTime;
-        
-    }
-
-    
-    public AutoWorkSaveOrUpdateDTO() {
-    }
-
-    
-    
-    public Long getAccountId() {
-        /* 24 */
-        return this.accountId;
-        
-    }
-
-    
-    public Integer getMinWorkCount() {
-        /* 27 */
-        return this.minWorkCount;
-        
-    }
-
-    
-    public Integer getMaxWorkCount() {
-        /* 30 */
-        return this.maxWorkCount;
-        
-    }
-
-    
-    public BigDecimal getMinWorkAmount() {
-        /* 33 */
-        return this.minWorkAmount;
-        
-    }
-
-    
-    public BigDecimal getMaxWorkAmount() {
-        /* 36 */
-        return this.maxWorkAmount;
-        
-    }
-
-    
-    public Integer getMinWorkSpace() {
-        /* 39 */
-        return this.minWorkSpace;
-        
-    }
-
-    
-    public Integer getMaxWorkSpace() {
-        /* 42 */
-        return this.maxWorkSpace;
-        
-    }
-
-    
-    public LocalDateTime getMinWorkTime() {
-        /* 45 */
-        return this.minWorkTime;
-        
-    }
-
-    
-    public LocalDateTime getMaxWorkTime() {
-        /* 48 */
-        return this.maxWorkTime;
-        
-    }
-
-    
-    public Integer getMinLoanTime() {
-        /* 51 */
-        return this.minLoanTime;
-        
-    }
-
-    
-    public Integer getMaxLoanTime() {
-        /* 54 */
-        return this.maxLoanTime;
-        
-    }
-
-    
-    public Integer getMinCompleteTime() {
-        /* 57 */
-        return this.minCompleteTime;
-        
-    }
-
-    
-    public Integer getMaxCompleteTime() {
-        /* 60 */
-        return this.maxCompleteTime;
-        
-    }
-    
 }
-
 

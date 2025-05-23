@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -16,59 +14,34 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QueryRecommendAppApiServiceImpl
-         implements ApiService<List<RecommendAppVo>>
-         {
-    
+public class QueryRecommendAppApiServiceImpl
+        implements ApiService<List<RecommendAppVo>> {
+
     @Autowired
-     private RecommendAppService recommendAppService;
+    private RecommendAppService recommendAppService;
 
-    
-    
+
     public List<RecommendAppVo> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 31 */
+
         RecommendAppQueryDTO recommendAppQueryDTO = (RecommendAppQueryDTO) JSON.parseObject(cmdRequestDTO.getData(), RecommendAppQueryDTO.class);
-        /* 32 */
+
         if (ObjectUtil.isEmpty(recommendAppQueryDTO.getRecommendType())) {
-            /* 33 */
+
             recommendAppQueryDTO.setRecommendType(RecommendTypeEnum.DECRECOMMEND.getType());
-            
+
         }
-        /* 35 */
+
         return this.recommendAppService.queryRecommendAppList(recommendAppQueryDTO);
-        
+
     }
 
-    
-    
+
     public String getApi() {
-        /* 39 */
-        return "api_queryrecommendapp";
-        
-    }
-    
-}
 
+        return "api_queryrecommendapp";
+
+    }
+
+}
 

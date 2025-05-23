@@ -1,49 +1,47 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 
-
-
-
-
-
-
- public class AccountUpdateCreateTimeDTO
-         extends BaseDTO
-         {
+public class AccountUpdateCreateTimeDTO
+        extends BaseDTO {
 
     @ApiModelProperty("更新时间")
-     private LocalDateTime createTime;
+    private LocalDateTime createTime;
 
-
-
-    public void setCreateTime(LocalDateTime createTime) {
-        /* 16 */
-        this.createTime = createTime;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountUpdateCreateTimeDTO;
-    }
-
-
-
-    /* 17 */
     protected AccountUpdateCreateTimeDTO(AccountUpdateCreateTimeDTOBuilder<?, ?> b) {
         super(b);
         this.createTime = b.createTime;
     }
 
+    public AccountUpdateCreateTimeDTO(LocalDateTime createTime) {
+
+        this.createTime = createTime;
+
+    }
+
+    public AccountUpdateCreateTimeDTO() {
+    }
+
     public static AccountUpdateCreateTimeDTOBuilder<?, ?> builder() {
         return new AccountUpdateCreateTimeDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountUpdateCreateTimeDTO;
+    }
+
+    public LocalDateTime getCreateTime() {
+
+        return this.createTime;
+
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+
+        this.createTime = createTime;
     }
 
     private static final class AccountUpdateCreateTimeDTOBuilderImpl extends AccountUpdateCreateTimeDTOBuilder<AccountUpdateCreateTimeDTO, AccountUpdateCreateTimeDTOBuilderImpl> {
@@ -60,12 +58,12 @@ import java.time.LocalDateTime;
     }
 
     public static abstract class AccountUpdateCreateTimeDTOBuilder<C extends AccountUpdateCreateTimeDTO, B extends AccountUpdateCreateTimeDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private LocalDateTime createTime;
+
         public B createTime(LocalDateTime createTime) {
             this.createTime = createTime;
             return self();
         }
-
-        private LocalDateTime createTime;
 
         protected abstract B self();
 
@@ -73,24 +71,5 @@ import java.time.LocalDateTime;
 
     }
 
-    public AccountUpdateCreateTimeDTO(LocalDateTime createTime) {
-        /* 18 */
-        this.createTime = createTime;
-
-    }
-
-
-    public AccountUpdateCreateTimeDTO() {
-    }
-
-
-
-    public LocalDateTime getCreateTime() {
-        /* 23 */
-        return this.createTime;
-
-    }
-
 }
-
 

@@ -1,11 +1,6 @@
-
 package com.porn.service.desc.impl;
 
-
-import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
@@ -34,37 +29,25 @@ import java.util.stream.Collectors;
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class DescApiServiceImpl implements DescApiService {
-    /*  28 */   private static final Logger log = LoggerFactory.getLogger(DescApiServiceImpl.class);
-
-
-
-    @Autowired
-     private DescConverter descConverter;
-
+public class DescApiServiceImpl implements DescApiService {
+    private static final Logger log = LoggerFactory.getLogger(DescApiServiceImpl.class);
 
 
     @Autowired
-     private DescMapper descMapper;
+    private DescConverter descConverter;
 
 
-
+    @Autowired
+    private DescMapper descMapper;
 
 
     public DescVo queryDesc(DescQueryDTO descQueryDTO) {
-        /*  41 */
+
         List<DescVo> descVoList = queryDescList(descQueryDTO);
-        /*  42 */
+
         return ObjectUtil.isEmpty(descVoList) ? null : descVoList.get(0);
 
     }
-
-
-
-
-
-
-
 
 
     public List<DescVo> queryDescList(DescQueryDTO descQueryDTO) {
@@ -93,7 +76,6 @@ import java.util.stream.Collectors;
         return descVoList;
 
     }
-
 
 
     public DescVo saveOrUpdate(DescSaveOrUpdateDTO descSaveOrUpdateDTO) {

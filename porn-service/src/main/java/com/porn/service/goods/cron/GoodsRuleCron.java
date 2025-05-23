@@ -1,6 +1,4 @@
-
 package com.porn.service.goods.cron;
-
 
 
 import cn.hutool.core.util.NumberUtil;
@@ -34,67 +32,58 @@ import java.math.RoundingMode;
 import java.util.List;
 
 @Component
- public class GoodsRuleCron
-         implements ApplicationContextAware
-         {
-    /*  36 */   private static final Logger log = LoggerFactory.getLogger(GoodsRuleCron.class);
-
-
-
-    @Autowired
-     private GoodsApiService goodsApiService;
-
+public class GoodsRuleCron
+        implements ApplicationContextAware {
+    private static final Logger log = LoggerFactory.getLogger(GoodsRuleCron.class);
 
 
     @Autowired
-     private GoodsRuleApiService goodsRuleApiService;
+    private GoodsApiService goodsApiService;
 
 
     @Autowired
-     private MerchantApiService merchantApiService;
+    private GoodsRuleApiService goodsRuleApiService;
 
-       private ApplicationContext applicationContext;
+    @Autowired
+    private MerchantApiService merchantApiService;
 
-
-
+    private ApplicationContext applicationContext;
 
     @Scheduled(cron = "0/10 * * * * ?")
-     public void doWork() {
-        /*  54 */
+    public void doWork() {
+
         GoodsRuleQueryDTO goodsRuleQueryDTO = GoodsRuleQueryDTO.builder().status(EnableStatusEnum.ENABLE.getStatus()).build();
-        /*  55 */
+
         List<GoodsRuleVo> goodsRuleVoList = this.goodsRuleApiService.queryGoodsRuleList(goodsRuleQueryDTO);
-        /*  56 */
+
         if (ObjectUtil.isEmpty(goodsRuleVoList)) {
 
             return;
 
         }
-        /*  59 */
-        for (GoodsRuleVo goodsRuleVo : goodsRuleVoList) {
 
+        for (GoodsRuleVo goodsRuleVo : goodsRuleVoList) {
 
 
             try {
 
 
-                /*  65 */
                 GoodsQueryCountDTO goodsQueryCountDTO = GoodsQueryCountDTO.builder().goodsStatus(GoodsStatusEnum.WAIT_WORING.getStatus()).merchantId(goodsRuleVo.getMerchantId()).build();
-                /*  66 */
+
                 Integer curCount = this.goodsApiService.queryGoodsCount(goodsQueryCountDTO);
-                /*  67 */
+
                 if (ObjectUtil.isEmpty(curCount)) {
 
                     continue;
 
                 }
-                /*  70 */
+
                 if (ObjectUtil.isEmpty(goodsRuleVo.getMinGoodsCount())) {
 
                     continue;
 
                 }
-                /*  73 */
+
                 if (NumberUtil.compare(curCount.intValue(), goodsRuleVo.getMinGoodsCount().intValue()) >= 0) {
 
                     continue;
@@ -107,10 +96,10 @@ import java.util.List;
                 ((GoodsRuleCron) this.applicationContext.getBean(GoodsRuleCron.class))
                         .doCreateGoods(result.intValue(), goodsRuleVo);
 
-///*  77 */         ((GoodsRuleCron)this.applicationContext.getBean(GoodsRuleCron.class)).doCreateGoods(Integer.valueOf(NumberUtil.sub(new Number[] { Integer.valueOf(goodsRuleVo.getMaxGoodsCount().intValue() - curCount.intValue()) }, ).intValue()), goodsRuleVo);
-                /*  78 */
+//         ((GoodsRuleCron)this.applicationContext.getBean(GoodsRuleCron.class)).doCreateGoods(Integer.valueOf(NumberUtil.sub(new Number[] { Integer.valueOf(goodsRuleVo.getMaxGoodsCount().intValue() - curCount.intValue()) }, ).intValue()), goodsRuleVo);
+
             } catch (Exception e) {
-                /*  79 */
+
                 log.debug(e.getMessage(), e);
 
             }
@@ -118,42 +107,28 @@ import java.util.List;
         }
 
     }
-
-
-
-
-
-
-
 
 
     @Async
 
     @Transactional(rollbackFor = {Exception.class}, propagation = Propagation.REQUIRES_NEW)
-     public void doCreateGoods(Integer createCount, GoodsRuleVo goodsRuleVo) {
-        /*  93 */
+    public void doCreateGoods(Integer createCount, GoodsRuleVo goodsRuleVo) {
+
         MerchantVo merchantVo = this.merchantApiService.queryMerchant(((MerchantQueryDTO.MerchantQueryDTOBuilder) MerchantQueryDTO.builder().id(goodsRuleVo.getMerchantId())).build());
-        /*  94 */
+
         for (int i = 0; ObjectUtil.isNotEmpty(createCount) && i < createCount.intValue(); i++) {
 
             try {
-                /*  96 */
+
                 BigDecimal amount = RandomUtil.randomBigDecimal(goodsRuleVo.getMinAmount(), goodsRuleVo.getMaxAmount()).setScale(0, RoundingMode.HALF_DOWN);
 
 
-
-
-
-
-
-
-                /* 105 */
                 GoodsSaveOrUpdateDTO goodsSaveOrUpdateDTO = GoodsSaveOrUpdateDTO.builder().merchantId(merchantVo.getId()).merchantName(merchantVo.getName()).merchantAvatar(merchantVo.getAvatar()).rate(BigDecimal.ZERO).amount(amount).freeAmount(BigDecimal.ZERO).goodsStatus(GoodsStatusEnum.WAIT_WORING.getStatus()).build();
-                /* 106 */
+
                 this.goodsApiService.saveOrUpdate(goodsSaveOrUpdateDTO);
-                /* 107 */
+
             } catch (Exception e) {
-                /* 108 */
+
                 log.debug(e.getMessage(), e);
 
             }
@@ -163,13 +138,8 @@ import java.util.List;
     }
 
 
-
-
-
-
-
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        /* 118 */
+
         this.applicationContext = applicationContext;
 
     }

@@ -1,88 +1,37 @@
-
 package com.porn.client.order.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderQueryDTO extends BaseDTO {
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
     @ApiModelProperty("账户ID列表")
-     private List<Long> accountIdList;
+    private List<Long> accountIdList;
     @ApiModelProperty("商户ID")
-     private Long merchantId;
+    private Long merchantId;
     @ApiModelProperty("商户ID列表")
-     private List<Long> merchantIdList;
+    private List<Long> merchantIdList;
     @ApiModelProperty("起始时间")
-     private LocalDateTime startTime;
+    private LocalDateTime startTime;
     @ApiModelProperty("结束时间")
-     private LocalDateTime endTime;
+    private LocalDateTime endTime;
 
     @ApiModelProperty("订单状态, OrderStatusEnum")
-     private Integer orderStatus;
+    private Integer orderStatus;
 
     @ApiModelProperty("订单状态, OrderStatusEnum")
-     private List<Integer> orderStatusList;
+    private List<Integer> orderStatusList;
 
     @ApiModelProperty("OrderTypeEnum, 0-真人, 1-机器人")
-     private Integer orderType;
+    private Integer orderType;
 
     @ApiModelProperty("收款地址钱包编码")
-     private String walletCode;
+    private String walletCode;
 
-
-    /* 17 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setAccountIdList(List<Long> accountIdList) {
-        this.accountIdList = accountIdList;
-    }
-
-    public void setMerchantId(Long merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public void setMerchantIdList(List<Long> merchantIdList) {
-        this.merchantIdList = merchantIdList;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public void setOrderStatusList(List<Integer> orderStatusList) {
-        this.orderStatusList = orderStatusList;
-    }
-
-    public void setOrderType(Integer orderType) {
-        this.orderType = orderType;
-    }
-
-    public void setWalletCode(String walletCode) {
-        this.walletCode = walletCode;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof OrderQueryDTO;
-    }
-
-
-
-    /* 18 */
     protected OrderQueryDTO(OrderQueryDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -97,8 +46,130 @@ public class OrderQueryDTO extends BaseDTO {
         this.walletCode = b.walletCode;
     }
 
+    public OrderQueryDTO(Long accountId, List<Long> accountIdList, Long merchantId, List<Long> merchantIdList, LocalDateTime startTime, LocalDateTime endTime, Integer orderStatus, List<Integer> orderStatusList, Integer orderType, String walletCode) {
+
+        this.accountId = accountId;
+        this.accountIdList = accountIdList;
+        this.merchantId = merchantId;
+        this.merchantIdList = merchantIdList;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.orderStatus = orderStatus;
+        this.orderStatusList = orderStatusList;
+        this.orderType = orderType;
+        this.walletCode = walletCode;
+
+    }
+
+    public OrderQueryDTO() {
+    }
+
     public static OrderQueryDTOBuilder<?, ?> builder() {
         return new OrderQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof OrderQueryDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public List<Long> getAccountIdList() {
+
+        return this.accountIdList;
+
+    }
+
+    public void setAccountIdList(List<Long> accountIdList) {
+        this.accountIdList = accountIdList;
+    }
+
+    public Long getMerchantId() {
+
+        return this.merchantId;
+
+    }
+
+    public void setMerchantId(Long merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public List<Long> getMerchantIdList() {
+
+        return this.merchantIdList;
+
+    }
+
+    public void setMerchantIdList(List<Long> merchantIdList) {
+        this.merchantIdList = merchantIdList;
+    }
+
+    public LocalDateTime getStartTime() {
+
+        return this.startTime;
+
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+
+        return this.endTime;
+
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public Integer getOrderStatus() {
+
+        return this.orderStatus;
+
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public List<Integer> getOrderStatusList() {
+
+        return this.orderStatusList;
+
+    }
+
+    public void setOrderStatusList(List<Integer> orderStatusList) {
+        this.orderStatusList = orderStatusList;
+    }
+
+    public Integer getOrderType() {
+
+        return this.orderType;
+
+    }
+
+    public void setOrderType(Integer orderType) {
+        this.orderType = orderType;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
+
+    public void setWalletCode(String walletCode) {
+        this.walletCode = walletCode;
     }
 
     private static final class OrderQueryDTOBuilderImpl extends OrderQueryDTOBuilder<OrderQueryDTO, OrderQueryDTOBuilderImpl> {
@@ -120,17 +191,16 @@ public class OrderQueryDTO extends BaseDTO {
         private Long merchantId;
         private List<Long> merchantIdList;
         private LocalDateTime startTime;
-
-        public B accountId(Long accountId) {
-            this.accountId = accountId;
-            return self();
-        }
-
         private LocalDateTime endTime;
         private Integer orderStatus;
         private List<Integer> orderStatusList;
         private Integer orderType;
         private String walletCode;
+
+        public B accountId(Long accountId) {
+            this.accountId = accountId;
+            return self();
+        }
 
         public B accountIdList(List<Long> accountIdList) {
             this.accountIdList = accountIdList;
@@ -182,96 +252,5 @@ public class OrderQueryDTO extends BaseDTO {
         public abstract C build();
 
     }
-
-    public OrderQueryDTO(Long accountId, List<Long> accountIdList, Long merchantId, List<Long> merchantIdList, LocalDateTime startTime, LocalDateTime endTime, Integer orderStatus, List<Integer> orderStatusList, Integer orderType, String walletCode) {
-        /* 19 */
-        this.accountId = accountId;
-        this.accountIdList = accountIdList;
-        this.merchantId = merchantId;
-        this.merchantIdList = merchantIdList;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.orderStatus = orderStatus;
-        this.orderStatusList = orderStatusList;
-        this.orderType = orderType;
-        this.walletCode = walletCode;
-
-    }
-
-
-    public OrderQueryDTO() {
-    }
-
-
-
-    public Long getAccountId() {
-        /* 24 */
-        return this.accountId;
-
-    }
-
-
-    public List<Long> getAccountIdList() {
-        /* 27 */
-        return this.accountIdList;
-
-    }
-
-
-    public Long getMerchantId() {
-        /* 30 */
-        return this.merchantId;
-
-    }
-
-
-    public List<Long> getMerchantIdList() {
-        /* 33 */
-        return this.merchantIdList;
-
-    }
-
-
-    public LocalDateTime getStartTime() {
-        /* 36 */
-        return this.startTime;
-
-    }
-
-
-    public LocalDateTime getEndTime() {
-        /* 39 */
-        return this.endTime;
-
-    }
-
-
-    public Integer getOrderStatus() {
-        /* 42 */
-        return this.orderStatus;
-
-    }
-
-
-    public List<Integer> getOrderStatusList() {
-        /* 45 */
-        return this.orderStatusList;
-
-    }
-
-
-    public Integer getOrderType() {
-        /* 48 */
-        return this.orderType;
-
-    }
-
-
-    public String getWalletCode() {
-        /* 51 */
-        return this.walletCode;
-
-    }
 }
-
 

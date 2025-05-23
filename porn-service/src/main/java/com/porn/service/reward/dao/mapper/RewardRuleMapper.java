@@ -6,4 +6,3 @@ import com.porn.service.reward.dao.entity.RewardRuleDO;
 public interface RewardRuleMapper extends BaseMapper<RewardRuleDO> {
 }
 
-

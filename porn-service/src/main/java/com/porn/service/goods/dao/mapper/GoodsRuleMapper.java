@@ -6,4 +6,3 @@ import com.porn.service.goods.dao.entity.GoodsRuleDO;
 public interface GoodsRuleMapper extends BaseMapper<GoodsRuleDO> {
 }
 
-

@@ -16,4 +16,3 @@ public interface InlineApiService {
     Boolean batchCreate(List<InlineSaveOrUpdateDTO> paramList);
 }
 
-

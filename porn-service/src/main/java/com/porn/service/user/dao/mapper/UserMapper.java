@@ -6,4 +6,3 @@ import com.porn.service.user.dao.entity.UserDO;
 public interface UserMapper extends BaseMapper<UserDO> {
 }
 
-

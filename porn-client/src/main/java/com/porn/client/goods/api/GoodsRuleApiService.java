@@ -14,4 +14,3 @@ public interface GoodsRuleApiService {
     GoodsRuleVo saveOrUpdate(GoodsRuleSaveOrUpdateDTO paramGoodsRuleSaveOrUpdateDTO);
 }
 
-

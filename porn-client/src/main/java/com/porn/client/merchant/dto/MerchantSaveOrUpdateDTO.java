@@ -1,40 +1,32 @@
-
 package com.porn.client.merchant.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
- public class MerchantSaveOrUpdateDTO extends BaseDTO {
+public class MerchantSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("商户名称")
-     private String name;
+    private String name;
     @ApiModelProperty("头像")
-     private String avatar;
+    private String avatar;
     @ApiModelProperty("保证金")
-     private BigDecimal ensureAmount;
+    private BigDecimal ensureAmount;
 
     @ApiModelProperty("费率范围")
-     private String rateRange;
+    private String rateRange;
 
     @ApiModelProperty("地区名称")
-     private String areaName;
+    private String areaName;
 
     @ApiModelProperty("会员级别")
-     private Integer memberLevel;
+    private Integer memberLevel;
 
     @ApiModelProperty("会员级别名称")
-     private String memberLevelName;
+    private String memberLevelName;
 
     @ApiModelProperty("认证级别")
-     private Integer authLevel;
-
-
-    /* 17 */
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    private Integer authLevel;
     @ApiModelProperty("认证级别名称")
     private String authLevelName;
     @ApiModelProperty("邮箱认证")
@@ -52,74 +44,6 @@ import java.math.BigDecimal;
     @ApiModelProperty("商户标签")
     private String merchantTag;
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public void setEnsureAmount(BigDecimal ensureAmount) {
-        this.ensureAmount = ensureAmount;
-    }
-
-    public void setRateRange(String rateRange) {
-        this.rateRange = rateRange;
-    }
-
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
-
-    public void setMemberLevel(Integer memberLevel) {
-        this.memberLevel = memberLevel;
-    }
-
-    public void setMemberLevelName(String memberLevelName) {
-        this.memberLevelName = memberLevelName;
-    }
-
-    public void setAuthLevel(Integer authLevel) {
-        this.authLevel = authLevel;
-    }
-
-    public void setAuthLevelName(String authLevelName) {
-        this.authLevelName = authLevelName;
-    }
-
-    public void setMailAuth(Integer mailAuth) {
-        this.mailAuth = mailAuth;
-    }
-
-    public void setPhoneAuth(Integer phoneAuth) {
-        this.phoneAuth = phoneAuth;
-    }
-
-    public void setKycAuth(Integer kycAuth) {
-        this.kycAuth = kycAuth;
-    }
-
-    public void setAddressAuth(Integer addressAuth) {
-        this.addressAuth = addressAuth;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setMerchantType(Integer merchantType) {
-        this.merchantType = merchantType;
-    }
-
-    public void setMerchantTag(String merchantTag) {
-        this.merchantTag = merchantTag;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MerchantSaveOrUpdateDTO;
-    }
-
-
-
-    /* 18 */
     protected MerchantSaveOrUpdateDTO(MerchantSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
@@ -140,8 +64,196 @@ import java.math.BigDecimal;
         this.merchantTag = b.merchantTag;
     }
 
+    public MerchantSaveOrUpdateDTO(String name, String avatar, BigDecimal ensureAmount, String rateRange, String areaName, Integer memberLevel, String memberLevelName, Integer authLevel, String authLevelName, Integer mailAuth, Integer phoneAuth, Integer kycAuth, Integer addressAuth, Integer status, Integer merchantType, String merchantTag) {
+
+        this.name = name;
+        this.avatar = avatar;
+        this.ensureAmount = ensureAmount;
+        this.rateRange = rateRange;
+        this.areaName = areaName;
+        this.memberLevel = memberLevel;
+        this.memberLevelName = memberLevelName;
+        this.authLevel = authLevel;
+        this.authLevelName = authLevelName;
+        this.mailAuth = mailAuth;
+        this.phoneAuth = phoneAuth;
+        this.kycAuth = kycAuth;
+        this.addressAuth = addressAuth;
+        this.status = status;
+        this.merchantType = merchantType;
+        this.merchantTag = merchantTag;
+
+    }
+
+    public MerchantSaveOrUpdateDTO() {
+    }
+
     public static MerchantSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new MerchantSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MerchantSaveOrUpdateDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAvatar() {
+
+        return this.avatar;
+
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public BigDecimal getEnsureAmount() {
+
+        return this.ensureAmount;
+
+    }
+
+    public void setEnsureAmount(BigDecimal ensureAmount) {
+        this.ensureAmount = ensureAmount;
+    }
+
+    public String getRateRange() {
+
+        return this.rateRange;
+
+    }
+
+    public void setRateRange(String rateRange) {
+        this.rateRange = rateRange;
+    }
+
+    public String getAreaName() {
+
+        return this.areaName;
+
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public Integer getMemberLevel() {
+
+        return this.memberLevel;
+
+    }
+
+    public void setMemberLevel(Integer memberLevel) {
+        this.memberLevel = memberLevel;
+    }
+
+    public String getMemberLevelName() {
+
+        return this.memberLevelName;
+
+    }
+
+    public void setMemberLevelName(String memberLevelName) {
+        this.memberLevelName = memberLevelName;
+    }
+
+    public Integer getAuthLevel() {
+
+        return this.authLevel;
+
+    }
+
+    public void setAuthLevel(Integer authLevel) {
+        this.authLevel = authLevel;
+    }
+
+    public String getAuthLevelName() {
+
+        return this.authLevelName;
+
+    }
+
+    public void setAuthLevelName(String authLevelName) {
+        this.authLevelName = authLevelName;
+    }
+
+    public Integer getMailAuth() {
+
+        return this.mailAuth;
+
+    }
+
+    public void setMailAuth(Integer mailAuth) {
+        this.mailAuth = mailAuth;
+    }
+
+    public Integer getPhoneAuth() {
+
+        return this.phoneAuth;
+
+    }
+
+    public void setPhoneAuth(Integer phoneAuth) {
+        this.phoneAuth = phoneAuth;
+    }
+
+    public Integer getKycAuth() {
+
+        return this.kycAuth;
+
+    }
+
+    public void setKycAuth(Integer kycAuth) {
+        this.kycAuth = kycAuth;
+    }
+
+    public Integer getAddressAuth() {
+
+        return this.addressAuth;
+
+    }
+
+    public void setAddressAuth(Integer addressAuth) {
+        this.addressAuth = addressAuth;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getMerchantType() {
+
+        return this.merchantType;
+
+    }
+
+    public void setMerchantType(Integer merchantType) {
+        this.merchantType = merchantType;
+    }
+
+    public String getMerchantTag() {
+
+        return this.merchantTag;
+
+    }
+
+    public void setMerchantTag(String merchantTag) {
+        this.merchantTag = merchantTag;
     }
 
     private static final class MerchantSaveOrUpdateDTOBuilderImpl extends MerchantSaveOrUpdateDTOBuilder<MerchantSaveOrUpdateDTO, MerchantSaveOrUpdateDTOBuilderImpl> {
@@ -260,157 +372,5 @@ import java.math.BigDecimal;
         public abstract C build();
 
     }
-
-    public MerchantSaveOrUpdateDTO(String name, String avatar, BigDecimal ensureAmount, String rateRange, String areaName, Integer memberLevel, String memberLevelName, Integer authLevel, String authLevelName, Integer mailAuth, Integer phoneAuth, Integer kycAuth, Integer addressAuth, Integer status, Integer merchantType, String merchantTag) {
-        /* 19 */
-        this.name = name;
-        this.avatar = avatar;
-        this.ensureAmount = ensureAmount;
-        this.rateRange = rateRange;
-        this.areaName = areaName;
-        this.memberLevel = memberLevel;
-        this.memberLevelName = memberLevelName;
-        this.authLevel = authLevel;
-        this.authLevelName = authLevelName;
-        this.mailAuth = mailAuth;
-        this.phoneAuth = phoneAuth;
-        this.kycAuth = kycAuth;
-        this.addressAuth = addressAuth;
-        this.status = status;
-        this.merchantType = merchantType;
-        this.merchantTag = merchantTag;
-
-    }
-
-
-
-    public MerchantSaveOrUpdateDTO() {
-    }
-
-
-
-    public String getName() {
-        /* 25 */
-        return this.name;
-
-    }
-
-
-
-    public String getAvatar() {
-        /* 29 */
-        return this.avatar;
-
-    }
-
-
-
-    public BigDecimal getEnsureAmount() {
-        /* 33 */
-        return this.ensureAmount;
-
-    }
-
-
-    public String getRateRange() {
-        /* 36 */
-        return this.rateRange;
-
-    }
-
-
-
-    public String getAreaName() {
-        /* 40 */
-        return this.areaName;
-
-    }
-
-
-
-    public Integer getMemberLevel() {
-        /* 44 */
-        return this.memberLevel;
-
-    }
-
-
-
-    public String getMemberLevelName() {
-        /* 48 */
-        return this.memberLevelName;
-
-    }
-
-
-
-    public Integer getAuthLevel() {
-        /* 52 */
-        return this.authLevel;
-
-    }
-
-
-
-    public String getAuthLevelName() {
-        /* 56 */
-        return this.authLevelName;
-
-    }
-
-
-
-    public Integer getMailAuth() {
-        /* 60 */
-        return this.mailAuth;
-
-    }
-
-
-
-    public Integer getPhoneAuth() {
-        /* 64 */
-        return this.phoneAuth;
-
-    }
-
-
-
-    public Integer getKycAuth() {
-        /* 68 */
-        return this.kycAuth;
-
-    }
-
-
-
-    public Integer getAddressAuth() {
-        /* 72 */
-        return this.addressAuth;
-
-    }
-
-
-
-    public Integer getStatus() {
-        /* 76 */
-        return this.status;
-
-    }
-
-
-    public Integer getMerchantType() {
-        /* 79 */
-        return this.merchantType;
-
-    }
-
-
-    public String getMerchantTag() {
-        /* 82 */
-        return this.merchantTag;
-
-    }
 }
-
 

@@ -11,4 +11,3 @@ public interface LoginLogApiService {
     PageVo<LoginLogVo> queryPage(LoginLogQueryPageDTO paramLoginLogQueryPageDTO);
 }
 
-

@@ -1,44 +1,45 @@
-
 package com.porn.client.merchant.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class MerchantEnableOrDisableDTO
-         extends BaseDTO
-         {
+public class MerchantEnableOrDisableDTO
+        extends BaseDTO {
 
     @ApiModelProperty("状态, 1-启用, 0-禁用")
-     private Integer status;
+    private Integer status;
 
-
-
-    public void setStatus(Integer status) {
-        /* 15 */
-        this.status = status;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MerchantEnableOrDisableDTO;
-    }
-
-
-
-    /* 16 */
     protected MerchantEnableOrDisableDTO(MerchantEnableOrDisableDTOBuilder<?, ?> b) {
         super(b);
         this.status = b.status;
     }
 
+    public MerchantEnableOrDisableDTO(Integer status) {
+
+        this.status = status;
+
+    }
+
+    public MerchantEnableOrDisableDTO() {
+    }
+
     public static MerchantEnableOrDisableDTOBuilder<?, ?> builder() {
         return new MerchantEnableOrDisableDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MerchantEnableOrDisableDTO;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+
+        this.status = status;
     }
 
     private static final class MerchantEnableOrDisableDTOBuilderImpl extends MerchantEnableOrDisableDTOBuilder<MerchantEnableOrDisableDTO, MerchantEnableOrDisableDTOBuilderImpl> {
@@ -55,12 +56,12 @@ import com.porn.client.common.dto.BaseDTO;
     }
 
     public static abstract class MerchantEnableOrDisableDTOBuilder<C extends MerchantEnableOrDisableDTO, B extends MerchantEnableOrDisableDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private Integer status;
+
         public B status(Integer status) {
             this.status = status;
             return self();
         }
-
-        private Integer status;
 
         protected abstract B self();
 
@@ -68,24 +69,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public MerchantEnableOrDisableDTO(Integer status) {
-        /* 17 */
-        this.status = status;
-
-    }
-
-
-    public MerchantEnableOrDisableDTO() {
-    }
-
-
-
-    public Integer getStatus() {
-        /* 22 */
-        return this.status;
-
-    }
-
 }
-
 

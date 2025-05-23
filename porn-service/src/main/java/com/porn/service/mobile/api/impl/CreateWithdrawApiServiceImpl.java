@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.date.LocalDateTimeUtil;
@@ -36,226 +34,146 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class CreateWithdrawApiServiceImpl
-         implements ApiService<WithdrawVo>
-         {
+public class CreateWithdrawApiServiceImpl
+        implements ApiService<WithdrawVo> {
 
+    private final Lock lock = new ReentrantLock();
     @Autowired
-     private WithdrawApiService withdrawApiService;
-
+    private WithdrawApiService withdrawApiService;
     @Autowired
-     private AccountApiService accountApiService;
-
+    private AccountApiService accountApiService;
     @Autowired
-     private DingdingMsgSender dingdingMsgSender;
-
+    private DingdingMsgSender dingdingMsgSender;
     @Autowired
-     private RedisTemplate redisTemplate;
-    /*  59 */   private final Lock lock = new ReentrantLock();
-
-
-
+    private RedisTemplate redisTemplate;
 
     public WithdrawVo cmd(CmdRequestDTO cmdRequestDTO) {
 
         try {
-            /*  64 */
+
             this.lock.lock();
-            /*  65 */
+
             WithdrawSaveOrUpdateDTO withdrawSaveOrUpdateDTO = (WithdrawSaveOrUpdateDTO) JSON.parseObject(cmdRequestDTO.getData(), WithdrawSaveOrUpdateDTO.class);
-            /*  66 */
+
             if (ObjectUtil.isEmpty(withdrawSaveOrUpdateDTO.getWalletCode())) {
-                /*  67 */
+
                 withdrawSaveOrUpdateDTO.setWalletCode(WalletChainEnum.TRON.getCode());
 
             }
 
-            /*  70 */
+
             validate(cmdRequestDTO.getAccountVo());
 
 
-
-
-            /*  75 */
             AccountQueryDTO accountQueryDTO = ((AccountQueryDTO.AccountQueryDTOBuilder) AccountQueryDTO.builder().id(cmdRequestDTO.getAccountVo().getId())).build();
-            /*  76 */
+
             AccountVo accountVo = this.accountApiService.queryAccount(accountQueryDTO);
-            /*  77 */
+
             if (ObjectUtil.isEmpty(accountVo)) {
-                /*  78 */
+
                 throw new BusinessException("账户信息不存在.");
 
             }
 
-            /*  81 */
+
             if (ObjectUtil.isEmpty(withdrawSaveOrUpdateDTO.getTradePwd())) {
-                /*  82 */
+
                 throw new BusinessException("交易密码不能为空.");
 
             }
 
 
-
-
-            /*  88 */
             AccountValidatePwdDTO accountValidatePwdDTO = ((AccountValidatePwdDTO.AccountValidatePwdDTOBuilder) AccountValidatePwdDTO.builder().id(accountVo.getId())).type(AccountValidateTypeEnum.TRADE_PWD.getType()).pwd(withdrawSaveOrUpdateDTO.getTradePwd()).build();
-            /*  89 */
+
             if (!this.accountApiService.validatePwd(accountValidatePwdDTO)) {
-                /*  90 */
+
                 throw new BusinessException("交易密码不正确.");
 
             }
 
 
-            /*  94 */
             if (accountVo.getAvailableBalance().compareTo(withdrawSaveOrUpdateDTO.getTotalAmount()) < 0) {
-                /*  95 */
+
                 throw new BusinessException("账户余额不足.");
 
             }
 
 
-            /*  99 */
             withdrawSaveOrUpdateDTO.setAccountId(cmdRequestDTO.getAccountVo().getId());
-            /* 100 */
+
             withdrawSaveOrUpdateDTO.setAccountName(cmdRequestDTO.getAccountVo().getName());
-            /* 101 */
+
             withdrawSaveOrUpdateDTO.setStatus(WithdrawStatusEnum.EXAMINEING.getStatus());
-            /* 102 */
+
             withdrawSaveOrUpdateDTO.setWalletCode(withdrawSaveOrUpdateDTO.getWalletCode());
-            /* 103 */
+
             withdrawSaveOrUpdateDTO.setAccountRemark(accountVo.getRemark());
-            /* 104 */
+
             withdrawSaveOrUpdateDTO.setWithdrawNo(genWithdrawNo());
-            /* 105 */
+
             WithdrawVo withdrawVo = this.withdrawApiService.saveOrUpdate(withdrawSaveOrUpdateDTO);
 
 
-
-
-
-
-
-
-            /* 114 */
             AccountAmountOperateDTO accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(accountVo.getId())).operateAmount(withdrawSaveOrUpdateDTO.getTotalAmount()).amountType(AmountTypeEnum.SUBAVAILABLE_ADDFREEZE.getType()).bizId(withdrawVo.getId()).streamTypeEnum(StreamTypeEnum.WITHDRAW_LOCK).build();
-            /* 115 */
+
             AccountVo newAccountVo = this.accountApiService.operateAmount(accountAmountOperateDTO);
 
 
-            /* 118 */
             this.dingdingMsgSender.sendMsg(
-                    /* 119 */           ProxyMsgDTO.builder()
-/* 120 */.accountId(withdrawVo.getAccountId())
-/* 121 */.msg("账户[" + newAccountVo.getName() + "]发起提现, 请及时审核")
-/* 122 */.build());
+                    ProxyMsgDTO.builder()
+                            .accountId(withdrawVo.getAccountId())
+                            .msg("账户[" + newAccountVo.getName() + "]发起提现, 请及时审核")
+                            .build());
 
 
-            /* 125 */
             return withdrawVo;
 
         } finally {
-            /* 127 */
+
             this.lock.unlock();
 
         }
 
     }
 
-
-
-
-
-
     protected String genWithdrawNo() {
-        /* 135 */
+
         LocalDateTime now = LocalDateTimeUtil.now();
-        /* 136 */
+
         String year = LocalDateTimeUtil.format(LocalDateTimeUtil.now(), "yyyy");
-        /* 137 */
+
         String month = LocalDateTimeUtil.format(LocalDateTimeUtil.now(), "MM");
-        /* 138 */
+
         String day = LocalDateTimeUtil.format(LocalDateTimeUtil.now(), "dd");
-        /* 139 */
+
         String randNum = String.format("%04d", new Object[]{Integer.valueOf((new Random()).nextInt(1000))});
-        /* 140 */
+
         String incKey = "withdraw_key" + LocalDateTimeUtil.format(now, "yyyyMMdd");
-        /* 141 */
+
         Long incNum = this.redisTemplate.opsForValue().increment(incKey);
-        /* 142 */
+
         this.redisTemplate.expire(incKey, 24L, TimeUnit.HOURS);
-        /* 143 */
+
         return StrUtil.join("", new Object[]{"NO", randNum, month, year, day, String.valueOf(Math.abs(incNum.longValue()))});
 
     }
 
-
-
-
-
-
     protected void validate(AccountVo accountVo) {
-        /* 150 */
+
         AccountQueryDTO accountQueryDTO = ((AccountQueryDTO.AccountQueryDTOBuilder) AccountQueryDTO.builder().id(accountVo.getId())).build();
-        /* 151 */
+
         AccountVo dbAccountVo = this.accountApiService.queryAccount(accountQueryDTO);
-        /* 152 */
+
         if (ObjectUtil.isEmpty(dbAccountVo)) {
-            /* 153 */
+
             throw new BusinessException("账户信息不存在.");
 
         }
 
 
-        /* 157 */
         if (EnableStatusEnum.DISABLED.getStatus().equals(dbAccountVo.getWithdrawStatus())) {
-            /* 158 */
+
             throw new BusinessException("你已被禁止提现");
 
         }
@@ -263,13 +181,11 @@ import java.util.concurrent.locks.ReentrantLock;
     }
 
 
-
     public String getApi() {
-        /* 163 */
+
         return "api_createwithdraw";
 
     }
 
 }
-
 

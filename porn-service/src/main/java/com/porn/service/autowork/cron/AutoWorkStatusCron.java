@@ -1,6 +1,4 @@
-
 package com.porn.service.autowork.cron;
-
 
 
 import cn.hutool.core.date.LocalDateTimeUtil;
@@ -43,107 +41,58 @@ import java.util.Arrays;
 import java.util.List;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Component
- public class AutoWorkStatusCron
-         implements ApplicationContextAware
-         {
-    /*  46 */   private static final Logger log = LoggerFactory.getLogger(AutoWorkStatusCron.class);
-
-
-
-    @Autowired
-     private OrderApiService orderApiService;
-
+public class AutoWorkStatusCron
+        implements ApplicationContextAware {
+    private static final Logger log = LoggerFactory.getLogger(AutoWorkStatusCron.class);
 
 
     @Autowired
-     private AccountApiService accountApiService;
-
-
-
-    @Autowired
-     private RedisTemplate redisTemplate;
-
+    private OrderApiService orderApiService;
 
 
     @Autowired
-     private StreamApiService streamApiService;
-
+    private AccountApiService accountApiService;
 
 
     @Autowired
-     private ParamsetApiService paramsetApiService;
+    private RedisTemplate redisTemplate;
 
 
-       private ApplicationContext applicationContext;
+    @Autowired
+    private StreamApiService streamApiService;
 
 
+    @Autowired
+    private ParamsetApiService paramsetApiService;
 
+    private ApplicationContext applicationContext;
 
     @Scheduled(cron = "0/20 * * * * ?")
-     public void doCompare() {
-        /*  74 */
+    public void doCompare() {
+
         OrderQueryDTO orderQueryDTO = OrderQueryDTO.builder().orderStatusList(Arrays.asList(new Integer[]{OrderStatusEnum.WAIT_PAY.getStatus(), OrderStatusEnum.PAY_SUCCESS.getStatus()})).startTime(LocalDateTimeUtil.beginOfDay(LocalDateTimeUtil.now())).build();
-        /*  75 */
+
         List<OrderVo> orderVoList = this.orderApiService.queryOrderList(orderQueryDTO);
-        /*  76 */
+
         if (ObjectUtil.isEmpty(orderVoList)) {
 
             return;
 
         }
 
-        /*  80 */
+
         for (OrderVo orderVo : orderVoList) {
 
-            /*  82 */
+
             AutoWorkAccountVo autoWorkAccountVo = isMatchAutoWork(orderVo);
-            /*  83 */
+
             if (ObjectUtil.isEmpty(autoWorkAccountVo)) {
 
                 continue;
 
             }
-            /*  86 */
+
             if (!isMatchTime(orderVo, autoWorkAccountVo)) {
 
                 continue;
@@ -151,169 +100,111 @@ import java.util.List;
             }
 
 
-            /*  91 */
             ((AutoWorkStatusCron) this.applicationContext.getBean(AutoWorkStatusCron.class)).doProcess(orderVo, autoWorkAccountVo);
 
         }
 
     }
 
-
-
-
-
-
-
-
     @Transactional(rollbackFor = {Exception.class}, propagation = Propagation.REQUIRES_NEW)
-     public void doProcess(OrderVo orderVo, AutoWorkAccountVo autoWorkAccountVo) {
-        /* 102 */
+    public void doProcess(OrderVo orderVo, AutoWorkAccountVo autoWorkAccountVo) {
+
         if (orderVo.getOrderStatus() == OrderStatusEnum.PAY_SUCCESS.getStatus()) {
 
-            /* 104 */
             doAttachProcess(orderVo, autoWorkAccountVo);
 
-            /* 106 */
             clearOrderCache(orderVo);
 
         }
 
 
-
-
-        /* 112 */
         OrderSaveOrUpdateDTO orderSaveOrUpdateDTO = ((OrderSaveOrUpdateDTO.OrderSaveOrUpdateDTOBuilder) OrderSaveOrUpdateDTO.builder().id(orderVo.getId())).orderStatus((orderVo.getOrderStatus() == OrderStatusEnum.WAIT_PAY.getStatus()) ? OrderStatusEnum.PAY_SUCCESS.getStatus() : OrderStatusEnum.CONFIRED.getStatus()).build();
-        /* 113 */
+
         this.orderApiService.saveOrUpdate(orderSaveOrUpdateDTO);
 
     }
 
 
-
-
-
-
-
-
-
     public void doAttachProcess(OrderVo orderVo, AutoWorkAccountVo autoWorkAccountVo) {
-        /* 123 */
+
         this.streamApiService.saveOrUpdate(
-                /* 124 */         StreamSaveOrUpdateDTO.builder()
-/* 125 */.accountId(orderVo.getAccountId()).accountName(orderVo.getAccountName())
-/* 126 */.beforeTotalBalance(BigDecimal.ZERO).beforeAvailableBalance(BigDecimal.ZERO).beforeFreezeBalance(BigDecimal.ZERO)
-/* 127 */.afterTotalBalance(BigDecimal.ZERO).afterAvailableBalance(BigDecimal.ZERO).afterFreezeBalance(BigDecimal.ZERO)
-/* 128 */.bizId(orderVo.getId())
-/* 129 */.amount(orderVo.getOrderAmount())
-/* 130 */.type(StreamTypeEnum.WORKING_SUB.getType())
-/* 131 */.flag(StreamTypeEnum.WORKING_SUB.getFlag())
-/* 132 */.build());
+                StreamSaveOrUpdateDTO.builder()
+                        .accountId(orderVo.getAccountId()).accountName(orderVo.getAccountName())
+                        .beforeTotalBalance(BigDecimal.ZERO).beforeAvailableBalance(BigDecimal.ZERO).beforeFreezeBalance(BigDecimal.ZERO)
+                        .afterTotalBalance(BigDecimal.ZERO).afterAvailableBalance(BigDecimal.ZERO).afterFreezeBalance(BigDecimal.ZERO)
+                        .bizId(orderVo.getId())
+                        .amount(orderVo.getOrderAmount())
+                        .type(StreamTypeEnum.WORKING_SUB.getType())
+                        .flag(StreamTypeEnum.WORKING_SUB.getFlag())
+                        .build());
 
-
-
-
-
-
-
-
-
-        /* 142 */
         AccountAmountOperateDTO accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(orderVo.getAccountId())).amountType(AmountTypeEnum.ADDTOTAL_ADDAVAILABLE.getType()).bizId(orderVo.getId()).streamTypeEnum(StreamTypeEnum.WORKING_ADD).operateAmount(orderVo.getFreeAmount()).build();
-        /* 143 */
+
         this.accountApiService.operateAmount(accountAmountOperateDTO);
 
 
-        /* 146 */
         proxyFreeProcess(orderVo);
 
     }
 
 
-
-
-
-
-
-
-
     public boolean isMatchTime(OrderVo orderVo, AutoWorkAccountVo autoWorkAccountVo) {
-        /* 156 */
+
         LocalDateTime now = LocalDateTimeUtil.now();
-        /* 157 */
-        if (orderVo.getOrderStatus() == OrderStatusEnum.WAIT_PAY.getStatus())
-             {
-            /* 159 */
+
+        if (orderVo.getOrderStatus() == OrderStatusEnum.WAIT_PAY.getStatus()) {
+
             if (now.compareTo(autoWorkAccountVo.getNextLoanTime()) >= 0) {
-                /* 160 */
+
                 return true;
 
             }
 
         }
-        /* 163 */
-        if (orderVo.getOrderStatus() == OrderStatusEnum.PAY_SUCCESS.getStatus())
-             {
-            /* 165 */
+
+        if (orderVo.getOrderStatus() == OrderStatusEnum.PAY_SUCCESS.getStatus()) {
+
             if (now.compareTo(autoWorkAccountVo.getNextCompleteTime()) >= 0) {
-                /* 166 */
+
                 return true;
 
             }
 
         }
-        /* 169 */
+
         return false;
 
     }
 
-
-
-
-
-
-
-
     public AutoWorkAccountVo isMatchAutoWork(OrderVo orderVo) {
-        /* 178 */
+
         String cacheOrderKey = String.format("AUTOWORKORDER%s%s", new Object[]{String.valueOf(orderVo.getAccountId()), String.valueOf(orderVo.getId())});
-        /* 179 */
+
         String autoWorkInfoJson = (String) this.redisTemplate.opsForValue().get(cacheOrderKey);
-        /* 180 */
+
         if (ObjectUtil.isEmpty(autoWorkInfoJson)) {
-            /* 181 */
+
             return null;
 
         }
-        /* 183 */
+
         return (AutoWorkAccountVo) JSON.parseObject(autoWorkInfoJson, AutoWorkAccountVo.class);
 
     }
 
 
-
-
-
-
-
     public void clearOrderCache(OrderVo orderVo) {
-        /* 191 */
+
         String cacheOrderKey = String.format("AUTOWORKORDER%s%s", new Object[]{String.valueOf(orderVo.getAccountId()), String.valueOf(orderVo.getId())});
-        /* 192 */
+
         this.redisTemplate.delete(cacheOrderKey);
 
     }
 
-
-
-
-
-
-
-
     protected void proxyFreeProcess(OrderVo orderVo) {
-        /* 201 */
+
         AccountVo accountVo = this.accountApiService.queryAccount(((AccountQueryDTO.AccountQueryDTOBuilder) AccountQueryDTO.builder().id(orderVo.getAccountId())).build());
-        /* 202 */
+
         if (ObjectUtil.isEmpty(accountVo.getParentId())) {
 
             return;
@@ -321,30 +212,21 @@ import java.util.List;
         }
 
 
-        /* 207 */
         ParamsetVo paramsetVo = this.paramsetApiService.queryParamset(ParamsetQueryDTO.builder().build());
 
 
-        /* 210 */
         AccountVo parentAccountVo = this.accountApiService.queryAccount(AccountQueryDTO.builder().accountIdList(Arrays.asList(new Long[]{accountVo.getParentId()})).build());
-        /* 211 */
+
         if (ObjectUtil.isEmpty(parentAccountVo)) {
 
             return;
 
         }
 
-
-
-
-
-
-
-        /* 221 */
         AccountAmountOperateDTO accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(parentAccountVo.getId())).amountType(AmountTypeEnum.ADDTOTAL_ADDAVAILABLE.getType()).bizId(orderVo.getId()).streamTypeEnum(StreamTypeEnum.PROXY_1).operateAmount(NumberUtil.mul(orderVo.getOrderAmount(), NumberUtil.div(paramsetVo.getProxyLevel1Rate(), Integer.valueOf(100))).setScale(2, RoundingMode.HALF_UP)).build();
-        /* 222 */
+
         this.accountApiService.operateAmount(accountAmountOperateDTO);
-        /* 223 */
+
         if (ObjectUtil.isEmpty(parentAccountVo.getParentId())) {
 
             return;
@@ -352,9 +234,8 @@ import java.util.List;
         }
 
 
-        /* 228 */
         AccountVo parentParentAccountVo = this.accountApiService.queryAccount(AccountQueryDTO.builder().accountIdList(Arrays.asList(new Long[]{parentAccountVo.getParentId()})).build());
-        /* 229 */
+
         if (ObjectUtil.isEmpty(parentParentAccountVo)) {
 
             return;
@@ -362,15 +243,10 @@ import java.util.List;
         }
 
 
-
-
-
-
-        /* 238 */
         accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(parentParentAccountVo.getId())).amountType(AmountTypeEnum.ADDTOTAL_ADDAVAILABLE.getType()).bizId(orderVo.getId()).streamTypeEnum(StreamTypeEnum.PROXY_2).operateAmount(NumberUtil.mul(orderVo.getOrderAmount(), NumberUtil.div(paramsetVo.getProxyLevel2Rate(), Integer.valueOf(100))).setScale(2, RoundingMode.HALF_UP)).build();
-        /* 239 */
+
         this.accountApiService.operateAmount(accountAmountOperateDTO);
-        /* 240 */
+
         if (ObjectUtil.isEmpty(parentParentAccountVo.getParentId())) {
 
             return;
@@ -378,9 +254,8 @@ import java.util.List;
         }
 
 
-        /* 245 */
         AccountVo parentParentParentAccountVo = this.accountApiService.queryAccount(AccountQueryDTO.builder().accountIdList(Arrays.asList(new Long[]{parentParentAccountVo.getParentId()})).build());
-        /* 246 */
+
         if (ObjectUtil.isEmpty(parentParentParentAccountVo)) {
 
             return;
@@ -388,29 +263,18 @@ import java.util.List;
         }
 
 
-
-
-
-
-        /* 255 */
         accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(parentParentParentAccountVo.getId())).amountType(AmountTypeEnum.ADDTOTAL_ADDAVAILABLE.getType()).bizId(orderVo.getId()).streamTypeEnum(StreamTypeEnum.PROXY_3).operateAmount(NumberUtil.mul(orderVo.getOrderAmount(), NumberUtil.div(paramsetVo.getProxyLevel3Rate(), Integer.valueOf(100))).setScale(2, RoundingMode.HALF_UP)).build();
-        /* 256 */
+
         this.accountApiService.operateAmount(accountAmountOperateDTO);
 
     }
 
 
-
-
-
-
-
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        /* 264 */
+
         this.applicationContext = applicationContext;
 
     }
 
 }
-
 

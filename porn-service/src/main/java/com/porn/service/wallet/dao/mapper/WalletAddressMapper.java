@@ -10,4 +10,3 @@ public interface WalletAddressMapper extends BaseMapper<WalletAddressDO> {
     List<String> queryWalletChainList(WalletChainQueryDTO paramWalletChainQueryDTO);
 }
 
-

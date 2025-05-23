@@ -6,4 +6,3 @@ import com.porn.service.transfer.dao.entity.TransferDO;
 public interface TransferMapper extends BaseMapper<TransferDO> {
 }
 
-

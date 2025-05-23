@@ -16,4 +16,3 @@ public interface MessageConverter {
     MessageDO toMessageDO(MessageSaveOrUpdateDTO paramMessageSaveOrUpdateDTO);
 }
 
-

@@ -1,57 +1,24 @@
-
 package com.porn.client.reward.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-
-
-
- public class RewardRuleQueryDTO extends BaseDTO {
+public class RewardRuleQueryDTO extends BaseDTO {
 
     @ApiModelProperty("规则类型")
-     private Integer ruleType;
+    private Integer ruleType;
 
     @ApiModelProperty("语言类型")
-     private Integer langType;
+    private Integer langType;
 
     @ApiModelProperty("语言名称")
-     private String langTypeName;
+    private String langTypeName;
 
     @ApiModelProperty("规则类型")
-     private List<Integer> ruleTypeList;
+    private List<Integer> ruleTypeList;
 
-
-    /* 16 */
-    public void setRuleType(Integer ruleType) {
-        this.ruleType = ruleType;
-    }
-
-    public void setLangType(Integer langType) {
-        this.langType = langType;
-    }
-
-    public void setLangTypeName(String langTypeName) {
-        this.langTypeName = langTypeName;
-    }
-
-    public void setRuleTypeList(List<Integer> ruleTypeList) {
-        this.ruleTypeList = ruleTypeList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RewardRuleQueryDTO;
-    }
-
-
-
-    /* 17 */
     protected RewardRuleQueryDTO(RewardRuleQueryDTOBuilder<?, ?> b) {
         super(b);
         this.ruleType = b.ruleType;
@@ -60,8 +27,64 @@ import java.util.List;
         this.ruleTypeList = b.ruleTypeList;
     }
 
+    public RewardRuleQueryDTO(Integer ruleType, Integer langType, String langTypeName, List<Integer> ruleTypeList) {
+
+        this.ruleType = ruleType;
+        this.langType = langType;
+        this.langTypeName = langTypeName;
+        this.ruleTypeList = ruleTypeList;
+
+    }
+
+    public RewardRuleQueryDTO() {
+    }
+
     public static RewardRuleQueryDTOBuilder<?, ?> builder() {
         return new RewardRuleQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RewardRuleQueryDTO;
+    }
+
+    public Integer getRuleType() {
+
+        return this.ruleType;
+
+    }
+
+    public void setRuleType(Integer ruleType) {
+        this.ruleType = ruleType;
+    }
+
+    public Integer getLangType() {
+
+        return this.langType;
+
+    }
+
+    public void setLangType(Integer langType) {
+        this.langType = langType;
+    }
+
+    public String getLangTypeName() {
+
+        return this.langTypeName;
+
+    }
+
+    public void setLangTypeName(String langTypeName) {
+        this.langTypeName = langTypeName;
+    }
+
+    public List<Integer> getRuleTypeList() {
+
+        return this.ruleTypeList;
+
+    }
+
+    public void setRuleTypeList(List<Integer> ruleTypeList) {
+        this.ruleTypeList = ruleTypeList;
     }
 
     private static final class RewardRuleQueryDTOBuilderImpl extends RewardRuleQueryDTOBuilder<RewardRuleQueryDTO, RewardRuleQueryDTOBuilderImpl> {
@@ -80,14 +103,13 @@ import java.util.List;
     public static abstract class RewardRuleQueryDTOBuilder<C extends RewardRuleQueryDTO, B extends RewardRuleQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Integer ruleType;
         private Integer langType;
+        private String langTypeName;
+        private List<Integer> ruleTypeList;
 
         public B ruleType(Integer ruleType) {
             this.ruleType = ruleType;
             return self();
         }
-
-        private String langTypeName;
-        private List<Integer> ruleTypeList;
 
         public B langType(Integer langType) {
             this.langType = langType;
@@ -110,48 +132,5 @@ import java.util.List;
 
     }
 
-    public RewardRuleQueryDTO(Integer ruleType, Integer langType, String langTypeName, List<Integer> ruleTypeList) {
-        /* 18 */
-        this.ruleType = ruleType;
-        this.langType = langType;
-        this.langTypeName = langTypeName;
-        this.ruleTypeList = ruleTypeList;
-
-    }
-
-
-    public RewardRuleQueryDTO() {
-    }
-
-
-
-    public Integer getRuleType() {
-        /* 23 */
-        return this.ruleType;
-
-    }
-
-
-    public Integer getLangType() {
-        /* 26 */
-        return this.langType;
-
-    }
-
-
-    public String getLangTypeName() {
-        /* 29 */
-        return this.langTypeName;
-
-    }
-
-
-    public List<Integer> getRuleTypeList() {
-        /* 32 */
-        return this.ruleTypeList;
-
-    }
-
 }
-
 

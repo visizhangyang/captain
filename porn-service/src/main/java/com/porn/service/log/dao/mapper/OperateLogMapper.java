@@ -6,4 +6,3 @@ import com.porn.service.log.dao.entity.OperateLogDO;
 public interface OperateLogMapper extends BaseMapper<OperateLogDO> {
 }
 
-

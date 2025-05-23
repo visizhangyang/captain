@@ -1,39 +1,31 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
- public class AccountQueryDTO extends BaseDTO {
+public class AccountQueryDTO extends BaseDTO {
     @ApiModelProperty("账户名称")
-     private String name;
+    private String name;
 
     @ApiModelProperty("账户ID列表")
-     private List<Long> accountIdList;
+    private List<Long> accountIdList;
 
     @ApiModelProperty("推广码")
-     private List<String> promotionCodeList;
+    private List<String> promotionCodeList;
 
     @ApiModelProperty("父推广码")
-     private List<String> parentPromotionCodeList;
+    private List<String> parentPromotionCodeList;
 
     @ApiModelProperty("账户级别")
-     private Integer accountLevel;
+    private Integer accountLevel;
 
     @ApiModelProperty("账户级别")
-     private List<Integer> accountLevelList;
+    private List<Integer> accountLevelList;
 
     @ApiModelProperty("账户类型, com.porn.client.account.enums.AccountTypeEnum")
-     private Integer accountType;
-
-
-    /* 17 */
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    private Integer accountType;
     @ApiModelProperty("账户类型, com.porn.client.account.enums.AccountTypeEnum")
     private List<Integer> accountTypeList;
     @ApiModelProperty("父ID")
@@ -49,66 +41,6 @@ import java.util.List;
     @ApiModelProperty("上传状态, 上传状态, 默认禁用, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
     private Integer uploadStatus;
 
-    public void setAccountIdList(List<Long> accountIdList) {
-        this.accountIdList = accountIdList;
-    }
-
-    public void setPromotionCodeList(List<String> promotionCodeList) {
-        this.promotionCodeList = promotionCodeList;
-    }
-
-    public void setParentPromotionCodeList(List<String> parentPromotionCodeList) {
-        this.parentPromotionCodeList = parentPromotionCodeList;
-    }
-
-    public void setAccountLevel(Integer accountLevel) {
-        this.accountLevel = accountLevel;
-    }
-
-    public void setAccountLevelList(List<Integer> accountLevelList) {
-        this.accountLevelList = accountLevelList;
-    }
-
-    public void setAccountType(Integer accountType) {
-        this.accountType = accountType;
-    }
-
-    public void setAccountTypeList(List<Integer> accountTypeList) {
-        this.accountTypeList = accountTypeList;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public void setParentIdList(List<Long> parentIdList) {
-        this.parentIdList = parentIdList;
-    }
-
-    public void setAutoWork(Integer autoWork) {
-        this.autoWork = autoWork;
-    }
-
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public void setPhotoStatus(Integer photoStatus) {
-        this.photoStatus = photoStatus;
-    }
-
-    public void setUploadStatus(Integer uploadStatus) {
-        this.uploadStatus = uploadStatus;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountQueryDTO;
-    }
-
-
-
-    /* 18 */
     protected AccountQueryDTO(AccountQueryDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
@@ -127,8 +59,174 @@ import java.util.List;
         this.uploadStatus = b.uploadStatus;
     }
 
+    public AccountQueryDTO(String name, List<Long> accountIdList, List<String> promotionCodeList, List<String> parentPromotionCodeList, Integer accountLevel, List<Integer> accountLevelList, Integer accountType, List<Integer> accountTypeList, Long parentId, List<Long> parentIdList, Integer autoWork, String deviceId, Integer photoStatus, Integer uploadStatus) {
+
+        this.name = name;
+        this.accountIdList = accountIdList;
+        this.promotionCodeList = promotionCodeList;
+        this.parentPromotionCodeList = parentPromotionCodeList;
+        this.accountLevel = accountLevel;
+        this.accountLevelList = accountLevelList;
+        this.accountType = accountType;
+        this.accountTypeList = accountTypeList;
+        this.parentId = parentId;
+        this.parentIdList = parentIdList;
+        this.autoWork = autoWork;
+        this.deviceId = deviceId;
+        this.photoStatus = photoStatus;
+        this.uploadStatus = uploadStatus;
+
+    }
+
+    public AccountQueryDTO() {
+    }
+
     public static AccountQueryDTOBuilder<?, ?> builder() {
         return new AccountQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountQueryDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Long> getAccountIdList() {
+
+        return this.accountIdList;
+
+    }
+
+    public void setAccountIdList(List<Long> accountIdList) {
+        this.accountIdList = accountIdList;
+    }
+
+    public List<String> getPromotionCodeList() {
+
+        return this.promotionCodeList;
+
+    }
+
+    public void setPromotionCodeList(List<String> promotionCodeList) {
+        this.promotionCodeList = promotionCodeList;
+    }
+
+    public List<String> getParentPromotionCodeList() {
+
+        return this.parentPromotionCodeList;
+
+    }
+
+    public void setParentPromotionCodeList(List<String> parentPromotionCodeList) {
+        this.parentPromotionCodeList = parentPromotionCodeList;
+    }
+
+    public Integer getAccountLevel() {
+
+        return this.accountLevel;
+
+    }
+
+    public void setAccountLevel(Integer accountLevel) {
+        this.accountLevel = accountLevel;
+    }
+
+    public List<Integer> getAccountLevelList() {
+
+        return this.accountLevelList;
+
+    }
+
+    public void setAccountLevelList(List<Integer> accountLevelList) {
+        this.accountLevelList = accountLevelList;
+    }
+
+    public Integer getAccountType() {
+
+        return this.accountType;
+
+    }
+
+    public void setAccountType(Integer accountType) {
+        this.accountType = accountType;
+    }
+
+    public List<Integer> getAccountTypeList() {
+
+        return this.accountTypeList;
+
+    }
+
+    public void setAccountTypeList(List<Integer> accountTypeList) {
+        this.accountTypeList = accountTypeList;
+    }
+
+    public Long getParentId() {
+
+        return this.parentId;
+
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public List<Long> getParentIdList() {
+
+        return this.parentIdList;
+
+    }
+
+    public void setParentIdList(List<Long> parentIdList) {
+        this.parentIdList = parentIdList;
+    }
+
+    public Integer getAutoWork() {
+
+        return this.autoWork;
+
+    }
+
+    public void setAutoWork(Integer autoWork) {
+        this.autoWork = autoWork;
+    }
+
+    public String getDeviceId() {
+
+        return this.deviceId;
+
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public Integer getPhotoStatus() {
+
+        return this.photoStatus;
+
+    }
+
+    public void setPhotoStatus(Integer photoStatus) {
+        this.photoStatus = photoStatus;
+    }
+
+    public Integer getUploadStatus() {
+
+        return this.uploadStatus;
+
+    }
+
+    public void setUploadStatus(Integer uploadStatus) {
+        this.uploadStatus = uploadStatus;
     }
 
     private static final class AccountQueryDTOBuilderImpl extends AccountQueryDTOBuilder<AccountQueryDTO, AccountQueryDTOBuilderImpl> {
@@ -235,128 +333,5 @@ import java.util.List;
         public abstract C build();
 
     }
-
-    public AccountQueryDTO(String name, List<Long> accountIdList, List<String> promotionCodeList, List<String> parentPromotionCodeList, Integer accountLevel, List<Integer> accountLevelList, Integer accountType, List<Integer> accountTypeList, Long parentId, List<Long> parentIdList, Integer autoWork, String deviceId, Integer photoStatus, Integer uploadStatus) {
-        /* 19 */
-        this.name = name;
-        this.accountIdList = accountIdList;
-        this.promotionCodeList = promotionCodeList;
-        this.parentPromotionCodeList = parentPromotionCodeList;
-        this.accountLevel = accountLevel;
-        this.accountLevelList = accountLevelList;
-        this.accountType = accountType;
-        this.accountTypeList = accountTypeList;
-        this.parentId = parentId;
-        this.parentIdList = parentIdList;
-        this.autoWork = autoWork;
-        this.deviceId = deviceId;
-        this.photoStatus = photoStatus;
-        this.uploadStatus = uploadStatus;
-
-    }
-
-
-    public AccountQueryDTO() {
-    }
-
-
-
-    public String getName() {
-        /* 24 */
-        return this.name;
-
-    }
-
-
-    public List<Long> getAccountIdList() {
-        /* 27 */
-        return this.accountIdList;
-
-    }
-
-
-    public List<String> getPromotionCodeList() {
-        /* 30 */
-        return this.promotionCodeList;
-
-    }
-
-
-    public List<String> getParentPromotionCodeList() {
-        /* 33 */
-        return this.parentPromotionCodeList;
-
-    }
-
-
-    public Integer getAccountLevel() {
-        /* 36 */
-        return this.accountLevel;
-
-    }
-
-
-    public List<Integer> getAccountLevelList() {
-        /* 39 */
-        return this.accountLevelList;
-
-    }
-
-
-    public Integer getAccountType() {
-        /* 42 */
-        return this.accountType;
-
-    }
-
-
-    public List<Integer> getAccountTypeList() {
-        /* 45 */
-        return this.accountTypeList;
-
-    }
-
-
-    public Long getParentId() {
-        /* 48 */
-        return this.parentId;
-
-    }
-
-
-    public List<Long> getParentIdList() {
-        /* 51 */
-        return this.parentIdList;
-
-    }
-
-
-    public Integer getAutoWork() {
-        /* 54 */
-        return this.autoWork;
-
-    }
-
-
-    public String getDeviceId() {
-        /* 57 */
-        return this.deviceId;
-
-    }
-
-
-    public Integer getPhotoStatus() {
-        /* 60 */
-        return this.photoStatus;
-
-    }
-
-
-    public Integer getUploadStatus() {
-        /* 63 */
-        return this.uploadStatus;
-
-    }
 }
-
 

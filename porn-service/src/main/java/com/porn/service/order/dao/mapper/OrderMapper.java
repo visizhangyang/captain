@@ -10,4 +10,3 @@ public interface OrderMapper extends BaseMapper<OrderDO> {
     BigDecimal sumOrderAmount(OrderQueryDTO paramOrderQueryDTO);
 }
 
-

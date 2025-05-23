@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.date.LocalDateTimeUtil;
@@ -15,55 +13,28 @@ import org.springframework.stereotype.Service;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QueryTransferApiServiceImpl
-         implements ApiService<List<TransferVo>>
-         {
+public class QueryTransferApiServiceImpl
+        implements ApiService<List<TransferVo>> {
 
     @Autowired
-     private TransferApiService transferApiService;
-
+    private TransferApiService transferApiService;
 
 
     public List<TransferVo> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 33 */
+
         TransferQueryDTO transferQueryDTO = TransferQueryDTO.builder().srcAccountId(cmdRequestDTO.getAccountVo().getId()).startTime(LocalDateTimeUtil.offset(LocalDateTimeUtil.now(), -7L, ChronoUnit.DAYS)).build();
-        /* 34 */
+
         return this.transferApiService.queryTransferList(transferQueryDTO);
 
     }
 
 
-
     public String getApi() {
-        /* 38 */
+
         return "api_querytransfer";
 
     }
 
 }
-
 

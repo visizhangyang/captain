@@ -1,59 +1,27 @@
-
 package com.porn.client.recharge.dto;
+
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
-
- public class ErcTransferItemDTO implements Serializable {
+public class ErcTransferItemDTO implements Serializable {
 
     @ApiModelProperty("金额, 需要去除tokenDecimal位后才是金额")
-     private BigDecimal value;
+    private BigDecimal value;
 
     @ApiModelProperty("源地址")
-     private String from;
+    private String from;
 
     @ApiModelProperty("接收地址, 也就是我们钱包地址")
-     private String to;
+    private String to;
 
     @ApiModelProperty("交易hash")
-     private String hash;
+    private String hash;
 
     @ApiModelProperty("精度")
-     private Integer tokenDecimal;
+    private Integer tokenDecimal;
 
-
-    /* 16 */
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
-    public void setTokenDecimal(Integer tokenDecimal) {
-        this.tokenDecimal = tokenDecimal;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof ErcTransferItemDTO;
-    }
-
-
-
-    /* 17 */
     protected ErcTransferItemDTO(ErcTransferItemDTOBuilder<?, ?> b) {
         this.value = b.value;
         this.from = b.from;
@@ -62,8 +30,75 @@ import java.math.BigDecimal;
         this.tokenDecimal = b.tokenDecimal;
     }
 
+    public ErcTransferItemDTO(BigDecimal value, String from, String to, String hash, Integer tokenDecimal) {
+
+        this.value = value;
+        this.from = from;
+        this.to = to;
+        this.hash = hash;
+        this.tokenDecimal = tokenDecimal;
+
+    }
+
+    public ErcTransferItemDTO() {
+    }
+
     public static ErcTransferItemDTOBuilder<?, ?> builder() {
         return new ErcTransferItemDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof ErcTransferItemDTO;
+    }
+
+    public BigDecimal getValue() {
+
+        return this.value;
+
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    public String getFrom() {
+
+        return this.from;
+
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+
+        return this.to;
+
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getHash() {
+
+        return this.hash;
+
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public Integer getTokenDecimal() {
+
+        return this.tokenDecimal;
+
+    }
+
+    public void setTokenDecimal(Integer tokenDecimal) {
+        this.tokenDecimal = tokenDecimal;
     }
 
     private static final class ErcTransferItemDTOBuilderImpl extends ErcTransferItemDTOBuilder<ErcTransferItemDTO, ErcTransferItemDTOBuilderImpl> {
@@ -82,15 +117,14 @@ import java.math.BigDecimal;
     public static abstract class ErcTransferItemDTOBuilder<C extends ErcTransferItemDTO, B extends ErcTransferItemDTOBuilder<C, B>> {
         private BigDecimal value;
         private String from;
+        private String to;
+        private String hash;
+        private Integer tokenDecimal;
 
         public B value(BigDecimal value) {
             this.value = value;
             return self();
         }
-
-        private String to;
-        private String hash;
-        private Integer tokenDecimal;
 
         public B from(String from) {
             this.from = from;
@@ -118,56 +152,5 @@ import java.math.BigDecimal;
 
     }
 
-    public ErcTransferItemDTO(BigDecimal value, String from, String to, String hash, Integer tokenDecimal) {
-        /* 18 */
-        this.value = value;
-        this.from = from;
-        this.to = to;
-        this.hash = hash;
-        this.tokenDecimal = tokenDecimal;
-
-    }
-
-
-    public ErcTransferItemDTO() {
-    }
-
-
-
-    public BigDecimal getValue() {
-        /* 23 */
-        return this.value;
-
-    }
-
-
-    public String getFrom() {
-        /* 26 */
-        return this.from;
-
-    }
-
-
-    public String getTo() {
-        /* 29 */
-        return this.to;
-
-    }
-
-
-    public String getHash() {
-        /* 32 */
-        return this.hash;
-
-    }
-
-
-    public Integer getTokenDecimal() {
-        /* 35 */
-        return this.tokenDecimal;
-
-    }
-
 }
-
 

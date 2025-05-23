@@ -1,12 +1,11 @@
-
 package com.porn.client.order.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -14,29 +13,29 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class OrderVo extends BaseVo {
+public class OrderVo extends BaseVo {
     @ApiModelProperty("订单号")
-     private String orderNo;
+    private String orderNo;
     @ApiModelProperty("账户id")
-     private Long accountId;
+    private Long accountId;
     @ApiModelProperty("账户名称")
-     private String accountName;
+    private String accountName;
     @ApiModelProperty("账户头像")
-     private String accountAvatar;
+    private String accountAvatar;
     @ApiModelProperty("账户头像")
-     private String accountAvatarUrl;
+    private String accountAvatarUrl;
     @ApiModelProperty("账户级别")
-     private Integer accountLevel;
+    private Integer accountLevel;
     @ApiModelProperty("商户id")
-     private Long merchantId;
+    private Long merchantId;
     @ApiModelProperty("商户名称")
-     private String merchantName;
+    private String merchantName;
 
     @ApiModelProperty("商户头像")
-     private String merchantAvatar;
+    private String merchantAvatar;
 
     @ApiModelProperty("商户头像")
-     private String merchantAvatarUrl;
+    private String merchantAvatarUrl;
 
     @ApiModelProperty("订单金额")
     private BigDecimal orderAmount;
@@ -62,5 +61,4 @@ import java.math.BigDecimal;
     private String walletName;
 
 }
-
 

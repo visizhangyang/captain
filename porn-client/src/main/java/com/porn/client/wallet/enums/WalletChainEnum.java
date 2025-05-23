@@ -14,14 +14,6 @@ public enum WalletChainEnum {
         this.name = name;
     }
 
-    public String getCode() {
-        return this.code;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
     public static String queryName(String code) {
         for (WalletChainEnum walletChainEnum : values()) {
             if (walletChainEnum.getCode().equals(code)) {
@@ -38,5 +30,13 @@ public enum WalletChainEnum {
             }
         }
         return null;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

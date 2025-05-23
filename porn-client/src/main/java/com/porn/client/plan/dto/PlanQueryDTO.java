@@ -1,47 +1,19 @@
-
 package com.porn.client.plan.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
- public class PlanQueryDTO extends BaseDTO {
+public class PlanQueryDTO extends BaseDTO {
 
     @ApiModelProperty("模糊标题")
-     private String lkTitle;
+    private String lkTitle;
 
     @ApiModelProperty("语言类型, LangTypeEnum")
-     private Integer langType;
+    private Integer langType;
 
     @ApiModelProperty("语言名称")
-     private String langTypeName;
+    private String langTypeName;
 
-
-    /* 15 */
-    public void setLkTitle(String lkTitle) {
-        this.lkTitle = lkTitle;
-    }
-
-    public void setLangType(Integer langType) {
-        this.langType = langType;
-    }
-
-    public void setLangTypeName(String langTypeName) {
-        this.langTypeName = langTypeName;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof PlanQueryDTO;
-    }
-
-
-
-    /* 16 */
     protected PlanQueryDTO(PlanQueryDTOBuilder<?, ?> b) {
         super(b);
         this.lkTitle = b.lkTitle;
@@ -49,8 +21,53 @@ import com.porn.client.common.dto.BaseDTO;
         this.langTypeName = b.langTypeName;
     }
 
+    public PlanQueryDTO(String lkTitle, Integer langType, String langTypeName) {
+
+        this.lkTitle = lkTitle;
+        this.langType = langType;
+        this.langTypeName = langTypeName;
+
+    }
+
+    public PlanQueryDTO() {
+    }
+
     public static PlanQueryDTOBuilder<?, ?> builder() {
         return new PlanQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof PlanQueryDTO;
+    }
+
+    public String getLkTitle() {
+
+        return this.lkTitle;
+
+    }
+
+    public void setLkTitle(String lkTitle) {
+        this.lkTitle = lkTitle;
+    }
+
+    public Integer getLangType() {
+
+        return this.langType;
+
+    }
+
+    public void setLangType(Integer langType) {
+        this.langType = langType;
+    }
+
+    public String getLangTypeName() {
+
+        return this.langTypeName;
+
+    }
+
+    public void setLangTypeName(String langTypeName) {
+        this.langTypeName = langTypeName;
     }
 
     private static final class PlanQueryDTOBuilderImpl extends PlanQueryDTOBuilder<PlanQueryDTO, PlanQueryDTOBuilderImpl> {
@@ -68,14 +85,13 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class PlanQueryDTOBuilder<C extends PlanQueryDTO, B extends PlanQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private String lkTitle;
+        private Integer langType;
+        private String langTypeName;
 
         public B lkTitle(String lkTitle) {
             this.lkTitle = lkTitle;
             return self();
         }
-
-        private Integer langType;
-        private String langTypeName;
 
         public B langType(Integer langType) {
             this.langType = langType;
@@ -93,40 +109,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public PlanQueryDTO(String lkTitle, Integer langType, String langTypeName) {
-        /* 17 */
-        this.lkTitle = lkTitle;
-        this.langType = langType;
-        this.langTypeName = langTypeName;
-
-    }
-
-
-    public PlanQueryDTO() {
-    }
-
-
-
-    public String getLkTitle() {
-        /* 22 */
-        return this.lkTitle;
-
-    }
-
-
-    public Integer getLangType() {
-        /* 25 */
-        return this.langType;
-
-    }
-
-
-    public String getLangTypeName() {
-        /* 28 */
-        return this.langTypeName;
-
-    }
-
 }
-
 

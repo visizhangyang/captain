@@ -10,4 +10,3 @@ public interface RechargeMapper extends BaseMapper<RechargeDO> {
     BigDecimal sumRechargeAmount(RechargeQueryDTO paramRechargeQueryDTO);
 }
 
-

@@ -18,4 +18,3 @@ public interface ServerApiService {
     List<DiskInfoVo> queryDiskInfo();
 }
 
-

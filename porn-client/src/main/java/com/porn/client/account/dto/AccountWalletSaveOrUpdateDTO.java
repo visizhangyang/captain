@@ -1,48 +1,19 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class AccountWalletSaveOrUpdateDTO extends BaseDTO {
+public class AccountWalletSaveOrUpdateDTO extends BaseDTO {
 
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("钱包编码")
-     private String walletCode;
+    private String walletCode;
 
     @ApiModelProperty("地址")
-     private String address;
+    private String address;
 
-
-    /* 15 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setWalletCode(String walletCode) {
-        this.walletCode = walletCode;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountWalletSaveOrUpdateDTO;
-    }
-
-
-
-    /* 16 */
     protected AccountWalletSaveOrUpdateDTO(AccountWalletSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BaseDTO;
         this.address = b.address;
     }
 
+    public AccountWalletSaveOrUpdateDTO(Long accountId, String walletCode, String address) {
+
+        this.accountId = accountId;
+        this.walletCode = walletCode;
+        this.address = address;
+
+    }
+
+    public AccountWalletSaveOrUpdateDTO() {
+    }
+
     public static AccountWalletSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new AccountWalletSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountWalletSaveOrUpdateDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
+
+    public void setWalletCode(String walletCode) {
+        this.walletCode = walletCode;
+    }
+
+    public String getAddress() {
+
+        return this.address;
+
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     private static final class AccountWalletSaveOrUpdateDTOBuilderImpl extends AccountWalletSaveOrUpdateDTOBuilder<AccountWalletSaveOrUpdateDTO, AccountWalletSaveOrUpdateDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class AccountWalletSaveOrUpdateDTOBuilder<C extends AccountWalletSaveOrUpdateDTO, B extends AccountWalletSaveOrUpdateDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
+        private String walletCode;
+        private String address;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private String walletCode;
-        private String address;
 
         public B walletCode(String walletCode) {
             this.walletCode = walletCode;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public AccountWalletSaveOrUpdateDTO(Long accountId, String walletCode, String address) {
-        /* 17 */
-        this.accountId = accountId;
-        this.walletCode = walletCode;
-        this.address = address;
-
-    }
-
-
-    public AccountWalletSaveOrUpdateDTO() {
-    }
-
-
-
-    public Long getAccountId() {
-        /* 22 */
-        return this.accountId;
-
-    }
-
-
-    public String getWalletCode() {
-        /* 25 */
-        return this.walletCode;
-
-    }
-
-
-    public String getAddress() {
-        /* 28 */
-        return this.address;
-
-    }
-
 }
-
 

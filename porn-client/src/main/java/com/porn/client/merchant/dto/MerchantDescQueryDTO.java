@@ -1,48 +1,19 @@
-
 package com.porn.client.merchant.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class MerchantDescQueryDTO extends BaseDTO {
+public class MerchantDescQueryDTO extends BaseDTO {
 
     @ApiModelProperty("商户ID")
-     private Long merchantId;
+    private Long merchantId;
 
     @ApiModelProperty("语言类型, LangTypeEnum")
-     private Integer langType;
+    private Integer langType;
 
     @ApiModelProperty("语言名称")
-     private String langTypeName;
+    private String langTypeName;
 
-
-    /* 15 */
-    public void setMerchantId(Long merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public void setLangType(Integer langType) {
-        this.langType = langType;
-    }
-
-    public void setLangTypeName(String langTypeName) {
-        this.langTypeName = langTypeName;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MerchantDescQueryDTO;
-    }
-
-
-
-    /* 16 */
     protected MerchantDescQueryDTO(MerchantDescQueryDTOBuilder<?, ?> b) {
         super(b);
         this.merchantId = b.merchantId;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BaseDTO;
         this.langTypeName = b.langTypeName;
     }
 
+    public MerchantDescQueryDTO(Long merchantId, Integer langType, String langTypeName) {
+
+        this.merchantId = merchantId;
+        this.langType = langType;
+        this.langTypeName = langTypeName;
+
+    }
+
+    public MerchantDescQueryDTO() {
+    }
+
     public static MerchantDescQueryDTOBuilder<?, ?> builder() {
         return new MerchantDescQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MerchantDescQueryDTO;
+    }
+
+    public Long getMerchantId() {
+
+        return this.merchantId;
+
+    }
+
+    public void setMerchantId(Long merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public Integer getLangType() {
+
+        return this.langType;
+
+    }
+
+    public void setLangType(Integer langType) {
+        this.langType = langType;
+    }
+
+    public String getLangTypeName() {
+
+        return this.langTypeName;
+
+    }
+
+    public void setLangTypeName(String langTypeName) {
+        this.langTypeName = langTypeName;
     }
 
     private static final class MerchantDescQueryDTOBuilderImpl extends MerchantDescQueryDTOBuilder<MerchantDescQueryDTO, MerchantDescQueryDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class MerchantDescQueryDTOBuilder<C extends MerchantDescQueryDTO, B extends MerchantDescQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long merchantId;
+        private Integer langType;
+        private String langTypeName;
 
         public B merchantId(Long merchantId) {
             this.merchantId = merchantId;
             return self();
         }
-
-        private Integer langType;
-        private String langTypeName;
 
         public B langType(Integer langType) {
             this.langType = langType;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public MerchantDescQueryDTO(Long merchantId, Integer langType, String langTypeName) {
-        /* 17 */
-        this.merchantId = merchantId;
-        this.langType = langType;
-        this.langTypeName = langTypeName;
-
-    }
-
-
-    public MerchantDescQueryDTO() {
-    }
-
-
-
-    public Long getMerchantId() {
-        /* 22 */
-        return this.merchantId;
-
-    }
-
-
-    public Integer getLangType() {
-        /* 25 */
-        return this.langType;
-
-    }
-
-
-    public String getLangTypeName() {
-        /* 28 */
-        return this.langTypeName;
-
-    }
-
 }
-
 

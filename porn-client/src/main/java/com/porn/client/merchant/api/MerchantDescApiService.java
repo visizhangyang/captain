@@ -14,4 +14,3 @@ public interface MerchantDescApiService {
     MerchantDescVo saveOrUpdate(MerchantDescSaveOrUpdateDTO paramMerchantDescSaveOrUpdateDTO);
 }
 
-

@@ -1,50 +1,59 @@
-
 package com.porn.client.goods.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
+public class GoodsQueryDTO extends BaseDTO {
 
-
-
-
- public class GoodsQueryDTO extends BaseDTO {
-    
     @ApiModelProperty("商户id")
-     private Long merchantId;
-    
+    private Long merchantId;
+
     @ApiModelProperty("商户名称")
-     private String merchantName;
+    private String merchantName;
 
-    
-    
-    public void setMerchantId(Long merchantId) {
-        /* 15 */
-        this.merchantId = merchantId;
-    }
-
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof GoodsQueryDTO;
-    }
-
-
-
-    /* 16 */
     protected GoodsQueryDTO(GoodsQueryDTOBuilder<?, ?> b) {
         super(b);
         this.merchantId = b.merchantId;
         this.merchantName = b.merchantName;
     }
 
+    public GoodsQueryDTO(Long merchantId, String merchantName) {
+
+        this.merchantId = merchantId;
+        this.merchantName = merchantName;
+
+    }
+
+    public GoodsQueryDTO() {
+    }
+
     public static GoodsQueryDTOBuilder<?, ?> builder() {
         return new GoodsQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof GoodsQueryDTO;
+    }
+
+    public Long getMerchantId() {
+
+        return this.merchantId;
+
+    }
+
+    public void setMerchantId(Long merchantId) {
+
+        this.merchantId = merchantId;
+    }
+
+    public String getMerchantName() {
+
+        return this.merchantName;
+
+    }
+
+    public void setMerchantName(String merchantName) {
+        this.merchantName = merchantName;
     }
 
     private static final class GoodsQueryDTOBuilderImpl extends GoodsQueryDTOBuilder<GoodsQueryDTO, GoodsQueryDTOBuilderImpl> {
@@ -62,13 +71,12 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class GoodsQueryDTOBuilder<C extends GoodsQueryDTO, B extends GoodsQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long merchantId;
+        private String merchantName;
 
         public B merchantId(Long merchantId) {
             this.merchantId = merchantId;
             return self();
         }
-
-        private String merchantName;
 
         public B merchantName(String merchantName) {
             this.merchantName = merchantName;
@@ -81,32 +89,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public GoodsQueryDTO(Long merchantId, String merchantName) {
-        /* 17 */
-        this.merchantId = merchantId;
-        this.merchantName = merchantName;
-        
-    }
-
-    
-    public GoodsQueryDTO() {
-    }
-
-    
-    
-    public Long getMerchantId() {
-        /* 22 */
-        return this.merchantId;
-        
-    }
-
-    
-    public String getMerchantName() {
-        /* 25 */
-        return this.merchantName;
-        
-    }
-    
 }
-
 

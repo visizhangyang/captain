@@ -1,9 +1,7 @@
-
-/*     */
 package com.porn.client.paramset.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
@@ -41,40 +39,35 @@ public class ParamsetSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("大户搬砖次数")
     private Integer largeLevelWorkCount;
     @ApiModelProperty("普通搬砖次数")
-    /*     */ private Integer normalLevelWorkCount;
+    private Integer normalLevelWorkCount;
     @ApiModelProperty("大户搬砖时间间隔, 分钟")
-    /*     */ private Integer largeLevelWorkSpace;
+    private Integer largeLevelWorkSpace;
     @ApiModelProperty("普通搬砖时间间隔, 分钟")
-    /*     */ private Integer normalLevelWorkSpace;
+    private Integer normalLevelWorkSpace;
     @ApiModelProperty("大户搬砖时间段")
-    /*     */ private String largeLevelWorkMinRange;
+    private String largeLevelWorkMinRange;
     @ApiModelProperty("大户搬砖时间段")
-    /*     */ private String largeLevelWorkMaxRange;
+    private String largeLevelWorkMaxRange;
     @ApiModelProperty("普通搬砖时间段")
-    /*     */ private String normalLevelWorkMinRange;
+    private String normalLevelWorkMinRange;
     @ApiModelProperty("普通搬砖时间段")
-    /*     */ private String normalLevelWorkMaxRange;
+    private String normalLevelWorkMaxRange;
     @ApiModelProperty("大户升级额度")
-    /*     */ private BigDecimal largeLevelIncAmount;
+    private BigDecimal largeLevelIncAmount;
     @ApiModelProperty("最少搬砖人数")
-    /*     */ private Integer minWorkCount;
+    private Integer minWorkCount;
     @ApiModelProperty("最大搬砖人数")
-    /*     */ private Integer maxWorkCount;
+    private Integer maxWorkCount;
     @ApiModelProperty("普通用户提现时间段-开始")
-    /*     */ private String normalWithdrawMinRange;
+    private String normalWithdrawMinRange;
     @ApiModelProperty("普通用户提现时间段-结束")
-    /*     */ private String normalWithdrawMaxRange;
+    private String normalWithdrawMaxRange;
     @ApiModelProperty("大户用户提现时间段-开始")
-    /*     */ private String largeWithdrawMinRange;
+    private String largeWithdrawMinRange;
     @ApiModelProperty("大户用户提现时间段-结束")
-    /*     */ private String largeWithdrawMaxRange;
+    private String largeWithdrawMaxRange;
     @ApiModelProperty("普通提现次数")
-    /*  16 */ private Integer normalWithdrawDayCount;
-
-    public void setLargeLevelRate(BigDecimal largeLevelRate) {
-        this.largeLevelRate = largeLevelRate;
-    }
-
+    private Integer normalWithdrawDayCount;
     @ApiModelProperty("大户提现次数")
     private Integer largeWithdrawDayCount;
     @ApiModelProperty("普通用户转账时间段-开始")
@@ -140,262 +133,6 @@ public class ParamsetSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("余额宝, 合伙人的利率")
     private BigDecimal partnerTreasureRate;
 
-    public void setNormalLevelRate(BigDecimal normalLevelRate) {
-        this.normalLevelRate = normalLevelRate;
-    }
-
-    public void setWorkRate(BigDecimal workRate) {
-        this.workRate = workRate;
-    }
-
-    public void setRechargeAmount(BigDecimal rechargeAmount) {
-        this.rechargeAmount = rechargeAmount;
-    }
-
-    public void setNormalWithdrawAmount(BigDecimal normalWithdrawAmount) {
-        this.normalWithdrawAmount = normalWithdrawAmount;
-    }
-
-    public void setLargeWithdrawAmount(BigDecimal largeWithdrawAmount) {
-        this.largeWithdrawAmount = largeWithdrawAmount;
-    }
-
-    public void setDifficultyRate(BigDecimal difficultyRate) {
-        this.difficultyRate = difficultyRate;
-    }
-
-    public void setFreeCommissionRate(BigDecimal freeCommissionRate) {
-        this.freeCommissionRate = freeCommissionRate;
-    }
-
-    public void setMinWorkAmount(BigDecimal minWorkAmount) {
-        this.minWorkAmount = minWorkAmount;
-    }
-
-    public void setMinRechargeAmount(BigDecimal minRechargeAmount) {
-        this.minRechargeAmount = minRechargeAmount;
-    }
-
-    public void setMaxWithdrawAmount(BigDecimal maxWithdrawAmount) {
-        this.maxWithdrawAmount = maxWithdrawAmount;
-    }
-
-    public void setMinWithdrawAmount(BigDecimal minWithdrawAmount) {
-        this.minWithdrawAmount = minWithdrawAmount;
-    }
-
-    public void setRechargeMatchTime(Integer rechargeMatchTime) {
-        this.rechargeMatchTime = rechargeMatchTime;
-    }
-
-    public void setWithdrawMatchTime(Integer withdrawMatchTime) {
-        this.withdrawMatchTime = withdrawMatchTime;
-    }
-
-    public void setOrderMatchTime(Integer orderMatchTime) {
-        this.orderMatchTime = orderMatchTime;
-    }
-
-    public void setLargeLevelWorkCount(Integer largeLevelWorkCount) {
-        this.largeLevelWorkCount = largeLevelWorkCount;
-    }
-
-    public void setNormalLevelWorkCount(Integer normalLevelWorkCount) {
-        this.normalLevelWorkCount = normalLevelWorkCount;
-    }
-
-    public void setLargeLevelWorkSpace(Integer largeLevelWorkSpace) {
-        this.largeLevelWorkSpace = largeLevelWorkSpace;
-    }
-
-    public void setNormalLevelWorkSpace(Integer normalLevelWorkSpace) {
-        this.normalLevelWorkSpace = normalLevelWorkSpace;
-    }
-
-    public void setLargeLevelWorkMinRange(String largeLevelWorkMinRange) {
-        this.largeLevelWorkMinRange = largeLevelWorkMinRange;
-    }
-
-    public void setLargeLevelWorkMaxRange(String largeLevelWorkMaxRange) {
-        this.largeLevelWorkMaxRange = largeLevelWorkMaxRange;
-    }
-
-    public void setNormalLevelWorkMinRange(String normalLevelWorkMinRange) {
-        this.normalLevelWorkMinRange = normalLevelWorkMinRange;
-    }
-
-    public void setNormalLevelWorkMaxRange(String normalLevelWorkMaxRange) {
-        this.normalLevelWorkMaxRange = normalLevelWorkMaxRange;
-    }
-
-    public void setLargeLevelIncAmount(BigDecimal largeLevelIncAmount) {
-        this.largeLevelIncAmount = largeLevelIncAmount;
-    }
-
-    public void setMinWorkCount(Integer minWorkCount) {
-        this.minWorkCount = minWorkCount;
-    }
-
-    public void setMaxWorkCount(Integer maxWorkCount) {
-        this.maxWorkCount = maxWorkCount;
-    }
-
-    public void setNormalWithdrawMinRange(String normalWithdrawMinRange) {
-        this.normalWithdrawMinRange = normalWithdrawMinRange;
-    }
-
-    public void setNormalWithdrawMaxRange(String normalWithdrawMaxRange) {
-        this.normalWithdrawMaxRange = normalWithdrawMaxRange;
-    }
-
-    public void setLargeWithdrawMinRange(String largeWithdrawMinRange) {
-        this.largeWithdrawMinRange = largeWithdrawMinRange;
-    }
-
-    public void setLargeWithdrawMaxRange(String largeWithdrawMaxRange) {
-        this.largeWithdrawMaxRange = largeWithdrawMaxRange;
-    }
-
-    public void setNormalWithdrawDayCount(Integer normalWithdrawDayCount) {
-        this.normalWithdrawDayCount = normalWithdrawDayCount;
-    }
-
-    public void setLargeWithdrawDayCount(Integer largeWithdrawDayCount) {
-        this.largeWithdrawDayCount = largeWithdrawDayCount;
-    }
-
-    public void setNormalTransferMinRange(String normalTransferMinRange) {
-        this.normalTransferMinRange = normalTransferMinRange;
-    }
-
-    public void setNormalTransferMaxRange(String normalTransferMaxRange) {
-        this.normalTransferMaxRange = normalTransferMaxRange;
-    }
-
-    public void setLargeTransferMinRange(String largeTransferMinRange) {
-        this.largeTransferMinRange = largeTransferMinRange;
-    }
-
-    public void setLargeTransferMaxRange(String largeTransferMaxRange) {
-        this.largeTransferMaxRange = largeTransferMaxRange;
-    }
-
-    public void setWithdrawWorkCount(Integer withdrawWorkCount) {
-        this.withdrawWorkCount = withdrawWorkCount;
-    }
-
-    public void setProxyLevel1Rate(BigDecimal proxyLevel1Rate) {
-        this.proxyLevel1Rate = proxyLevel1Rate;
-    }
-
-    public void setProxyLevel2Rate(BigDecimal proxyLevel2Rate) {
-        this.proxyLevel2Rate = proxyLevel2Rate;
-    }
-
-    public void setProxyLevel3Rate(BigDecimal proxyLevel3Rate) {
-        this.proxyLevel3Rate = proxyLevel3Rate;
-    }
-
-    public void setNormalTreasureRate(BigDecimal normalTreasureRate) {
-        this.normalTreasureRate = normalTreasureRate;
-    }
-
-    public void setLargeTreasureRate(BigDecimal largeTreasureRate) {
-        this.largeTreasureRate = largeTreasureRate;
-    }
-
-    public void setWorkPageRefreshSpace(Integer workPageRefreshSpace) {
-        this.workPageRefreshSpace = workPageRefreshSpace;
-    }
-
-    public void setAppLogo(String appLogo) {
-        this.appLogo = appLogo;
-    }
-
-    public void setNoviceTutorialUrl(String noviceTutorialUrl) {
-        this.noviceTutorialUrl = noviceTutorialUrl;
-    }
-
-    public void setCustomerServiceUrl(String customerServiceUrl) {
-        this.customerServiceUrl = customerServiceUrl;
-    }
-
-    public void setPromotionUrl(String promotionUrl) {
-        this.promotionUrl = promotionUrl;
-    }
-
-    public void setInitRedPack(BigDecimal initRedPack) {
-        this.initRedPack = initRedPack;
-    }
-
-    public void setRegisterCount(Long registerCount) {
-        this.registerCount = registerCount;
-    }
-
-    public void setMinTransferAmount(BigDecimal minTransferAmount) {
-        this.minTransferAmount = minTransferAmount;
-    }
-
-    public void setPartnerLevelRate(BigDecimal partnerLevelRate) {
-        this.partnerLevelRate = partnerLevelRate;
-    }
-
-    public void setPartnerLevelWorkCount(Integer partnerLevelWorkCount) {
-        this.partnerLevelWorkCount = partnerLevelWorkCount;
-    }
-
-    public void setPartnerLevelWorkSpace(Integer partnerLevelWorkSpace) {
-        this.partnerLevelWorkSpace = partnerLevelWorkSpace;
-    }
-
-    public void setPartnerLevelWorkMinRange(String partnerLevelWorkMinRange) {
-        this.partnerLevelWorkMinRange = partnerLevelWorkMinRange;
-    }
-
-    public void setPartnerLevelWorkMaxRange(String partnerLevelWorkMaxRange) {
-        this.partnerLevelWorkMaxRange = partnerLevelWorkMaxRange;
-    }
-
-    public void setPartnerWithdrawAmount(BigDecimal partnerWithdrawAmount) {
-        this.partnerWithdrawAmount = partnerWithdrawAmount;
-    }
-
-    public void setPartnerLevelIncAmount(BigDecimal partnerLevelIncAmount) {
-        this.partnerLevelIncAmount = partnerLevelIncAmount;
-    }
-
-    public void setPartnerWithdrawMinRange(String partnerWithdrawMinRange) {
-        this.partnerWithdrawMinRange = partnerWithdrawMinRange;
-    }
-
-    public void setPartnerWithdrawMaxRange(String partnerWithdrawMaxRange) {
-        this.partnerWithdrawMaxRange = partnerWithdrawMaxRange;
-    }
-
-    public void setPartnerWithdrawDayCount(Integer partnerWithdrawDayCount) {
-        this.partnerWithdrawDayCount = partnerWithdrawDayCount;
-    }
-
-    public void setPartnerTransferMinRange(String partnerTransferMinRange) {
-        this.partnerTransferMinRange = partnerTransferMinRange;
-    }
-
-    public void setPartnerTransferMaxRange(String partnerTransferMaxRange) {
-        this.partnerTransferMaxRange = partnerTransferMaxRange;
-    }
-
-    public void setPartnerTreasureRate(BigDecimal partnerTreasureRate) {
-        this.partnerTreasureRate = partnerTreasureRate;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof ParamsetSaveOrUpdateDTO;
-    }
-
-
-
-    /*  17 */
     protected ParamsetSaveOrUpdateDTO(ParamsetSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.largeLevelRate = b.largeLevelRate;
@@ -463,8 +200,764 @@ public class ParamsetSaveOrUpdateDTO extends BaseDTO {
         this.partnerTreasureRate = b.partnerTreasureRate;
     }
 
+    public ParamsetSaveOrUpdateDTO(BigDecimal largeLevelRate, BigDecimal normalLevelRate, BigDecimal workRate, BigDecimal rechargeAmount, BigDecimal normalWithdrawAmount, BigDecimal largeWithdrawAmount, BigDecimal difficultyRate, BigDecimal freeCommissionRate, BigDecimal minWorkAmount, BigDecimal minRechargeAmount, BigDecimal maxWithdrawAmount, BigDecimal minWithdrawAmount, Integer rechargeMatchTime, Integer withdrawMatchTime, Integer orderMatchTime, Integer largeLevelWorkCount, Integer normalLevelWorkCount, Integer largeLevelWorkSpace, Integer normalLevelWorkSpace, String largeLevelWorkMinRange, String largeLevelWorkMaxRange, String normalLevelWorkMinRange, String normalLevelWorkMaxRange, BigDecimal largeLevelIncAmount, Integer minWorkCount, Integer maxWorkCount, String normalWithdrawMinRange, String normalWithdrawMaxRange, String largeWithdrawMinRange, String largeWithdrawMaxRange, Integer normalWithdrawDayCount, Integer largeWithdrawDayCount, String normalTransferMinRange, String normalTransferMaxRange, String largeTransferMinRange, String largeTransferMaxRange, Integer withdrawWorkCount, BigDecimal proxyLevel1Rate, BigDecimal proxyLevel2Rate, BigDecimal proxyLevel3Rate, BigDecimal normalTreasureRate, BigDecimal largeTreasureRate, Integer workPageRefreshSpace, String appLogo, String noviceTutorialUrl, String customerServiceUrl, String promotionUrl, BigDecimal initRedPack, Long registerCount, BigDecimal minTransferAmount, BigDecimal partnerLevelRate, Integer partnerLevelWorkCount, Integer partnerLevelWorkSpace, String partnerLevelWorkMinRange, String partnerLevelWorkMaxRange, BigDecimal partnerWithdrawAmount, BigDecimal partnerLevelIncAmount, String partnerWithdrawMinRange, String partnerWithdrawMaxRange, Integer partnerWithdrawDayCount, String partnerTransferMinRange, String partnerTransferMaxRange, BigDecimal partnerTreasureRate) {
+
+        this.largeLevelRate = largeLevelRate;
+        this.normalLevelRate = normalLevelRate;
+        this.workRate = workRate;
+        this.rechargeAmount = rechargeAmount;
+        this.normalWithdrawAmount = normalWithdrawAmount;
+        this.largeWithdrawAmount = largeWithdrawAmount;
+        this.difficultyRate = difficultyRate;
+        this.freeCommissionRate = freeCommissionRate;
+        this.minWorkAmount = minWorkAmount;
+        this.minRechargeAmount = minRechargeAmount;
+        this.maxWithdrawAmount = maxWithdrawAmount;
+        this.minWithdrawAmount = minWithdrawAmount;
+        this.rechargeMatchTime = rechargeMatchTime;
+        this.withdrawMatchTime = withdrawMatchTime;
+        this.orderMatchTime = orderMatchTime;
+        this.largeLevelWorkCount = largeLevelWorkCount;
+        this.normalLevelWorkCount = normalLevelWorkCount;
+        this.largeLevelWorkSpace = largeLevelWorkSpace;
+        this.normalLevelWorkSpace = normalLevelWorkSpace;
+        this.largeLevelWorkMinRange = largeLevelWorkMinRange;
+        this.largeLevelWorkMaxRange = largeLevelWorkMaxRange;
+        this.normalLevelWorkMinRange = normalLevelWorkMinRange;
+        this.normalLevelWorkMaxRange = normalLevelWorkMaxRange;
+        this.largeLevelIncAmount = largeLevelIncAmount;
+        this.minWorkCount = minWorkCount;
+        this.maxWorkCount = maxWorkCount;
+        this.normalWithdrawMinRange = normalWithdrawMinRange;
+        this.normalWithdrawMaxRange = normalWithdrawMaxRange;
+        this.largeWithdrawMinRange = largeWithdrawMinRange;
+        this.largeWithdrawMaxRange = largeWithdrawMaxRange;
+        this.normalWithdrawDayCount = normalWithdrawDayCount;
+        this.largeWithdrawDayCount = largeWithdrawDayCount;
+        this.normalTransferMinRange = normalTransferMinRange;
+        this.normalTransferMaxRange = normalTransferMaxRange;
+        this.largeTransferMinRange = largeTransferMinRange;
+        this.largeTransferMaxRange = largeTransferMaxRange;
+        this.withdrawWorkCount = withdrawWorkCount;
+        this.proxyLevel1Rate = proxyLevel1Rate;
+        this.proxyLevel2Rate = proxyLevel2Rate;
+        this.proxyLevel3Rate = proxyLevel3Rate;
+        this.normalTreasureRate = normalTreasureRate;
+        this.largeTreasureRate = largeTreasureRate;
+        this.workPageRefreshSpace = workPageRefreshSpace;
+        this.appLogo = appLogo;
+        this.noviceTutorialUrl = noviceTutorialUrl;
+        this.customerServiceUrl = customerServiceUrl;
+        this.promotionUrl = promotionUrl;
+        this.initRedPack = initRedPack;
+        this.registerCount = registerCount;
+        this.minTransferAmount = minTransferAmount;
+        this.partnerLevelRate = partnerLevelRate;
+        this.partnerLevelWorkCount = partnerLevelWorkCount;
+        this.partnerLevelWorkSpace = partnerLevelWorkSpace;
+        this.partnerLevelWorkMinRange = partnerLevelWorkMinRange;
+        this.partnerLevelWorkMaxRange = partnerLevelWorkMaxRange;
+        this.partnerWithdrawAmount = partnerWithdrawAmount;
+        this.partnerLevelIncAmount = partnerLevelIncAmount;
+        this.partnerWithdrawMinRange = partnerWithdrawMinRange;
+        this.partnerWithdrawMaxRange = partnerWithdrawMaxRange;
+        this.partnerWithdrawDayCount = partnerWithdrawDayCount;
+        this.partnerTransferMinRange = partnerTransferMinRange;
+        this.partnerTransferMaxRange = partnerTransferMaxRange;
+        this.partnerTreasureRate = partnerTreasureRate;
+
+    }
+
+    public ParamsetSaveOrUpdateDTO() {
+    }
+
     public static ParamsetSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new ParamsetSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof ParamsetSaveOrUpdateDTO;
+    }
+
+    public BigDecimal getLargeLevelRate() {
+
+        return this.largeLevelRate;
+
+    }
+
+    public void setLargeLevelRate(BigDecimal largeLevelRate) {
+        this.largeLevelRate = largeLevelRate;
+    }
+
+    public BigDecimal getNormalLevelRate() {
+
+        return this.normalLevelRate;
+
+    }
+
+    public void setNormalLevelRate(BigDecimal normalLevelRate) {
+        this.normalLevelRate = normalLevelRate;
+    }
+
+    public BigDecimal getWorkRate() {
+
+        return this.workRate;
+
+    }
+
+    public void setWorkRate(BigDecimal workRate) {
+        this.workRate = workRate;
+    }
+
+    public BigDecimal getRechargeAmount() {
+
+        return this.rechargeAmount;
+
+    }
+
+    public void setRechargeAmount(BigDecimal rechargeAmount) {
+        this.rechargeAmount = rechargeAmount;
+    }
+
+    public BigDecimal getNormalWithdrawAmount() {
+
+        return this.normalWithdrawAmount;
+
+    }
+
+    public void setNormalWithdrawAmount(BigDecimal normalWithdrawAmount) {
+        this.normalWithdrawAmount = normalWithdrawAmount;
+    }
+
+    public BigDecimal getLargeWithdrawAmount() {
+
+        return this.largeWithdrawAmount;
+
+    }
+
+    public void setLargeWithdrawAmount(BigDecimal largeWithdrawAmount) {
+        this.largeWithdrawAmount = largeWithdrawAmount;
+    }
+
+    public BigDecimal getDifficultyRate() {
+
+        return this.difficultyRate;
+
+    }
+
+    public void setDifficultyRate(BigDecimal difficultyRate) {
+        this.difficultyRate = difficultyRate;
+    }
+
+    public BigDecimal getFreeCommissionRate() {
+
+        return this.freeCommissionRate;
+
+    }
+
+    public void setFreeCommissionRate(BigDecimal freeCommissionRate) {
+        this.freeCommissionRate = freeCommissionRate;
+    }
+
+    public BigDecimal getMinWorkAmount() {
+
+        return this.minWorkAmount;
+
+    }
+
+    public void setMinWorkAmount(BigDecimal minWorkAmount) {
+        this.minWorkAmount = minWorkAmount;
+    }
+
+    public BigDecimal getMinRechargeAmount() {
+
+        return this.minRechargeAmount;
+
+    }
+
+    public void setMinRechargeAmount(BigDecimal minRechargeAmount) {
+        this.minRechargeAmount = minRechargeAmount;
+    }
+
+    public BigDecimal getMaxWithdrawAmount() {
+
+        return this.maxWithdrawAmount;
+
+    }
+
+    public void setMaxWithdrawAmount(BigDecimal maxWithdrawAmount) {
+        this.maxWithdrawAmount = maxWithdrawAmount;
+    }
+
+    public BigDecimal getMinWithdrawAmount() {
+
+        return this.minWithdrawAmount;
+
+    }
+
+    public void setMinWithdrawAmount(BigDecimal minWithdrawAmount) {
+        this.minWithdrawAmount = minWithdrawAmount;
+    }
+
+
+    public Integer getRechargeMatchTime() {
+
+        return this.rechargeMatchTime;
+
+    }
+
+    public void setRechargeMatchTime(Integer rechargeMatchTime) {
+        this.rechargeMatchTime = rechargeMatchTime;
+    }
+
+
+    public Integer getWithdrawMatchTime() {
+
+        return this.withdrawMatchTime;
+
+    }
+
+    public void setWithdrawMatchTime(Integer withdrawMatchTime) {
+        this.withdrawMatchTime = withdrawMatchTime;
+    }
+
+
+    public Integer getOrderMatchTime() {
+
+        return this.orderMatchTime;
+
+    }
+
+    public void setOrderMatchTime(Integer orderMatchTime) {
+        this.orderMatchTime = orderMatchTime;
+    }
+
+
+    public Integer getLargeLevelWorkCount() {
+
+        return this.largeLevelWorkCount;
+
+    }
+
+    public void setLargeLevelWorkCount(Integer largeLevelWorkCount) {
+        this.largeLevelWorkCount = largeLevelWorkCount;
+    }
+
+
+    public Integer getNormalLevelWorkCount() {
+
+        return this.normalLevelWorkCount;
+
+    }
+
+    public void setNormalLevelWorkCount(Integer normalLevelWorkCount) {
+        this.normalLevelWorkCount = normalLevelWorkCount;
+    }
+
+
+    public Integer getLargeLevelWorkSpace() {
+
+        return this.largeLevelWorkSpace;
+
+    }
+
+    public void setLargeLevelWorkSpace(Integer largeLevelWorkSpace) {
+        this.largeLevelWorkSpace = largeLevelWorkSpace;
+    }
+
+
+    public Integer getNormalLevelWorkSpace() {
+
+        return this.normalLevelWorkSpace;
+
+    }
+
+    public void setNormalLevelWorkSpace(Integer normalLevelWorkSpace) {
+        this.normalLevelWorkSpace = normalLevelWorkSpace;
+    }
+
+
+    public String getLargeLevelWorkMinRange() {
+
+        return this.largeLevelWorkMinRange;
+
+    }
+
+    public void setLargeLevelWorkMinRange(String largeLevelWorkMinRange) {
+        this.largeLevelWorkMinRange = largeLevelWorkMinRange;
+    }
+
+
+    public String getLargeLevelWorkMaxRange() {
+
+        return this.largeLevelWorkMaxRange;
+
+    }
+
+    public void setLargeLevelWorkMaxRange(String largeLevelWorkMaxRange) {
+        this.largeLevelWorkMaxRange = largeLevelWorkMaxRange;
+    }
+
+
+    public String getNormalLevelWorkMinRange() {
+
+        return this.normalLevelWorkMinRange;
+
+    }
+
+    public void setNormalLevelWorkMinRange(String normalLevelWorkMinRange) {
+        this.normalLevelWorkMinRange = normalLevelWorkMinRange;
+    }
+
+
+    public String getNormalLevelWorkMaxRange() {
+
+        return this.normalLevelWorkMaxRange;
+
+    }
+
+    public void setNormalLevelWorkMaxRange(String normalLevelWorkMaxRange) {
+        this.normalLevelWorkMaxRange = normalLevelWorkMaxRange;
+    }
+
+
+    public BigDecimal getLargeLevelIncAmount() {
+
+        return this.largeLevelIncAmount;
+
+    }
+
+    public void setLargeLevelIncAmount(BigDecimal largeLevelIncAmount) {
+        this.largeLevelIncAmount = largeLevelIncAmount;
+    }
+
+
+    public Integer getMinWorkCount() {
+
+        return this.minWorkCount;
+
+    }
+
+    public void setMinWorkCount(Integer minWorkCount) {
+        this.minWorkCount = minWorkCount;
+    }
+
+
+    public Integer getMaxWorkCount() {
+
+        return this.maxWorkCount;
+
+    }
+
+    public void setMaxWorkCount(Integer maxWorkCount) {
+        this.maxWorkCount = maxWorkCount;
+    }
+
+
+    public String getNormalWithdrawMinRange() {
+
+        return this.normalWithdrawMinRange;
+
+    }
+
+    public void setNormalWithdrawMinRange(String normalWithdrawMinRange) {
+        this.normalWithdrawMinRange = normalWithdrawMinRange;
+    }
+
+
+    public String getNormalWithdrawMaxRange() {
+
+        return this.normalWithdrawMaxRange;
+
+    }
+
+    public void setNormalWithdrawMaxRange(String normalWithdrawMaxRange) {
+        this.normalWithdrawMaxRange = normalWithdrawMaxRange;
+    }
+
+
+    public String getLargeWithdrawMinRange() {
+
+        return this.largeWithdrawMinRange;
+
+    }
+
+    public void setLargeWithdrawMinRange(String largeWithdrawMinRange) {
+        this.largeWithdrawMinRange = largeWithdrawMinRange;
+    }
+
+
+    public String getLargeWithdrawMaxRange() {
+
+        return this.largeWithdrawMaxRange;
+
+    }
+
+    public void setLargeWithdrawMaxRange(String largeWithdrawMaxRange) {
+        this.largeWithdrawMaxRange = largeWithdrawMaxRange;
+    }
+
+
+    public Integer getNormalWithdrawDayCount() {
+
+        return this.normalWithdrawDayCount;
+
+    }
+
+    public void setNormalWithdrawDayCount(Integer normalWithdrawDayCount) {
+        this.normalWithdrawDayCount = normalWithdrawDayCount;
+    }
+
+
+    public Integer getLargeWithdrawDayCount() {
+
+        return this.largeWithdrawDayCount;
+
+    }
+
+    public void setLargeWithdrawDayCount(Integer largeWithdrawDayCount) {
+        this.largeWithdrawDayCount = largeWithdrawDayCount;
+    }
+
+
+    public String getNormalTransferMinRange() {
+
+        return this.normalTransferMinRange;
+
+    }
+
+    public void setNormalTransferMinRange(String normalTransferMinRange) {
+        this.normalTransferMinRange = normalTransferMinRange;
+    }
+
+
+    public String getNormalTransferMaxRange() {
+
+        return this.normalTransferMaxRange;
+
+    }
+
+    public void setNormalTransferMaxRange(String normalTransferMaxRange) {
+        this.normalTransferMaxRange = normalTransferMaxRange;
+    }
+
+
+    public String getLargeTransferMinRange() {
+
+        return this.largeTransferMinRange;
+
+    }
+
+    public void setLargeTransferMinRange(String largeTransferMinRange) {
+        this.largeTransferMinRange = largeTransferMinRange;
+    }
+
+
+    public String getLargeTransferMaxRange() {
+
+        return this.largeTransferMaxRange;
+
+    }
+
+    public void setLargeTransferMaxRange(String largeTransferMaxRange) {
+        this.largeTransferMaxRange = largeTransferMaxRange;
+    }
+
+
+    public Integer getWithdrawWorkCount() {
+
+        return this.withdrawWorkCount;
+
+    }
+
+    public void setWithdrawWorkCount(Integer withdrawWorkCount) {
+        this.withdrawWorkCount = withdrawWorkCount;
+    }
+
+
+    public BigDecimal getProxyLevel1Rate() {
+
+        return this.proxyLevel1Rate;
+
+    }
+
+    public void setProxyLevel1Rate(BigDecimal proxyLevel1Rate) {
+        this.proxyLevel1Rate = proxyLevel1Rate;
+    }
+
+
+    public BigDecimal getProxyLevel2Rate() {
+
+        return this.proxyLevel2Rate;
+
+    }
+
+    public void setProxyLevel2Rate(BigDecimal proxyLevel2Rate) {
+        this.proxyLevel2Rate = proxyLevel2Rate;
+    }
+
+
+    public BigDecimal getProxyLevel3Rate() {
+
+        return this.proxyLevel3Rate;
+
+    }
+
+    public void setProxyLevel3Rate(BigDecimal proxyLevel3Rate) {
+        this.proxyLevel3Rate = proxyLevel3Rate;
+    }
+
+
+    public BigDecimal getNormalTreasureRate() {
+
+        return this.normalTreasureRate;
+
+    }
+
+    public void setNormalTreasureRate(BigDecimal normalTreasureRate) {
+        this.normalTreasureRate = normalTreasureRate;
+    }
+
+
+    public BigDecimal getLargeTreasureRate() {
+
+        return this.largeTreasureRate;
+
+    }
+
+    public void setLargeTreasureRate(BigDecimal largeTreasureRate) {
+        this.largeTreasureRate = largeTreasureRate;
+    }
+
+
+    public Integer getWorkPageRefreshSpace() {
+
+        return this.workPageRefreshSpace;
+
+    }
+
+    public void setWorkPageRefreshSpace(Integer workPageRefreshSpace) {
+        this.workPageRefreshSpace = workPageRefreshSpace;
+    }
+
+
+    public String getAppLogo() {
+
+        return this.appLogo;
+
+    }
+
+    public void setAppLogo(String appLogo) {
+        this.appLogo = appLogo;
+    }
+
+
+    public String getNoviceTutorialUrl() {
+
+        return this.noviceTutorialUrl;
+
+    }
+
+    public void setNoviceTutorialUrl(String noviceTutorialUrl) {
+        this.noviceTutorialUrl = noviceTutorialUrl;
+    }
+
+
+    public String getCustomerServiceUrl() {
+
+        return this.customerServiceUrl;
+
+    }
+
+    public void setCustomerServiceUrl(String customerServiceUrl) {
+        this.customerServiceUrl = customerServiceUrl;
+    }
+
+
+    public String getPromotionUrl() {
+
+        return this.promotionUrl;
+
+    }
+
+    public void setPromotionUrl(String promotionUrl) {
+        this.promotionUrl = promotionUrl;
+    }
+
+
+    public BigDecimal getInitRedPack() {
+
+        return this.initRedPack;
+
+    }
+
+    public void setInitRedPack(BigDecimal initRedPack) {
+        this.initRedPack = initRedPack;
+    }
+
+
+    public Long getRegisterCount() {
+
+        return this.registerCount;
+
+    }
+
+    public void setRegisterCount(Long registerCount) {
+        this.registerCount = registerCount;
+    }
+
+
+    public BigDecimal getMinTransferAmount() {
+
+        return this.minTransferAmount;
+
+    }
+
+    public void setMinTransferAmount(BigDecimal minTransferAmount) {
+        this.minTransferAmount = minTransferAmount;
+    }
+
+
+    public BigDecimal getPartnerLevelRate() {
+
+        return this.partnerLevelRate;
+
+    }
+
+    public void setPartnerLevelRate(BigDecimal partnerLevelRate) {
+        this.partnerLevelRate = partnerLevelRate;
+    }
+
+
+    public Integer getPartnerLevelWorkCount() {
+
+        return this.partnerLevelWorkCount;
+
+    }
+
+    public void setPartnerLevelWorkCount(Integer partnerLevelWorkCount) {
+        this.partnerLevelWorkCount = partnerLevelWorkCount;
+    }
+
+
+    public Integer getPartnerLevelWorkSpace() {
+
+        return this.partnerLevelWorkSpace;
+
+    }
+
+    public void setPartnerLevelWorkSpace(Integer partnerLevelWorkSpace) {
+        this.partnerLevelWorkSpace = partnerLevelWorkSpace;
+    }
+
+
+    public String getPartnerLevelWorkMinRange() {
+
+        return this.partnerLevelWorkMinRange;
+
+    }
+
+    public void setPartnerLevelWorkMinRange(String partnerLevelWorkMinRange) {
+        this.partnerLevelWorkMinRange = partnerLevelWorkMinRange;
+    }
+
+
+    public String getPartnerLevelWorkMaxRange() {
+
+        return this.partnerLevelWorkMaxRange;
+
+    }
+
+    public void setPartnerLevelWorkMaxRange(String partnerLevelWorkMaxRange) {
+        this.partnerLevelWorkMaxRange = partnerLevelWorkMaxRange;
+    }
+
+
+    public BigDecimal getPartnerWithdrawAmount() {
+
+        return this.partnerWithdrawAmount;
+
+    }
+
+    public void setPartnerWithdrawAmount(BigDecimal partnerWithdrawAmount) {
+        this.partnerWithdrawAmount = partnerWithdrawAmount;
+    }
+
+
+    public BigDecimal getPartnerLevelIncAmount() {
+
+        return this.partnerLevelIncAmount;
+
+    }
+
+    public void setPartnerLevelIncAmount(BigDecimal partnerLevelIncAmount) {
+        this.partnerLevelIncAmount = partnerLevelIncAmount;
+    }
+
+
+    public String getPartnerWithdrawMinRange() {
+
+        return this.partnerWithdrawMinRange;
+
+    }
+
+    public void setPartnerWithdrawMinRange(String partnerWithdrawMinRange) {
+        this.partnerWithdrawMinRange = partnerWithdrawMinRange;
+    }
+
+
+    public String getPartnerWithdrawMaxRange() {
+
+        return this.partnerWithdrawMaxRange;
+
+    }
+
+    public void setPartnerWithdrawMaxRange(String partnerWithdrawMaxRange) {
+        this.partnerWithdrawMaxRange = partnerWithdrawMaxRange;
+    }
+
+
+    public Integer getPartnerWithdrawDayCount() {
+
+        return this.partnerWithdrawDayCount;
+
+    }
+
+    public void setPartnerWithdrawDayCount(Integer partnerWithdrawDayCount) {
+        this.partnerWithdrawDayCount = partnerWithdrawDayCount;
+    }
+
+
+    public String getPartnerTransferMinRange() {
+
+        return this.partnerTransferMinRange;
+
+    }
+
+    public void setPartnerTransferMinRange(String partnerTransferMinRange) {
+        this.partnerTransferMinRange = partnerTransferMinRange;
+    }
+
+
+    public String getPartnerTransferMaxRange() {
+
+        return this.partnerTransferMaxRange;
+
+    }
+
+    public void setPartnerTransferMaxRange(String partnerTransferMaxRange) {
+        this.partnerTransferMaxRange = partnerTransferMaxRange;
+    }
+
+
+    public BigDecimal getPartnerTreasureRate() {
+
+        return this.partnerTreasureRate;
+
+    }
+
+    public void setPartnerTreasureRate(BigDecimal partnerTreasureRate) {
+        this.partnerTreasureRate = partnerTreasureRate;
     }
 
     private static final class ParamsetSaveOrUpdateDTOBuilderImpl extends ParamsetSaveOrUpdateDTOBuilder<ParamsetSaveOrUpdateDTO, ParamsetSaveOrUpdateDTOBuilderImpl> {
@@ -865,520 +1358,5 @@ public class ParamsetSaveOrUpdateDTO extends BaseDTO {
         public abstract C build();
 
     }
-
-    public ParamsetSaveOrUpdateDTO(BigDecimal largeLevelRate, BigDecimal normalLevelRate, BigDecimal workRate, BigDecimal rechargeAmount, BigDecimal normalWithdrawAmount, BigDecimal largeWithdrawAmount, BigDecimal difficultyRate, BigDecimal freeCommissionRate, BigDecimal minWorkAmount, BigDecimal minRechargeAmount, BigDecimal maxWithdrawAmount, BigDecimal minWithdrawAmount, Integer rechargeMatchTime, Integer withdrawMatchTime, Integer orderMatchTime, Integer largeLevelWorkCount, Integer normalLevelWorkCount, Integer largeLevelWorkSpace, Integer normalLevelWorkSpace, String largeLevelWorkMinRange, String largeLevelWorkMaxRange, String normalLevelWorkMinRange, String normalLevelWorkMaxRange, BigDecimal largeLevelIncAmount, Integer minWorkCount, Integer maxWorkCount, String normalWithdrawMinRange, String normalWithdrawMaxRange, String largeWithdrawMinRange, String largeWithdrawMaxRange, Integer normalWithdrawDayCount, Integer largeWithdrawDayCount, String normalTransferMinRange, String normalTransferMaxRange, String largeTransferMinRange, String largeTransferMaxRange, Integer withdrawWorkCount, BigDecimal proxyLevel1Rate, BigDecimal proxyLevel2Rate, BigDecimal proxyLevel3Rate, BigDecimal normalTreasureRate, BigDecimal largeTreasureRate, Integer workPageRefreshSpace, String appLogo, String noviceTutorialUrl, String customerServiceUrl, String promotionUrl, BigDecimal initRedPack, Long registerCount, BigDecimal minTransferAmount, BigDecimal partnerLevelRate, Integer partnerLevelWorkCount, Integer partnerLevelWorkSpace, String partnerLevelWorkMinRange, String partnerLevelWorkMaxRange, BigDecimal partnerWithdrawAmount, BigDecimal partnerLevelIncAmount, String partnerWithdrawMinRange, String partnerWithdrawMaxRange, Integer partnerWithdrawDayCount, String partnerTransferMinRange, String partnerTransferMaxRange, BigDecimal partnerTreasureRate) {
-        /*  18 */
-        this.largeLevelRate = largeLevelRate;
-        this.normalLevelRate = normalLevelRate;
-        this.workRate = workRate;
-        this.rechargeAmount = rechargeAmount;
-        this.normalWithdrawAmount = normalWithdrawAmount;
-        this.largeWithdrawAmount = largeWithdrawAmount;
-        this.difficultyRate = difficultyRate;
-        this.freeCommissionRate = freeCommissionRate;
-        this.minWorkAmount = minWorkAmount;
-        this.minRechargeAmount = minRechargeAmount;
-        this.maxWithdrawAmount = maxWithdrawAmount;
-        this.minWithdrawAmount = minWithdrawAmount;
-        this.rechargeMatchTime = rechargeMatchTime;
-        this.withdrawMatchTime = withdrawMatchTime;
-        this.orderMatchTime = orderMatchTime;
-        this.largeLevelWorkCount = largeLevelWorkCount;
-        this.normalLevelWorkCount = normalLevelWorkCount;
-        this.largeLevelWorkSpace = largeLevelWorkSpace;
-        this.normalLevelWorkSpace = normalLevelWorkSpace;
-        this.largeLevelWorkMinRange = largeLevelWorkMinRange;
-        this.largeLevelWorkMaxRange = largeLevelWorkMaxRange;
-        this.normalLevelWorkMinRange = normalLevelWorkMinRange;
-        this.normalLevelWorkMaxRange = normalLevelWorkMaxRange;
-        this.largeLevelIncAmount = largeLevelIncAmount;
-        this.minWorkCount = minWorkCount;
-        this.maxWorkCount = maxWorkCount;
-        this.normalWithdrawMinRange = normalWithdrawMinRange;
-        this.normalWithdrawMaxRange = normalWithdrawMaxRange;
-        this.largeWithdrawMinRange = largeWithdrawMinRange;
-        this.largeWithdrawMaxRange = largeWithdrawMaxRange;
-        this.normalWithdrawDayCount = normalWithdrawDayCount;
-        this.largeWithdrawDayCount = largeWithdrawDayCount;
-        this.normalTransferMinRange = normalTransferMinRange;
-        this.normalTransferMaxRange = normalTransferMaxRange;
-        this.largeTransferMinRange = largeTransferMinRange;
-        this.largeTransferMaxRange = largeTransferMaxRange;
-        this.withdrawWorkCount = withdrawWorkCount;
-        this.proxyLevel1Rate = proxyLevel1Rate;
-        this.proxyLevel2Rate = proxyLevel2Rate;
-        this.proxyLevel3Rate = proxyLevel3Rate;
-        this.normalTreasureRate = normalTreasureRate;
-        this.largeTreasureRate = largeTreasureRate;
-        this.workPageRefreshSpace = workPageRefreshSpace;
-        this.appLogo = appLogo;
-        this.noviceTutorialUrl = noviceTutorialUrl;
-        this.customerServiceUrl = customerServiceUrl;
-        this.promotionUrl = promotionUrl;
-        this.initRedPack = initRedPack;
-        this.registerCount = registerCount;
-        this.minTransferAmount = minTransferAmount;
-        this.partnerLevelRate = partnerLevelRate;
-        this.partnerLevelWorkCount = partnerLevelWorkCount;
-        this.partnerLevelWorkSpace = partnerLevelWorkSpace;
-        this.partnerLevelWorkMinRange = partnerLevelWorkMinRange;
-        this.partnerLevelWorkMaxRange = partnerLevelWorkMaxRange;
-        this.partnerWithdrawAmount = partnerWithdrawAmount;
-        this.partnerLevelIncAmount = partnerLevelIncAmount;
-        this.partnerWithdrawMinRange = partnerWithdrawMinRange;
-        this.partnerWithdrawMaxRange = partnerWithdrawMaxRange;
-        this.partnerWithdrawDayCount = partnerWithdrawDayCount;
-        this.partnerTransferMinRange = partnerTransferMinRange;
-        this.partnerTransferMaxRange = partnerTransferMaxRange;
-        this.partnerTreasureRate = partnerTreasureRate;
-        /*     */
-    }
-
-    /*     */
-    public ParamsetSaveOrUpdateDTO() {
-    }
-
-    /*     */
-    /*     */
-    public BigDecimal getLargeLevelRate() {
-        /*  23 */
-        return this.largeLevelRate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getNormalLevelRate() {
-        /*  26 */
-        return this.normalLevelRate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getWorkRate() {
-        /*  29 */
-        return this.workRate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getRechargeAmount() {
-        /*  32 */
-        return this.rechargeAmount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getNormalWithdrawAmount() {
-        /*  35 */
-        return this.normalWithdrawAmount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getLargeWithdrawAmount() {
-        /*  38 */
-        return this.largeWithdrawAmount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getDifficultyRate() {
-        /*  41 */
-        return this.difficultyRate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getFreeCommissionRate() {
-        /*  44 */
-        return this.freeCommissionRate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getMinWorkAmount() {
-        /*  47 */
-        return this.minWorkAmount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getMinRechargeAmount() {
-        /*  50 */
-        return this.minRechargeAmount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getMaxWithdrawAmount() {
-        /*  53 */
-        return this.maxWithdrawAmount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getMinWithdrawAmount() {
-        /*  56 */
-        return this.minWithdrawAmount;
-        /*     */
-    }
-
-    /*     */
-    public Integer getRechargeMatchTime() {
-        /*  59 */
-        return this.rechargeMatchTime;
-        /*     */
-    }
-
-    /*     */
-    public Integer getWithdrawMatchTime() {
-        /*  62 */
-        return this.withdrawMatchTime;
-        /*     */
-    }
-
-    /*     */
-    public Integer getOrderMatchTime() {
-        /*  65 */
-        return this.orderMatchTime;
-        /*     */
-    }
-
-    /*     */
-    public Integer getLargeLevelWorkCount() {
-        /*  68 */
-        return this.largeLevelWorkCount;
-        /*     */
-    }
-
-    /*     */
-    public Integer getNormalLevelWorkCount() {
-        /*  71 */
-        return this.normalLevelWorkCount;
-        /*     */
-    }
-
-    /*     */
-    public Integer getLargeLevelWorkSpace() {
-        /*  74 */
-        return this.largeLevelWorkSpace;
-        /*     */
-    }
-
-    /*     */
-    public Integer getNormalLevelWorkSpace() {
-        /*  77 */
-        return this.normalLevelWorkSpace;
-        /*     */
-    }
-
-    /*     */
-    public String getLargeLevelWorkMinRange() {
-        /*  80 */
-        return this.largeLevelWorkMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getLargeLevelWorkMaxRange() {
-        /*  83 */
-        return this.largeLevelWorkMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public String getNormalLevelWorkMinRange() {
-        /*  86 */
-        return this.normalLevelWorkMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getNormalLevelWorkMaxRange() {
-        /*  89 */
-        return this.normalLevelWorkMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getLargeLevelIncAmount() {
-        /*  92 */
-        return this.largeLevelIncAmount;
-        /*     */
-    }
-
-    /*     */
-    public Integer getMinWorkCount() {
-        /*  95 */
-        return this.minWorkCount;
-        /*     */
-    }
-
-    /*     */
-    public Integer getMaxWorkCount() {
-        /*  98 */
-        return this.maxWorkCount;
-        /*     */
-    }
-
-    /*     */
-    public String getNormalWithdrawMinRange() {
-        /* 101 */
-        return this.normalWithdrawMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getNormalWithdrawMaxRange() {
-        /* 104 */
-        return this.normalWithdrawMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public String getLargeWithdrawMinRange() {
-        /* 107 */
-        return this.largeWithdrawMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getLargeWithdrawMaxRange() {
-        /* 110 */
-        return this.largeWithdrawMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public Integer getNormalWithdrawDayCount() {
-        /* 113 */
-        return this.normalWithdrawDayCount;
-        /*     */
-    }
-
-    /*     */
-    public Integer getLargeWithdrawDayCount() {
-        /* 116 */
-        return this.largeWithdrawDayCount;
-        /*     */
-    }
-
-    /*     */
-    public String getNormalTransferMinRange() {
-        /* 119 */
-        return this.normalTransferMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getNormalTransferMaxRange() {
-        /* 122 */
-        return this.normalTransferMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public String getLargeTransferMinRange() {
-        /* 125 */
-        return this.largeTransferMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getLargeTransferMaxRange() {
-        /* 128 */
-        return this.largeTransferMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public Integer getWithdrawWorkCount() {
-        /* 131 */
-        return this.withdrawWorkCount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getProxyLevel1Rate() {
-        /* 134 */
-        return this.proxyLevel1Rate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getProxyLevel2Rate() {
-        /* 137 */
-        return this.proxyLevel2Rate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getProxyLevel3Rate() {
-        /* 140 */
-        return this.proxyLevel3Rate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getNormalTreasureRate() {
-        /* 143 */
-        return this.normalTreasureRate;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getLargeTreasureRate() {
-        /* 146 */
-        return this.largeTreasureRate;
-        /*     */
-    }
-
-    /*     */
-    public Integer getWorkPageRefreshSpace() {
-        /* 149 */
-        return this.workPageRefreshSpace;
-        /*     */
-    }
-
-    /*     */
-    public String getAppLogo() {
-        /* 152 */
-        return this.appLogo;
-        /*     */
-    }
-
-    /*     */
-    public String getNoviceTutorialUrl() {
-        /* 155 */
-        return this.noviceTutorialUrl;
-        /*     */
-    }
-
-    /*     */
-    public String getCustomerServiceUrl() {
-        /* 158 */
-        return this.customerServiceUrl;
-        /*     */
-    }
-
-    /*     */
-    public String getPromotionUrl() {
-        /* 161 */
-        return this.promotionUrl;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getInitRedPack() {
-        /* 164 */
-        return this.initRedPack;
-        /*     */
-    }
-
-    /*     */
-    public Long getRegisterCount() {
-        /* 167 */
-        return this.registerCount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getMinTransferAmount() {
-        /* 170 */
-        return this.minTransferAmount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getPartnerLevelRate() {
-        /* 173 */
-        return this.partnerLevelRate;
-        /*     */
-    }
-
-    /*     */
-    public Integer getPartnerLevelWorkCount() {
-        /* 176 */
-        return this.partnerLevelWorkCount;
-        /*     */
-    }
-
-    /*     */
-    public Integer getPartnerLevelWorkSpace() {
-        /* 179 */
-        return this.partnerLevelWorkSpace;
-        /*     */
-    }
-
-    /*     */
-    public String getPartnerLevelWorkMinRange() {
-        /* 182 */
-        return this.partnerLevelWorkMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getPartnerLevelWorkMaxRange() {
-        /* 185 */
-        return this.partnerLevelWorkMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getPartnerWithdrawAmount() {
-        /* 188 */
-        return this.partnerWithdrawAmount;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getPartnerLevelIncAmount() {
-        /* 191 */
-        return this.partnerLevelIncAmount;
-        /*     */
-    }
-
-    /*     */
-    public String getPartnerWithdrawMinRange() {
-        /* 194 */
-        return this.partnerWithdrawMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getPartnerWithdrawMaxRange() {
-        /* 197 */
-        return this.partnerWithdrawMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public Integer getPartnerWithdrawDayCount() {
-        /* 200 */
-        return this.partnerWithdrawDayCount;
-        /*     */
-    }
-
-    /*     */
-    public String getPartnerTransferMinRange() {
-        /* 203 */
-        return this.partnerTransferMinRange;
-        /*     */
-    }
-
-    /*     */
-    public String getPartnerTransferMaxRange() {
-        /* 206 */
-        return this.partnerTransferMaxRange;
-        /*     */
-    }
-
-    /*     */
-    public BigDecimal getPartnerTreasureRate() {
-        /* 209 */
-        return this.partnerTreasureRate;
-        /*     */
-    }
 }
-
 

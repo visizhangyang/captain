@@ -6,4 +6,3 @@ import com.porn.service.account.dao.entity.AccountExtDO;
 public interface AccountExtMapper extends BaseMapper<AccountExtDO> {
 }
 
-

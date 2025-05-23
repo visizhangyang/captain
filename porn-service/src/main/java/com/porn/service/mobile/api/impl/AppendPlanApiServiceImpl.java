@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.NumberUtil;
@@ -26,141 +24,88 @@ import com.porn.service.mobile.api.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class AppendPlanApiServiceImpl
-         implements ApiService<PlanInsVo>
-         {
+public class AppendPlanApiServiceImpl
+        implements ApiService<PlanInsVo> {
 
     @Autowired
-     private PlanApiService planApiService;
+    private PlanApiService planApiService;
 
     @Autowired
-     private PlanInsApiService planInsApiService;
+    private PlanInsApiService planInsApiService;
 
     @Autowired
-     private AccountApiService accountApiService;
+    private AccountApiService accountApiService;
 
     @Autowired
-     private DingdingMsgSender dingdingMsgSender;
-
+    private DingdingMsgSender dingdingMsgSender;
 
 
     public PlanInsVo cmd(CmdRequestDTO cmdRequestDTO) {
-        /*  49 */
-        PlanInsAppendDTO planInsAppendDTO = (PlanInsAppendDTO) JSON.parseObject(cmdRequestDTO.getData(), PlanInsAppendDTO.class);
-        /*  50 */
-        PlanInsVo planInsVo = this.planInsApiService.queryPlanIns((
-                /*  51 */         (PlanInsQueryDTO.PlanInsQueryDTOBuilder) PlanInsQueryDTO.builder()
-/*  52 */.id(planInsAppendDTO.getId()))
-/*  53 */.accountId(cmdRequestDTO.getAccountVo().getId())
-/*  54 */.planId(planInsAppendDTO.getPlanId())
-/*  55 */.build());
 
-        /*  57 */
+        PlanInsAppendDTO planInsAppendDTO = (PlanInsAppendDTO) JSON.parseObject(cmdRequestDTO.getData(), PlanInsAppendDTO.class);
+
+        PlanInsVo planInsVo = this.planInsApiService.queryPlanIns((
+                (PlanInsQueryDTO.PlanInsQueryDTOBuilder) PlanInsQueryDTO.builder()
+                        .id(planInsAppendDTO.getId()))
+                .accountId(cmdRequestDTO.getAccountVo().getId())
+                .planId(planInsAppendDTO.getPlanId())
+                .build());
+
+
         if (ObjectUtil.isEmpty(planInsVo)) {
-            /*  58 */
+
             throw new BusinessException("计划实例信息不存在.");
 
         }
 
 
-
-        /*  63 */
         AccountQueryDTO accountQueryDTO = ((AccountQueryDTO.AccountQueryDTOBuilder) AccountQueryDTO.builder().id(cmdRequestDTO.getAccountVo().getId())).build();
-        /*  64 */
+
         AccountVo accountVo = this.accountApiService.queryAccount(accountQueryDTO);
-        /*  65 */
+
         if (ObjectUtil.isEmpty(accountVo)) {
-            /*  66 */
+
             throw new BusinessException("用户信息不存在.");
 
         }
 
-        /*  69 */
-        if (accountVo.getAvailableBalance().compareTo(planInsAppendDTO.getAppendInvest()) < 0)
-             {
-            /*  71 */
+
+        if (accountVo.getAvailableBalance().compareTo(planInsAppendDTO.getAppendInvest()) < 0) {
+
             throw new BusinessException("余额不足.");
 
         }
 
 
-
-
-
-
-
-
-        /*  81 */
         AccountAmountOperateDTO accountAmountOperateDTO = ((AccountAmountOperateDTO.AccountAmountOperateDTOBuilder) AccountAmountOperateDTO.builder().id(cmdRequestDTO.getAccountVo().getId())).amountType(AmountTypeEnum.SUBTOTAL_SUBAVAILABLE.getType()).bizId(planInsVo.getId()).streamTypeEnum(StreamTypeEnum.PLAN_APPENDLOCK).operateAmount(planInsAppendDTO.getAppendInvest()).build();
-        /*  82 */
+
         this.accountApiService.operateAmount(accountAmountOperateDTO);
 
 
-        /*  85 */
         PlanInsVo newPlanInsVo = this.planInsApiService.saveOrUpdate((
-                /*  86 */         (PlanInsSaveOrUpdateDTO.PlanInsSaveOrUpdateDTOBuilder) PlanInsSaveOrUpdateDTO.builder()
-/*  87 */.id(planInsVo.getId()))
-/*  88 */.totalInvest(NumberUtil.add(planInsVo.getTotalInvest(), planInsAppendDTO.getAppendInvest()))
-/*  89 */.build());
+                (PlanInsSaveOrUpdateDTO.PlanInsSaveOrUpdateDTOBuilder) PlanInsSaveOrUpdateDTO.builder()
+                        .id(planInsVo.getId()))
+                .totalInvest(NumberUtil.add(planInsVo.getTotalInvest(), planInsAppendDTO.getAppendInvest()))
+                .build());
 
 
-
-        /*  93 */
         this.dingdingMsgSender.sendMsg(
-                /*  94 */         ProxyMsgDTO.builder()
-/*  95 */.accountId(accountVo.getId())
-/*  96 */.msg("账户[" + accountVo.getName() + "], 自动搬砖计划, 增加金额[" + planInsAppendDTO.getAppendInvest().stripTrailingZeros().toPlainString() + "], 总金额[" + newPlanInsVo.getTotalInvest().stripTrailingZeros().toPlainString() + "], 请注意观察.")
-/*  97 */.build());
+                ProxyMsgDTO.builder()
+                        .accountId(accountVo.getId())
+                        .msg("账户[" + accountVo.getName() + "], 自动搬砖计划, 增加金额[" + planInsAppendDTO.getAppendInvest().stripTrailingZeros().toPlainString() + "], 总金额[" + newPlanInsVo.getTotalInvest().stripTrailingZeros().toPlainString() + "], 请注意观察.")
+                        .build());
 
 
-        /* 100 */
         return newPlanInsVo;
 
     }
 
-
-
-
     public String getApi() {
-        /* 105 */
+
         return "api_appendplan";
 
     }
 
 }
-
 

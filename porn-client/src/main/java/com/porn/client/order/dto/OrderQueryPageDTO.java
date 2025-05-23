@@ -1,40 +1,30 @@
-
 package com.porn.client.order.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BasePageDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-
-
- public class OrderQueryPageDTO extends BasePageDTO {
+public class OrderQueryPageDTO extends BasePageDTO {
 
     @ApiModelProperty("商户id")
-     private Long merchantId;
+    private Long merchantId;
 
     @ApiModelProperty("状态")
-     private Integer orderStatus;
+    private Integer orderStatus;
 
     @ApiModelProperty("OrderTypeEnum, 0-真人, 1-机器人")
-     private Integer orderType;
+    private Integer orderType;
 
     @ApiModelProperty("账户id")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("账户名称")
-     private String lkAccountName;
+    private String lkAccountName;
 
     @ApiModelProperty("备注")
-     private String lkRemark;
-
-
-    /* 18 */
-    public void setMerchantId(Long merchantId) {
-        this.merchantId = merchantId;
-    }
-
+    private String lkRemark;
     @ApiModelProperty("账户ID列表")
     private List<Long> accountIdList;
     @ApiModelProperty("商户ID列表")
@@ -48,58 +38,6 @@ import java.util.List;
     @ApiModelProperty("收款地址钱包编码")
     private String walletCode;
 
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public void setOrderType(Integer orderType) {
-        this.orderType = orderType;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setLkAccountName(String lkAccountName) {
-        this.lkAccountName = lkAccountName;
-    }
-
-    public void setLkRemark(String lkRemark) {
-        this.lkRemark = lkRemark;
-    }
-
-    public void setAccountIdList(List<Long> accountIdList) {
-        this.accountIdList = accountIdList;
-    }
-
-    public void setMerchantIdList(List<Long> merchantIdList) {
-        this.merchantIdList = merchantIdList;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public void setOrderStatusList(List<Integer> orderStatusList) {
-        this.orderStatusList = orderStatusList;
-    }
-
-    public void setWalletCode(String walletCode) {
-        this.walletCode = walletCode;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof OrderQueryPageDTO;
-    }
-
-
-
-    /* 19 */
     protected OrderQueryPageDTO(OrderQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.merchantId = b.merchantId;
@@ -116,8 +54,152 @@ import java.util.List;
         this.walletCode = b.walletCode;
     }
 
+    public OrderQueryPageDTO(Long merchantId, Integer orderStatus, Integer orderType, Long accountId, String lkAccountName, String lkRemark, List<Long> accountIdList, List<Long> merchantIdList, LocalDateTime startTime, LocalDateTime endTime, List<Integer> orderStatusList, String walletCode) {
+
+        this.merchantId = merchantId;
+        this.orderStatus = orderStatus;
+        this.orderType = orderType;
+        this.accountId = accountId;
+        this.lkAccountName = lkAccountName;
+        this.lkRemark = lkRemark;
+        this.accountIdList = accountIdList;
+        this.merchantIdList = merchantIdList;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.orderStatusList = orderStatusList;
+        this.walletCode = walletCode;
+
+    }
+
+    public OrderQueryPageDTO() {
+    }
+
     public static OrderQueryPageDTOBuilder<?, ?> builder() {
         return new OrderQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof OrderQueryPageDTO;
+    }
+
+    public Long getMerchantId() {
+
+        return this.merchantId;
+
+    }
+
+    public void setMerchantId(Long merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public Integer getOrderStatus() {
+
+        return this.orderStatus;
+
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Integer getOrderType() {
+
+        return this.orderType;
+
+    }
+
+    public void setOrderType(Integer orderType) {
+        this.orderType = orderType;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getLkAccountName() {
+
+        return this.lkAccountName;
+
+    }
+
+    public void setLkAccountName(String lkAccountName) {
+        this.lkAccountName = lkAccountName;
+    }
+
+    public String getLkRemark() {
+
+        return this.lkRemark;
+
+    }
+
+    public void setLkRemark(String lkRemark) {
+        this.lkRemark = lkRemark;
+    }
+
+    public List<Long> getAccountIdList() {
+
+        return this.accountIdList;
+
+    }
+
+    public void setAccountIdList(List<Long> accountIdList) {
+        this.accountIdList = accountIdList;
+    }
+
+    public List<Long> getMerchantIdList() {
+
+        return this.merchantIdList;
+
+    }
+
+    public void setMerchantIdList(List<Long> merchantIdList) {
+        this.merchantIdList = merchantIdList;
+    }
+
+    public LocalDateTime getStartTime() {
+
+        return this.startTime;
+
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+
+        return this.endTime;
+
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public List<Integer> getOrderStatusList() {
+
+        return this.orderStatusList;
+
+    }
+
+    public void setOrderStatusList(List<Integer> orderStatusList) {
+        this.orderStatusList = orderStatusList;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
+
+    public void setWalletCode(String walletCode) {
+        this.walletCode = walletCode;
     }
 
     private static final class OrderQueryPageDTOBuilderImpl extends OrderQueryPageDTOBuilder<OrderQueryPageDTO, OrderQueryPageDTOBuilderImpl> {
@@ -213,112 +295,5 @@ import java.util.List;
 
     }
 
-    public OrderQueryPageDTO(Long merchantId, Integer orderStatus, Integer orderType, Long accountId, String lkAccountName, String lkRemark, List<Long> accountIdList, List<Long> merchantIdList, LocalDateTime startTime, LocalDateTime endTime, List<Integer> orderStatusList, String walletCode) {
-        /* 20 */
-        this.merchantId = merchantId;
-        this.orderStatus = orderStatus;
-        this.orderType = orderType;
-        this.accountId = accountId;
-        this.lkAccountName = lkAccountName;
-        this.lkRemark = lkRemark;
-        this.accountIdList = accountIdList;
-        this.merchantIdList = merchantIdList;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.orderStatusList = orderStatusList;
-        this.walletCode = walletCode;
-
-    }
-
-
-    public OrderQueryPageDTO() {
-    }
-
-
-
-    public Long getMerchantId() {
-        /* 25 */
-        return this.merchantId;
-
-    }
-
-
-    public Integer getOrderStatus() {
-        /* 28 */
-        return this.orderStatus;
-
-    }
-
-
-    public Integer getOrderType() {
-        /* 31 */
-        return this.orderType;
-
-    }
-
-
-    public Long getAccountId() {
-        /* 34 */
-        return this.accountId;
-
-    }
-
-
-    public String getLkAccountName() {
-        /* 37 */
-        return this.lkAccountName;
-
-    }
-
-
-    public String getLkRemark() {
-        /* 40 */
-        return this.lkRemark;
-
-    }
-
-
-    public List<Long> getAccountIdList() {
-        /* 43 */
-        return this.accountIdList;
-
-    }
-
-
-    public List<Long> getMerchantIdList() {
-        /* 46 */
-        return this.merchantIdList;
-
-    }
-
-
-    public LocalDateTime getStartTime() {
-        /* 49 */
-        return this.startTime;
-
-    }
-
-
-    public LocalDateTime getEndTime() {
-        /* 52 */
-        return this.endTime;
-
-    }
-
-
-    public List<Integer> getOrderStatusList() {
-        /* 55 */
-        return this.orderStatusList;
-
-    }
-
-
-    public String getWalletCode() {
-        /* 58 */
-        return this.walletCode;
-
-    }
-
 }
-
 

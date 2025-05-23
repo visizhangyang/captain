@@ -16,4 +16,3 @@ public interface MerchantDescConverter {
     MerchantDescDO toMerchantDescDO(MerchantDescSaveOrUpdateDTO paramMerchantDescSaveOrUpdateDTO);
 }
 
-

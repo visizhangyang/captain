@@ -16,4 +16,3 @@ public interface AccountWalletConverter {
     AccountWalletDO toAccountWalletDO(AccountWalletSaveOrUpdateDTO paramAccountWalletSaveOrUpdateDTO);
 }
 
-

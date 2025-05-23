@@ -1,78 +1,34 @@
-
 package com.porn.client.wallet.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 
 public class WalletAddressSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("编码")
-     private String code;
+    private String code;
     @ApiModelProperty("地址")
-     private String address;
+    private String address;
 
     @ApiModelProperty("锁定时间")
-     private LocalDateTime lockTime;
+    private LocalDateTime lockTime;
 
     @ApiModelProperty("清除锁定时间")
-     private boolean clearLockTime;
+    private boolean clearLockTime;
 
     @ApiModelProperty("地址状态")
-     private Integer addressStatus;
+    private Integer addressStatus;
 
     @ApiModelProperty("状态")
-     private Integer status;
+    private Integer status;
 
     @ApiModelProperty("密码")
-     private String password;
+    private String password;
 
     @ApiModelProperty("IP")
-     private String remoteIP;
+    private String remoteIP;
 
-
-    /* 17 */
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setLockTime(LocalDateTime lockTime) {
-        this.lockTime = lockTime;
-    }
-
-    public void setClearLockTime(boolean clearLockTime) {
-        this.clearLockTime = clearLockTime;
-    }
-
-    public void setAddressStatus(Integer addressStatus) {
-        this.addressStatus = addressStatus;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRemoteIP(String remoteIP) {
-        this.remoteIP = remoteIP;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof WalletAddressSaveOrUpdateDTO;
-    }
-
-
-
-    /* 18 */
     protected WalletAddressSaveOrUpdateDTO(WalletAddressSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.code = b.code;
@@ -85,8 +41,108 @@ public class WalletAddressSaveOrUpdateDTO extends BaseDTO {
         this.remoteIP = b.remoteIP;
     }
 
+    public WalletAddressSaveOrUpdateDTO(String code, String address, LocalDateTime lockTime, boolean clearLockTime, Integer addressStatus, Integer status, String password, String remoteIP) {
+
+        this.code = code;
+        this.address = address;
+        this.lockTime = lockTime;
+        this.clearLockTime = clearLockTime;
+        this.addressStatus = addressStatus;
+        this.status = status;
+        this.password = password;
+        this.remoteIP = remoteIP;
+
+    }
+
+    public WalletAddressSaveOrUpdateDTO() {
+    }
+
     public static WalletAddressSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new WalletAddressSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof WalletAddressSaveOrUpdateDTO;
+    }
+
+    public String getCode() {
+
+        return this.code;
+
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getAddress() {
+
+        return this.address;
+
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public LocalDateTime getLockTime() {
+
+        return this.lockTime;
+
+    }
+
+    public void setLockTime(LocalDateTime lockTime) {
+        this.lockTime = lockTime;
+    }
+
+    public boolean isClearLockTime() {
+
+        return this.clearLockTime;
+
+    }
+
+    public void setClearLockTime(boolean clearLockTime) {
+        this.clearLockTime = clearLockTime;
+    }
+
+    public Integer getAddressStatus() {
+
+        return this.addressStatus;
+
+    }
+
+    public void setAddressStatus(Integer addressStatus) {
+        this.addressStatus = addressStatus;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getPassword() {
+
+        return this.password;
+
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRemoteIP() {
+
+        return this.remoteIP;
+
+    }
+
+    public void setRemoteIP(String remoteIP) {
+        this.remoteIP = remoteIP;
     }
 
     private static final class WalletAddressSaveOrUpdateDTOBuilderImpl extends WalletAddressSaveOrUpdateDTOBuilder<WalletAddressSaveOrUpdateDTO, WalletAddressSaveOrUpdateDTOBuilderImpl> {
@@ -107,16 +163,15 @@ public class WalletAddressSaveOrUpdateDTO extends BaseDTO {
         private String address;
         private LocalDateTime lockTime;
         private boolean clearLockTime;
+        private Integer addressStatus;
+        private Integer status;
+        private String password;
+        private String remoteIP;
 
         public B code(String code) {
             this.code = code;
             return self();
         }
-
-        private Integer addressStatus;
-        private Integer status;
-        private String password;
-        private String remoteIP;
 
         public B address(String address) {
             this.address = address;
@@ -158,80 +213,5 @@ public class WalletAddressSaveOrUpdateDTO extends BaseDTO {
         public abstract C build();
 
     }
-
-    public WalletAddressSaveOrUpdateDTO(String code, String address, LocalDateTime lockTime, boolean clearLockTime, Integer addressStatus, Integer status, String password, String remoteIP) {
-        /* 19 */
-        this.code = code;
-        this.address = address;
-        this.lockTime = lockTime;
-        this.clearLockTime = clearLockTime;
-        this.addressStatus = addressStatus;
-        this.status = status;
-        this.password = password;
-        this.remoteIP = remoteIP;
-
-    }
-
-
-    public WalletAddressSaveOrUpdateDTO() {
-    }
-
-
-
-    public String getCode() {
-        /* 24 */
-        return this.code;
-
-    }
-
-
-    public String getAddress() {
-        /* 27 */
-        return this.address;
-
-    }
-
-
-    public LocalDateTime getLockTime() {
-        /* 30 */
-        return this.lockTime;
-
-    }
-
-
-    public boolean isClearLockTime() {
-        /* 33 */
-        return this.clearLockTime;
-
-    }
-
-
-    public Integer getAddressStatus() {
-        /* 36 */
-        return this.addressStatus;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 39 */
-        return this.status;
-
-    }
-
-
-    public String getPassword() {
-        /* 42 */
-        return this.password;
-
-    }
-
-
-    public String getRemoteIP() {
-        /* 45 */
-        return this.remoteIP;
-
-    }
 }
-
 

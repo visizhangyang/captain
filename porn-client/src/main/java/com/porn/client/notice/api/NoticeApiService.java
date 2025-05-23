@@ -22,4 +22,3 @@ public interface NoticeApiService {
     List<NoticeVo> queryNoticeReadStatusList(NoticeQueryReadStatusDTO paramNoticeQueryReadStatusDTO);
 }
 
-

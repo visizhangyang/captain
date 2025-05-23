@@ -1,13 +1,11 @@
-
 package com.porn.client.workrobot.vo;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.vo.BaseVo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -17,29 +15,27 @@ import java.math.BigDecimal;
 @SuperBuilder
 public class WorkrobotVo extends BaseVo {
     @ApiModelProperty("最小搬砖金额")
-     private BigDecimal minWorkAmount;
+    private BigDecimal minWorkAmount;
     @ApiModelProperty("最大搬砖金额")
-     private BigDecimal maxWorkAmount;
+    private BigDecimal maxWorkAmount;
     @ApiModelProperty("搬砖时间范围(小)")
-     private String minWorkTime;
+    private String minWorkTime;
     @ApiModelProperty("搬砖时间范围(大)")
-     private String maxWorkTime;
+    private String maxWorkTime;
     @ApiModelProperty("订单数量")
-     private Integer orderCount;
+    private Integer orderCount;
 
     @ApiModelProperty("放款时间(小)")
-     private Integer minLoanTime;
+    private Integer minLoanTime;
 
     @ApiModelProperty("放款时间(大)")
-     private Integer maxLoanTime;
+    private Integer maxLoanTime;
 
     @ApiModelProperty("完成时间(小)")
-     private Integer minCompleteTime;
+    private Integer minCompleteTime;
 
     @ApiModelProperty("完成时间(大)")
-     private Integer maxCompleteTime;
-
+    private Integer maxCompleteTime;
 
 }
-
 

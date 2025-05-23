@@ -14,4 +14,3 @@ public interface AccountExtApiService {
     AccountExtVo saveOrUpdate(AccountExtSaveOrUpdateDTO paramAccountExtSaveOrUpdateDTO);
 }
 
-

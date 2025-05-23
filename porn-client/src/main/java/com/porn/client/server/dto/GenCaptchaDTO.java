@@ -1,50 +1,24 @@
-
 package com.porn.client.server.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.req.ServiceRequest;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
+public class GenCaptchaDTO
+        extends ServiceRequest
+        implements Serializable {
 
+    public static final Integer DEFAULT_WIDTH = Integer.valueOf(120);
+    public static final Integer DEFAULT_HEIGHT = Integer.valueOf(40);
+    public static final Integer DEFAULT_LEN = Integer.valueOf(6);
+    @ApiModelProperty("宽度")
+    private Integer width = DEFAULT_WIDTH;
+    @ApiModelProperty("高度")
+    private Integer height = DEFAULT_HEIGHT;
+    @ApiModelProperty("长度")
+    private Integer len = DEFAULT_LEN;
 
-
-
-
-
-
-
-
-
- public class GenCaptchaDTO
-         extends ServiceRequest
-         implements Serializable
-         {
-    
-    public void setWidth(Integer width) {
-        /* 18 */
-        this.width = width;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public void setLen(Integer len) {
-        this.len = len;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof GenCaptchaDTO;
-    }
-
-
-
-    /* 19 */
     protected GenCaptchaDTO(GenCaptchaDTOBuilder<?, ?> b) {
         super(b);
         this.width = b.width;
@@ -52,8 +26,54 @@ import java.io.Serializable;
         this.len = b.len;
     }
 
+    public GenCaptchaDTO(Integer width, Integer height, Integer len) {
+
+        this.width = width;
+        this.height = height;
+        this.len = len;
+
+    }
+
+    public GenCaptchaDTO() {
+    }
+
     public static GenCaptchaDTOBuilder<?, ?> builder() {
         return new GenCaptchaDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof GenCaptchaDTO;
+    }
+
+    public Integer getWidth() {
+
+        return this.width;
+
+    }
+
+    public void setWidth(Integer width) {
+
+        this.width = width;
+    }
+
+    public Integer getHeight() {
+
+        return this.height;
+
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getLen() {
+
+        return this.len;
+
+    }
+
+    public void setLen(Integer len) {
+        this.len = len;
     }
 
     private static final class GenCaptchaDTOBuilderImpl extends GenCaptchaDTOBuilder<GenCaptchaDTO, GenCaptchaDTOBuilderImpl> {
@@ -71,14 +91,13 @@ import java.io.Serializable;
 
     public static abstract class GenCaptchaDTOBuilder<C extends GenCaptchaDTO, B extends GenCaptchaDTOBuilder<C, B>> extends ServiceRequest.ServiceRequestBuilder<C, B> {
         private Integer width;
+        private Integer height;
+        private Integer len;
 
         public B width(Integer width) {
             this.width = width;
             return self();
         }
-
-        private Integer height;
-        private Integer len;
 
         public B height(Integer height) {
             this.height = height;
@@ -96,53 +115,5 @@ import java.io.Serializable;
 
     }
 
-    public GenCaptchaDTO(Integer width, Integer height, Integer len) {
-        /* 20 */
-        this.width = width;
-        this.height = height;
-        this.len = len;
-        
-    }
-
-    
-    
-    
-    /* 25 */   public static final Integer DEFAULT_WIDTH = Integer.valueOf(120);
-    /* 26 */   public static final Integer DEFAULT_HEIGHT = Integer.valueOf(40);
-    /* 27 */   public static final Integer DEFAULT_LEN = Integer.valueOf(6);
-    
-    @ApiModelProperty("宽度")
-    /* 29 */ private Integer width = DEFAULT_WIDTH;
-
-    public Integer getWidth() {
-        /* 30 */
-        return this.width;
-        
-    }
-
-    @ApiModelProperty("高度")
-    /* 32 */ private Integer height = DEFAULT_HEIGHT;
-
-    public Integer getHeight() {
-        /* 33 */
-        return this.height;
-        
-    }
-
-    @ApiModelProperty("长度")
-    /* 35 */ private Integer len = DEFAULT_LEN;
-
-    public Integer getLen() {
-        /* 36 */
-        return this.len;
-        
-    }
-
-    
-    
-    public GenCaptchaDTO() {
-    }
-    
 }
-
 

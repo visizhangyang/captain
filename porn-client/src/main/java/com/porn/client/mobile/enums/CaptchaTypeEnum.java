@@ -18,6 +18,18 @@ public enum CaptchaTypeEnum {
         this.description = description;
     }
 
+    public static CaptchaTypeEnum queryByType(Integer type) {
+        if (null == type) {
+            return null;
+        }
+        for (CaptchaTypeEnum captchaTypeEnum : values()) {
+            if (captchaTypeEnum.getType().equals(type)) {
+                return captchaTypeEnum;
+            }
+        }
+        return null;
+    }
+
     public Integer getType() {
         return this.type;
     }
@@ -32,17 +44,5 @@ public enum CaptchaTypeEnum {
 
     public String getDescription() {
         return this.description;
-    }
-
-    public static CaptchaTypeEnum queryByType(Integer type) {
-        if (null == type) {
-            return null;
-        }
-        for (CaptchaTypeEnum captchaTypeEnum : values()) {
-            if (captchaTypeEnum.getType().equals(type)) {
-                return captchaTypeEnum;
-            }
-        }
-        return null;
     }
 }

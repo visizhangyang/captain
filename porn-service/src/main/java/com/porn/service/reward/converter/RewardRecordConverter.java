@@ -16,4 +16,3 @@ public interface RewardRecordConverter {
     RewardRecordDO toRewardRecordDO(RewardRecordSaveOrUpdateDTO paramRewardRecordSaveOrUpdateDTO);
 }
 
-

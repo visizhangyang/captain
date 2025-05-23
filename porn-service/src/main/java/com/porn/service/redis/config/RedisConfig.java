@@ -1,6 +1,4 @@
-
 package com.porn.service.redis.config;
-
 
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -24,79 +22,54 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Configuration
 
 @EnableCaching
- public class RedisConfig
-         extends CachingConfigurerSupport
-         {
+public class RedisConfig
+        extends CachingConfigurerSupport {
 
     @Bean
-     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        /* 32 */
+    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+
         RedisTemplate<Object, Object> template = new RedisTemplate();
-        /* 33 */
+
         template.setConnectionFactory(connectionFactory);
-        /* 34 */
+
         ObjectMapper objectMapper = new ObjectMapper();
-        /* 35 */
+
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        /* 36 */
+
         objectMapper.registerModule((Module) new JavaTimeModule());
-        /* 37 */
+
         objectMapper.registerModule((Module) new SimpleModule());
 
-        /* 39 */
+
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
-        /* 41 */
+
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        /* 42 */
+
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        /* 43 */
+
         objectMapper.activateDefaultTyping((PolymorphicTypeValidator) LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
 
-        /* 45 */
+
         GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(objectMapper);
-        /* 46 */
+
         template.setKeySerializer((RedisSerializer) new StringRedisSerializer());
-        /* 47 */
+
         template.setValueSerializer((RedisSerializer) serializer);
 
-        /* 49 */
+
         template.setHashKeySerializer((RedisSerializer) new StringRedisSerializer());
-        /* 50 */
+
         template.setHashValueSerializer((RedisSerializer) serializer);
-        /* 51 */
+
         template.afterPropertiesSet();
-        /* 52 */
+
         return template;
 
     }
 
 }
-
 

@@ -1,65 +1,30 @@
-
 package com.porn.client.config.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
- public class ConfigQueryDTO extends BaseDTO {
+public class ConfigQueryDTO extends BaseDTO {
 
     @ApiModelProperty("配置编码")
-     private String configCode;
+    private String configCode;
 
     @ApiModelProperty("配置编码列表")
-     private List<String> configCodeList;
+    private List<String> configCodeList;
 
     @ApiModelProperty("配置组")
-     private String configGroup;
+    private String configGroup;
 
     @ApiModelProperty("配置组列表")
-     private List<String> configGroupList;
+    private List<String> configGroupList;
 
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("状态")
-     private Integer status;
+    private Integer status;
 
-
-    /* 16 */
-    public void setConfigCode(String configCode) {
-        this.configCode = configCode;
-    }
-
-    public void setConfigCodeList(List<String> configCodeList) {
-        this.configCodeList = configCodeList;
-    }
-
-    public void setConfigGroup(String configGroup) {
-        this.configGroup = configGroup;
-    }
-
-    public void setConfigGroupList(List<String> configGroupList) {
-        this.configGroupList = configGroupList;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof ConfigQueryDTO;
-    }
-
-
-
-    /* 17 */
     protected ConfigQueryDTO(ConfigQueryDTOBuilder<?, ?> b) {
         super(b);
         this.configCode = b.configCode;
@@ -70,8 +35,86 @@ import java.util.List;
         this.status = b.status;
     }
 
+    public ConfigQueryDTO(String configCode, List<String> configCodeList, String configGroup, List<String> configGroupList, Long accountId, Integer status) {
+
+        this.configCode = configCode;
+        this.configCodeList = configCodeList;
+        this.configGroup = configGroup;
+        this.configGroupList = configGroupList;
+        this.accountId = accountId;
+        this.status = status;
+
+    }
+
+    public ConfigQueryDTO() {
+    }
+
     public static ConfigQueryDTOBuilder<?, ?> builder() {
         return new ConfigQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof ConfigQueryDTO;
+    }
+
+    public String getConfigCode() {
+
+        return this.configCode;
+
+    }
+
+    public void setConfigCode(String configCode) {
+        this.configCode = configCode;
+    }
+
+    public List<String> getConfigCodeList() {
+
+        return this.configCodeList;
+
+    }
+
+    public void setConfigCodeList(List<String> configCodeList) {
+        this.configCodeList = configCodeList;
+    }
+
+    public String getConfigGroup() {
+
+        return this.configGroup;
+
+    }
+
+    public void setConfigGroup(String configGroup) {
+        this.configGroup = configGroup;
+    }
+
+    public List<String> getConfigGroupList() {
+
+        return this.configGroupList;
+
+    }
+
+    public void setConfigGroupList(List<String> configGroupList) {
+        this.configGroupList = configGroupList;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     private static final class ConfigQueryDTOBuilderImpl extends ConfigQueryDTOBuilder<ConfigQueryDTO, ConfigQueryDTOBuilderImpl> {
@@ -91,15 +134,14 @@ import java.util.List;
         private String configCode;
         private List<String> configCodeList;
         private String configGroup;
+        private List<String> configGroupList;
+        private Long accountId;
+        private Integer status;
 
         public B configCode(String configCode) {
             this.configCode = configCode;
             return self();
         }
-
-        private List<String> configGroupList;
-        private Long accountId;
-        private Integer status;
 
         public B configCodeList(List<String> configCodeList) {
             this.configCodeList = configCodeList;
@@ -132,64 +174,5 @@ import java.util.List;
 
     }
 
-    public ConfigQueryDTO(String configCode, List<String> configCodeList, String configGroup, List<String> configGroupList, Long accountId, Integer status) {
-        /* 18 */
-        this.configCode = configCode;
-        this.configCodeList = configCodeList;
-        this.configGroup = configGroup;
-        this.configGroupList = configGroupList;
-        this.accountId = accountId;
-        this.status = status;
-
-    }
-
-
-    public ConfigQueryDTO() {
-    }
-
-
-
-    public String getConfigCode() {
-        /* 23 */
-        return this.configCode;
-
-    }
-
-
-    public List<String> getConfigCodeList() {
-        /* 26 */
-        return this.configCodeList;
-
-    }
-
-
-    public String getConfigGroup() {
-        /* 29 */
-        return this.configGroup;
-
-    }
-
-
-    public List<String> getConfigGroupList() {
-        /* 32 */
-        return this.configGroupList;
-
-    }
-
-
-    public Long getAccountId() {
-        /* 35 */
-        return this.accountId;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 38 */
-        return this.status;
-
-    }
-
 }
-
 

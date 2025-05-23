@@ -1,71 +1,32 @@
-
 package com.porn.client.reward.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
 public class RewardRuleSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("规则名称")
-     private String name;
+    private String name;
 
     @ApiModelProperty("子名称")
-     private String subName;
+    private String subName;
 
     @ApiModelProperty("规则类型")
-     private Integer ruleType;
+    private Integer ruleType;
 
     @ApiModelProperty("语言类型")
-     private Integer langType;
+    private Integer langType;
 
     @ApiModelProperty("规则图片")
-     private String ruleImg;
+    private String ruleImg;
 
     @ApiModelProperty("总金额")
-     private BigDecimal totalAmount;
+    private BigDecimal totalAmount;
 
     @ApiModelProperty("次数")
-     private Integer rewardNum;
+    private Integer rewardNum;
 
-
-    /* 16 */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSubName(String subName) {
-        this.subName = subName;
-    }
-
-    public void setRuleType(Integer ruleType) {
-        this.ruleType = ruleType;
-    }
-
-    public void setLangType(Integer langType) {
-        this.langType = langType;
-    }
-
-    public void setRuleImg(String ruleImg) {
-        this.ruleImg = ruleImg;
-    }
-
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public void setRewardNum(Integer rewardNum) {
-        this.rewardNum = rewardNum;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RewardRuleSaveOrUpdateDTO;
-    }
-
-
-
-    /* 17 */
     protected RewardRuleSaveOrUpdateDTO(RewardRuleSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
@@ -77,8 +38,97 @@ public class RewardRuleSaveOrUpdateDTO extends BaseDTO {
         this.rewardNum = b.rewardNum;
     }
 
+    public RewardRuleSaveOrUpdateDTO(String name, String subName, Integer ruleType, Integer langType, String ruleImg, BigDecimal totalAmount, Integer rewardNum) {
+
+        this.name = name;
+        this.subName = subName;
+        this.ruleType = ruleType;
+        this.langType = langType;
+        this.ruleImg = ruleImg;
+        this.totalAmount = totalAmount;
+        this.rewardNum = rewardNum;
+
+    }
+
+    public RewardRuleSaveOrUpdateDTO() {
+    }
+
     public static RewardRuleSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new RewardRuleSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RewardRuleSaveOrUpdateDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSubName() {
+
+        return this.subName;
+
+    }
+
+    public void setSubName(String subName) {
+        this.subName = subName;
+    }
+
+    public Integer getRuleType() {
+
+        return this.ruleType;
+
+    }
+
+    public void setRuleType(Integer ruleType) {
+        this.ruleType = ruleType;
+    }
+
+    public Integer getLangType() {
+
+        return this.langType;
+
+    }
+
+    public void setLangType(Integer langType) {
+        this.langType = langType;
+    }
+
+    public String getRuleImg() {
+
+        return this.ruleImg;
+
+    }
+
+    public void setRuleImg(String ruleImg) {
+        this.ruleImg = ruleImg;
+    }
+
+    public BigDecimal getTotalAmount() {
+
+        return this.totalAmount;
+
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Integer getRewardNum() {
+
+        return this.rewardNum;
+
+    }
+
+    public void setRewardNum(Integer rewardNum) {
+        this.rewardNum = rewardNum;
     }
 
     private static final class RewardRuleSaveOrUpdateDTOBuilderImpl extends RewardRuleSaveOrUpdateDTOBuilder<RewardRuleSaveOrUpdateDTO, RewardRuleSaveOrUpdateDTOBuilderImpl> {
@@ -98,16 +148,15 @@ public class RewardRuleSaveOrUpdateDTO extends BaseDTO {
         private String name;
         private String subName;
         private Integer ruleType;
+        private Integer langType;
+        private String ruleImg;
+        private BigDecimal totalAmount;
+        private Integer rewardNum;
 
         public B name(String name) {
             this.name = name;
             return self();
         }
-
-        private Integer langType;
-        private String ruleImg;
-        private BigDecimal totalAmount;
-        private Integer rewardNum;
 
         public B subName(String subName) {
             this.subName = subName;
@@ -144,72 +193,5 @@ public class RewardRuleSaveOrUpdateDTO extends BaseDTO {
         public abstract C build();
 
     }
-
-    public RewardRuleSaveOrUpdateDTO(String name, String subName, Integer ruleType, Integer langType, String ruleImg, BigDecimal totalAmount, Integer rewardNum) {
-        /* 18 */
-        this.name = name;
-        this.subName = subName;
-        this.ruleType = ruleType;
-        this.langType = langType;
-        this.ruleImg = ruleImg;
-        this.totalAmount = totalAmount;
-        this.rewardNum = rewardNum;
-
-    }
-
-
-    public RewardRuleSaveOrUpdateDTO() {
-    }
-
-
-
-    public String getName() {
-        /* 23 */
-        return this.name;
-
-    }
-
-
-    public String getSubName() {
-        /* 26 */
-        return this.subName;
-
-    }
-
-
-    public Integer getRuleType() {
-        /* 29 */
-        return this.ruleType;
-
-    }
-
-
-    public Integer getLangType() {
-        /* 32 */
-        return this.langType;
-
-    }
-
-
-    public String getRuleImg() {
-        /* 35 */
-        return this.ruleImg;
-
-    }
-
-
-    public BigDecimal getTotalAmount() {
-        /* 38 */
-        return this.totalAmount;
-
-    }
-
-
-    public Integer getRewardNum() {
-        /* 41 */
-        return this.rewardNum;
-
-    }
 }
-
 

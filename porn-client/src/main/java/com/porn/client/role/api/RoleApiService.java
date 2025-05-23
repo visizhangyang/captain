@@ -24,4 +24,3 @@ public interface RoleApiService {
     List<RoleVo> queryUserRoleList(UserRoleQueryDTO paramUserRoleQueryDTO);
 }
 
-

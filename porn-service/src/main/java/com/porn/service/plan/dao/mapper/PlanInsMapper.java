@@ -6,4 +6,3 @@ import com.porn.service.plan.dao.entity.PlanInsDO;
 public interface PlanInsMapper extends BaseMapper<PlanInsDO> {
 }
 
-

@@ -1,44 +1,45 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class UserOfflineDTO
-         extends BaseDTO
-         {
+public class UserOfflineDTO
+        extends BaseDTO {
 
     @ApiModelProperty("token")
-     private String token;
+    private String token;
 
-
-
-    public void setToken(String token) {
-        /* 15 */
-        this.token = token;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserOfflineDTO;
-    }
-
-
-
-    /* 16 */
     protected UserOfflineDTO(UserOfflineDTOBuilder<?, ?> b) {
         super(b);
         this.token = b.token;
     }
 
+    public UserOfflineDTO(String token) {
+
+        this.token = token;
+
+    }
+
+    public UserOfflineDTO() {
+    }
+
     public static UserOfflineDTOBuilder<?, ?> builder() {
         return new UserOfflineDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserOfflineDTO;
+    }
+
+    public String getToken() {
+
+        return this.token;
+
+    }
+
+    public void setToken(String token) {
+
+        this.token = token;
     }
 
     private static final class UserOfflineDTOBuilderImpl extends UserOfflineDTOBuilder<UserOfflineDTO, UserOfflineDTOBuilderImpl> {
@@ -55,12 +56,12 @@ import com.porn.client.common.dto.BaseDTO;
     }
 
     public static abstract class UserOfflineDTOBuilder<C extends UserOfflineDTO, B extends UserOfflineDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
+        private String token;
+
         public B token(String token) {
             this.token = token;
             return self();
         }
-
-        private String token;
 
         protected abstract B self();
 
@@ -68,24 +69,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public UserOfflineDTO(String token) {
-        /* 17 */
-        this.token = token;
-
-    }
-
-
-    public UserOfflineDTO() {
-    }
-
-
-
-    public String getToken() {
-        /* 22 */
-        return this.token;
-
-    }
-
 }
-
 

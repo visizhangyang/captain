@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.ObjectUtil;
@@ -29,136 +27,85 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class CreateTransferApiServiceImpl
-         implements ApiService<TransferVo>
-         {
-    /*  33 */   private static final Logger log = LoggerFactory.getLogger(CreateTransferApiServiceImpl.class);
-
-
-
+public class CreateTransferApiServiceImpl
+        implements ApiService<TransferVo> {
+    private static final Logger log = LoggerFactory.getLogger(CreateTransferApiServiceImpl.class);
+    private final Lock lock = new ReentrantLock();
     @Autowired
-     private TransferApiService transferApiService;
-
-
-
+    private TransferApiService transferApiService;
     @Autowired
-     private AccountApiService accountApiService;
-
-
-
+    private AccountApiService accountApiService;
     @Autowired
-     private DingdingMsgSender dingdingMsgSender;
-
-
-    /*  48 */   private final Lock lock = new ReentrantLock();
-
-
-
+    private DingdingMsgSender dingdingMsgSender;
 
     public TransferVo cmd(CmdRequestDTO cmdRequestDTO) {
 
         try {
-            /*  53 */
+
             this.lock.lock();
-            /*  54 */
+
             TransferSaveOrUpdateDTO transferSaveOrUpdateDTO = (TransferSaveOrUpdateDTO) JSON.parseObject(cmdRequestDTO.getData(), TransferSaveOrUpdateDTO.class);
 
 
-            /*  57 */
             validate(cmdRequestDTO.getAccountVo());
 
 
-            /*  60 */
             if (ObjectUtil.isEmpty(transferSaveOrUpdateDTO.getTradePwd())) {
-                /*  61 */
+
                 throw new BusinessException("交易密码不能为空.");
 
             }
 
 
-
-
-            /*  67 */
             AccountValidatePwdDTO accountValidatePwdDTO = ((AccountValidatePwdDTO.AccountValidatePwdDTOBuilder) AccountValidatePwdDTO.builder().id(cmdRequestDTO.getAccountVo().getId())).type(AccountValidateTypeEnum.TRADE_PWD.getType()).pwd(transferSaveOrUpdateDTO.getTradePwd()).build();
-            /*  68 */
+
             if (!this.accountApiService.validatePwd(accountValidatePwdDTO)) {
-                /*  69 */
+
                 throw new BusinessException("交易密码不正确.");
 
             }
-            /*  71 */
-            transferSaveOrUpdateDTO.setSrcAccountId(cmdRequestDTO.getAccountVo().getId());
-            /*  72 */
-            transferSaveOrUpdateDTO.setSrcAccountName(cmdRequestDTO.getAccountVo().getName());
-            /*  73 */
-            TransferVo transferVo = this.transferApiService.saveOrUpdate(transferSaveOrUpdateDTO);
-            /*  74 */
-            this.dingdingMsgSender.sendMsg(
-                    /*  75 */           ProxyMsgDTO.builder()
-/*  76 */.accountId(transferVo.getSrcAccountId())
-/*  77 */.msg("账户[" + cmdRequestDTO.getAccountVo().getName() + "]发起转账, 请及时审核")
-/*  78 */.build());
 
-            /*  80 */
+            transferSaveOrUpdateDTO.setSrcAccountId(cmdRequestDTO.getAccountVo().getId());
+
+            transferSaveOrUpdateDTO.setSrcAccountName(cmdRequestDTO.getAccountVo().getName());
+
+            TransferVo transferVo = this.transferApiService.saveOrUpdate(transferSaveOrUpdateDTO);
+
+            this.dingdingMsgSender.sendMsg(
+                    ProxyMsgDTO.builder()
+                            .accountId(transferVo.getSrcAccountId())
+                            .msg("账户[" + cmdRequestDTO.getAccountVo().getName() + "]发起转账, 请及时审核")
+                            .build());
+
+
             return transferVo;
 
         } finally {
-            /*  82 */
+
             this.lock.unlock();
 
         }
 
     }
 
-
-
-
-
-
     protected void validate(AccountVo accountVo) {
-        /*  90 */
+
         AccountQueryDTO accountQueryDTO = ((AccountQueryDTO.AccountQueryDTOBuilder) AccountQueryDTO.builder().id(accountVo.getId())).build();
-        /*  91 */
+
         AccountVo dbAccountVo = this.accountApiService.queryAccount(accountQueryDTO);
-        /*  92 */
+
         if (ObjectUtil.isEmpty(dbAccountVo)) {
-            /*  93 */
+
             throw new BusinessException("账户信息不存在.");
 
         }
 
 
-        /*  97 */
         if (EnableStatusEnum.DISABLED.getStatus().equals(dbAccountVo.getTransferStatus())) {
-            /*  98 */
+
             throw new BusinessException("你已被禁止转账");
 
         }
@@ -166,13 +113,11 @@ import java.util.concurrent.locks.ReentrantLock;
     }
 
 
-
     public String getApi() {
-        /* 103 */
+
         return "api_createtransfer";
 
     }
 
 }
-
 

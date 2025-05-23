@@ -16,4 +16,3 @@ public interface UserConverter {
     UserLoginVo toUserLoginVo(UserDO paramUserDO);
 }
 
-

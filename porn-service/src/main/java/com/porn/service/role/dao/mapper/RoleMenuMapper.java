@@ -6,4 +6,3 @@ import com.porn.service.role.dao.entity.RoleMenuDO;
 public interface RoleMenuMapper extends BaseMapper<RoleMenuDO> {
 }
 
-

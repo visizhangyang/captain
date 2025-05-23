@@ -1,77 +1,34 @@
-
 package com.porn.client.recharge.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BasePageDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
 public class RechargeQueryPageDTO extends BasePageDTO {
     @ApiModelProperty("充值流水号")
-     private String rechargeNo;
+    private String rechargeNo;
     @ApiModelProperty("钱包编码")
-     private String walletCode;
+    private String walletCode;
 
     @ApiModelProperty("状态, RechargeStatusEnum")
-     private Integer status;
+    private Integer status;
 
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("账户ID列表")
-     private List<Long> accountIdList;
+    private List<Long> accountIdList;
 
     @ApiModelProperty("账户名称")
-     private String lkAccountName;
+    private String lkAccountName;
 
     @ApiModelProperty("备注")
-     private String lkRemark;
+    private String lkRemark;
 
     @ApiModelProperty("地址备注")
-     private String lkWalletRemark;
+    private String lkWalletRemark;
 
-
-    /* 17 */
-    public void setRechargeNo(String rechargeNo) {
-        this.rechargeNo = rechargeNo;
-    }
-
-    public void setWalletCode(String walletCode) {
-        this.walletCode = walletCode;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setAccountIdList(List<Long> accountIdList) {
-        this.accountIdList = accountIdList;
-    }
-
-    public void setLkAccountName(String lkAccountName) {
-        this.lkAccountName = lkAccountName;
-    }
-
-    public void setLkRemark(String lkRemark) {
-        this.lkRemark = lkRemark;
-    }
-
-    public void setLkWalletRemark(String lkWalletRemark) {
-        this.lkWalletRemark = lkWalletRemark;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof RechargeQueryPageDTO;
-    }
-
-
-
-    /* 18 */
     protected RechargeQueryPageDTO(RechargeQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.rechargeNo = b.rechargeNo;
@@ -84,8 +41,108 @@ public class RechargeQueryPageDTO extends BasePageDTO {
         this.lkWalletRemark = b.lkWalletRemark;
     }
 
+    public RechargeQueryPageDTO(String rechargeNo, String walletCode, Integer status, Long accountId, List<Long> accountIdList, String lkAccountName, String lkRemark, String lkWalletRemark) {
+
+        this.rechargeNo = rechargeNo;
+        this.walletCode = walletCode;
+        this.status = status;
+        this.accountId = accountId;
+        this.accountIdList = accountIdList;
+        this.lkAccountName = lkAccountName;
+        this.lkRemark = lkRemark;
+        this.lkWalletRemark = lkWalletRemark;
+
+    }
+
+    public RechargeQueryPageDTO() {
+    }
+
     public static RechargeQueryPageDTOBuilder<?, ?> builder() {
         return new RechargeQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof RechargeQueryPageDTO;
+    }
+
+    public String getRechargeNo() {
+
+        return this.rechargeNo;
+
+    }
+
+    public void setRechargeNo(String rechargeNo) {
+        this.rechargeNo = rechargeNo;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
+
+    public void setWalletCode(String walletCode) {
+        this.walletCode = walletCode;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public List<Long> getAccountIdList() {
+
+        return this.accountIdList;
+
+    }
+
+    public void setAccountIdList(List<Long> accountIdList) {
+        this.accountIdList = accountIdList;
+    }
+
+    public String getLkAccountName() {
+
+        return this.lkAccountName;
+
+    }
+
+    public void setLkAccountName(String lkAccountName) {
+        this.lkAccountName = lkAccountName;
+    }
+
+    public String getLkRemark() {
+
+        return this.lkRemark;
+
+    }
+
+    public void setLkRemark(String lkRemark) {
+        this.lkRemark = lkRemark;
+    }
+
+    public String getLkWalletRemark() {
+
+        return this.lkWalletRemark;
+
+    }
+
+    public void setLkWalletRemark(String lkWalletRemark) {
+        this.lkWalletRemark = lkWalletRemark;
     }
 
     private static final class RechargeQueryPageDTOBuilderImpl extends RechargeQueryPageDTOBuilder<RechargeQueryPageDTO, RechargeQueryPageDTOBuilderImpl> {
@@ -106,16 +163,15 @@ public class RechargeQueryPageDTO extends BasePageDTO {
         private String walletCode;
         private Integer status;
         private Long accountId;
+        private List<Long> accountIdList;
+        private String lkAccountName;
+        private String lkRemark;
+        private String lkWalletRemark;
 
         public B rechargeNo(String rechargeNo) {
             this.rechargeNo = rechargeNo;
             return self();
         }
-
-        private List<Long> accountIdList;
-        private String lkAccountName;
-        private String lkRemark;
-        private String lkWalletRemark;
 
         public B walletCode(String walletCode) {
             this.walletCode = walletCode;
@@ -157,80 +213,5 @@ public class RechargeQueryPageDTO extends BasePageDTO {
         public abstract C build();
 
     }
-
-    public RechargeQueryPageDTO(String rechargeNo, String walletCode, Integer status, Long accountId, List<Long> accountIdList, String lkAccountName, String lkRemark, String lkWalletRemark) {
-        /* 19 */
-        this.rechargeNo = rechargeNo;
-        this.walletCode = walletCode;
-        this.status = status;
-        this.accountId = accountId;
-        this.accountIdList = accountIdList;
-        this.lkAccountName = lkAccountName;
-        this.lkRemark = lkRemark;
-        this.lkWalletRemark = lkWalletRemark;
-
-    }
-
-
-    public RechargeQueryPageDTO() {
-    }
-
-
-
-    public String getRechargeNo() {
-        /* 24 */
-        return this.rechargeNo;
-
-    }
-
-
-    public String getWalletCode() {
-        /* 27 */
-        return this.walletCode;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 30 */
-        return this.status;
-
-    }
-
-
-    public Long getAccountId() {
-        /* 33 */
-        return this.accountId;
-
-    }
-
-
-    public List<Long> getAccountIdList() {
-        /* 36 */
-        return this.accountIdList;
-
-    }
-
-
-    public String getLkAccountName() {
-        /* 39 */
-        return this.lkAccountName;
-
-    }
-
-
-    public String getLkRemark() {
-        /* 42 */
-        return this.lkRemark;
-
-    }
-
-
-    public String getLkWalletRemark() {
-        /* 45 */
-        return this.lkWalletRemark;
-
-    }
 }
-
 

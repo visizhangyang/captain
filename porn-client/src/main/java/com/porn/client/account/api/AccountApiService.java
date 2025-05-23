@@ -66,4 +66,3 @@ public interface AccountApiService {
     Boolean forceStopPlan(AccountForceStopPlanDTO paramAccountForceStopPlanDTO);
 }
 
-

@@ -26,4 +26,3 @@ public interface RedisConst {
     public static final String REWARDRECORD_PREF_DAY_AVAILABLE = "REWARDRECORD:%s:%s";
 }
 
-

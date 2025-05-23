@@ -1,11 +1,10 @@
-
 package com.porn.client.server.vo;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 
@@ -15,26 +14,24 @@ import java.io.Serializable;
 @SuperBuilder
 public class DiskInfoVo implements Serializable {
     @ApiModelProperty("盘符路径")
-     private String dirName;
+    private String dirName;
     @ApiModelProperty("文件系统类型")
-     private String type;
+    private String type;
 
     @ApiModelProperty("盘名称")
-     private String typeName;
+    private String typeName;
 
     @ApiModelProperty("总大小")
-     private String total;
+    private String total;
 
     @ApiModelProperty("剩余大小")
-     private String free;
+    private String free;
 
     @ApiModelProperty("已经使用量")
-     private String used;
+    private String used;
 
     @ApiModelProperty("资源的使用率")
-     private double usage;
-
+    private double usage;
 
 }
-
 

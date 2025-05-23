@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.util.IdUtil;
@@ -21,82 +19,51 @@ import java.io.ByteArrayOutputStream;
 import java.util.concurrent.TimeUnit;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class CaptchaApiServiceImpl
-         implements ApiService<CaptchaApiVo>
-         {
+public class CaptchaApiServiceImpl
+        implements ApiService<CaptchaApiVo> {
 
     @Autowired
-     private RedisTemplate redisTemplate;
-
+    private RedisTemplate redisTemplate;
 
 
     public CaptchaApiVo cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 36 */
+
         CaptchaApiRequestDTO captchaApiRequestDTO = (CaptchaApiRequestDTO) JSON.parseObject(cmdRequestDTO.getData(), CaptchaApiRequestDTO.class);
-        /* 37 */
+
         CaptchaTypeEnum captchaTypeEnum = CaptchaTypeEnum.queryByType(captchaApiRequestDTO.getType());
 
 
-        /* 40 */
         SpecCaptcha specCaptcha = new SpecCaptcha(((Integer) ObjectUtil.defaultIfNull(captchaApiRequestDTO.getWidth(), GenCaptchaDTO.DEFAULT_WIDTH)).intValue(), ((Integer) ObjectUtil.defaultIfNull(captchaApiRequestDTO.getHeight(), GenCaptchaDTO.DEFAULT_WIDTH)).intValue(), ((Integer) ObjectUtil.defaultIfNull(captchaApiRequestDTO.getLen(), GenCaptchaDTO.DEFAULT_LEN)).intValue());
-        /* 41 */
+
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        /* 42 */
+
         specCaptcha.out(out);
-        /* 43 */
+
         String captchaToken = IdUtil.simpleUUID();
-        /* 44 */
+
         this.redisTemplate.opsForValue().set(String.format(captchaTypeEnum.getCacheKeyFormate(), new Object[]{captchaToken}), specCaptcha.text(), captchaTypeEnum.getTimeout().intValue(), TimeUnit.MINUTES);
-        /* 45 */
+
         return CaptchaApiVo.builder()
-/* 46 */.captchaBase64(specCaptcha.toBase64(""))
-/* 47 */.captchaToken(captchaToken)
-/* 48 */.build();
+                .captchaBase64(specCaptcha.toBase64(""))
+                .captchaToken(captchaToken)
+                .build();
 
     }
 
 
-
     public String getApi() {
-        /* 52 */
+
         return "api_captcha";
 
     }
 
 
-
     public boolean validateToken() {
-        /* 56 */
+
         return false;
 
     }
 
 }
-
 

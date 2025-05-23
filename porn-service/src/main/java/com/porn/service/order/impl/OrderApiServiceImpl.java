@@ -1,18 +1,12 @@
-
 package com.porn.service.order.impl;
-
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import com.porn.client.account.api.AccountApiService;
@@ -59,47 +53,36 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class OrderApiServiceImpl implements OrderApiService {
-    /*  57 */   private static final Logger log = LoggerFactory.getLogger(OrderApiServiceImpl.class);
-
-
-
-    @Autowired
-     private OrderMapper orderMapper;
-
+public class OrderApiServiceImpl implements OrderApiService {
+    private static final Logger log = LoggerFactory.getLogger(OrderApiServiceImpl.class);
 
 
     @Autowired
-     private OrderConverter orderConverter;
-
-
-
-    @Autowired
-     private MinioApiService minioApiService;
-
+    private OrderMapper orderMapper;
 
 
     @Autowired
-     private RedisTemplate redisTemplate;
+    private OrderConverter orderConverter;
 
 
     @Autowired
-     private AccountApiService accountApiService;
+    private MinioApiService minioApiService;
 
 
     @Autowired
-     private MerchantApiService merchantApiService;
-
+    private RedisTemplate redisTemplate;
 
     @Autowired
-     private ParamsetApiService paramsetApiService;
+    private AccountApiService accountApiService;
 
+    @Autowired
+    private MerchantApiService merchantApiService;
 
-
+    @Autowired
+    private ParamsetApiService paramsetApiService;
 
     public OrderVo queryOrder(OrderQueryDTO orderQueryDTO) {
         List<OrderVo> orderVoList = queryOrderList(orderQueryDTO);
@@ -236,7 +219,6 @@ import java.util.stream.Collectors;
 
     }
 
-
     public PageVo<OrderVo> queryProxyPage(ProxyOrderQueryPageDTO proxyOrderQueryPageDTO) {
         AccountQueryProxyTeamsDTO accountQueryProxyTeamsDTO = AccountQueryProxyTeamsDTO.builder()
                 .mngUserId(proxyOrderQueryPageDTO.getCurrentUserId())
@@ -322,29 +304,27 @@ import java.util.stream.Collectors;
 
     }
 
-
     protected String genOrderNo() {
-        /* 273 */
+
         LocalDateTime now = LocalDateTimeUtil.now();
-        /* 274 */
+
         String year = LocalDateTimeUtil.format(LocalDateTimeUtil.now(), "yyyy");
-        /* 275 */
+
         String month = LocalDateTimeUtil.format(LocalDateTimeUtil.now(), "MM");
-        /* 276 */
+
         String day = LocalDateTimeUtil.format(LocalDateTimeUtil.now(), "dd");
-        /* 277 */
+
         String randNum = String.format("%04d", new Object[]{Integer.valueOf((new Random()).nextInt(1000))});
-        /* 278 */
+
         String incKey = "orderno_key" + LocalDateTimeUtil.format(now, "yyyyMMdd");
-        /* 279 */
+
         Long incNum = this.redisTemplate.opsForValue().increment(incKey);
-        /* 280 */
+
         this.redisTemplate.expire(incKey, 24L, TimeUnit.HOURS);
-        /* 281 */
+
         return StrUtil.join("", new Object[]{"NO", randNum, month, year, day, String.valueOf(Math.abs(incNum.longValue()))});
 
     }
-
 
 
     public Boolean delete(OrderDeleteDTO orderDeleteDTO) {
@@ -355,11 +335,6 @@ import java.util.stream.Collectors;
                 .update();
 
     }
-
-
-
-
-
 
 
     public OrderStatisticsVo orderStatistics(OrderStatisticsDTO orderStatisticsDTO) {
@@ -413,7 +388,6 @@ import java.util.stream.Collectors;
 
     }
 
-
     public Boolean keepAudit(OrderAuditDTO orderAuditDTO) {
         // 审核订单
         audit(orderAuditDTO);
@@ -459,7 +433,6 @@ import java.util.stream.Collectors;
 
     }
 
-
     protected void proxyFreeProcess(OrderVo orderVo) {
         AccountVo accountVo = accountApiService.queryAccount(
                 AccountQueryDTO.builder().id(orderVo.getAccountId()).build()
@@ -471,11 +444,16 @@ import java.util.stream.Collectors;
         ParamsetVo paramsetVo = paramsetApiService.queryParamset(ParamsetQueryDTO.builder().build());
 
         // 代理等级与对应分润比例映射
-        Map<Integer, BigDecimal> proxyRateMap = Map.of(
-                1, paramsetVo.getProxyLevel1Rate(),
-                2, paramsetVo.getProxyLevel2Rate(),
-                3, paramsetVo.getProxyLevel3Rate()
-        );
+//        Map<Integer, BigDecimal> proxyRateMap = Map.of(
+//                1, paramsetVo.getProxyLevel1Rate(),
+//                2, paramsetVo.getProxyLevel2Rate(),
+//                3, paramsetVo.getProxyLevel3Rate()
+//        );
+
+        Map<Integer, BigDecimal> proxyRateMap = new HashMap<>();
+        proxyRateMap.put(1, paramsetVo.getProxyLevel1Rate());
+        proxyRateMap.put(2, paramsetVo.getProxyLevel2Rate());
+        proxyRateMap.put(3, paramsetVo.getProxyLevel3Rate());
 
         // 当前要查询的上级账号ID
         Long currentParentId = accountVo.getParentId();
@@ -514,9 +492,6 @@ import java.util.stream.Collectors;
 
     }
 
-
-
-
     public Boolean freeze(OrderFreezeDTO orderFreezeDTO) {
         return ChainWrappers.lambdaUpdateChain(this.orderMapper)
                 .set(OrderDO::getOrderStatus, OrderStatusEnum.FREEZE.getStatus())
@@ -524,9 +499,6 @@ import java.util.stream.Collectors;
                 .eq(BaseDO::getDelFlag, DelFlagEnum.NORMAL.getFlag())
                 .update();
     }
-
-
-
 
     public Boolean unfreeze(OrderUnFreezeDTO orderUnFreezeDTO) {
         return ChainWrappers.lambdaUpdateChain(this.orderMapper)
@@ -538,9 +510,6 @@ import java.util.stream.Collectors;
                 .update();
 
     }
-
-
-
 
     public Boolean orderTimeOut(OrderTimeOutDTO orderTimeOutDTO) {
         // 查询订单
@@ -577,7 +546,6 @@ import java.util.stream.Collectors;
         return Boolean.TRUE;
 
     }
-
 
     public BigDecimal sumOrderAmount(OrderQueryDTO orderQueryDTO) {
         BigDecimal rs = this.orderMapper.sumOrderAmount(orderQueryDTO);

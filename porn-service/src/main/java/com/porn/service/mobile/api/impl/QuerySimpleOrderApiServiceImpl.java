@@ -1,6 +1,4 @@
-
 package com.porn.service.mobile.api.impl;
-
 
 
 import cn.hutool.core.date.DateUtil;
@@ -22,116 +20,75 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Service
- public class QuerySimpleOrderApiServiceImpl
-         implements ApiService<List<OrderVo>>
-         {
+public class QuerySimpleOrderApiServiceImpl
+        implements ApiService<List<OrderVo>> {
 
     @Autowired
-     private OrderApiService orderApiService;
-
+    private OrderApiService orderApiService;
 
 
     public List<OrderVo> cmd(CmdRequestDTO cmdRequestDTO) {
-        /* 35 */
+
         QueryOrderApiRequestDTO queryOrderApiRequestDTO = (QueryOrderApiRequestDTO) JSON.parseObject(cmdRequestDTO.getData(), QueryOrderApiRequestDTO.class);
 
 
-
-
-
-
-
-
-        /* 44 */
         OrderQueryPageDTO orderQueryDTO = ((OrderQueryPageDTO.OrderQueryPageDTOBuilder) ((OrderQueryPageDTO.OrderQueryPageDTOBuilder) OrderQueryPageDTO.builder().accountId(cmdRequestDTO.getAccountVo().getId()).merchantId(queryOrderApiRequestDTO.getMerchantId()).startTime(LocalDateTimeUtil.offset(LocalDateTimeUtil.now(), -15L, ChronoUnit.DAYS)).orderStatus(queryOrderApiRequestDTO.getOrderStatus()).orderStatusList(queryOrderApiRequestDTO.getOrderStatusList()).pageStart(queryOrderApiRequestDTO.getPageStart())).pageSize(queryOrderApiRequestDTO.getPageSize())).build();
-        /* 45 */
+
         if (ObjectUtil.isNotEmpty(queryOrderApiRequestDTO.getDateRange())) {
 
-            /* 47 */
             if (Integer.valueOf(0).equals(queryOrderApiRequestDTO.getDateRange())) {
-                /* 48 */
+
                 orderQueryDTO.setStartTime(LocalDateTimeUtil.beginOfDay(LocalDateTimeUtil.now()));
 
             }
 
-            /* 51 */
             if (Integer.valueOf(1).equals(queryOrderApiRequestDTO.getDateRange())) {
-                /* 52 */
+
                 orderQueryDTO.setStartTime(DateUtil.beginOfWeek(new Date()).toLocalDateTime());
 
             }
 
-            /* 55 */
             if (Integer.valueOf(2).equals(queryOrderApiRequestDTO.getDateRange())) {
-                /* 56 */
+
                 orderQueryDTO.setStartTime(DateUtil.beginOfMonth(new Date()).toLocalDateTime());
 
             }
 
-            /* 59 */
             if (Integer.valueOf(-1).equals(queryOrderApiRequestDTO.getDateRange())) {
-                /* 60 */
+
                 orderQueryDTO.setStartTime(null);
 
             }
 
         }
-        /* 63 */
+
         if (ObjectUtil.isNotEmpty(queryOrderApiRequestDTO.getQueryAllAccount()) && queryOrderApiRequestDTO
-/* 64 */.getQueryAllAccount().booleanValue()) {
-            /* 65 */
+                .getQueryAllAccount().booleanValue()) {
+
             orderQueryDTO.setAccountId(null);
 
         }
-        /* 67 */
+
         PageVo<OrderVo> pageVo = this.orderApiService.queryPage(orderQueryDTO);
-        /* 68 */
+
         return (ObjectUtil.isEmpty(pageVo) || ObjectUtil.isEmpty(pageVo.getData())) ? Collections.<OrderVo>emptyList() : pageVo.getData();
 
     }
 
 
-
     public String getApi() {
-        /* 72 */
+
         return "api_simpleorder";
 
     }
 
 
-
     public boolean validateToken() {
-        /* 76 */
+
         return Boolean.FALSE.booleanValue();
 
     }
 
 }
-
 

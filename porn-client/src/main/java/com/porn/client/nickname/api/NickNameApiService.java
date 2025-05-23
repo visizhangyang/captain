@@ -22,4 +22,3 @@ public interface NickNameApiService {
     Boolean upload(NickNameUploadDTO paramNickNameUploadDTO);
 }
 
-

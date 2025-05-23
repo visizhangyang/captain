@@ -24,4 +24,3 @@ public interface MerchantApiService {
     Boolean confirmOrder(MerchantConfirmOrderDTO paramMerchantConfirmOrderDTO);
 }
 
-

@@ -16,4 +16,3 @@ public interface WorkrobotApiService {
     Boolean batchCreate(List<WorkrobotSaveOrUpdateDTO> paramList);
 }
 
-

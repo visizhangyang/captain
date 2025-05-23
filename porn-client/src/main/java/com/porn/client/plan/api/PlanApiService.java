@@ -21,4 +21,3 @@ public interface PlanApiService {
     Boolean delete(PlanDeleteDTO paramPlanDeleteDTO);
 }
 
-

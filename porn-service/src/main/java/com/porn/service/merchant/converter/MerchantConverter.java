@@ -16,4 +16,3 @@ public interface MerchantConverter {
     MerchantDO toMerchantDO(MerchantSaveOrUpdateDTO paramMerchantSaveOrUpdateDTO);
 }
 
-

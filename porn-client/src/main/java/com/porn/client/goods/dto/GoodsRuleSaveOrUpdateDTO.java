@@ -1,66 +1,30 @@
-
 package com.porn.client.goods.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
- public class GoodsRuleSaveOrUpdateDTO extends BaseDTO {
+public class GoodsRuleSaveOrUpdateDTO extends BaseDTO {
 
     @ApiModelProperty("商户id")
-     private Long merchantId;
+    private Long merchantId;
 
     @ApiModelProperty("最小商品数量")
-     private Integer minGoodsCount;
+    private Integer minGoodsCount;
 
     @ApiModelProperty("最大商品数量")
-     private Integer maxGoodsCount;
+    private Integer maxGoodsCount;
 
     @ApiModelProperty("最小金额")
-     private BigDecimal minAmount;
+    private BigDecimal minAmount;
 
     @ApiModelProperty("最大金额")
-     private BigDecimal maxAmount;
+    private BigDecimal maxAmount;
 
     @ApiModelProperty("状态, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
-     private Integer status;
+    private Integer status;
 
-
-    /* 16 */
-    public void setMerchantId(Long merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public void setMinGoodsCount(Integer minGoodsCount) {
-        this.minGoodsCount = minGoodsCount;
-    }
-
-    public void setMaxGoodsCount(Integer maxGoodsCount) {
-        this.maxGoodsCount = maxGoodsCount;
-    }
-
-    public void setMinAmount(BigDecimal minAmount) {
-        this.minAmount = minAmount;
-    }
-
-    public void setMaxAmount(BigDecimal maxAmount) {
-        this.maxAmount = maxAmount;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof GoodsRuleSaveOrUpdateDTO;
-    }
-
-
-
-    /* 17 */
     protected GoodsRuleSaveOrUpdateDTO(GoodsRuleSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.merchantId = b.merchantId;
@@ -71,8 +35,86 @@ import java.math.BigDecimal;
         this.status = b.status;
     }
 
+    public GoodsRuleSaveOrUpdateDTO(Long merchantId, Integer minGoodsCount, Integer maxGoodsCount, BigDecimal minAmount, BigDecimal maxAmount, Integer status) {
+
+        this.merchantId = merchantId;
+        this.minGoodsCount = minGoodsCount;
+        this.maxGoodsCount = maxGoodsCount;
+        this.minAmount = minAmount;
+        this.maxAmount = maxAmount;
+        this.status = status;
+
+    }
+
+    public GoodsRuleSaveOrUpdateDTO() {
+    }
+
     public static GoodsRuleSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new GoodsRuleSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof GoodsRuleSaveOrUpdateDTO;
+    }
+
+    public Long getMerchantId() {
+
+        return this.merchantId;
+
+    }
+
+    public void setMerchantId(Long merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public Integer getMinGoodsCount() {
+
+        return this.minGoodsCount;
+
+    }
+
+    public void setMinGoodsCount(Integer minGoodsCount) {
+        this.minGoodsCount = minGoodsCount;
+    }
+
+    public Integer getMaxGoodsCount() {
+
+        return this.maxGoodsCount;
+
+    }
+
+    public void setMaxGoodsCount(Integer maxGoodsCount) {
+        this.maxGoodsCount = maxGoodsCount;
+    }
+
+    public BigDecimal getMinAmount() {
+
+        return this.minAmount;
+
+    }
+
+    public void setMinAmount(BigDecimal minAmount) {
+        this.minAmount = minAmount;
+    }
+
+    public BigDecimal getMaxAmount() {
+
+        return this.maxAmount;
+
+    }
+
+    public void setMaxAmount(BigDecimal maxAmount) {
+        this.maxAmount = maxAmount;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     private static final class GoodsRuleSaveOrUpdateDTOBuilderImpl extends GoodsRuleSaveOrUpdateDTOBuilder<GoodsRuleSaveOrUpdateDTO, GoodsRuleSaveOrUpdateDTOBuilderImpl> {
@@ -92,15 +134,14 @@ import java.math.BigDecimal;
         private Long merchantId;
         private Integer minGoodsCount;
         private Integer maxGoodsCount;
+        private BigDecimal minAmount;
+        private BigDecimal maxAmount;
+        private Integer status;
 
         public B merchantId(Long merchantId) {
             this.merchantId = merchantId;
             return self();
         }
-
-        private BigDecimal minAmount;
-        private BigDecimal maxAmount;
-        private Integer status;
 
         public B minGoodsCount(Integer minGoodsCount) {
             this.minGoodsCount = minGoodsCount;
@@ -133,64 +174,5 @@ import java.math.BigDecimal;
 
     }
 
-    public GoodsRuleSaveOrUpdateDTO(Long merchantId, Integer minGoodsCount, Integer maxGoodsCount, BigDecimal minAmount, BigDecimal maxAmount, Integer status) {
-        /* 18 */
-        this.merchantId = merchantId;
-        this.minGoodsCount = minGoodsCount;
-        this.maxGoodsCount = maxGoodsCount;
-        this.minAmount = minAmount;
-        this.maxAmount = maxAmount;
-        this.status = status;
-
-    }
-
-
-    public GoodsRuleSaveOrUpdateDTO() {
-    }
-
-
-
-    public Long getMerchantId() {
-        /* 23 */
-        return this.merchantId;
-
-    }
-
-
-    public Integer getMinGoodsCount() {
-        /* 26 */
-        return this.minGoodsCount;
-
-    }
-
-
-    public Integer getMaxGoodsCount() {
-        /* 29 */
-        return this.maxGoodsCount;
-
-    }
-
-
-    public BigDecimal getMinAmount() {
-        /* 32 */
-        return this.minAmount;
-
-    }
-
-
-    public BigDecimal getMaxAmount() {
-        /* 35 */
-        return this.maxAmount;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 38 */
-        return this.status;
-
-    }
-
 }
-
 

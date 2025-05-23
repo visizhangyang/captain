@@ -1,10 +1,10 @@
-
 package com.porn.client.mobile.vo;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,27 +15,26 @@ import java.math.BigDecimal;
 @SuperBuilder
 public class TodayStatisticsVo implements Serializable {
     @ApiModelProperty("今日总交易额")
-     private BigDecimal totalAmount;
+    private BigDecimal totalAmount;
     @ApiModelProperty("今日佣金")
-     private BigDecimal freeAmount;
+    private BigDecimal freeAmount;
     @ApiModelProperty("今日成功订单数")
-     private Integer orderCount;
+    private Integer orderCount;
 
     @ApiModelProperty("今日交易中数量")
-     private Integer tradingCount;
+    private Integer tradingCount;
 
     @ApiModelProperty("今日待收金额")
-     private BigDecimal waitReceiveAmount;
+    private BigDecimal waitReceiveAmount;
 
     @ApiModelProperty("总数")
-     private Integer totalCount;
+    private Integer totalCount;
 
     @ApiModelProperty("最后一个订单时间")
-     private String lastOrderTime;
+    private String lastOrderTime;
 
     @ApiModelProperty("未读公告数量")
-     private Integer unReadNoticeCount;
+    private Integer unReadNoticeCount;
 
 }
-
 

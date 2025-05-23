@@ -10,4 +10,3 @@ public interface StreamMapper extends BaseMapper<StreamDO> {
     BigDecimal statisticsTotalProxyProfit(StreamQueryDTO paramStreamQueryDTO);
 }
 
-

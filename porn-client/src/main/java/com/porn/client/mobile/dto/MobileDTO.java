@@ -1,64 +1,79 @@
-
 package com.porn.client.mobile.dto;
+
 import io.swagger.annotations.ApiModelProperty;
-
-
-
-
 
 import java.io.Serializable;
 
-
-
-
- public class MobileDTO implements Serializable {
+public class MobileDTO implements Serializable {
 
     @ApiModelProperty("类型, EncryptTypeEnum")
-     private Integer type;
+    private Integer type;
 
     @ApiModelProperty("请求方法体")
-     private String body;
+    private String body;
 
     @ApiModelProperty("扩展数据")
-     private MobileExtDTO mobileExtDTO;
+    private MobileExtDTO mobileExtDTO;
 
+    public MobileDTO(Integer type, String body, MobileExtDTO mobileExtDTO) {
 
+        this.type = type;
+        this.body = body;
+        this.mobileExtDTO = mobileExtDTO;
+
+    }
+
+    public MobileDTO() {
+    }
+
+    public static MobileDTOBuilder builder() {
+        return new MobileDTOBuilder();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MobileDTO;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
 
     public void setType(Integer type) {
-        /* 15 */
+
         this.type = type;
+    }
+
+    public String getBody() {
+
+        return this.body;
+
     }
 
     public void setBody(String body) {
         this.body = body;
     }
 
+    public MobileExtDTO getMobileExtDTO() {
+
+        return this.mobileExtDTO;
+
+    }
+
     public void setMobileExtDTO(MobileExtDTO mobileExtDTO) {
         this.mobileExtDTO = mobileExtDTO;
     }
 
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MobileDTO;
-    }
-
-
-
-    /* 16 */
-    public static MobileDTOBuilder builder() {
-        return new MobileDTOBuilder();
-    }
-
     public static class MobileDTOBuilder {
         private Integer type;
+        private String body;
+        private MobileExtDTO mobileExtDTO;
 
         public MobileDTOBuilder type(Integer type) {
             this.type = type;
             return this;
         }
-
-        private String body;
-        private MobileExtDTO mobileExtDTO;
 
         public MobileDTOBuilder body(String body) {
             this.body = body;
@@ -76,40 +91,5 @@ import java.io.Serializable;
 
     }
 
-    public MobileDTO(Integer type, String body, MobileExtDTO mobileExtDTO) {
-        /* 17 */
-        this.type = type;
-        this.body = body;
-        this.mobileExtDTO = mobileExtDTO;
-
-    }
-
-
-    public MobileDTO() {
-    }
-
-
-
-    public Integer getType() {
-        /* 22 */
-        return this.type;
-
-    }
-
-
-    public String getBody() {
-        /* 25 */
-        return this.body;
-
-    }
-
-
-    public MobileExtDTO getMobileExtDTO() {
-        /* 28 */
-        return this.mobileExtDTO;
-
-    }
-
 }
-
 

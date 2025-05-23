@@ -1,13 +1,16 @@
-
 package com.porn.service.autowork.dao.entity;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.porn.service.common.entity.BaseDO;
-import lombok.*;import lombok.experimental.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 
 
 @TableName("porn_autowork")
@@ -16,25 +19,25 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
- public class AutoWorkDO extends BaseDO {
+public class AutoWorkDO extends BaseDO {
 
     @TableField("account_id")
-     private Long accountId;
+    private Long accountId;
 
     @TableField("min_workcount")
-     private Integer minWorkCount;
+    private Integer minWorkCount;
 
     @TableField("max_workcount")
-     private Integer maxWorkCount;
+    private Integer maxWorkCount;
 
     @TableField("min_workamount")
-     private BigDecimal minWorkAmount;
+    private BigDecimal minWorkAmount;
 
     @TableField("max_workamount")
-     private BigDecimal maxWorkAmount;
+    private BigDecimal maxWorkAmount;
 
     @TableField("min_workspace")
-     private Integer minWorkSpace;
+    private Integer minWorkSpace;
 
     @TableField("max_workspace")
     private Integer maxWorkSpace;
@@ -50,7 +53,6 @@ import java.time.LocalDateTime;
     private Integer minCompleteTime;
     @TableField("max_completetime")
     private Integer maxCompleteTime;
-
 
 }
 

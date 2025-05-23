@@ -1,39 +1,31 @@
-
 package com.porn.client.order.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
- public class OrderSaveOrUpdateDTO extends BaseDTO {
+public class OrderSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("账户id")
-     private Long accountId;
+    private Long accountId;
     @ApiModelProperty("账户名称")
-     private String accountName;
+    private String accountName;
     @ApiModelProperty("账户头像")
-     private String accountAvatar;
+    private String accountAvatar;
     @ApiModelProperty("商户id")
-     private Long merchantId;
+    private Long merchantId;
 
     @ApiModelProperty("商户名称")
-     private String merchantName;
+    private String merchantName;
 
     @ApiModelProperty("商户头像")
-     private String merchantAvatar;
+    private String merchantAvatar;
 
     @ApiModelProperty("订单金额")
-     private BigDecimal orderAmount;
+    private BigDecimal orderAmount;
 
     @ApiModelProperty("订单费率(%)")
-     private BigDecimal orderRate;
-
-
-    /* 16 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
+    private BigDecimal orderRate;
     @ApiModelProperty("订单佣金")
     private BigDecimal freeAmount;
     @ApiModelProperty("订单状态, OrderStatusEnum")
@@ -53,78 +45,6 @@ import java.math.BigDecimal;
     @ApiModelProperty("钱包地址")
     private String address;
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public void setAccountAvatar(String accountAvatar) {
-        this.accountAvatar = accountAvatar;
-    }
-
-    public void setMerchantId(Long merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
-    }
-
-    public void setMerchantAvatar(String merchantAvatar) {
-        this.merchantAvatar = merchantAvatar;
-    }
-
-    public void setOrderAmount(BigDecimal orderAmount) {
-        this.orderAmount = orderAmount;
-    }
-
-    public void setOrderRate(BigDecimal orderRate) {
-        this.orderRate = orderRate;
-    }
-
-    public void setFreeAmount(BigDecimal freeAmount) {
-        this.freeAmount = freeAmount;
-    }
-
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public void setPlayStatus(Integer playStatus) {
-        this.playStatus = playStatus;
-    }
-
-    public void setOrderType(Integer orderType) {
-        this.orderType = orderType;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public void setNotifyMsg(Boolean notifyMsg) {
-        this.notifyMsg = notifyMsg;
-    }
-
-    public void setWalletCode(String walletCode) {
-        this.walletCode = walletCode;
-    }
-
-    public void setWalletName(String walletName) {
-        this.walletName = walletName;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof OrderSaveOrUpdateDTO;
-    }
-
-
-
-    /* 17 */
     protected OrderSaveOrUpdateDTO(OrderSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -146,8 +66,207 @@ import java.math.BigDecimal;
         this.address = b.address;
     }
 
+    public OrderSaveOrUpdateDTO(Long accountId, String accountName, String accountAvatar, Long merchantId, String merchantName, String merchantAvatar, BigDecimal orderAmount, BigDecimal orderRate, BigDecimal freeAmount, Integer orderStatus, Integer playStatus, Integer orderType, String remark, Boolean notifyMsg, String walletCode, String walletName, String address) {
+
+        this.accountId = accountId;
+        this.accountName = accountName;
+        this.accountAvatar = accountAvatar;
+        this.merchantId = merchantId;
+        this.merchantName = merchantName;
+        this.merchantAvatar = merchantAvatar;
+        this.orderAmount = orderAmount;
+        this.orderRate = orderRate;
+        this.freeAmount = freeAmount;
+        this.orderStatus = orderStatus;
+        this.playStatus = playStatus;
+        this.orderType = orderType;
+        this.remark = remark;
+        this.notifyMsg = notifyMsg;
+        this.walletCode = walletCode;
+        this.walletName = walletName;
+        this.address = address;
+
+    }
+
+    public OrderSaveOrUpdateDTO() {
+    }
+
     public static OrderSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new OrderSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof OrderSaveOrUpdateDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getAccountName() {
+
+        return this.accountName;
+
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public String getAccountAvatar() {
+
+        return this.accountAvatar;
+
+    }
+
+    public void setAccountAvatar(String accountAvatar) {
+        this.accountAvatar = accountAvatar;
+    }
+
+    public Long getMerchantId() {
+
+        return this.merchantId;
+
+    }
+
+    public void setMerchantId(Long merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public String getMerchantName() {
+
+        return this.merchantName;
+
+    }
+
+    public void setMerchantName(String merchantName) {
+        this.merchantName = merchantName;
+    }
+
+    public String getMerchantAvatar() {
+
+        return this.merchantAvatar;
+
+    }
+
+    public void setMerchantAvatar(String merchantAvatar) {
+        this.merchantAvatar = merchantAvatar;
+    }
+
+    public BigDecimal getOrderAmount() {
+
+        return this.orderAmount;
+
+    }
+
+    public void setOrderAmount(BigDecimal orderAmount) {
+        this.orderAmount = orderAmount;
+    }
+
+    public BigDecimal getOrderRate() {
+
+        return this.orderRate;
+
+    }
+
+    public void setOrderRate(BigDecimal orderRate) {
+        this.orderRate = orderRate;
+    }
+
+    public BigDecimal getFreeAmount() {
+
+        return this.freeAmount;
+
+    }
+
+    public void setFreeAmount(BigDecimal freeAmount) {
+        this.freeAmount = freeAmount;
+    }
+
+    public Integer getOrderStatus() {
+
+        return this.orderStatus;
+
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Integer getPlayStatus() {
+
+        return this.playStatus;
+
+    }
+
+    public void setPlayStatus(Integer playStatus) {
+        this.playStatus = playStatus;
+    }
+
+    public Integer getOrderType() {
+
+        return this.orderType;
+
+    }
+
+    public void setOrderType(Integer orderType) {
+        this.orderType = orderType;
+    }
+
+    public String getRemark() {
+
+        return this.remark;
+
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Boolean getNotifyMsg() {
+
+        return this.notifyMsg;
+
+    }
+
+    public void setNotifyMsg(Boolean notifyMsg) {
+        this.notifyMsg = notifyMsg;
+    }
+
+    public String getWalletCode() {
+
+        return this.walletCode;
+
+    }
+
+    public void setWalletCode(String walletCode) {
+        this.walletCode = walletCode;
+    }
+
+    public String getWalletName() {
+
+        return this.walletName;
+
+    }
+
+    public void setWalletName(String walletName) {
+        this.walletName = walletName;
+    }
+
+    public String getAddress() {
+
+        return this.address;
+
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     private static final class OrderSaveOrUpdateDTOBuilderImpl extends OrderSaveOrUpdateDTOBuilder<OrderSaveOrUpdateDTO, OrderSaveOrUpdateDTOBuilderImpl> {
@@ -272,152 +391,5 @@ import java.math.BigDecimal;
         public abstract C build();
 
     }
-
-    public OrderSaveOrUpdateDTO(Long accountId, String accountName, String accountAvatar, Long merchantId, String merchantName, String merchantAvatar, BigDecimal orderAmount, BigDecimal orderRate, BigDecimal freeAmount, Integer orderStatus, Integer playStatus, Integer orderType, String remark, Boolean notifyMsg, String walletCode, String walletName, String address) {
-        /* 18 */
-        this.accountId = accountId;
-        this.accountName = accountName;
-        this.accountAvatar = accountAvatar;
-        this.merchantId = merchantId;
-        this.merchantName = merchantName;
-        this.merchantAvatar = merchantAvatar;
-        this.orderAmount = orderAmount;
-        this.orderRate = orderRate;
-        this.freeAmount = freeAmount;
-        this.orderStatus = orderStatus;
-        this.playStatus = playStatus;
-        this.orderType = orderType;
-        this.remark = remark;
-        this.notifyMsg = notifyMsg;
-        this.walletCode = walletCode;
-        this.walletName = walletName;
-        this.address = address;
-
-    }
-
-
-    public OrderSaveOrUpdateDTO() {
-    }
-
-
-
-    public Long getAccountId() {
-        /* 23 */
-        return this.accountId;
-
-    }
-
-
-    public String getAccountName() {
-        /* 26 */
-        return this.accountName;
-
-    }
-
-
-    public String getAccountAvatar() {
-        /* 29 */
-        return this.accountAvatar;
-
-    }
-
-
-    public Long getMerchantId() {
-        /* 32 */
-        return this.merchantId;
-
-    }
-
-
-    public String getMerchantName() {
-        /* 35 */
-        return this.merchantName;
-
-    }
-
-
-    public String getMerchantAvatar() {
-        /* 38 */
-        return this.merchantAvatar;
-
-    }
-
-
-    public BigDecimal getOrderAmount() {
-        /* 41 */
-        return this.orderAmount;
-
-    }
-
-
-    public BigDecimal getOrderRate() {
-        /* 44 */
-        return this.orderRate;
-
-    }
-
-
-    public BigDecimal getFreeAmount() {
-        /* 47 */
-        return this.freeAmount;
-
-    }
-
-
-    public Integer getOrderStatus() {
-        /* 50 */
-        return this.orderStatus;
-
-    }
-
-
-    public Integer getPlayStatus() {
-        /* 53 */
-        return this.playStatus;
-
-    }
-
-
-    public Integer getOrderType() {
-        /* 56 */
-        return this.orderType;
-
-    }
-
-
-    public String getRemark() {
-        /* 59 */
-        return this.remark;
-
-    }
-
-
-    public Boolean getNotifyMsg() {
-        /* 62 */
-        return this.notifyMsg;
-
-    }
-
-
-    public String getWalletCode() {
-        /* 65 */
-        return this.walletCode;
-
-    }
-
-
-    public String getWalletName() {
-        /* 68 */
-        return this.walletName;
-
-    }
-
-
-    public String getAddress() {
-        /* 71 */
-        return this.address;
-
-    }
 }
-
 

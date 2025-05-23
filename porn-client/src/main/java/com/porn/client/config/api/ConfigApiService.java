@@ -26,4 +26,3 @@ public interface ConfigApiService {
     Boolean proxyDelete(ProxyConfigDeleteDTO paramProxyConfigDeleteDTO);
 }
 
-

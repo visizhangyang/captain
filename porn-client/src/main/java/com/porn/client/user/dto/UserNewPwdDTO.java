@@ -1,50 +1,60 @@
-
 package com.porn.client.user.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.AbstractDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
- public class UserNewPwdDTO
-         extends AbstractDTO {
+public class UserNewPwdDTO
+        extends AbstractDTO {
 
     @ApiModelProperty("密码")
-     private String pwd;
+    private String pwd;
 
     @ApiModelProperty("新密码")
-     private String newPwd;
+    private String newPwd;
 
-
-
-    public void setPwd(String pwd) {
-        /* 15 */
-        this.pwd = pwd;
-    }
-
-    public void setNewPwd(String newPwd) {
-        this.newPwd = newPwd;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof UserNewPwdDTO;
-    }
-
-
-
-    /* 16 */
     protected UserNewPwdDTO(UserNewPwdDTOBuilder<?, ?> b) {
         super(b);
         this.pwd = b.pwd;
         this.newPwd = b.newPwd;
     }
 
+    public UserNewPwdDTO() {
+    }
+
+    public UserNewPwdDTO(String pwd, String newPwd) {
+
+        this.pwd = pwd;
+        this.newPwd = newPwd;
+
+    }
+
     public static UserNewPwdDTOBuilder<?, ?> builder() {
         return new UserNewPwdDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof UserNewPwdDTO;
+    }
+
+    public String getPwd() {
+
+        return this.pwd;
+
+    }
+
+    public void setPwd(String pwd) {
+
+        this.pwd = pwd;
+    }
+
+    public String getNewPwd() {
+
+        return this.newPwd;
+
+    }
+
+    public void setNewPwd(String newPwd) {
+        this.newPwd = newPwd;
     }
 
     private static final class UserNewPwdDTOBuilderImpl extends UserNewPwdDTOBuilder<UserNewPwdDTO, UserNewPwdDTOBuilderImpl> {
@@ -62,13 +72,12 @@ import com.porn.client.common.dto.AbstractDTO;
 
     public static abstract class UserNewPwdDTOBuilder<C extends UserNewPwdDTO, B extends UserNewPwdDTOBuilder<C, B>> extends AbstractDTO.AbstractDTOBuilder<C, B> {
         private String pwd;
+        private String newPwd;
 
         public B pwd(String pwd) {
             this.pwd = pwd;
             return self();
         }
-
-        private String newPwd;
 
         public B newPwd(String newPwd) {
             this.newPwd = newPwd;
@@ -79,34 +88,7 @@ import com.porn.client.common.dto.AbstractDTO;
 
         public abstract C build();
 
-
-    }
-
-    public UserNewPwdDTO() {
-    }
-
-    public UserNewPwdDTO(String pwd, String newPwd) {
-        /* 18 */
-        this.pwd = pwd;
-        this.newPwd = newPwd;
-
-    }
-
-
-
-    public String getPwd() {
-        /* 22 */
-        return this.pwd;
-
-    }
-
-
-    public String getNewPwd() {
-        /* 25 */
-        return this.newPwd;
-
     }
 
 }
-
 

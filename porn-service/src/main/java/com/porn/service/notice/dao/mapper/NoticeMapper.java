@@ -11,4 +11,3 @@ public interface NoticeMapper extends BaseMapper<NoticeDO> {
     List<NoticeVo> queryNoticeReadStatusList(NoticeQueryReadStatusDTO paramNoticeQueryReadStatusDTO);
 }
 
-

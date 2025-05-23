@@ -1,51 +1,21 @@
-
 package com.porn.client.notice.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-
-
-
-
-
- public class NoticeAccountQueryDTO extends BaseDTO {
+public class NoticeAccountQueryDTO extends BaseDTO {
 
     @ApiModelProperty("账户ID")
-     private Long accountId;
+    private Long accountId;
 
     @ApiModelProperty("公告ID")
-     private Long noticeId;
+    private Long noticeId;
 
     @ApiModelProperty("公告ID列表")
-     private List<Long> noticeIdList;
+    private List<Long> noticeIdList;
 
-
-    /* 16 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setNoticeId(Long noticeId) {
-        this.noticeId = noticeId;
-    }
-
-    public void setNoticeIdList(List<Long> noticeIdList) {
-        this.noticeIdList = noticeIdList;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof NoticeAccountQueryDTO;
-    }
-
-
-
-    /* 17 */
     protected NoticeAccountQueryDTO(NoticeAccountQueryDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -53,8 +23,53 @@ import java.util.List;
         this.noticeIdList = b.noticeIdList;
     }
 
+    public NoticeAccountQueryDTO(Long accountId, Long noticeId, List<Long> noticeIdList) {
+
+        this.accountId = accountId;
+        this.noticeId = noticeId;
+        this.noticeIdList = noticeIdList;
+
+    }
+
+    public NoticeAccountQueryDTO() {
+    }
+
     public static NoticeAccountQueryDTOBuilder<?, ?> builder() {
         return new NoticeAccountQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof NoticeAccountQueryDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public Long getNoticeId() {
+
+        return this.noticeId;
+
+    }
+
+    public void setNoticeId(Long noticeId) {
+        this.noticeId = noticeId;
+    }
+
+    public List<Long> getNoticeIdList() {
+
+        return this.noticeIdList;
+
+    }
+
+    public void setNoticeIdList(List<Long> noticeIdList) {
+        this.noticeIdList = noticeIdList;
     }
 
     private static final class NoticeAccountQueryDTOBuilderImpl extends NoticeAccountQueryDTOBuilder<NoticeAccountQueryDTO, NoticeAccountQueryDTOBuilderImpl> {
@@ -72,14 +87,13 @@ import java.util.List;
 
     public static abstract class NoticeAccountQueryDTOBuilder<C extends NoticeAccountQueryDTO, B extends NoticeAccountQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
+        private Long noticeId;
+        private List<Long> noticeIdList;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private Long noticeId;
-        private List<Long> noticeIdList;
 
         public B noticeId(Long noticeId) {
             this.noticeId = noticeId;
@@ -97,40 +111,5 @@ import java.util.List;
 
     }
 
-    public NoticeAccountQueryDTO(Long accountId, Long noticeId, List<Long> noticeIdList) {
-        /* 18 */
-        this.accountId = accountId;
-        this.noticeId = noticeId;
-        this.noticeIdList = noticeIdList;
-
-    }
-
-
-    public NoticeAccountQueryDTO() {
-    }
-
-
-
-    public Long getAccountId() {
-        /* 23 */
-        return this.accountId;
-
-    }
-
-
-    public Long getNoticeId() {
-        /* 26 */
-        return this.noticeId;
-
-    }
-
-
-    public List<Long> getNoticeIdList() {
-        /* 29 */
-        return this.noticeIdList;
-
-    }
-
 }
-
 

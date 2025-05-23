@@ -6,4 +6,3 @@ import com.porn.service.merchant.dao.entity.MerchantDO;
 public interface MerchantMapper extends BaseMapper<MerchantDO> {
 }
 
-

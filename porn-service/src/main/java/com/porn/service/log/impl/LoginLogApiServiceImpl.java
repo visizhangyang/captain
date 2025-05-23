@@ -1,11 +1,7 @@
-
 package com.porn.service.log.impl;
 
-
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -15,7 +11,6 @@ import com.porn.client.log.api.LoginLogApiService;
 import com.porn.client.log.dto.LoginLogQueryPageDTO;
 import com.porn.client.log.dto.LoginLogSaveDTO;
 import com.porn.client.log.vo.LoginLogVo;
-import com.porn.service.common.entity.BaseDO;
 import com.porn.service.log.converter.LoginLogConverter;
 import com.porn.service.log.dao.entity.LoginLogDO;
 import com.porn.service.log.dao.mapper.LoginLogMapper;
@@ -25,40 +20,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 @Service
 
 @Transactional(rollbackFor = {Exception.class})
- public class LoginLogApiServiceImpl implements LoginLogApiService {
-    /* 27 */   private static final Logger log = LoggerFactory.getLogger(LoginLogApiServiceImpl.class);
-
-
-
+public class LoginLogApiServiceImpl implements LoginLogApiService {
+    private static final Logger log = LoggerFactory.getLogger(LoginLogApiServiceImpl.class);
 
 
     @Autowired
-     private LoginLogMapper loginLogMapper;
-
-
-
+    private LoginLogMapper loginLogMapper;
 
 
     @Autowired
-     private LoginLogConverter loginLogConverter;
-
-
-
-
-
+    private LoginLogConverter loginLogConverter;
 
     public boolean save(LoginLogSaveDTO loginLogSaveDTO) {
-        /* 45 */
+
         LoginLogDO loginLogDO = LoginLogDO.builder().userId(loginLogSaveDTO.getUserId()).name(loginLogSaveDTO.getName()).loginIp(loginLogSaveDTO.getLoginIp()).build();
-        /* 46 */
+
         return (this.loginLogMapper.insert(loginLogDO) > 0);
 
     }
-
 
 
     public PageVo<LoginLogVo> queryPage(LoginLogQueryPageDTO loginLogQueryPageDTO) {
@@ -90,5 +72,4 @@ import java.util.List;
     }
 
 }
-
 

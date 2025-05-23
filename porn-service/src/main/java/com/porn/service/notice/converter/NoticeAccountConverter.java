@@ -16,4 +16,3 @@ public interface NoticeAccountConverter {
     NoticeAccountDO toNoticeAccountDO(NoticeAccountSaveOrUpdateDTO paramNoticeAccountSaveOrUpdateDTO);
 }
 
-

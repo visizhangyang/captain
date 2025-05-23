@@ -1,43 +1,31 @@
-
 package com.porn.client.inline.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
 
+public class InlineQueryDTO
+        extends BaseDTO {
 
-
-
-
-
-
- public class InlineQueryDTO
-         extends BaseDTO
-         {
-    
-
-    protected boolean canEqual(Object other) {
-        return other instanceof InlineQueryDTO;
-    }
-
-
-
-    /* 14 */
     protected InlineQueryDTO(InlineQueryDTOBuilder<?, ?> b) {
         super(b);
+    }
+
+    public InlineQueryDTO() {
     }
 
     public static InlineQueryDTOBuilder<?, ?> builder() {
         return new InlineQueryDTOBuilderImpl();
     }
 
+    protected boolean canEqual(Object other) {
+        return other instanceof InlineQueryDTO;
+    }
+
     private static final class InlineQueryDTOBuilderImpl extends InlineQueryDTOBuilder<InlineQueryDTO, InlineQueryDTOBuilderImpl> {
-        protected InlineQueryDTOBuilderImpl self() {
-            return this;
+        private InlineQueryDTOBuilderImpl() {
         }
 
-        private InlineQueryDTOBuilderImpl() {
+        protected InlineQueryDTOBuilderImpl self() {
+            return this;
         }
 
         public InlineQueryDTO build() {
@@ -47,22 +35,10 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class InlineQueryDTOBuilder<C extends InlineQueryDTO, B extends InlineQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
 
-        
-        
-        
         protected abstract B self();
 
-        
-        
         public abstract C build();
     }
 
-    
-    
-    
-    public InlineQueryDTO() {
-    }
-    
 }
-
 

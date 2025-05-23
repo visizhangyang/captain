@@ -1,38 +1,31 @@
-
 package com.porn.service.photo.dao.entity;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-
-
 import com.porn.service.common.entity.BaseDO;
 import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.experimental.SuperBuilder;
 
 @TableName("porn_photo")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
- public class PhotoDO extends BaseDO {
+public class PhotoDO extends BaseDO {
 
     @TableField("account_id")
-     private Long accountId;
+    private Long accountId;
 
     @TableField("account_name")
-     private String accountName;
+    private String accountName;
 
     @TableField("file_path")
-     private String filePath;
+    private String filePath;
 
     @TableField("local_identifier")
-     private String localIdentifier;
-
+    private String localIdentifier;
 
 }
 

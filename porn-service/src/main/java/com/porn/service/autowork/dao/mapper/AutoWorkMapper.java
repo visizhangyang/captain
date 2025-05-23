@@ -6,4 +6,3 @@ import com.porn.service.autowork.dao.entity.AutoWorkDO;
 public interface AutoWorkMapper extends BaseMapper<AutoWorkDO> {
 }
 
-

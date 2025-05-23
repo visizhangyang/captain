@@ -1,48 +1,19 @@
-
 package com.porn.client.photo.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
+public class PhotoQueryDTO extends BaseDTO {
 
-
-
-
- public class PhotoQueryDTO extends BaseDTO {
-    
     @ApiModelProperty("账户ID")
-     private Long accountId;
-    
+    private Long accountId;
+
     @ApiModelProperty("账户名称")
-     private String lkAccountName;
-    
+    private String lkAccountName;
+
     @ApiModelProperty("app端唯一")
-     private String localIdentifier;
+    private String localIdentifier;
 
-    
-    /* 15 */
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setLkAccountName(String lkAccountName) {
-        this.lkAccountName = lkAccountName;
-    }
-
-    public void setLocalIdentifier(String localIdentifier) {
-        this.localIdentifier = localIdentifier;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof PhotoQueryDTO;
-    }
-
-
-
-    /* 16 */
     protected PhotoQueryDTO(PhotoQueryDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BaseDTO;
         this.localIdentifier = b.localIdentifier;
     }
 
+    public PhotoQueryDTO(Long accountId, String lkAccountName, String localIdentifier) {
+
+        this.accountId = accountId;
+        this.lkAccountName = lkAccountName;
+        this.localIdentifier = localIdentifier;
+
+    }
+
+    public PhotoQueryDTO() {
+    }
+
     public static PhotoQueryDTOBuilder<?, ?> builder() {
         return new PhotoQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof PhotoQueryDTO;
+    }
+
+    public Long getAccountId() {
+
+        return this.accountId;
+
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getLkAccountName() {
+
+        return this.lkAccountName;
+
+    }
+
+    public void setLkAccountName(String lkAccountName) {
+        this.lkAccountName = lkAccountName;
+    }
+
+    public String getLocalIdentifier() {
+
+        return this.localIdentifier;
+
+    }
+
+    public void setLocalIdentifier(String localIdentifier) {
+        this.localIdentifier = localIdentifier;
     }
 
     private static final class PhotoQueryDTOBuilderImpl extends PhotoQueryDTOBuilder<PhotoQueryDTO, PhotoQueryDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BaseDTO;
 
     public static abstract class PhotoQueryDTOBuilder<C extends PhotoQueryDTO, B extends PhotoQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
+        private String lkAccountName;
+        private String localIdentifier;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private String lkAccountName;
-        private String localIdentifier;
 
         public B lkAccountName(String lkAccountName) {
             this.lkAccountName = lkAccountName;
@@ -94,40 +109,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public PhotoQueryDTO(Long accountId, String lkAccountName, String localIdentifier) {
-        /* 17 */
-        this.accountId = accountId;
-        this.lkAccountName = lkAccountName;
-        this.localIdentifier = localIdentifier;
-        
-    }
-
-    
-    public PhotoQueryDTO() {
-    }
-
-    
-    
-    public Long getAccountId() {
-        /* 22 */
-        return this.accountId;
-        
-    }
-
-    
-    public String getLkAccountName() {
-        /* 25 */
-        return this.lkAccountName;
-        
-    }
-
-    
-    public String getLocalIdentifier() {
-        /* 28 */
-        return this.localIdentifier;
-        
-    }
-    
 }
-
 

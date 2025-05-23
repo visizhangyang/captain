@@ -6,4 +6,3 @@ import com.porn.service.reward.dao.entity.RewardRecordDO;
 public interface RewardRecordMapper extends BaseMapper<RewardRecordDO> {
 }
 
-

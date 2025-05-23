@@ -1,48 +1,19 @@
-
 package com.porn.client.nickname.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BasePageDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
-
-
-
- public class NickNameQueryPageDTO extends BasePageDTO {
+public class NickNameQueryPageDTO extends BasePageDTO {
 
     @ApiModelProperty("模糊查询")
-     private String lkNickName;
+    private String lkNickName;
 
     @ApiModelProperty("昵称类型, NickNameTypeEnum, 0-机器人, 1-手工导入")
-     private Integer nickNameType;
+    private Integer nickNameType;
 
     @ApiModelProperty("使用状态, 1-启用, 0-禁用 com.porn.client.common.enums.EnableStatusEnum")
-     private Integer status;
+    private Integer status;
 
-
-    /* 15 */
-    public void setLkNickName(String lkNickName) {
-        this.lkNickName = lkNickName;
-    }
-
-    public void setNickNameType(Integer nickNameType) {
-        this.nickNameType = nickNameType;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof NickNameQueryPageDTO;
-    }
-
-
-
-    /* 16 */
     protected NickNameQueryPageDTO(NickNameQueryPageDTOBuilder<?, ?> b) {
         super(b);
         this.lkNickName = b.lkNickName;
@@ -50,8 +21,53 @@ import com.porn.client.common.dto.BasePageDTO;
         this.status = b.status;
     }
 
+    public NickNameQueryPageDTO() {
+    }
+
+    public NickNameQueryPageDTO(String lkNickName, Integer nickNameType, Integer status) {
+
+        this.lkNickName = lkNickName;
+        this.nickNameType = nickNameType;
+        this.status = status;
+
+    }
+
     public static NickNameQueryPageDTOBuilder<?, ?> builder() {
         return new NickNameQueryPageDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof NickNameQueryPageDTO;
+    }
+
+    public String getLkNickName() {
+
+        return this.lkNickName;
+
+    }
+
+    public void setLkNickName(String lkNickName) {
+        this.lkNickName = lkNickName;
+    }
+
+    public Integer getNickNameType() {
+
+        return this.nickNameType;
+
+    }
+
+    public void setNickNameType(Integer nickNameType) {
+        this.nickNameType = nickNameType;
+    }
+
+    public Integer getStatus() {
+
+        return this.status;
+
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     private static final class NickNameQueryPageDTOBuilderImpl extends NickNameQueryPageDTOBuilder<NickNameQueryPageDTO, NickNameQueryPageDTOBuilderImpl> {
@@ -69,14 +85,13 @@ import com.porn.client.common.dto.BasePageDTO;
 
     public static abstract class NickNameQueryPageDTOBuilder<C extends NickNameQueryPageDTO, B extends NickNameQueryPageDTOBuilder<C, B>> extends BasePageDTO.BasePageDTOBuilder<C, B> {
         private String lkNickName;
+        private Integer nickNameType;
+        private Integer status;
 
         public B lkNickName(String lkNickName) {
             this.lkNickName = lkNickName;
             return self();
         }
-
-        private Integer nickNameType;
-        private Integer status;
 
         public B nickNameType(Integer nickNameType) {
             this.nickNameType = nickNameType;
@@ -92,42 +107,7 @@ import com.porn.client.common.dto.BasePageDTO;
 
         public abstract C build();
 
-
-    }
-
-    public NickNameQueryPageDTO() {
-    }
-
-    public NickNameQueryPageDTO(String lkNickName, Integer nickNameType, Integer status) {
-        /* 18 */
-        this.lkNickName = lkNickName;
-        this.nickNameType = nickNameType;
-        this.status = status;
-
-    }
-
-
-
-    public String getLkNickName() {
-        /* 22 */
-        return this.lkNickName;
-
-    }
-
-
-    public Integer getNickNameType() {
-        /* 25 */
-        return this.nickNameType;
-
-    }
-
-
-    public Integer getStatus() {
-        /* 28 */
-        return this.status;
-
     }
 
 }
-
 

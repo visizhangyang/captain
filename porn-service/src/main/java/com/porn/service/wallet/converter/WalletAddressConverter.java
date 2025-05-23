@@ -13,4 +13,3 @@ public interface WalletAddressConverter {
     List<WalletAddressVo> toWalletAddressVoList(List<WalletAddressDO> paramList);
 }
 
-

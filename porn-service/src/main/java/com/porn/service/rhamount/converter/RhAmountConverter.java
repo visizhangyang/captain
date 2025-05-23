@@ -16,4 +16,3 @@ public interface RhAmountConverter {
     RhAmountDO toRhAmountDO(RhAmountSaveOrUpdateDTO paramRhAmountSaveOrUpdateDTO);
 }
 
-

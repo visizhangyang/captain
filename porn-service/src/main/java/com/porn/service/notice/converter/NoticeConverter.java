@@ -16,4 +16,3 @@ public interface NoticeConverter {
     NoticeDO toNoticeDO(NoticeSaveOrUpdateDTO paramNoticeSaveOrUpdateDTO);
 }
 
-

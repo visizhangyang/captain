@@ -1,52 +1,22 @@
-
 package com.porn.client.account.dto;
-import io.swagger.annotations.ApiModelProperty;
-
-
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
-
- public class AccountModifyPwdDTO extends BaseDTO {
+public class AccountModifyPwdDTO extends BaseDTO {
 
     @ApiModelProperty("类型, AccountModifyPwdTypeEnum")
-     private Integer type;
+    private Integer type;
 
     @ApiModelProperty("是否验证密码")
-     private boolean checkPwd;
+    private boolean checkPwd;
 
     @ApiModelProperty("旧密码")
-     private String oldPwd;
+    private String oldPwd;
 
     @ApiModelProperty("新密码")
-     private String newPwd;
+    private String newPwd;
 
-
-    /* 15 */
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public void setCheckPwd(boolean checkPwd) {
-        this.checkPwd = checkPwd;
-    }
-
-    public void setOldPwd(String oldPwd) {
-        this.oldPwd = oldPwd;
-    }
-
-    public void setNewPwd(String newPwd) {
-        this.newPwd = newPwd;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof AccountModifyPwdDTO;
-    }
-
-
-
-    /* 16 */
     protected AccountModifyPwdDTO(AccountModifyPwdDTOBuilder<?, ?> b) {
         super(b);
         this.type = b.type;
@@ -55,8 +25,64 @@ import com.porn.client.common.dto.BaseDTO;
         this.newPwd = b.newPwd;
     }
 
+    public AccountModifyPwdDTO(Integer type, boolean checkPwd, String oldPwd, String newPwd) {
+
+        this.type = type;
+        this.checkPwd = checkPwd;
+        this.oldPwd = oldPwd;
+        this.newPwd = newPwd;
+
+    }
+
+    public AccountModifyPwdDTO() {
+    }
+
     public static AccountModifyPwdDTOBuilder<?, ?> builder() {
         return new AccountModifyPwdDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof AccountModifyPwdDTO;
+    }
+
+    public Integer getType() {
+
+        return this.type;
+
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public boolean isCheckPwd() {
+
+        return this.checkPwd;
+
+    }
+
+    public void setCheckPwd(boolean checkPwd) {
+        this.checkPwd = checkPwd;
+    }
+
+    public String getOldPwd() {
+
+        return this.oldPwd;
+
+    }
+
+    public void setOldPwd(String oldPwd) {
+        this.oldPwd = oldPwd;
+    }
+
+    public String getNewPwd() {
+
+        return this.newPwd;
+
+    }
+
+    public void setNewPwd(String newPwd) {
+        this.newPwd = newPwd;
     }
 
     private static final class AccountModifyPwdDTOBuilderImpl extends AccountModifyPwdDTOBuilder<AccountModifyPwdDTO, AccountModifyPwdDTOBuilderImpl> {
@@ -75,14 +101,13 @@ import com.porn.client.common.dto.BaseDTO;
     public static abstract class AccountModifyPwdDTOBuilder<C extends AccountModifyPwdDTO, B extends AccountModifyPwdDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Integer type;
         private boolean checkPwd;
+        private String oldPwd;
+        private String newPwd;
 
         public B type(Integer type) {
             this.type = type;
             return self();
         }
-
-        private String oldPwd;
-        private String newPwd;
 
         public B checkPwd(boolean checkPwd) {
             this.checkPwd = checkPwd;
@@ -105,48 +130,5 @@ import com.porn.client.common.dto.BaseDTO;
 
     }
 
-    public AccountModifyPwdDTO(Integer type, boolean checkPwd, String oldPwd, String newPwd) {
-        /* 17 */
-        this.type = type;
-        this.checkPwd = checkPwd;
-        this.oldPwd = oldPwd;
-        this.newPwd = newPwd;
-
-    }
-
-
-    public AccountModifyPwdDTO() {
-    }
-
-
-
-    public Integer getType() {
-        /* 22 */
-        return this.type;
-
-    }
-
-
-    public boolean isCheckPwd() {
-        /* 25 */
-        return this.checkPwd;
-
-    }
-
-
-    public String getOldPwd() {
-        /* 28 */
-        return this.oldPwd;
-
-    }
-
-
-    public String getNewPwd() {
-        /* 31 */
-        return this.newPwd;
-
-    }
-
 }
-
 

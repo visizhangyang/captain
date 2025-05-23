@@ -1,68 +1,29 @@
-
 package com.porn.client.menu.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 public class MenuSaveOrUpdateDTO extends BaseDTO {
     @ApiModelProperty("名称")
-     private String name;
+    private String name;
     @ApiModelProperty("图标类型, IconTypeEnum")
-     private Integer iconType;
+    private Integer iconType;
 
     @ApiModelProperty("图标路径")
-     private String iconPath;
+    private String iconPath;
 
     @ApiModelProperty("url请求路径")
-     private String urlPath;
+    private String urlPath;
 
     @ApiModelProperty("描述")
-     private String description;
+    private String description;
 
     @ApiModelProperty("排序值")
-     private Integer sortNo;
+    private Integer sortNo;
 
     @ApiModelProperty("父ID")
-     private Long parentId;
+    private Long parentId;
 
-
-    /* 15 */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setIconType(Integer iconType) {
-        this.iconType = iconType;
-    }
-
-    public void setIconPath(String iconPath) {
-        this.iconPath = iconPath;
-    }
-
-    public void setUrlPath(String urlPath) {
-        this.urlPath = urlPath;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setSortNo(Integer sortNo) {
-        this.sortNo = sortNo;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof MenuSaveOrUpdateDTO;
-    }
-
-
-
-    /* 16 */
     protected MenuSaveOrUpdateDTO(MenuSaveOrUpdateDTOBuilder<?, ?> b) {
         super(b);
         this.name = b.name;
@@ -74,8 +35,97 @@ public class MenuSaveOrUpdateDTO extends BaseDTO {
         this.parentId = b.parentId;
     }
 
+    public MenuSaveOrUpdateDTO(String name, Integer iconType, String iconPath, String urlPath, String description, Integer sortNo, Long parentId) {
+
+        this.name = name;
+        this.iconType = iconType;
+        this.iconPath = iconPath;
+        this.urlPath = urlPath;
+        this.description = description;
+        this.sortNo = sortNo;
+        this.parentId = parentId;
+
+    }
+
+    public MenuSaveOrUpdateDTO() {
+    }
+
     public static MenuSaveOrUpdateDTOBuilder<?, ?> builder() {
         return new MenuSaveOrUpdateDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof MenuSaveOrUpdateDTO;
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getIconType() {
+
+        return this.iconType;
+
+    }
+
+    public void setIconType(Integer iconType) {
+        this.iconType = iconType;
+    }
+
+    public String getIconPath() {
+
+        return this.iconPath;
+
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
+    }
+
+    public String getUrlPath() {
+
+        return this.urlPath;
+
+    }
+
+    public void setUrlPath(String urlPath) {
+        this.urlPath = urlPath;
+    }
+
+    public String getDescription() {
+
+        return this.description;
+
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getSortNo() {
+
+        return this.sortNo;
+
+    }
+
+    public void setSortNo(Integer sortNo) {
+        this.sortNo = sortNo;
+    }
+
+    public Long getParentId() {
+
+        return this.parentId;
+
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     private static final class MenuSaveOrUpdateDTOBuilderImpl extends MenuSaveOrUpdateDTOBuilder<MenuSaveOrUpdateDTO, MenuSaveOrUpdateDTOBuilderImpl> {
@@ -95,16 +145,15 @@ public class MenuSaveOrUpdateDTO extends BaseDTO {
         private String name;
         private Integer iconType;
         private String iconPath;
+        private String urlPath;
+        private String description;
+        private Integer sortNo;
+        private Long parentId;
 
         public B name(String name) {
             this.name = name;
             return self();
         }
-
-        private String urlPath;
-        private String description;
-        private Integer sortNo;
-        private Long parentId;
 
         public B iconType(Integer iconType) {
             this.iconType = iconType;
@@ -141,72 +190,5 @@ public class MenuSaveOrUpdateDTO extends BaseDTO {
         public abstract C build();
 
     }
-
-    public MenuSaveOrUpdateDTO(String name, Integer iconType, String iconPath, String urlPath, String description, Integer sortNo, Long parentId) {
-        /* 17 */
-        this.name = name;
-        this.iconType = iconType;
-        this.iconPath = iconPath;
-        this.urlPath = urlPath;
-        this.description = description;
-        this.sortNo = sortNo;
-        this.parentId = parentId;
-
-    }
-
-
-    public MenuSaveOrUpdateDTO() {
-    }
-
-
-
-    public String getName() {
-        /* 22 */
-        return this.name;
-
-    }
-
-
-    public Integer getIconType() {
-        /* 25 */
-        return this.iconType;
-
-    }
-
-
-    public String getIconPath() {
-        /* 28 */
-        return this.iconPath;
-
-    }
-
-
-    public String getUrlPath() {
-        /* 31 */
-        return this.urlPath;
-
-    }
-
-
-    public String getDescription() {
-        /* 34 */
-        return this.description;
-
-    }
-
-
-    public Integer getSortNo() {
-        /* 37 */
-        return this.sortNo;
-
-    }
-
-
-    public Long getParentId() {
-        /* 40 */
-        return this.parentId;
-
-    }
 }
-
 

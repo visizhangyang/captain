@@ -1,6 +1,4 @@
-
 package com.porn.service.reward.cron;
-
 
 
 import cn.hutool.core.date.LocalDateTimeUtil;
@@ -47,101 +45,45 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @Component
- public class RewardCron
-         implements ApplicationContextAware
-         {
-    /*  51 */   private static final Logger log = LoggerFactory.getLogger(RewardCron.class);
-
-
-
-    @Autowired
-     private AccountApiService accountApiService;
-
+public class RewardCron
+        implements ApplicationContextAware {
+    private static final Logger log = LoggerFactory.getLogger(RewardCron.class);
 
 
     @Autowired
-     private RewardBalanceApiService rewardBalanceApiService;
+    private AccountApiService accountApiService;
 
 
     @Autowired
-     private RewardRecordApiService rewardRecordApiService;
-
-
-    @Autowired
-     private RewardRuleApiService rewardRuleApiService;
-
+    private RewardBalanceApiService rewardBalanceApiService;
 
     @Autowired
-     private OrderApiService orderApiService;
-
-
-    @Autowired
-     private RechargeApiService rechargeApiService;
-
+    private RewardRecordApiService rewardRecordApiService;
 
     @Autowired
-     private RedisTemplate redisTemplate;
+    private RewardRuleApiService rewardRuleApiService;
 
-       private ApplicationContext applicationContext;
+    @Autowired
+    private OrderApiService orderApiService;
 
+    @Autowired
+    private RechargeApiService rechargeApiService;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
 
+    private ApplicationContext applicationContext;
 
     @Scheduled(cron = "0 30 12 * * ?")
-     public void doCompare() {
-        /*  81 */
-        List<RewardRuleVo> rewardRuleVoList = this.rewardRuleApiService.queryRewardRuleList(
-                /*  82 */         RewardRuleQueryDTO.builder()
-/*  83 */.langType(LangTypeEnum.ZH.getType())
-/*  84 */.build());
+    public void doCompare() {
 
-        /*  86 */
+        List<RewardRuleVo> rewardRuleVoList = this.rewardRuleApiService.queryRewardRuleList(
+                RewardRuleQueryDTO.builder()
+                        .langType(LangTypeEnum.ZH.getType())
+                        .build());
+
+
         if (ObjectUtil.isEmpty(rewardRuleVoList)) {
 
             return;
@@ -149,29 +91,26 @@ import java.util.stream.Collectors;
         }
 
 
-
-        /*  92 */
         AccountQueryDTO accountQueryDTO = AccountQueryDTO.builder().accountType(AccountTypeEnum.NORMAL.getType()).build();
-        /*  93 */
+
         List<AccountVo> accountVoList = this.accountApiService.queryAccountList(accountQueryDTO);
-        /*  94 */
+
         if (ObjectUtil.isEmpty(accountVoList)) {
 
             return;
 
         }
-        /*  97 */
+
         for (RewardRuleVo rewardRuleVo : rewardRuleVoList) {
-            /*  98 */
+
             for (AccountVo accountVo : accountVoList) {
 
-
                 try {
-                    /* 101 */
+
                     doCheckLrantLottery(rewardRuleVo, accountVo);
-                    /* 102 */
+
                 } catch (Exception e) {
-                    /* 103 */
+
                     log.error(e.getMessage(), e);
 
                 }
@@ -182,137 +121,83 @@ import java.util.stream.Collectors;
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     protected void doCheckLrantLottery(RewardRuleVo rewardRuleVo, AccountVo accountVo) {
-        /* 123 */
+
         TaskProgressVo taskProgressVo = TaskProgressVo.builder().name(rewardRuleVo.getName()).subName(rewardRuleVo.getSubName()).ruleType(rewardRuleVo.getRuleType()).ruleImgUrl(rewardRuleVo.getRuleImgUrl()).totalNum(rewardRuleVo.getTotalAmount().setScale(0)).rewardNum(rewardRuleVo.getRewardNum()).expireTime(LocalDateTimeUtil.format(LocalDateTimeUtil.endOfDay(LocalDateTime.now()), "yyyy-MM-dd HH:mm:ss")).build();
 
-        /* 125 */
         LocalDateTime now = LocalDateTime.now();
-        /* 126 */
+
         LocalDateTime startTime = LocalDateTimeUtil.beginOfDay(LocalDateTimeUtil.offset(now, -1L, ChronoUnit.DAYS));
-        /* 127 */
+
         LocalDateTime endTime = LocalDateTimeUtil.endOfDay(LocalDateTimeUtil.offset(now, -1L, ChronoUnit.DAYS));
 
-        /* 129 */
         if (RuleTypeEnum.WORK_RULE.getType().equals(rewardRuleVo.getRuleType())) {
 
 
-
-
-
-
-            /* 136 */
             OrderQueryDTO orderQueryDTO = OrderQueryDTO.builder().accountId(accountVo.getId()).orderStatus(OrderStatusEnum.CONFIRED.getStatus()).startTime(startTime).endTime(endTime).build();
-            /* 137 */
+
             BigDecimal curNum = this.orderApiService.sumOrderAmount(orderQueryDTO);
-            /* 138 */
+
             taskProgressVo.setCurNum(curNum);
-            /* 139 */
+
         } else if (RuleTypeEnum.PROMOTION_RULE.getType().equals(rewardRuleVo.getRuleType())) {
 
-
-
-            /* 143 */
             AccountQueryDTO accountQueryDTO = AccountQueryDTO.builder().parentId(accountVo.getId()).build();
-            /* 144 */
+
             List<AccountVo> accountVoList = this.accountApiService.queryAccountList(accountQueryDTO);
-            /* 145 */
+
             if (ObjectUtil.isEmpty(accountVoList)) {
-                /* 146 */
+
                 taskProgressVo.setCurNum(BigDecimal.ZERO);
 
             } else {
 
-                /* 149 */
                 List<Long> childIdList = (List<Long>) accountVoList.stream().map(BaseVo::getId).collect(Collectors.toList());
 
-
-
-
-
-                /* 155 */
                 OrderQueryDTO orderQueryDTO = OrderQueryDTO.builder().orderStatus(OrderStatusEnum.CONFIRED.getStatus()).startTime(startTime).endTime(endTime).accountIdList(childIdList).build();
-                /* 156 */
+
                 BigDecimal curNum = this.orderApiService.sumOrderAmount(orderQueryDTO);
-                /* 157 */
+
                 taskProgressVo.setCurNum(curNum);
 
             }
-            /* 159 */
+
         } else if (RuleTypeEnum.RECHARGE_RULE.getType().equals(rewardRuleVo.getRuleType())) {
 
-
-
-
-
-            /* 165 */
             RechargeQueryDTO rechargeQueryDTO = RechargeQueryDTO.builder().accountId(accountVo.getId()).status(RechargeStatusEnum.PAY_SUCCESS.getStatus()).startTime(startTime).endTime(endTime).build();
-            /* 166 */
+
             BigDecimal curNum = this.rechargeApiService.sumRechargeAmount(rechargeQueryDTO);
-            /* 167 */
+
             taskProgressVo.setCurNum(curNum);
-            /* 168 */
+
         } else if (RuleTypeEnum.BALANCE_RULE.getType().equals(rewardRuleVo.getRuleType())) {
 
-            /* 170 */
             this.redisTemplate.opsForValue().set(String.format("REWARDRECORD:%s:%s", new Object[]{String.valueOf(accountVo.getId()), LocalDateTimeUtil.format(startTime, "yyyyMMdd")}), accountVo.getAvailableBalance().stripTrailingZeros().toPlainString(), 2L, TimeUnit.DAYS);
-            /* 171 */
+
             taskProgressVo.setCurNum(accountVo.getAvailableBalance());
 
         }
 
-        /* 174 */
         if (taskProgressVo.getCurNum().compareTo(rewardRuleVo.getTotalAmount()) >= 0) {
-            /* 175 */
+
             ((RewardCron) this.applicationContext.getBean(RewardCron.class)).doCheckIssue(accountVo, rewardRuleVo, startTime);
 
         }
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
     @Transactional(rollbackFor = {Exception.class}, propagation = Propagation.REQUIRES_NEW)
-     public void doCheckIssue(AccountVo accountVo, RewardRuleVo rewardRuleVo, LocalDateTime startTime) {
-        /* 190 */
+    public void doCheckIssue(AccountVo accountVo, RewardRuleVo rewardRuleVo, LocalDateTime startTime) {
+
         QueryRewardRecordDTO queryRewardRecordDTO = QueryRewardRecordDTO.builder().accountId(accountVo.getId()).type(RewardRecordTypeEnum.ADD.getType()).bizType(rewardRuleVo.getRuleType()).bizId(LocalDateTimeUtil.format(startTime, "yyyyMMdd")).build();
-        /* 191 */
+
         RewardRecordVo rewardRecordVo = this.rewardRecordApiService.queryRewardRecord(queryRewardRecordDTO);
-        /* 192 */
+
         if (ObjectUtil.isEmpty(rewardRecordVo)) {
 
 
-
-
-
-
-            /* 199 */
             OperateRewardBalanceDTO operateRewardBalanceDTO = OperateRewardBalanceDTO.builder().accountId(accountVo.getId()).operateCount(new BigDecimal(rewardRuleVo.getRewardNum().intValue())).type(RewardRecordTypeEnum.ADD.getType()).bizType(rewardRuleVo.getRuleType()).bizId(LocalDateTimeUtil.format(startTime, "yyyyMMdd")).build();
-            /* 200 */
+
             this.rewardBalanceApiService.operateRewardBalance(operateRewardBalanceDTO);
 
         }
@@ -320,17 +205,11 @@ import java.util.stream.Collectors;
     }
 
 
-
-
-
-
-
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        /* 209 */
+
         this.applicationContext = applicationContext;
 
     }
 
 }
-
 

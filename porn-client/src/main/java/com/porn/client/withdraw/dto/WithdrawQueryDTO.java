@@ -1,9 +1,7 @@
-
 package com.porn.client.withdraw.dto;
-import io.swagger.annotations.ApiModelProperty;
 
 import com.porn.client.common.dto.BaseDTO;
-
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,33 +22,6 @@ public class WithdrawQueryDTO extends BaseDTO {
     @ApiModelProperty("开始时间")
     private LocalDateTime startTime;
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public void setWalletCode(String walletCode) {
-        this.walletCode = walletCode;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setStatusList(List<Integer> statusList) {
-        this.statusList = statusList;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-
-    protected boolean canEqual(Object other) {
-        return other instanceof WithdrawQueryDTO;
-    }
-
-
-
     protected WithdrawQueryDTO(WithdrawQueryDTOBuilder<?, ?> b) {
         super(b);
         this.accountId = b.accountId;
@@ -60,8 +31,63 @@ public class WithdrawQueryDTO extends BaseDTO {
         this.startTime = b.startTime;
     }
 
+    public WithdrawQueryDTO(Long accountId, String walletCode, Integer status, List<Integer> statusList, LocalDateTime startTime) {
+        this.accountId = accountId;
+        this.walletCode = walletCode;
+        this.status = status;
+        this.statusList = statusList;
+        this.startTime = startTime;
+    }
+
+    public WithdrawQueryDTO() {
+    }
+
     public static WithdrawQueryDTOBuilder<?, ?> builder() {
         return new WithdrawQueryDTOBuilderImpl();
+    }
+
+    protected boolean canEqual(Object other) {
+        return other instanceof WithdrawQueryDTO;
+    }
+
+    public Long getAccountId() {
+        return this.accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getWalletCode() {
+        return this.walletCode;
+    }
+
+    public void setWalletCode(String walletCode) {
+        this.walletCode = walletCode;
+    }
+
+    public Integer getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public List<Integer> getStatusList() {
+        return this.statusList;
+    }
+
+    public void setStatusList(List<Integer> statusList) {
+        this.statusList = statusList;
+    }
+
+    public LocalDateTime getStartTime() {
+        return this.startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
     private static final class WithdrawQueryDTOBuilderImpl extends WithdrawQueryDTOBuilder<WithdrawQueryDTO, WithdrawQueryDTOBuilderImpl> {
@@ -80,15 +106,14 @@ public class WithdrawQueryDTO extends BaseDTO {
     public static abstract class WithdrawQueryDTOBuilder<C extends WithdrawQueryDTO, B extends WithdrawQueryDTOBuilder<C, B>> extends BaseDTO.BaseDTOBuilder<C, B> {
         private Long accountId;
         private String walletCode;
+        private Integer status;
+        private List<Integer> statusList;
+        private LocalDateTime startTime;
 
         public B accountId(Long accountId) {
             this.accountId = accountId;
             return self();
         }
-
-        private Integer status;
-        private List<Integer> statusList;
-        private LocalDateTime startTime;
 
         public B walletCode(String walletCode) {
             this.walletCode = walletCode;
@@ -115,37 +140,5 @@ public class WithdrawQueryDTO extends BaseDTO {
         public abstract C build();
 
     }
-
-    public WithdrawQueryDTO(Long accountId, String walletCode, Integer status, List<Integer> statusList, LocalDateTime startTime) {
-        this.accountId = accountId;
-        this.walletCode = walletCode;
-        this.status = status;
-        this.statusList = statusList;
-        this.startTime = startTime;
-    }
-
-    public WithdrawQueryDTO() {
-    }
-
-    public Long getAccountId() {
-        return this.accountId;
-    }
-
-    public String getWalletCode() {
-        return this.walletCode;
-    }
-
-    public Integer getStatus() {
-        return this.status;
-    }
-
-    public List<Integer> getStatusList() {
-        return this.statusList;
-    }
-
-    public LocalDateTime getStartTime() {
-        return this.startTime;
-    }
 }
-
 
